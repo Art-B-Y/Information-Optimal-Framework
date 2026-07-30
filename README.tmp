@@ -1,0 +1,4 @@
+# Train score model on CIFAR-10 (final phase)
+# PowerShell example (single line):
+# python -m scripts.train_score_model --overrides "score_training.resume_from=checkpoints/score/score_epoch_0010.pt score_training.epochs=50 score_training.model.base_channels=128 score_training.dataset.batch_size=128"
+python -m scripts.train_score_model  # checkpoints in checkpoints/score (override with -o score_training.save_interval=0)
