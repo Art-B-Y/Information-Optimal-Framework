@@ -1,0 +1,9 @@
+Generating 1000 samples...
+Loading training set for NN comparison...
+Computing nearest-neighbor distances...
+
+Memorization check complete:
+  NN mean distance: 29.7951
+  Fraction below threshold (0.05): 0.0000
+  Memorization concern: False
+  Result -> C:\Users\artun\Desktop\ITS-project\data\results\memorization_check.json

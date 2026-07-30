@@ -1,0 +1,23 @@
+2026-04-21 06:51:50,377 INFO Loaded pretrained score backbone from checkpoints/score_fmnist_v2/score_epoch_0050.pt
+2026-04-21 06:51:50,381 INFO Score model frozen — only control policy will be trained.
+2026-04-21 06:52:05,591 INFO epoch=1 step=100 loss=696.8179 dsm=695.2380 control=0.0402 path_kl=15.7942 jar=-29.0912 quality=0.0000
+2026-04-21 06:52:14,075 WARNING High control grad norm: 24.96 at step=156
+2026-04-21 06:52:14,077 INFO epoch=1 done
+2026-04-21 06:52:14,087 INFO epoch=1 diag: cos_sim=0.0059 ctrl_mag=3.1898 score_mag=20.0032 ratio=0.1595
+2026-04-21 06:52:20,623 INFO epoch=2 step=200 loss=494.3061 dsm=493.0762 control=0.0331 path_kl=12.2953 jar=-24.3118 quality=0.0000
+2026-04-21 06:52:35,155 INFO epoch=2 step=300 loss=343.5362 dsm=342.8765 control=0.0280 path_kl=6.5944 jar=-19.4359 quality=0.0000
+2026-04-21 06:52:37,159 WARNING High control grad norm: 22.99 at step=313
+2026-04-21 06:52:37,160 INFO epoch=2 done
+2026-04-21 06:52:37,167 INFO epoch=2 diag: cos_sim=0.0037 ctrl_mag=2.7232 score_mag=20.0032 ratio=0.1361
+2026-04-21 06:52:49,805 INFO epoch=3 step=400 loss=549.9622 dsm=548.9665 control=0.0253 path_kl=9.9544 jar=-21.4405 quality=0.0000
+2026-04-21 06:53:00,437 WARNING High control grad norm: 22.38 at step=470
+2026-04-21 06:53:00,439 INFO epoch=3 done
+2026-04-21 06:53:00,447 INFO epoch=3 diag: cos_sim=0.0030 ctrl_mag=2.4928 score_mag=20.0032 ratio=0.1246
+2026-04-21 06:53:04,801 INFO epoch=4 step=500 loss=662.0468 dsm=661.2142 control=0.0235 path_kl=8.3234 jar=-16.1312 quality=0.0000
+2026-04-21 06:53:19,794 INFO epoch=4 step=600 loss=674.7543 dsm=673.7967 control=0.0223 path_kl=9.5742 jar=-20.5025 quality=0.0000
+2026-04-21 06:53:23,855 INFO epoch=4 done
+2026-04-21 06:53:23,862 INFO epoch=4 diag: cos_sim=0.0040 ctrl_mag=2.4066 score_mag=20.0032 ratio=0.1203
+2026-04-21 06:53:34,552 INFO epoch=5 step=700 loss=683.6548 dsm=682.7856 control=0.0224 path_kl=8.6899 jar=-16.3315 quality=0.0000
+2026-04-21 06:53:47,147 WARNING High control grad norm: 21.32 at step=784
+2026-04-21 06:53:47,149 INFO epoch=5 done
+2026-04-21 06:53:47,156 INFO epoch=5 diag: cos_sim=0.0041 ctrl_mag=2.3908 score_mag=20.0032 ratio=0.1195

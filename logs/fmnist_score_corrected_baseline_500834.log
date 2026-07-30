@@ -1,0 +1,741 @@
+2026-07-15 18:44:43,547 INFO DIFFUSION CONVENTION: VE (kernel x + sigma*eps, DSM target -eps/sigma), sigma in [0.01, 42], weighting=sigma_sq, preconditioning=edm. Sampling MUST use ScoreSDEConfig(parameterisation='ve') with the SAME sigma range.
+2026-07-15 18:45:06,294 INFO epoch=1 step=25 loss=0.4567 grad_norm=0.5780 lr=2.00e-04
+2026-07-15 18:45:11,840 INFO epoch=1 step=50 loss=0.4235 grad_norm=0.5087 lr=2.00e-04
+2026-07-15 18:45:17,390 INFO epoch=1 step=75 loss=0.3906 grad_norm=1.0431 lr=2.00e-04
+2026-07-15 18:45:22,968 INFO epoch=1 step=100 loss=0.3645 grad_norm=0.5703 lr=2.00e-04
+2026-07-15 18:45:28,536 INFO epoch=1 step=125 loss=0.3445 grad_norm=1.4515 lr=2.00e-04
+2026-07-15 18:45:34,142 INFO epoch=1 step=150 loss=0.3296 grad_norm=1.4341 lr=2.00e-04
+2026-07-15 18:45:39,708 INFO epoch=1 step=175 loss=0.3170 grad_norm=0.7193 lr=2.00e-04
+2026-07-15 18:45:45,289 INFO epoch=1 step=200 loss=0.3063 grad_norm=1.5016 lr=2.00e-04
+2026-07-15 18:45:51,008 INFO epoch=1 avg_loss=0.2983 lr=2.00e-04
+2026-07-15 18:46:14,360 INFO epoch=2 step=225 loss=0.2134 grad_norm=1.1381 lr=2.00e-04
+2026-07-15 18:46:19,903 INFO epoch=2 step=250 loss=0.2188 grad_norm=1.3261 lr=2.00e-04
+2026-07-15 18:46:25,453 INFO epoch=2 step=275 loss=0.2139 grad_norm=1.4984 lr=2.00e-04
+2026-07-15 18:46:31,030 INFO epoch=2 step=300 loss=0.2128 grad_norm=2.1420 lr=2.00e-04
+2026-07-15 18:46:36,603 INFO epoch=2 step=325 loss=0.2106 grad_norm=0.7508 lr=2.00e-04
+2026-07-15 18:46:42,191 INFO epoch=2 step=350 loss=0.2091 grad_norm=0.9456 lr=2.00e-04
+2026-07-15 18:46:47,764 INFO epoch=2 step=375 loss=0.2082 grad_norm=1.6235 lr=2.00e-04
+2026-07-15 18:46:53,386 INFO epoch=2 step=400 loss=0.2065 grad_norm=1.4403 lr=2.00e-04
+2026-07-15 18:46:58,983 INFO epoch=2 step=425 loss=0.2051 grad_norm=0.7951 lr=2.00e-04
+2026-07-15 18:47:04,239 INFO epoch=2 avg_loss=0.2045 lr=2.00e-04
+2026-07-15 18:47:27,714 INFO epoch=3 step=450 loss=0.1865 grad_norm=0.8158 lr=2.00e-04
+2026-07-15 18:47:33,277 INFO epoch=3 step=475 loss=0.1904 grad_norm=0.9024 lr=2.00e-04
+2026-07-15 18:47:38,834 INFO epoch=3 step=500 loss=0.1908 grad_norm=0.6178 lr=2.00e-04
+2026-07-15 18:47:44,394 INFO epoch=3 step=525 loss=0.1886 grad_norm=0.7626 lr=2.00e-04
+2026-07-15 18:47:49,977 INFO epoch=3 step=550 loss=0.1885 grad_norm=1.2586 lr=2.00e-04
+2026-07-15 18:47:55,576 INFO epoch=3 step=575 loss=0.1883 grad_norm=0.9945 lr=2.00e-04
+2026-07-15 18:48:01,168 INFO epoch=3 step=600 loss=0.1892 grad_norm=1.2229 lr=2.00e-04
+2026-07-15 18:48:06,759 INFO epoch=3 step=625 loss=0.1880 grad_norm=1.0907 lr=2.00e-04
+2026-07-15 18:48:12,375 INFO epoch=3 step=650 loss=0.1870 grad_norm=0.7293 lr=2.00e-04
+2026-07-15 18:48:17,176 INFO epoch=3 avg_loss=0.1871 lr=2.00e-04
+2026-07-15 18:48:40,891 INFO epoch=4 step=675 loss=0.1805 grad_norm=0.7968 lr=2.00e-04
+2026-07-15 18:48:46,469 INFO epoch=4 step=700 loss=0.1798 grad_norm=0.9213 lr=2.00e-04
+2026-07-15 18:48:52,045 INFO epoch=4 step=725 loss=0.1807 grad_norm=0.5301 lr=1.99e-04
+2026-07-15 18:48:57,607 INFO epoch=4 step=750 loss=0.1810 grad_norm=0.7948 lr=1.99e-04
+2026-07-15 18:49:03,195 INFO epoch=4 step=775 loss=0.1821 grad_norm=1.1279 lr=1.99e-04
+2026-07-15 18:49:08,804 INFO epoch=4 step=800 loss=0.1818 grad_norm=0.6844 lr=1.99e-04
+2026-07-15 18:49:14,397 INFO epoch=4 step=825 loss=0.1809 grad_norm=0.8649 lr=1.99e-04
+2026-07-15 18:49:20,008 INFO epoch=4 step=850 loss=0.1807 grad_norm=0.4696 lr=1.99e-04
+2026-07-15 18:49:25,610 INFO epoch=4 step=875 loss=0.1801 grad_norm=0.9883 lr=1.99e-04
+2026-07-15 18:49:30,058 INFO epoch=4 avg_loss=0.1798 lr=1.99e-04
+2026-07-15 18:49:55,504 INFO epoch=5 step=900 loss=0.1756 grad_norm=0.7773 lr=1.99e-04
+2026-07-15 18:50:01,142 INFO epoch=5 step=925 loss=0.1758 grad_norm=1.2766 lr=1.99e-04
+2026-07-15 18:50:06,779 INFO epoch=5 step=950 loss=0.1756 grad_norm=1.3438 lr=1.99e-04
+2026-07-15 18:50:12,407 INFO epoch=5 step=975 loss=0.1751 grad_norm=1.3353 lr=1.99e-04
+2026-07-15 18:50:18,017 INFO epoch=5 step=1000 loss=0.1742 grad_norm=0.8149 lr=1.99e-04
+2026-07-15 18:50:23,658 INFO epoch=5 step=1025 loss=0.1741 grad_norm=0.5448 lr=1.99e-04
+2026-07-15 18:50:29,273 INFO epoch=5 step=1050 loss=0.1736 grad_norm=0.4867 lr=1.99e-04
+2026-07-15 18:50:34,919 INFO epoch=5 step=1075 loss=0.1733 grad_norm=0.4696 lr=1.99e-04
+2026-07-15 18:50:40,541 INFO epoch=5 step=1100 loss=0.1726 grad_norm=0.7457 lr=1.99e-04
+2026-07-15 18:50:44,526 INFO epoch=5 avg_loss=0.1724 lr=1.99e-04
+2026-07-15 18:50:52,267 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0005.pt
+2026-07-15 18:51:09,668 INFO epoch=6 step=1125 loss=0.1700 grad_norm=0.6837 lr=1.99e-04
+2026-07-15 18:51:15,248 INFO epoch=6 step=1150 loss=0.1745 grad_norm=1.6314 lr=1.99e-04
+2026-07-15 18:51:20,827 INFO epoch=6 step=1175 loss=0.1728 grad_norm=0.8650 lr=1.99e-04
+2026-07-15 18:51:26,418 INFO epoch=6 step=1200 loss=0.1712 grad_norm=0.8504 lr=1.99e-04
+2026-07-15 18:51:31,993 INFO epoch=6 step=1225 loss=0.1701 grad_norm=0.7204 lr=1.99e-04
+2026-07-15 18:51:37,586 INFO epoch=6 step=1250 loss=0.1692 grad_norm=0.5955 lr=1.98e-04
+2026-07-15 18:51:43,185 INFO epoch=6 step=1275 loss=0.1685 grad_norm=0.4436 lr=1.98e-04
+2026-07-15 18:51:48,769 INFO epoch=6 step=1300 loss=0.1683 grad_norm=0.4881 lr=1.98e-04
+2026-07-15 18:51:54,374 INFO epoch=6 step=1325 loss=0.1681 grad_norm=0.5838 lr=1.98e-04
+2026-07-15 18:51:57,852 INFO epoch=6 avg_loss=0.1681 lr=1.98e-04
+2026-07-15 18:52:22,661 INFO epoch=7 step=1350 loss=0.1581 grad_norm=0.7223 lr=1.98e-04
+2026-07-15 18:52:28,223 INFO epoch=7 step=1375 loss=0.1629 grad_norm=0.7443 lr=1.98e-04
+2026-07-15 18:52:33,792 INFO epoch=7 step=1400 loss=0.1638 grad_norm=0.9465 lr=1.98e-04
+2026-07-15 18:52:39,378 INFO epoch=7 step=1425 loss=0.1641 grad_norm=0.6000 lr=1.98e-04
+2026-07-15 18:52:44,972 INFO epoch=7 step=1450 loss=0.1634 grad_norm=0.5034 lr=1.98e-04
+2026-07-15 18:52:50,565 INFO epoch=7 step=1475 loss=0.1629 grad_norm=1.4054 lr=1.98e-04
+2026-07-15 18:52:56,186 INFO epoch=7 step=1500 loss=0.1628 grad_norm=1.0424 lr=1.98e-04
+2026-07-15 18:53:01,800 INFO epoch=7 step=1525 loss=0.1631 grad_norm=0.5862 lr=1.98e-04
+2026-07-15 18:53:07,424 INFO epoch=7 step=1550 loss=0.1634 grad_norm=0.6455 lr=1.98e-04
+2026-07-15 18:53:10,433 INFO epoch=7 avg_loss=0.1633 lr=1.98e-04
+2026-07-15 18:53:36,445 INFO epoch=8 step=1575 loss=0.1599 grad_norm=0.3507 lr=1.98e-04
+2026-07-15 18:53:42,037 INFO epoch=8 step=1600 loss=0.1597 grad_norm=0.7038 lr=1.97e-04
+2026-07-15 18:53:47,592 INFO epoch=8 step=1625 loss=0.1604 grad_norm=1.5094 lr=1.97e-04
+2026-07-15 18:53:53,170 INFO epoch=8 step=1650 loss=0.1600 grad_norm=0.7854 lr=1.97e-04
+2026-07-15 18:53:58,754 INFO epoch=8 step=1675 loss=0.1606 grad_norm=0.6124 lr=1.97e-04
+2026-07-15 18:54:04,374 INFO epoch=8 step=1700 loss=0.1610 grad_norm=0.6605 lr=1.97e-04
+2026-07-15 18:54:09,989 INFO epoch=8 step=1725 loss=0.1609 grad_norm=0.3455 lr=1.97e-04
+2026-07-15 18:54:15,614 INFO epoch=8 step=1750 loss=0.1606 grad_norm=0.8509 lr=1.97e-04
+2026-07-15 18:54:21,242 INFO epoch=8 step=1775 loss=0.1611 grad_norm=0.5980 lr=1.97e-04
+2026-07-15 18:54:23,877 INFO epoch=8 avg_loss=0.1614 lr=1.97e-04
+2026-07-15 18:54:50,438 INFO epoch=9 step=1800 loss=0.1631 grad_norm=0.7723 lr=1.97e-04
+2026-07-15 18:54:56,015 INFO epoch=9 step=1825 loss=0.1604 grad_norm=0.6358 lr=1.97e-04
+2026-07-15 18:55:01,636 INFO epoch=9 step=1850 loss=0.1600 grad_norm=1.0574 lr=1.97e-04
+2026-07-15 18:55:07,278 INFO epoch=9 step=1875 loss=0.1596 grad_norm=0.9634 lr=1.97e-04
+2026-07-15 18:55:12,938 INFO epoch=9 step=1900 loss=0.1603 grad_norm=0.5414 lr=1.96e-04
+2026-07-15 18:55:18,583 INFO epoch=9 step=1925 loss=0.1601 grad_norm=0.4263 lr=1.96e-04
+2026-07-15 18:55:24,261 INFO epoch=9 step=1950 loss=0.1592 grad_norm=0.3934 lr=1.96e-04
+2026-07-15 18:55:29,900 INFO epoch=9 step=1975 loss=0.1589 grad_norm=0.3155 lr=1.96e-04
+2026-07-15 18:55:35,575 INFO epoch=9 step=2000 loss=0.1593 grad_norm=0.9695 lr=1.96e-04
+2026-07-15 18:55:37,672 INFO epoch=9 avg_loss=0.1593 lr=1.96e-04
+2026-07-15 18:56:07,269 INFO epoch=10 step=2025 loss=0.1649 grad_norm=0.6370 lr=1.96e-04
+2026-07-15 18:56:12,864 INFO epoch=10 step=2050 loss=0.1620 grad_norm=0.7131 lr=1.96e-04
+2026-07-15 18:56:18,464 INFO epoch=10 step=2075 loss=0.1604 grad_norm=0.5838 lr=1.96e-04
+2026-07-15 18:56:24,137 INFO epoch=10 step=2100 loss=0.1589 grad_norm=0.5031 lr=1.96e-04
+2026-07-15 18:56:29,779 INFO epoch=10 step=2125 loss=0.1588 grad_norm=0.4281 lr=1.96e-04
+2026-07-15 18:56:35,431 INFO epoch=10 step=2150 loss=0.1580 grad_norm=0.5522 lr=1.95e-04
+2026-07-15 18:56:41,076 INFO epoch=10 step=2175 loss=0.1571 grad_norm=0.9799 lr=1.95e-04
+2026-07-15 18:56:46,802 INFO epoch=10 step=2200 loss=0.1567 grad_norm=0.7840 lr=1.95e-04
+2026-07-15 18:56:52,548 INFO epoch=10 step=2225 loss=0.1571 grad_norm=0.5579 lr=1.95e-04
+2026-07-15 18:56:54,223 INFO epoch=10 avg_loss=0.1571 lr=1.95e-04
+2026-07-15 18:57:01,880 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0010.pt
+2026-07-15 18:57:21,777 INFO epoch=11 step=2250 loss=0.1533 grad_norm=0.4896 lr=1.95e-04
+2026-07-15 18:57:27,376 INFO epoch=11 step=2275 loss=0.1566 grad_norm=0.4696 lr=1.95e-04
+2026-07-15 18:57:32,988 INFO epoch=11 step=2300 loss=0.1559 grad_norm=0.4192 lr=1.95e-04
+2026-07-15 18:57:38,603 INFO epoch=11 step=2325 loss=0.1560 grad_norm=0.4583 lr=1.95e-04
+2026-07-15 18:57:44,264 INFO epoch=11 step=2350 loss=0.1557 grad_norm=0.8790 lr=1.95e-04
+2026-07-15 18:57:49,885 INFO epoch=11 step=2375 loss=0.1555 grad_norm=0.4997 lr=1.94e-04
+2026-07-15 18:57:55,491 INFO epoch=11 step=2400 loss=0.1554 grad_norm=0.4912 lr=1.94e-04
+2026-07-15 18:58:01,119 INFO epoch=11 step=2425 loss=0.1550 grad_norm=0.5531 lr=1.94e-04
+2026-07-15 18:58:06,768 INFO epoch=11 step=2450 loss=0.1552 grad_norm=0.9271 lr=1.94e-04
+2026-07-15 18:58:07,985 INFO epoch=11 avg_loss=0.1552 lr=1.94e-04
+2026-07-15 18:58:35,182 INFO epoch=12 step=2475 loss=0.1549 grad_norm=0.3652 lr=1.94e-04
+2026-07-15 18:58:40,770 INFO epoch=12 step=2500 loss=0.1551 grad_norm=0.4411 lr=1.94e-04
+2026-07-15 18:58:46,332 INFO epoch=12 step=2525 loss=0.1551 grad_norm=0.3775 lr=1.94e-04
+2026-07-15 18:58:51,945 INFO epoch=12 step=2550 loss=0.1549 grad_norm=0.4278 lr=1.94e-04
+2026-07-15 18:58:57,518 INFO epoch=12 step=2575 loss=0.1547 grad_norm=0.4901 lr=1.94e-04
+2026-07-15 18:59:03,159 INFO epoch=12 step=2600 loss=0.1540 grad_norm=0.8417 lr=1.93e-04
+2026-07-15 18:59:08,768 INFO epoch=12 step=2625 loss=0.1546 grad_norm=1.1540 lr=1.93e-04
+2026-07-15 18:59:14,375 INFO epoch=12 step=2650 loss=0.1549 grad_norm=0.7890 lr=1.93e-04
+2026-07-15 18:59:20,021 INFO epoch=12 step=2675 loss=0.1548 grad_norm=0.7544 lr=1.93e-04
+2026-07-15 18:59:20,787 INFO epoch=12 avg_loss=0.1547 lr=1.93e-04
+2026-07-15 18:59:49,335 INFO epoch=13 step=2700 loss=0.1524 grad_norm=0.5196 lr=1.93e-04
+2026-07-15 18:59:54,956 INFO epoch=13 step=2725 loss=0.1523 grad_norm=0.5332 lr=1.93e-04
+2026-07-15 19:00:00,561 INFO epoch=13 step=2750 loss=0.1524 grad_norm=0.4557 lr=1.93e-04
+2026-07-15 19:00:06,157 INFO epoch=13 step=2775 loss=0.1530 grad_norm=0.8705 lr=1.92e-04
+2026-07-15 19:00:11,761 INFO epoch=13 step=2800 loss=0.1527 grad_norm=0.4063 lr=1.92e-04
+2026-07-15 19:00:17,339 INFO epoch=13 step=2825 loss=0.1524 grad_norm=0.7618 lr=1.92e-04
+2026-07-15 19:00:22,963 INFO epoch=13 step=2850 loss=0.1522 grad_norm=0.4388 lr=1.92e-04
+2026-07-15 19:00:28,589 INFO epoch=13 step=2875 loss=0.1519 grad_norm=0.8599 lr=1.92e-04
+2026-07-15 19:00:34,511 INFO epoch=13 avg_loss=0.1515 lr=1.92e-04
+2026-07-15 19:00:57,954 INFO epoch=14 step=2900 loss=0.1782 grad_norm=0.5337 lr=1.92e-04
+2026-07-15 19:01:03,511 INFO epoch=14 step=2925 loss=0.1495 grad_norm=0.8843 lr=1.92e-04
+2026-07-15 19:01:09,092 INFO epoch=14 step=2950 loss=0.1497 grad_norm=0.4299 lr=1.92e-04
+2026-07-15 19:01:14,663 INFO epoch=14 step=2975 loss=0.1505 grad_norm=0.5597 lr=1.91e-04
+2026-07-15 19:01:20,269 INFO epoch=14 step=3000 loss=0.1509 grad_norm=0.7444 lr=1.91e-04
+2026-07-15 19:01:25,865 INFO epoch=14 step=3025 loss=0.1516 grad_norm=0.4036 lr=1.91e-04
+2026-07-15 19:01:31,472 INFO epoch=14 step=3050 loss=0.1518 grad_norm=0.7838 lr=1.91e-04
+2026-07-15 19:01:37,070 INFO epoch=14 step=3075 loss=0.1520 grad_norm=0.6512 lr=1.91e-04
+2026-07-15 19:01:42,679 INFO epoch=14 step=3100 loss=0.1520 grad_norm=1.7001 lr=1.91e-04
+2026-07-15 19:01:48,198 INFO epoch=14 avg_loss=0.1526 lr=1.91e-04
+2026-07-15 19:02:11,150 INFO epoch=15 step=3125 loss=0.1565 grad_norm=0.9812 lr=1.91e-04
+2026-07-15 19:02:16,704 INFO epoch=15 step=3150 loss=0.1515 grad_norm=0.4953 lr=1.90e-04
+2026-07-15 19:02:22,303 INFO epoch=15 step=3175 loss=0.1491 grad_norm=0.5160 lr=1.90e-04
+2026-07-15 19:02:27,867 INFO epoch=15 step=3200 loss=0.1495 grad_norm=0.4475 lr=1.90e-04
+2026-07-15 19:02:33,442 INFO epoch=15 step=3225 loss=0.1493 grad_norm=0.8551 lr=1.90e-04
+2026-07-15 19:02:39,016 INFO epoch=15 step=3250 loss=0.1496 grad_norm=0.7130 lr=1.90e-04
+2026-07-15 19:02:44,601 INFO epoch=15 step=3275 loss=0.1499 grad_norm=0.5632 lr=1.90e-04
+2026-07-15 19:02:50,222 INFO epoch=15 step=3300 loss=0.1495 grad_norm=0.7382 lr=1.89e-04
+2026-07-15 19:02:55,835 INFO epoch=15 step=3325 loss=0.1494 grad_norm=0.5525 lr=1.89e-04
+2026-07-15 19:03:00,905 INFO epoch=15 avg_loss=0.1495 lr=1.89e-04
+2026-07-15 19:03:07,978 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0015.pt
+2026-07-15 19:03:24,307 INFO epoch=16 step=3350 loss=0.1486 grad_norm=0.3266 lr=1.89e-04
+2026-07-15 19:03:29,886 INFO epoch=16 step=3375 loss=0.1499 grad_norm=0.5010 lr=1.89e-04
+2026-07-15 19:03:35,455 INFO epoch=16 step=3400 loss=0.1504 grad_norm=0.7190 lr=1.89e-04
+2026-07-15 19:03:41,058 INFO epoch=16 step=3425 loss=0.1508 grad_norm=1.7899 lr=1.89e-04
+2026-07-15 19:03:46,656 INFO epoch=16 step=3450 loss=0.1512 grad_norm=1.3884 lr=1.88e-04
+2026-07-15 19:03:52,256 INFO epoch=16 step=3475 loss=0.1505 grad_norm=0.8632 lr=1.88e-04
+2026-07-15 19:03:57,856 INFO epoch=16 step=3500 loss=0.1504 grad_norm=0.8145 lr=1.88e-04
+2026-07-15 19:04:03,479 INFO epoch=16 step=3525 loss=0.1501 grad_norm=0.8714 lr=1.88e-04
+2026-07-15 19:04:09,114 INFO epoch=16 step=3550 loss=0.1497 grad_norm=0.5525 lr=1.88e-04
+2026-07-15 19:04:13,721 INFO epoch=16 avg_loss=0.1498 lr=1.88e-04
+2026-07-15 19:04:37,697 INFO epoch=17 step=3575 loss=0.1538 grad_norm=0.9599 lr=1.88e-04
+2026-07-15 19:04:43,284 INFO epoch=17 step=3600 loss=0.1501 grad_norm=0.6524 lr=1.87e-04
+2026-07-15 19:04:48,889 INFO epoch=17 step=3625 loss=0.1511 grad_norm=0.3585 lr=1.87e-04
+2026-07-15 19:04:54,478 INFO epoch=17 step=3650 loss=0.1499 grad_norm=0.4678 lr=1.87e-04
+2026-07-15 19:05:00,122 INFO epoch=17 step=3675 loss=0.1485 grad_norm=0.3896 lr=1.87e-04
+2026-07-15 19:05:05,735 INFO epoch=17 step=3700 loss=0.1481 grad_norm=0.4389 lr=1.87e-04
+2026-07-15 19:05:11,335 INFO epoch=17 step=3725 loss=0.1482 grad_norm=0.3896 lr=1.87e-04
+2026-07-15 19:05:16,932 INFO epoch=17 step=3750 loss=0.1487 grad_norm=0.4727 lr=1.86e-04
+2026-07-15 19:05:22,562 INFO epoch=17 step=3775 loss=0.1489 grad_norm=0.8394 lr=1.86e-04
+2026-07-15 19:05:26,694 INFO epoch=17 avg_loss=0.1489 lr=1.86e-04
+2026-07-15 19:05:52,080 INFO epoch=18 step=3800 loss=0.1547 grad_norm=0.6435 lr=1.86e-04
+2026-07-15 19:05:57,632 INFO epoch=18 step=3825 loss=0.1502 grad_norm=0.4915 lr=1.86e-04
+2026-07-15 19:06:03,225 INFO epoch=18 step=3850 loss=0.1497 grad_norm=1.3251 lr=1.86e-04
+2026-07-15 19:06:08,808 INFO epoch=18 step=3875 loss=0.1497 grad_norm=0.9426 lr=1.86e-04
+2026-07-15 19:06:14,388 INFO epoch=18 step=3900 loss=0.1500 grad_norm=0.7124 lr=1.85e-04
+2026-07-15 19:06:20,006 INFO epoch=18 step=3925 loss=0.1498 grad_norm=0.4389 lr=1.85e-04
+2026-07-15 19:06:25,583 INFO epoch=18 step=3950 loss=0.1495 grad_norm=0.8676 lr=1.85e-04
+2026-07-15 19:06:31,191 INFO epoch=18 step=3975 loss=0.1490 grad_norm=1.0953 lr=1.85e-04
+2026-07-15 19:06:36,820 INFO epoch=18 step=4000 loss=0.1489 grad_norm=0.3968 lr=1.85e-04
+2026-07-15 19:06:40,505 INFO epoch=18 avg_loss=0.1489 lr=1.85e-04
+2026-07-15 19:07:07,029 INFO epoch=19 step=4025 loss=0.1399 grad_norm=0.4321 lr=1.84e-04
+2026-07-15 19:07:12,614 INFO epoch=19 step=4050 loss=0.1444 grad_norm=0.6964 lr=1.84e-04
+2026-07-15 19:07:18,203 INFO epoch=19 step=4075 loss=0.1464 grad_norm=1.1374 lr=1.84e-04
+2026-07-15 19:07:23,819 INFO epoch=19 step=4100 loss=0.1469 grad_norm=0.6312 lr=1.84e-04
+2026-07-15 19:07:29,429 INFO epoch=19 step=4125 loss=0.1477 grad_norm=0.4820 lr=1.84e-04
+2026-07-15 19:07:35,001 INFO epoch=19 step=4150 loss=0.1474 grad_norm=0.5056 lr=1.83e-04
+2026-07-15 19:07:40,631 INFO epoch=19 step=4175 loss=0.1473 grad_norm=0.8419 lr=1.83e-04
+2026-07-15 19:07:46,230 INFO epoch=19 step=4200 loss=0.1481 grad_norm=0.5114 lr=1.83e-04
+2026-07-15 19:07:51,838 INFO epoch=19 step=4225 loss=0.1477 grad_norm=0.4279 lr=1.83e-04
+2026-07-15 19:07:55,081 INFO epoch=19 avg_loss=0.1477 lr=1.83e-04
+2026-07-15 19:08:21,215 INFO epoch=20 step=4250 loss=0.1500 grad_norm=0.4803 lr=1.83e-04
+2026-07-15 19:08:26,792 INFO epoch=20 step=4275 loss=0.1505 grad_norm=1.3809 lr=1.82e-04
+2026-07-15 19:08:32,401 INFO epoch=20 step=4300 loss=0.1486 grad_norm=0.2545 lr=1.82e-04
+2026-07-15 19:08:37,993 INFO epoch=20 step=4325 loss=0.1490 grad_norm=0.5877 lr=1.82e-04
+2026-07-15 19:08:43,567 INFO epoch=20 step=4350 loss=0.1489 grad_norm=0.2872 lr=1.82e-04
+2026-07-15 19:08:49,181 INFO epoch=20 step=4375 loss=0.1477 grad_norm=0.4692 lr=1.82e-04
+2026-07-15 19:08:54,836 INFO epoch=20 step=4400 loss=0.1470 grad_norm=0.2808 lr=1.81e-04
+2026-07-15 19:09:00,498 INFO epoch=20 step=4425 loss=0.1472 grad_norm=0.3870 lr=1.81e-04
+2026-07-15 19:09:06,178 INFO epoch=20 step=4450 loss=0.1473 grad_norm=1.8054 lr=1.81e-04
+2026-07-15 19:09:09,135 INFO epoch=20 avg_loss=0.1474 lr=1.81e-04
+2026-07-15 19:09:17,306 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0020.pt
+2026-07-15 19:09:38,654 INFO epoch=21 step=4475 loss=0.1437 grad_norm=0.3649 lr=1.81e-04
+2026-07-15 19:09:44,294 INFO epoch=21 step=4500 loss=0.1453 grad_norm=0.4538 lr=1.81e-04
+2026-07-15 19:09:49,926 INFO epoch=21 step=4525 loss=0.1443 grad_norm=0.5673 lr=1.80e-04
+2026-07-15 19:09:55,604 INFO epoch=21 step=4550 loss=0.1446 grad_norm=0.8829 lr=1.80e-04
+2026-07-15 19:10:01,251 INFO epoch=21 step=4575 loss=0.1455 grad_norm=0.3904 lr=1.80e-04
+2026-07-15 19:10:06,896 INFO epoch=21 step=4600 loss=0.1464 grad_norm=0.7115 lr=1.80e-04
+2026-07-15 19:10:12,553 INFO epoch=21 step=4625 loss=0.1464 grad_norm=0.7473 lr=1.80e-04
+2026-07-15 19:10:18,200 INFO epoch=21 step=4650 loss=0.1465 grad_norm=0.3864 lr=1.79e-04
+2026-07-15 19:10:23,879 INFO epoch=21 step=4675 loss=0.1462 grad_norm=0.3386 lr=1.79e-04
+2026-07-15 19:10:26,358 INFO epoch=21 avg_loss=0.1462 lr=1.79e-04
+2026-07-15 19:10:55,210 INFO epoch=22 step=4700 loss=0.1484 grad_norm=0.4681 lr=1.79e-04
+2026-07-15 19:11:00,813 INFO epoch=22 step=4725 loss=0.1465 grad_norm=0.2404 lr=1.79e-04
+2026-07-15 19:11:06,457 INFO epoch=22 step=4750 loss=0.1457 grad_norm=0.4751 lr=1.79e-04
+2026-07-15 19:11:12,092 INFO epoch=22 step=4775 loss=0.1452 grad_norm=0.5128 lr=1.78e-04
+2026-07-15 19:11:17,732 INFO epoch=22 step=4800 loss=0.1452 grad_norm=0.4775 lr=1.78e-04
+2026-07-15 19:11:23,349 INFO epoch=22 step=4825 loss=0.1452 grad_norm=1.0787 lr=1.78e-04
+2026-07-15 19:11:28,962 INFO epoch=22 step=4850 loss=0.1458 grad_norm=0.3695 lr=1.78e-04
+2026-07-15 19:11:34,614 INFO epoch=22 step=4875 loss=0.1455 grad_norm=0.4013 lr=1.77e-04
+2026-07-15 19:11:40,255 INFO epoch=22 step=4900 loss=0.1454 grad_norm=1.0050 lr=1.77e-04
+2026-07-15 19:11:42,197 INFO epoch=22 avg_loss=0.1456 lr=1.77e-04
+2026-07-15 19:12:09,622 INFO epoch=23 step=4925 loss=0.1473 grad_norm=0.3820 lr=1.77e-04
+2026-07-15 19:12:15,223 INFO epoch=23 step=4950 loss=0.1466 grad_norm=0.4931 lr=1.77e-04
+2026-07-15 19:12:20,826 INFO epoch=23 step=4975 loss=0.1454 grad_norm=0.5261 lr=1.77e-04
+2026-07-15 19:12:26,412 INFO epoch=23 step=5000 loss=0.1458 grad_norm=0.3313 lr=1.76e-04
+2026-07-15 19:12:32,010 INFO epoch=23 step=5025 loss=0.1457 grad_norm=0.5806 lr=1.76e-04
+2026-07-15 19:12:37,621 INFO epoch=23 step=5050 loss=0.1452 grad_norm=0.8845 lr=1.76e-04
+2026-07-15 19:12:43,267 INFO epoch=23 step=5075 loss=0.1452 grad_norm=0.6183 lr=1.76e-04
+2026-07-15 19:12:48,879 INFO epoch=23 step=5100 loss=0.1454 grad_norm=0.3084 lr=1.75e-04
+2026-07-15 19:12:54,510 INFO epoch=23 step=5125 loss=0.1450 grad_norm=0.5664 lr=1.75e-04
+2026-07-15 19:12:56,070 INFO epoch=23 avg_loss=0.1450 lr=1.75e-04
+2026-07-15 19:13:23,631 INFO epoch=24 step=5150 loss=0.1434 grad_norm=1.4400 lr=1.75e-04
+2026-07-15 19:13:29,220 INFO epoch=24 step=5175 loss=0.1429 grad_norm=0.3756 lr=1.75e-04
+2026-07-15 19:13:34,825 INFO epoch=24 step=5200 loss=0.1446 grad_norm=0.3595 lr=1.74e-04
+2026-07-15 19:13:40,412 INFO epoch=24 step=5225 loss=0.1448 grad_norm=0.8737 lr=1.74e-04
+2026-07-15 19:13:46,052 INFO epoch=24 step=5250 loss=0.1443 grad_norm=0.3460 lr=1.74e-04
+2026-07-15 19:13:51,658 INFO epoch=24 step=5275 loss=0.1438 grad_norm=0.7708 lr=1.74e-04
+2026-07-15 19:13:57,266 INFO epoch=24 step=5300 loss=0.1443 grad_norm=1.6516 lr=1.74e-04
+2026-07-15 19:14:02,924 INFO epoch=24 step=5325 loss=0.1447 grad_norm=1.5806 lr=1.73e-04
+2026-07-15 19:14:08,553 INFO epoch=24 step=5350 loss=0.1449 grad_norm=0.6096 lr=1.73e-04
+2026-07-15 19:14:09,639 INFO epoch=24 avg_loss=0.1449 lr=1.73e-04
+2026-07-15 19:14:38,580 INFO epoch=25 step=5375 loss=0.1438 grad_norm=0.4149 lr=1.73e-04
+2026-07-15 19:14:44,185 INFO epoch=25 step=5400 loss=0.1429 grad_norm=0.4192 lr=1.73e-04
+2026-07-15 19:14:49,773 INFO epoch=25 step=5425 loss=0.1446 grad_norm=0.3948 lr=1.72e-04
+2026-07-15 19:14:55,396 INFO epoch=25 step=5450 loss=0.1447 grad_norm=0.3121 lr=1.72e-04
+2026-07-15 19:15:01,006 INFO epoch=25 step=5475 loss=0.1454 grad_norm=0.3432 lr=1.72e-04
+2026-07-15 19:15:06,621 INFO epoch=25 step=5500 loss=0.1454 grad_norm=0.4795 lr=1.72e-04
+2026-07-15 19:15:12,229 INFO epoch=25 step=5525 loss=0.1454 grad_norm=1.0214 lr=1.71e-04
+2026-07-15 19:15:17,851 INFO epoch=25 step=5550 loss=0.1459 grad_norm=0.7167 lr=1.71e-04
+2026-07-15 19:15:23,416 INFO epoch=25 step=5575 loss=0.1458 grad_norm=0.8348 lr=1.71e-04
+2026-07-15 19:15:24,016 INFO epoch=25 avg_loss=0.1458 lr=1.71e-04
+2026-07-15 19:15:31,445 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0025.pt
+2026-07-15 19:15:52,511 INFO epoch=26 step=5600 loss=0.1383 grad_norm=0.6455 lr=1.71e-04
+2026-07-15 19:15:58,118 INFO epoch=26 step=5625 loss=0.1375 grad_norm=0.5917 lr=1.70e-04
+2026-07-15 19:16:03,726 INFO epoch=26 step=5650 loss=0.1388 grad_norm=0.3708 lr=1.70e-04
+2026-07-15 19:16:09,317 INFO epoch=26 step=5675 loss=0.1399 grad_norm=0.5506 lr=1.70e-04
+2026-07-15 19:16:14,905 INFO epoch=26 step=5700 loss=0.1407 grad_norm=0.9396 lr=1.70e-04
+2026-07-15 19:16:20,511 INFO epoch=26 step=5725 loss=0.1423 grad_norm=0.5904 lr=1.69e-04
+2026-07-15 19:16:26,163 INFO epoch=26 step=5750 loss=0.1427 grad_norm=0.4892 lr=1.69e-04
+2026-07-15 19:16:31,836 INFO epoch=26 step=5775 loss=0.1428 grad_norm=0.3339 lr=1.69e-04
+2026-07-15 19:16:37,567 INFO epoch=26 avg_loss=0.1426 lr=1.69e-04
+2026-07-15 19:17:01,131 INFO epoch=27 step=5800 loss=0.1463 grad_norm=1.6472 lr=1.69e-04
+2026-07-15 19:17:06,693 INFO epoch=27 step=5825 loss=0.1439 grad_norm=1.0087 lr=1.68e-04
+2026-07-15 19:17:12,258 INFO epoch=27 step=5850 loss=0.1431 grad_norm=0.6403 lr=1.68e-04
+2026-07-15 19:17:17,847 INFO epoch=27 step=5875 loss=0.1436 grad_norm=0.5840 lr=1.68e-04
+2026-07-15 19:17:23,444 INFO epoch=27 step=5900 loss=0.1434 grad_norm=0.5578 lr=1.68e-04
+2026-07-15 19:17:29,016 INFO epoch=27 step=5925 loss=0.1444 grad_norm=0.4129 lr=1.67e-04
+2026-07-15 19:17:34,634 INFO epoch=27 step=5950 loss=0.1449 grad_norm=0.4539 lr=1.67e-04
+2026-07-15 19:17:40,233 INFO epoch=27 step=5975 loss=0.1449 grad_norm=0.7104 lr=1.67e-04
+2026-07-15 19:17:45,850 INFO epoch=27 step=6000 loss=0.1450 grad_norm=0.3947 lr=1.67e-04
+2026-07-15 19:17:51,117 INFO epoch=27 avg_loss=0.1449 lr=1.66e-04
+2026-07-15 19:18:14,897 INFO epoch=28 step=6025 loss=0.1482 grad_norm=0.6803 lr=1.66e-04
+2026-07-15 19:18:20,467 INFO epoch=28 step=6050 loss=0.1440 grad_norm=0.6817 lr=1.66e-04
+2026-07-15 19:18:26,058 INFO epoch=28 step=6075 loss=0.1417 grad_norm=0.3617 lr=1.66e-04
+2026-07-15 19:18:31,613 INFO epoch=28 step=6100 loss=0.1426 grad_norm=0.5723 lr=1.65e-04
+2026-07-15 19:18:37,205 INFO epoch=28 step=6125 loss=0.1416 grad_norm=0.6343 lr=1.65e-04
+2026-07-15 19:18:42,793 INFO epoch=28 step=6150 loss=0.1418 grad_norm=0.3928 lr=1.65e-04
+2026-07-15 19:18:48,407 INFO epoch=28 step=6175 loss=0.1418 grad_norm=0.2804 lr=1.65e-04
+2026-07-15 19:18:54,025 INFO epoch=28 step=6200 loss=0.1418 grad_norm=0.4855 lr=1.64e-04
+2026-07-15 19:18:59,637 INFO epoch=28 step=6225 loss=0.1423 grad_norm=0.5944 lr=1.64e-04
+2026-07-15 19:19:04,482 INFO epoch=28 avg_loss=0.1422 lr=1.64e-04
+2026-07-15 19:19:29,286 INFO epoch=29 step=6250 loss=0.1418 grad_norm=0.6133 lr=1.64e-04
+2026-07-15 19:19:34,874 INFO epoch=29 step=6275 loss=0.1448 grad_norm=0.3671 lr=1.64e-04
+2026-07-15 19:19:40,491 INFO epoch=29 step=6300 loss=0.1441 grad_norm=0.3311 lr=1.63e-04
+2026-07-15 19:19:46,120 INFO epoch=29 step=6325 loss=0.1450 grad_norm=1.2465 lr=1.63e-04
+2026-07-15 19:19:51,726 INFO epoch=29 step=6350 loss=0.1443 grad_norm=0.8086 lr=1.63e-04
+2026-07-15 19:19:57,381 INFO epoch=29 step=6375 loss=0.1441 grad_norm=0.2842 lr=1.62e-04
+2026-07-15 19:20:02,968 INFO epoch=29 step=6400 loss=0.1434 grad_norm=0.4229 lr=1.62e-04
+2026-07-15 19:20:08,574 INFO epoch=29 step=6425 loss=0.1427 grad_norm=0.7301 lr=1.62e-04
+2026-07-15 19:20:14,197 INFO epoch=29 step=6450 loss=0.1431 grad_norm=0.2469 lr=1.62e-04
+2026-07-15 19:20:18,561 INFO epoch=29 avg_loss=0.1428 lr=1.61e-04
+2026-07-15 19:20:43,837 INFO epoch=30 step=6475 loss=0.1426 grad_norm=0.4655 lr=1.61e-04
+2026-07-15 19:20:49,430 INFO epoch=30 step=6500 loss=0.1450 grad_norm=1.0034 lr=1.61e-04
+2026-07-15 19:20:55,011 INFO epoch=30 step=6525 loss=0.1432 grad_norm=0.9479 lr=1.61e-04
+2026-07-15 19:21:00,573 INFO epoch=30 step=6550 loss=0.1434 grad_norm=0.4857 lr=1.61e-04
+2026-07-15 19:21:06,177 INFO epoch=30 step=6575 loss=0.1437 grad_norm=0.5328 lr=1.60e-04
+2026-07-15 19:21:11,784 INFO epoch=30 step=6600 loss=0.1427 grad_norm=0.6109 lr=1.60e-04
+2026-07-15 19:21:17,377 INFO epoch=30 step=6625 loss=0.1430 grad_norm=0.5289 lr=1.60e-04
+2026-07-15 19:21:22,992 INFO epoch=30 step=6650 loss=0.1427 grad_norm=0.3235 lr=1.59e-04
+2026-07-15 19:21:28,598 INFO epoch=30 step=6675 loss=0.1429 grad_norm=0.6204 lr=1.59e-04
+2026-07-15 19:21:32,511 INFO epoch=30 avg_loss=0.1428 lr=1.59e-04
+2026-07-15 19:21:39,925 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0030.pt
+2026-07-15 19:21:57,406 INFO epoch=31 step=6700 loss=0.1391 grad_norm=0.3494 lr=1.59e-04
+2026-07-15 19:22:03,040 INFO epoch=31 step=6725 loss=0.1436 grad_norm=0.5776 lr=1.59e-04
+2026-07-15 19:22:08,621 INFO epoch=31 step=6750 loss=0.1433 grad_norm=0.3428 lr=1.58e-04
+2026-07-15 19:22:14,219 INFO epoch=31 step=6775 loss=0.1428 grad_norm=0.8295 lr=1.58e-04
+2026-07-15 19:22:19,806 INFO epoch=31 step=6800 loss=0.1420 grad_norm=0.3504 lr=1.58e-04
+2026-07-15 19:22:25,416 INFO epoch=31 step=6825 loss=0.1426 grad_norm=0.5149 lr=1.57e-04
+2026-07-15 19:22:31,010 INFO epoch=31 step=6850 loss=0.1427 grad_norm=0.3683 lr=1.57e-04
+2026-07-15 19:22:36,586 INFO epoch=31 step=6875 loss=0.1427 grad_norm=0.4756 lr=1.57e-04
+2026-07-15 19:22:42,195 INFO epoch=31 step=6900 loss=0.1428 grad_norm=0.9833 lr=1.57e-04
+2026-07-15 19:22:45,633 INFO epoch=31 avg_loss=0.1429 lr=1.56e-04
+2026-07-15 19:23:10,376 INFO epoch=32 step=6925 loss=0.1441 grad_norm=0.4408 lr=1.56e-04
+2026-07-15 19:23:15,960 INFO epoch=32 step=6950 loss=0.1417 grad_norm=0.4090 lr=1.56e-04
+2026-07-15 19:23:21,531 INFO epoch=32 step=6975 loss=0.1417 grad_norm=1.4298 lr=1.56e-04
+2026-07-15 19:23:27,107 INFO epoch=32 step=7000 loss=0.1411 grad_norm=0.7132 lr=1.55e-04
+2026-07-15 19:23:32,682 INFO epoch=32 step=7025 loss=0.1419 grad_norm=0.9272 lr=1.55e-04
+2026-07-15 19:23:38,270 INFO epoch=32 step=7050 loss=0.1413 grad_norm=0.5451 lr=1.55e-04
+2026-07-15 19:23:43,886 INFO epoch=32 step=7075 loss=0.1412 grad_norm=0.3182 lr=1.55e-04
+2026-07-15 19:23:49,474 INFO epoch=32 step=7100 loss=0.1414 grad_norm=0.5843 lr=1.54e-04
+2026-07-15 19:23:55,083 INFO epoch=32 step=7125 loss=0.1414 grad_norm=0.5988 lr=1.54e-04
+2026-07-15 19:23:58,115 INFO epoch=32 avg_loss=0.1413 lr=1.54e-04
+2026-07-15 19:24:24,135 INFO epoch=33 step=7150 loss=0.1450 grad_norm=0.3505 lr=1.54e-04
+2026-07-15 19:24:29,693 INFO epoch=33 step=7175 loss=0.1412 grad_norm=0.4824 lr=1.53e-04
+2026-07-15 19:24:35,268 INFO epoch=33 step=7200 loss=0.1419 grad_norm=0.7758 lr=1.53e-04
+2026-07-15 19:24:40,842 INFO epoch=33 step=7225 loss=0.1416 grad_norm=0.7836 lr=1.53e-04
+2026-07-15 19:24:46,431 INFO epoch=33 step=7250 loss=0.1417 grad_norm=2.0843 lr=1.52e-04
+2026-07-15 19:24:52,056 INFO epoch=33 step=7275 loss=0.1417 grad_norm=0.3175 lr=1.52e-04
+2026-07-15 19:24:57,659 INFO epoch=33 step=7300 loss=0.1414 grad_norm=0.6078 lr=1.52e-04
+2026-07-15 19:25:03,275 INFO epoch=33 step=7325 loss=0.1416 grad_norm=0.4299 lr=1.52e-04
+2026-07-15 19:25:08,875 INFO epoch=33 step=7350 loss=0.1421 grad_norm=0.5538 lr=1.51e-04
+2026-07-15 19:25:11,452 INFO epoch=33 avg_loss=0.1422 lr=1.51e-04
+2026-07-15 19:25:37,346 INFO epoch=34 step=7375 loss=0.1415 grad_norm=0.2996 lr=1.51e-04
+2026-07-15 19:25:42,952 INFO epoch=34 step=7400 loss=0.1402 grad_norm=0.7925 lr=1.51e-04
+2026-07-15 19:25:48,551 INFO epoch=34 step=7425 loss=0.1426 grad_norm=1.0669 lr=1.50e-04
+2026-07-15 19:25:54,125 INFO epoch=34 step=7450 loss=0.1420 grad_norm=0.6922 lr=1.50e-04
+2026-07-15 19:25:59,726 INFO epoch=34 step=7475 loss=0.1425 grad_norm=0.4162 lr=1.50e-04
+2026-07-15 19:26:05,313 INFO epoch=34 step=7500 loss=0.1419 grad_norm=0.4476 lr=1.49e-04
+2026-07-15 19:26:10,917 INFO epoch=34 step=7525 loss=0.1419 grad_norm=1.2305 lr=1.49e-04
+2026-07-15 19:26:16,510 INFO epoch=34 step=7550 loss=0.1418 grad_norm=0.3093 lr=1.49e-04
+2026-07-15 19:26:22,139 INFO epoch=34 step=7575 loss=0.1415 grad_norm=0.6142 lr=1.49e-04
+2026-07-15 19:26:24,238 INFO epoch=34 avg_loss=0.1416 lr=1.48e-04
+2026-07-15 19:26:50,514 INFO epoch=35 step=7600 loss=0.1424 grad_norm=0.3299 lr=1.48e-04
+2026-07-15 19:26:56,068 INFO epoch=35 step=7625 loss=0.1427 grad_norm=1.2484 lr=1.48e-04
+2026-07-15 19:27:01,631 INFO epoch=35 step=7650 loss=0.1421 grad_norm=0.3193 lr=1.48e-04
+2026-07-15 19:27:07,196 INFO epoch=35 step=7675 loss=0.1417 grad_norm=0.4470 lr=1.47e-04
+2026-07-15 19:27:12,778 INFO epoch=35 step=7700 loss=0.1415 grad_norm=0.6768 lr=1.47e-04
+2026-07-15 19:27:18,359 INFO epoch=35 step=7725 loss=0.1415 grad_norm=0.4560 lr=1.47e-04
+2026-07-15 19:27:23,947 INFO epoch=35 step=7750 loss=0.1411 grad_norm=0.3833 lr=1.46e-04
+2026-07-15 19:27:29,579 INFO epoch=35 step=7775 loss=0.1411 grad_norm=0.5890 lr=1.46e-04
+2026-07-15 19:27:35,178 INFO epoch=35 step=7800 loss=0.1405 grad_norm=0.3755 lr=1.46e-04
+2026-07-15 19:27:36,851 INFO epoch=35 avg_loss=0.1407 lr=1.46e-04
+2026-07-15 19:27:44,148 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0035.pt
+2026-07-15 19:28:04,074 INFO epoch=36 step=7825 loss=0.1407 grad_norm=0.6480 lr=1.45e-04
+2026-07-15 19:28:09,656 INFO epoch=36 step=7850 loss=0.1422 grad_norm=0.8051 lr=1.45e-04
+2026-07-15 19:28:15,214 INFO epoch=36 step=7875 loss=0.1422 grad_norm=0.3259 lr=1.45e-04
+2026-07-15 19:28:20,805 INFO epoch=36 step=7900 loss=0.1425 grad_norm=1.6529 lr=1.44e-04
+2026-07-15 19:28:26,434 INFO epoch=36 step=7925 loss=0.1424 grad_norm=0.3406 lr=1.44e-04
+2026-07-15 19:28:32,094 INFO epoch=36 step=7950 loss=0.1422 grad_norm=0.8309 lr=1.44e-04
+2026-07-15 19:28:37,713 INFO epoch=36 step=7975 loss=0.1419 grad_norm=0.5559 lr=1.44e-04
+2026-07-15 19:28:43,326 INFO epoch=36 step=8000 loss=0.1412 grad_norm=0.4238 lr=1.43e-04
+2026-07-15 19:28:48,958 INFO epoch=36 step=8025 loss=0.1411 grad_norm=0.4512 lr=1.43e-04
+2026-07-15 19:28:50,162 INFO epoch=36 avg_loss=0.1411 lr=1.43e-04
+2026-07-15 19:29:17,443 INFO epoch=37 step=8050 loss=0.1419 grad_norm=0.4278 lr=1.43e-04
+2026-07-15 19:29:23,031 INFO epoch=37 step=8075 loss=0.1424 grad_norm=0.9084 lr=1.42e-04
+2026-07-15 19:29:28,625 INFO epoch=37 step=8100 loss=0.1426 grad_norm=0.5976 lr=1.42e-04
+2026-07-15 19:29:34,192 INFO epoch=37 step=8125 loss=0.1428 grad_norm=0.5985 lr=1.42e-04
+2026-07-15 19:29:39,815 INFO epoch=37 step=8150 loss=0.1428 grad_norm=0.6424 lr=1.41e-04
+2026-07-15 19:29:45,401 INFO epoch=37 step=8175 loss=0.1428 grad_norm=0.5348 lr=1.41e-04
+2026-07-15 19:29:50,995 INFO epoch=37 step=8200 loss=0.1425 grad_norm=0.5235 lr=1.41e-04
+2026-07-15 19:29:56,610 INFO epoch=37 step=8225 loss=0.1421 grad_norm=0.4844 lr=1.40e-04
+2026-07-15 19:30:02,195 INFO epoch=37 step=8250 loss=0.1420 grad_norm=0.3537 lr=1.40e-04
+2026-07-15 19:30:02,940 INFO epoch=37 avg_loss=0.1420 lr=1.40e-04
+2026-07-15 19:30:30,643 INFO epoch=38 step=8275 loss=0.1411 grad_norm=0.8001 lr=1.40e-04
+2026-07-15 19:30:36,200 INFO epoch=38 step=8300 loss=0.1407 grad_norm=0.6895 lr=1.39e-04
+2026-07-15 19:30:41,781 INFO epoch=38 step=8325 loss=0.1417 grad_norm=0.8812 lr=1.39e-04
+2026-07-15 19:30:47,368 INFO epoch=38 step=8350 loss=0.1413 grad_norm=0.5161 lr=1.39e-04
+2026-07-15 19:30:52,972 INFO epoch=38 step=8375 loss=0.1416 grad_norm=0.4291 lr=1.38e-04
+2026-07-15 19:30:58,574 INFO epoch=38 step=8400 loss=0.1414 grad_norm=0.3041 lr=1.38e-04
+2026-07-15 19:31:04,203 INFO epoch=38 step=8425 loss=0.1414 grad_norm=0.4761 lr=1.38e-04
+2026-07-15 19:31:09,807 INFO epoch=38 step=8450 loss=0.1410 grad_norm=0.2165 lr=1.37e-04
+2026-07-15 19:31:15,748 INFO epoch=38 avg_loss=0.1406 lr=1.37e-04
+2026-07-15 19:31:38,240 INFO epoch=39 step=8475 loss=0.1548 grad_norm=0.4380 lr=1.37e-04
+2026-07-15 19:31:43,797 INFO epoch=39 step=8500 loss=0.1406 grad_norm=0.7400 lr=1.37e-04
+2026-07-15 19:31:49,375 INFO epoch=39 step=8525 loss=0.1400 grad_norm=0.2965 lr=1.36e-04
+2026-07-15 19:31:54,970 INFO epoch=39 step=8550 loss=0.1392 grad_norm=0.2471 lr=1.36e-04
+2026-07-15 19:32:00,561 INFO epoch=39 step=8575 loss=0.1393 grad_norm=0.4393 lr=1.36e-04
+2026-07-15 19:32:06,148 INFO epoch=39 step=8600 loss=0.1391 grad_norm=1.5576 lr=1.35e-04
+2026-07-15 19:32:11,743 INFO epoch=39 step=8625 loss=0.1392 grad_norm=0.3927 lr=1.35e-04
+2026-07-15 19:32:17,340 INFO epoch=39 step=8650 loss=0.1394 grad_norm=0.8266 lr=1.35e-04
+2026-07-15 19:32:22,946 INFO epoch=39 step=8675 loss=0.1392 grad_norm=0.2338 lr=1.34e-04
+2026-07-15 19:32:28,421 INFO epoch=39 avg_loss=0.1394 lr=1.34e-04
+2026-07-15 19:32:51,232 INFO epoch=40 step=8700 loss=0.1413 grad_norm=0.5781 lr=1.34e-04
+2026-07-15 19:32:56,801 INFO epoch=40 step=8725 loss=0.1380 grad_norm=0.6750 lr=1.34e-04
+2026-07-15 19:33:02,349 INFO epoch=40 step=8750 loss=0.1409 grad_norm=0.5460 lr=1.34e-04
+2026-07-15 19:33:07,925 INFO epoch=40 step=8775 loss=0.1400 grad_norm=0.3416 lr=1.33e-04
+2026-07-15 19:33:13,495 INFO epoch=40 step=8800 loss=0.1398 grad_norm=0.3972 lr=1.33e-04
+2026-07-15 19:33:19,067 INFO epoch=40 step=8825 loss=0.1400 grad_norm=0.4732 lr=1.33e-04
+2026-07-15 19:33:24,684 INFO epoch=40 step=8850 loss=0.1400 grad_norm=0.2619 lr=1.32e-04
+2026-07-15 19:33:30,270 INFO epoch=40 step=8875 loss=0.1397 grad_norm=0.4457 lr=1.32e-04
+2026-07-15 19:33:35,884 INFO epoch=40 step=8900 loss=0.1400 grad_norm=0.7872 lr=1.32e-04
+2026-07-15 19:33:40,896 INFO epoch=40 avg_loss=0.1399 lr=1.31e-04
+2026-07-15 19:33:48,124 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0040.pt
+2026-07-15 19:34:04,400 INFO epoch=41 step=8925 loss=0.1313 grad_norm=0.3420 lr=1.31e-04
+2026-07-15 19:34:09,960 INFO epoch=41 step=8950 loss=0.1373 grad_norm=0.4630 lr=1.31e-04
+2026-07-15 19:34:15,522 INFO epoch=41 step=8975 loss=0.1385 grad_norm=0.8482 lr=1.31e-04
+2026-07-15 19:34:21,097 INFO epoch=41 step=9000 loss=0.1389 grad_norm=0.7080 lr=1.30e-04
+2026-07-15 19:34:26,707 INFO epoch=41 step=9025 loss=0.1389 grad_norm=0.6266 lr=1.30e-04
+2026-07-15 19:34:32,283 INFO epoch=41 step=9050 loss=0.1394 grad_norm=0.3819 lr=1.30e-04
+2026-07-15 19:34:37,849 INFO epoch=41 step=9075 loss=0.1396 grad_norm=0.7039 lr=1.29e-04
+2026-07-15 19:34:43,487 INFO epoch=41 step=9100 loss=0.1394 grad_norm=0.3188 lr=1.29e-04
+2026-07-15 19:34:49,097 INFO epoch=41 step=9125 loss=0.1388 grad_norm=0.4196 lr=1.29e-04
+2026-07-15 19:34:53,693 INFO epoch=41 avg_loss=0.1390 lr=1.28e-04
+2026-07-15 19:35:26,409 INFO epoch=42 step=9150 loss=0.1402 grad_norm=0.3055 lr=1.28e-04
+2026-07-15 19:35:47,710 INFO epoch=42 step=9175 loss=0.1421 grad_norm=0.5442 lr=1.28e-04
+2026-07-15 19:35:53,758 INFO epoch=42 step=9200 loss=0.1396 grad_norm=0.3999 lr=1.27e-04
+2026-07-15 19:35:59,421 INFO epoch=42 step=9225 loss=0.1401 grad_norm=0.3061 lr=1.27e-04
+2026-07-15 19:36:05,027 INFO epoch=42 step=9250 loss=0.1398 grad_norm=0.2209 lr=1.27e-04
+2026-07-15 19:36:10,597 INFO epoch=42 step=9275 loss=0.1400 grad_norm=0.2945 lr=1.26e-04
+2026-07-15 19:36:16,209 INFO epoch=42 step=9300 loss=0.1402 grad_norm=0.4839 lr=1.26e-04
+2026-07-15 19:36:21,810 INFO epoch=42 step=9325 loss=0.1400 grad_norm=0.4123 lr=1.26e-04
+2026-07-15 19:36:27,425 INFO epoch=42 step=9350 loss=0.1403 grad_norm=0.4691 lr=1.25e-04
+2026-07-15 19:36:32,189 INFO epoch=42 avg_loss=0.1403 lr=1.25e-04
+2026-07-15 19:37:17,253 INFO epoch=43 step=9375 loss=0.1393 grad_norm=0.4421 lr=1.25e-04
+2026-07-15 19:37:22,781 INFO epoch=43 step=9400 loss=0.1406 grad_norm=0.3019 lr=1.25e-04
+2026-07-15 19:37:28,316 INFO epoch=43 step=9425 loss=0.1408 grad_norm=1.3177 lr=1.24e-04
+2026-07-15 19:37:33,875 INFO epoch=43 step=9450 loss=0.1409 grad_norm=0.7372 lr=1.24e-04
+2026-07-15 19:37:39,418 INFO epoch=43 step=9475 loss=0.1408 grad_norm=0.6073 lr=1.24e-04
+2026-07-15 19:37:44,980 INFO epoch=43 step=9500 loss=0.1400 grad_norm=0.2858 lr=1.23e-04
+2026-07-15 19:37:50,549 INFO epoch=43 step=9525 loss=0.1399 grad_norm=0.8193 lr=1.23e-04
+2026-07-15 19:37:56,116 INFO epoch=43 step=9550 loss=0.1398 grad_norm=0.4642 lr=1.23e-04
+2026-07-15 19:38:01,692 INFO epoch=43 step=9575 loss=0.1398 grad_norm=0.6235 lr=1.22e-04
+2026-07-15 19:38:05,374 INFO epoch=43 avg_loss=0.1399 lr=1.22e-04
+2026-07-15 19:38:31,255 INFO epoch=44 step=9600 loss=0.1421 grad_norm=0.2356 lr=1.22e-04
+2026-07-15 19:38:36,786 INFO epoch=44 step=9625 loss=0.1405 grad_norm=0.2316 lr=1.22e-04
+2026-07-15 19:38:42,331 INFO epoch=44 step=9650 loss=0.1392 grad_norm=0.2807 lr=1.21e-04
+2026-07-15 19:38:47,876 INFO epoch=44 step=9675 loss=0.1388 grad_norm=0.4359 lr=1.21e-04
+2026-07-15 19:38:53,451 INFO epoch=44 step=9700 loss=0.1392 grad_norm=0.3557 lr=1.21e-04
+2026-07-15 19:38:59,009 INFO epoch=44 step=9725 loss=0.1386 grad_norm=0.3833 lr=1.20e-04
+2026-07-15 19:39:04,601 INFO epoch=44 step=9750 loss=0.1387 grad_norm=1.0611 lr=1.20e-04
+2026-07-15 19:39:10,186 INFO epoch=44 step=9775 loss=0.1392 grad_norm=0.9815 lr=1.20e-04
+2026-07-15 19:39:15,767 INFO epoch=44 step=9800 loss=0.1393 grad_norm=0.3916 lr=1.19e-04
+2026-07-15 19:39:18,973 INFO epoch=44 avg_loss=0.1395 lr=1.19e-04
+2026-07-15 19:39:44,217 INFO epoch=45 step=9825 loss=0.1455 grad_norm=0.2705 lr=1.19e-04
+2026-07-15 19:39:49,761 INFO epoch=45 step=9850 loss=0.1436 grad_norm=0.3739 lr=1.19e-04
+2026-07-15 19:39:55,354 INFO epoch=45 step=9875 loss=0.1428 grad_norm=0.2441 lr=1.18e-04
+2026-07-15 19:40:00,931 INFO epoch=45 step=9900 loss=0.1419 grad_norm=0.6418 lr=1.18e-04
+2026-07-15 19:40:06,502 INFO epoch=45 step=9925 loss=0.1414 grad_norm=0.6278 lr=1.18e-04
+2026-07-15 19:40:12,081 INFO epoch=45 step=9950 loss=0.1410 grad_norm=0.4778 lr=1.17e-04
+2026-07-15 19:40:17,669 INFO epoch=45 step=9975 loss=0.1404 grad_norm=0.2968 lr=1.17e-04
+2026-07-15 19:40:23,294 INFO epoch=45 step=10000 loss=0.1401 grad_norm=0.3158 lr=1.17e-04
+2026-07-15 19:40:28,902 INFO epoch=45 step=10025 loss=0.1393 grad_norm=0.2203 lr=1.16e-04
+2026-07-15 19:40:31,700 INFO epoch=45 avg_loss=0.1392 lr=1.16e-04
+2026-07-15 19:40:39,016 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0045.pt
+2026-07-15 19:40:57,603 INFO epoch=46 step=10050 loss=0.1391 grad_norm=0.2230 lr=1.16e-04
+2026-07-15 19:41:03,178 INFO epoch=46 step=10075 loss=0.1372 grad_norm=0.3759 lr=1.16e-04
+2026-07-15 19:41:08,730 INFO epoch=46 step=10100 loss=0.1379 grad_norm=0.8011 lr=1.15e-04
+2026-07-15 19:41:14,315 INFO epoch=46 step=10125 loss=0.1366 grad_norm=0.4737 lr=1.15e-04
+2026-07-15 19:41:19,899 INFO epoch=46 step=10150 loss=0.1368 grad_norm=0.5126 lr=1.14e-04
+2026-07-15 19:41:25,481 INFO epoch=46 step=10175 loss=0.1368 grad_norm=1.4948 lr=1.14e-04
+2026-07-15 19:41:31,099 INFO epoch=46 step=10200 loss=0.1368 grad_norm=0.3690 lr=1.14e-04
+2026-07-15 19:41:36,721 INFO epoch=46 step=10225 loss=0.1372 grad_norm=0.2646 lr=1.13e-04
+2026-07-15 19:41:42,316 INFO epoch=46 step=10250 loss=0.1370 grad_norm=0.5225 lr=1.13e-04
+2026-07-15 19:41:44,646 INFO epoch=46 avg_loss=0.1371 lr=1.13e-04
+2026-07-15 19:42:10,970 INFO epoch=47 step=10275 loss=0.1382 grad_norm=0.5735 lr=1.13e-04
+2026-07-15 19:42:18,257 INFO epoch=47 step=10300 loss=0.1391 grad_norm=0.3034 lr=1.12e-04
+2026-07-15 19:42:23,840 INFO epoch=47 step=10325 loss=0.1385 grad_norm=0.4347 lr=1.12e-04
+2026-07-15 19:42:29,411 INFO epoch=47 step=10350 loss=0.1384 grad_norm=0.7884 lr=1.12e-04
+2026-07-15 19:42:34,990 INFO epoch=47 step=10375 loss=0.1387 grad_norm=0.5993 lr=1.11e-04
+2026-07-15 19:42:40,579 INFO epoch=47 step=10400 loss=0.1381 grad_norm=0.4722 lr=1.11e-04
+2026-07-15 19:42:46,156 INFO epoch=47 step=10425 loss=0.1382 grad_norm=0.2250 lr=1.11e-04
+2026-07-15 19:42:51,753 INFO epoch=47 step=10450 loss=0.1382 grad_norm=0.3203 lr=1.10e-04
+2026-07-15 19:42:57,344 INFO epoch=47 step=10475 loss=0.1383 grad_norm=0.7099 lr=1.10e-04
+2026-07-15 19:42:59,234 INFO epoch=47 avg_loss=0.1385 lr=1.10e-04
+2026-07-15 19:43:25,560 INFO epoch=48 step=10500 loss=0.1372 grad_norm=0.3562 lr=1.10e-04
+2026-07-15 19:43:31,155 INFO epoch=48 step=10525 loss=0.1383 grad_norm=0.5467 lr=1.09e-04
+2026-07-15 19:43:36,708 INFO epoch=48 step=10550 loss=0.1398 grad_norm=0.5196 lr=1.09e-04
+2026-07-15 19:43:42,292 INFO epoch=48 step=10575 loss=0.1398 grad_norm=0.8872 lr=1.09e-04
+2026-07-15 19:43:47,875 INFO epoch=48 step=10600 loss=0.1391 grad_norm=0.6886 lr=1.08e-04
+2026-07-15 19:43:53,458 INFO epoch=48 step=10625 loss=0.1390 grad_norm=0.7027 lr=1.08e-04
+2026-07-15 19:43:59,064 INFO epoch=48 step=10650 loss=0.1388 grad_norm=1.0605 lr=1.08e-04
+2026-07-15 19:44:04,648 INFO epoch=48 step=10675 loss=0.1386 grad_norm=0.2250 lr=1.07e-04
+2026-07-15 19:44:10,270 INFO epoch=48 step=10700 loss=0.1387 grad_norm=0.6792 lr=1.07e-04
+2026-07-15 19:44:11,701 INFO epoch=48 avg_loss=0.1388 lr=1.07e-04
+2026-07-15 19:44:38,906 INFO epoch=49 step=10725 loss=0.1391 grad_norm=0.2529 lr=1.06e-04
+2026-07-15 19:44:44,465 INFO epoch=49 step=10750 loss=0.1387 grad_norm=0.4231 lr=1.06e-04
+2026-07-15 19:44:50,037 INFO epoch=49 step=10775 loss=0.1388 grad_norm=0.6256 lr=1.06e-04
+2026-07-15 19:44:55,628 INFO epoch=49 step=10800 loss=0.1384 grad_norm=0.3242 lr=1.05e-04
+2026-07-15 19:45:01,206 INFO epoch=49 step=10825 loss=0.1391 grad_norm=0.1999 lr=1.05e-04
+2026-07-15 19:45:06,809 INFO epoch=49 step=10850 loss=0.1387 grad_norm=0.3958 lr=1.05e-04
+2026-07-15 19:45:12,399 INFO epoch=49 step=10875 loss=0.1387 grad_norm=0.2248 lr=1.04e-04
+2026-07-15 19:45:17,999 INFO epoch=49 step=10900 loss=0.1389 grad_norm=0.4565 lr=1.04e-04
+2026-07-15 19:45:23,602 INFO epoch=49 step=10925 loss=0.1388 grad_norm=0.2824 lr=1.04e-04
+2026-07-15 19:45:24,601 INFO epoch=49 avg_loss=0.1386 lr=1.04e-04
+2026-07-15 19:45:52,292 INFO epoch=50 step=10950 loss=0.1385 grad_norm=0.6963 lr=1.03e-04
+2026-07-15 19:45:57,903 INFO epoch=50 step=10975 loss=0.1397 grad_norm=0.2897 lr=1.03e-04
+2026-07-15 19:46:03,487 INFO epoch=50 step=11000 loss=0.1409 grad_norm=0.3048 lr=1.03e-04
+2026-07-15 19:46:09,068 INFO epoch=50 step=11025 loss=0.1408 grad_norm=0.9727 lr=1.02e-04
+2026-07-15 19:46:14,637 INFO epoch=50 step=11050 loss=0.1405 grad_norm=0.3866 lr=1.02e-04
+2026-07-15 19:46:20,229 INFO epoch=50 step=11075 loss=0.1408 grad_norm=0.3528 lr=1.02e-04
+2026-07-15 19:46:25,814 INFO epoch=50 step=11100 loss=0.1398 grad_norm=0.2147 lr=1.01e-04
+2026-07-15 19:46:31,407 INFO epoch=50 step=11125 loss=0.1392 grad_norm=0.5733 lr=1.01e-04
+2026-07-15 19:46:36,936 INFO epoch=50 step=11150 loss=0.1392 grad_norm=0.2648 lr=1.01e-04
+2026-07-15 19:46:37,556 INFO epoch=50 avg_loss=0.1392 lr=1.01e-04
+2026-07-15 19:46:44,788 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0050.pt
+2026-07-15 19:47:05,454 INFO epoch=51 step=11175 loss=0.1365 grad_norm=0.8068 lr=1.00e-04
+2026-07-15 19:47:11,033 INFO epoch=51 step=11200 loss=0.1371 grad_norm=0.1818 lr=9.98e-05
+2026-07-15 19:47:16,618 INFO epoch=51 step=11225 loss=0.1374 grad_norm=0.3081 lr=9.94e-05
+2026-07-15 19:47:22,192 INFO epoch=51 step=11250 loss=0.1377 grad_norm=0.5945 lr=9.91e-05
+2026-07-15 19:47:27,786 INFO epoch=51 step=11275 loss=0.1387 grad_norm=0.7018 lr=9.87e-05
+2026-07-15 19:47:33,381 INFO epoch=51 step=11300 loss=0.1380 grad_norm=0.2677 lr=9.84e-05
+2026-07-15 19:47:38,961 INFO epoch=51 step=11325 loss=0.1380 grad_norm=0.7116 lr=9.80e-05
+2026-07-15 19:47:44,562 INFO epoch=51 step=11350 loss=0.1383 grad_norm=0.7018 lr=9.77e-05
+2026-07-15 19:47:50,245 INFO epoch=51 avg_loss=0.1379 lr=9.74e-05
+2026-07-15 19:48:13,107 INFO epoch=52 step=11375 loss=0.1297 grad_norm=0.5193 lr=9.73e-05
+2026-07-15 19:48:18,663 INFO epoch=52 step=11400 loss=0.1346 grad_norm=0.2641 lr=9.70e-05
+2026-07-15 19:48:24,218 INFO epoch=52 step=11425 loss=0.1357 grad_norm=0.4181 lr=9.66e-05
+2026-07-15 19:48:29,779 INFO epoch=52 step=11450 loss=0.1371 grad_norm=0.2734 lr=9.63e-05
+2026-07-15 19:48:35,362 INFO epoch=52 step=11475 loss=0.1383 grad_norm=0.2214 lr=9.59e-05
+2026-07-15 19:48:40,938 INFO epoch=52 step=11500 loss=0.1372 grad_norm=0.5144 lr=9.56e-05
+2026-07-15 19:48:46,550 INFO epoch=52 step=11525 loss=0.1379 grad_norm=0.4197 lr=9.52e-05
+2026-07-15 19:48:52,126 INFO epoch=52 step=11550 loss=0.1381 grad_norm=0.3602 lr=9.49e-05
+2026-07-15 19:48:57,711 INFO epoch=52 step=11575 loss=0.1380 grad_norm=0.2193 lr=9.45e-05
+2026-07-15 19:49:02,973 INFO epoch=52 avg_loss=0.1380 lr=9.43e-05
+2026-07-15 19:49:26,278 INFO epoch=53 step=11600 loss=0.1435 grad_norm=0.6660 lr=9.42e-05
+2026-07-15 19:49:31,823 INFO epoch=53 step=11625 loss=0.1401 grad_norm=0.4658 lr=9.38e-05
+2026-07-15 19:49:37,424 INFO epoch=53 step=11650 loss=0.1390 grad_norm=0.4075 lr=9.35e-05
+2026-07-15 19:49:42,996 INFO epoch=53 step=11675 loss=0.1378 grad_norm=0.5066 lr=9.31e-05
+2026-07-15 19:49:48,572 INFO epoch=53 step=11700 loss=0.1376 grad_norm=0.2716 lr=9.28e-05
+2026-07-15 19:49:54,170 INFO epoch=53 step=11725 loss=0.1380 grad_norm=0.6110 lr=9.24e-05
+2026-07-15 19:49:59,740 INFO epoch=53 step=11750 loss=0.1383 grad_norm=0.2709 lr=9.21e-05
+2026-07-15 19:50:05,355 INFO epoch=53 step=11775 loss=0.1382 grad_norm=0.2580 lr=9.18e-05
+2026-07-15 19:50:10,966 INFO epoch=53 step=11800 loss=0.1386 grad_norm=1.3175 lr=9.14e-05
+2026-07-15 19:50:15,757 INFO epoch=53 avg_loss=0.1385 lr=9.11e-05
+2026-07-15 19:50:39,453 INFO epoch=54 step=11825 loss=0.1301 grad_norm=0.5340 lr=9.11e-05
+2026-07-15 19:50:44,991 INFO epoch=54 step=11850 loss=0.1376 grad_norm=0.5237 lr=9.07e-05
+2026-07-15 19:50:50,563 INFO epoch=54 step=11875 loss=0.1372 grad_norm=0.2946 lr=9.04e-05
+2026-07-15 19:50:56,130 INFO epoch=54 step=11900 loss=0.1379 grad_norm=0.3308 lr=9.00e-05
+2026-07-15 19:51:01,720 INFO epoch=54 step=11925 loss=0.1378 grad_norm=0.2693 lr=8.97e-05
+2026-07-15 19:51:07,301 INFO epoch=54 step=11950 loss=0.1374 grad_norm=0.5991 lr=8.93e-05
+2026-07-15 19:51:12,915 INFO epoch=54 step=11975 loss=0.1369 grad_norm=0.3259 lr=8.90e-05
+2026-07-15 19:51:18,511 INFO epoch=54 step=12000 loss=0.1367 grad_norm=0.2989 lr=8.86e-05
+2026-07-15 19:51:24,134 INFO epoch=54 step=12025 loss=0.1367 grad_norm=0.5862 lr=8.83e-05
+2026-07-15 19:51:28,504 INFO epoch=54 avg_loss=0.1367 lr=8.80e-05
+2026-07-15 19:51:52,817 INFO epoch=55 step=12050 loss=0.1411 grad_norm=0.5175 lr=8.79e-05
+2026-07-15 19:51:58,357 INFO epoch=55 step=12075 loss=0.1400 grad_norm=0.2994 lr=8.76e-05
+2026-07-15 19:52:03,915 INFO epoch=55 step=12100 loss=0.1403 grad_norm=0.2685 lr=8.72e-05
+2026-07-15 19:52:09,503 INFO epoch=55 step=12125 loss=0.1396 grad_norm=0.4793 lr=8.69e-05
+2026-07-15 19:52:15,080 INFO epoch=55 step=12150 loss=0.1394 grad_norm=0.2971 lr=8.65e-05
+2026-07-15 19:52:20,640 INFO epoch=55 step=12175 loss=0.1387 grad_norm=0.1657 lr=8.62e-05
+2026-07-15 19:52:26,206 INFO epoch=55 step=12200 loss=0.1387 grad_norm=0.6457 lr=8.58e-05
+2026-07-15 19:52:31,812 INFO epoch=55 step=12225 loss=0.1388 grad_norm=0.3876 lr=8.55e-05
+2026-07-15 19:52:37,402 INFO epoch=55 step=12250 loss=0.1386 grad_norm=0.3168 lr=8.51e-05
+2026-07-15 19:52:41,316 INFO epoch=55 avg_loss=0.1385 lr=8.49e-05
+2026-07-15 19:52:48,489 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0055.pt
+2026-07-15 19:53:05,816 INFO epoch=56 step=12275 loss=0.1338 grad_norm=0.2806 lr=8.48e-05
+2026-07-15 19:53:11,356 INFO epoch=56 step=12300 loss=0.1389 grad_norm=0.4775 lr=8.45e-05
+2026-07-15 19:53:16,921 INFO epoch=56 step=12325 loss=0.1354 grad_norm=0.3564 lr=8.41e-05
+2026-07-15 19:53:22,498 INFO epoch=56 step=12350 loss=0.1370 grad_norm=0.2938 lr=8.38e-05
+2026-07-15 19:53:28,064 INFO epoch=56 step=12375 loss=0.1371 grad_norm=1.0324 lr=8.34e-05
+2026-07-15 19:53:33,656 INFO epoch=56 step=12400 loss=0.1372 grad_norm=0.2717 lr=8.31e-05
+2026-07-15 19:53:39,232 INFO epoch=56 step=12425 loss=0.1369 grad_norm=0.3614 lr=8.27e-05
+2026-07-15 19:53:44,839 INFO epoch=56 step=12450 loss=0.1371 grad_norm=0.2944 lr=8.24e-05
+2026-07-15 19:53:50,443 INFO epoch=56 step=12475 loss=0.1370 grad_norm=0.2690 lr=8.20e-05
+2026-07-15 19:53:53,921 INFO epoch=56 avg_loss=0.1370 lr=8.19e-05
+2026-07-15 19:54:18,789 INFO epoch=57 step=12500 loss=0.1390 grad_norm=0.2983 lr=8.17e-05
+2026-07-15 19:54:24,349 INFO epoch=57 step=12525 loss=0.1356 grad_norm=0.4904 lr=8.13e-05
+2026-07-15 19:54:29,938 INFO epoch=57 step=12550 loss=0.1371 grad_norm=0.3145 lr=8.10e-05
+2026-07-15 19:54:35,484 INFO epoch=57 step=12575 loss=0.1368 grad_norm=0.5065 lr=8.07e-05
+2026-07-15 19:54:41,078 INFO epoch=57 step=12600 loss=0.1370 grad_norm=0.7459 lr=8.03e-05
+2026-07-15 19:54:46,666 INFO epoch=57 step=12625 loss=0.1375 grad_norm=0.3061 lr=8.00e-05
+2026-07-15 19:54:52,273 INFO epoch=57 step=12650 loss=0.1379 grad_norm=0.3948 lr=7.96e-05
+2026-07-15 19:54:57,894 INFO epoch=57 step=12675 loss=0.1377 grad_norm=0.2380 lr=7.93e-05
+2026-07-15 19:55:03,515 INFO epoch=57 step=12700 loss=0.1375 grad_norm=0.1888 lr=7.89e-05
+2026-07-15 19:55:06,676 INFO epoch=57 avg_loss=0.1376 lr=7.88e-05
+2026-07-15 19:55:32,355 INFO epoch=58 step=12725 loss=0.1352 grad_norm=0.2242 lr=7.86e-05
+2026-07-15 19:55:37,895 INFO epoch=58 step=12750 loss=0.1374 grad_norm=0.5878 lr=7.83e-05
+2026-07-15 19:55:43,485 INFO epoch=58 step=12775 loss=0.1371 grad_norm=0.5722 lr=7.79e-05
+2026-07-15 19:55:49,058 INFO epoch=58 step=12800 loss=0.1367 grad_norm=0.2701 lr=7.76e-05
+2026-07-15 19:55:54,623 INFO epoch=58 step=12825 loss=0.1369 grad_norm=0.6726 lr=7.72e-05
+2026-07-15 19:56:00,227 INFO epoch=58 step=12850 loss=0.1375 grad_norm=2.3131 lr=7.69e-05
+2026-07-15 19:56:05,800 INFO epoch=58 step=12875 loss=0.1376 grad_norm=0.5200 lr=7.66e-05
+2026-07-15 19:56:11,369 INFO epoch=58 step=12900 loss=0.1374 grad_norm=0.2299 lr=7.62e-05
+2026-07-15 19:56:16,956 INFO epoch=58 step=12925 loss=0.1374 grad_norm=0.4341 lr=7.59e-05
+2026-07-15 19:56:19,511 INFO epoch=58 avg_loss=0.1373 lr=7.58e-05
+2026-07-15 19:56:45,521 INFO epoch=59 step=12950 loss=0.1391 grad_norm=0.1798 lr=7.55e-05
+2026-07-15 19:56:51,101 INFO epoch=59 step=12975 loss=0.1368 grad_norm=0.3142 lr=7.52e-05
+2026-07-15 19:56:56,661 INFO epoch=59 step=13000 loss=0.1360 grad_norm=0.5632 lr=7.49e-05
+2026-07-15 19:57:02,235 INFO epoch=59 step=13025 loss=0.1369 grad_norm=0.9315 lr=7.45e-05
+2026-07-15 19:57:07,812 INFO epoch=59 step=13050 loss=0.1358 grad_norm=0.4747 lr=7.42e-05
+2026-07-15 19:57:13,404 INFO epoch=59 step=13075 loss=0.1365 grad_norm=0.4024 lr=7.38e-05
+2026-07-15 19:57:19,019 INFO epoch=59 step=13100 loss=0.1364 grad_norm=0.3121 lr=7.35e-05
+2026-07-15 19:57:24,606 INFO epoch=59 step=13125 loss=0.1364 grad_norm=0.7074 lr=7.32e-05
+2026-07-15 19:57:30,209 INFO epoch=59 step=13150 loss=0.1363 grad_norm=0.6889 lr=7.28e-05
+2026-07-15 19:57:32,335 INFO epoch=59 avg_loss=0.1365 lr=7.27e-05
+2026-07-15 19:57:58,705 INFO epoch=60 step=13175 loss=0.1329 grad_norm=0.4636 lr=7.25e-05
+2026-07-15 19:58:04,253 INFO epoch=60 step=13200 loss=0.1361 grad_norm=0.3419 lr=7.22e-05
+2026-07-15 19:58:09,846 INFO epoch=60 step=13225 loss=0.1345 grad_norm=0.2962 lr=7.18e-05
+2026-07-15 19:58:15,436 INFO epoch=60 step=13250 loss=0.1343 grad_norm=0.4312 lr=7.15e-05
+2026-07-15 19:58:21,045 INFO epoch=60 step=13275 loss=0.1345 grad_norm=0.3195 lr=7.12e-05
+2026-07-15 19:58:26,724 INFO epoch=60 step=13300 loss=0.1346 grad_norm=0.5658 lr=7.08e-05
+2026-07-15 19:58:32,357 INFO epoch=60 step=13325 loss=0.1349 grad_norm=0.3240 lr=7.05e-05
+2026-07-15 19:58:38,008 INFO epoch=60 step=13350 loss=0.1355 grad_norm=0.3455 lr=7.02e-05
+2026-07-15 19:58:43,645 INFO epoch=60 step=13375 loss=0.1362 grad_norm=0.4753 lr=6.98e-05
+2026-07-15 19:58:45,368 INFO epoch=60 avg_loss=0.1361 lr=6.98e-05
+2026-07-15 19:58:53,364 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0060.pt
+2026-07-15 19:59:15,276 INFO epoch=61 step=13400 loss=0.1363 grad_norm=0.5892 lr=6.95e-05
+2026-07-15 19:59:20,846 INFO epoch=61 step=13425 loss=0.1373 grad_norm=0.3613 lr=6.92e-05
+2026-07-15 19:59:26,434 INFO epoch=61 step=13450 loss=0.1381 grad_norm=0.4449 lr=6.88e-05
+2026-07-15 19:59:32,080 INFO epoch=61 step=13475 loss=0.1369 grad_norm=1.1407 lr=6.85e-05
+2026-07-15 19:59:37,716 INFO epoch=61 step=13500 loss=0.1368 grad_norm=0.4577 lr=6.82e-05
+2026-07-15 19:59:43,334 INFO epoch=61 step=13525 loss=0.1369 grad_norm=0.3693 lr=6.78e-05
+2026-07-15 19:59:48,957 INFO epoch=61 step=13550 loss=0.1373 grad_norm=1.2731 lr=6.75e-05
+2026-07-15 19:59:54,579 INFO epoch=61 step=13575 loss=0.1374 grad_norm=1.1200 lr=6.72e-05
+2026-07-15 20:00:00,215 INFO epoch=61 step=13600 loss=0.1370 grad_norm=0.5594 lr=6.68e-05
+2026-07-15 20:00:01,496 INFO epoch=61 avg_loss=0.1371 lr=6.68e-05
+2026-07-15 20:00:30,903 INFO epoch=62 step=13625 loss=0.1379 grad_norm=0.4733 lr=6.65e-05
+2026-07-15 20:00:36,516 INFO epoch=62 step=13650 loss=0.1364 grad_norm=0.2338 lr=6.62e-05
+2026-07-15 20:00:42,135 INFO epoch=62 step=13675 loss=0.1365 grad_norm=0.6501 lr=6.58e-05
+2026-07-15 20:00:47,717 INFO epoch=62 step=13700 loss=0.1362 grad_norm=0.4097 lr=6.55e-05
+2026-07-15 20:00:53,351 INFO epoch=62 step=13725 loss=0.1369 grad_norm=0.3831 lr=6.52e-05
+2026-07-15 20:00:58,983 INFO epoch=62 step=13750 loss=0.1364 grad_norm=0.4193 lr=6.49e-05
+2026-07-15 20:01:04,607 INFO epoch=62 step=13775 loss=0.1367 grad_norm=0.2731 lr=6.45e-05
+2026-07-15 20:01:10,256 INFO epoch=62 step=13800 loss=0.1371 grad_norm=0.3076 lr=6.42e-05
+2026-07-15 20:01:15,898 INFO epoch=62 step=13825 loss=0.1366 grad_norm=0.4878 lr=6.39e-05
+2026-07-15 20:01:16,710 INFO epoch=62 avg_loss=0.1367 lr=6.39e-05
+2026-07-15 20:01:47,271 INFO epoch=63 step=13850 loss=0.1372 grad_norm=0.2298 lr=6.36e-05
+2026-07-15 20:01:52,881 INFO epoch=63 step=13875 loss=0.1370 grad_norm=0.5302 lr=6.32e-05
+2026-07-15 20:01:58,456 INFO epoch=63 step=13900 loss=0.1357 grad_norm=0.7734 lr=6.29e-05
+2026-07-15 20:02:04,072 INFO epoch=63 step=13925 loss=0.1357 grad_norm=0.5437 lr=6.26e-05
+2026-07-15 20:02:09,702 INFO epoch=63 step=13950 loss=0.1364 grad_norm=0.2678 lr=6.23e-05
+2026-07-15 20:02:15,343 INFO epoch=63 step=13975 loss=0.1366 grad_norm=0.1797 lr=6.19e-05
+2026-07-15 20:02:20,935 INFO epoch=63 step=14000 loss=0.1367 grad_norm=0.2122 lr=6.16e-05
+2026-07-15 20:02:26,524 INFO epoch=63 step=14025 loss=0.1367 grad_norm=0.3275 lr=6.13e-05
+2026-07-15 20:02:32,479 INFO epoch=63 avg_loss=0.1365 lr=6.10e-05
+2026-07-15 20:02:55,297 INFO epoch=64 step=14050 loss=0.1385 grad_norm=0.3425 lr=6.10e-05
+2026-07-15 20:03:00,852 INFO epoch=64 step=14075 loss=0.1375 grad_norm=0.3595 lr=6.06e-05
+2026-07-15 20:03:06,413 INFO epoch=64 step=14100 loss=0.1384 grad_norm=0.5878 lr=6.03e-05
+2026-07-15 20:03:11,983 INFO epoch=64 step=14125 loss=0.1388 grad_norm=0.3005 lr=6.00e-05
+2026-07-15 20:03:17,548 INFO epoch=64 step=14150 loss=0.1381 grad_norm=0.2310 lr=5.97e-05
+2026-07-15 20:03:23,149 INFO epoch=64 step=14175 loss=0.1388 grad_norm=0.3101 lr=5.94e-05
+2026-07-15 20:03:28,722 INFO epoch=64 step=14200 loss=0.1384 grad_norm=0.4534 lr=5.91e-05
+2026-07-15 20:03:34,327 INFO epoch=64 step=14225 loss=0.1381 grad_norm=0.4223 lr=5.87e-05
+2026-07-15 20:03:39,937 INFO epoch=64 step=14250 loss=0.1380 grad_norm=0.2363 lr=5.84e-05
+2026-07-15 20:03:45,407 INFO epoch=64 avg_loss=0.1379 lr=5.81e-05
+2026-07-15 20:04:08,687 INFO epoch=65 step=14275 loss=0.1388 grad_norm=0.5889 lr=5.81e-05
+2026-07-15 20:04:14,276 INFO epoch=65 step=14300 loss=0.1325 grad_norm=0.4076 lr=5.78e-05
+2026-07-15 20:04:19,834 INFO epoch=65 step=14325 loss=0.1352 grad_norm=0.2675 lr=5.75e-05
+2026-07-15 20:04:25,404 INFO epoch=65 step=14350 loss=0.1357 grad_norm=0.2532 lr=5.71e-05
+2026-07-15 20:04:30,982 INFO epoch=65 step=14375 loss=0.1363 grad_norm=0.9343 lr=5.68e-05
+2026-07-15 20:04:36,555 INFO epoch=65 step=14400 loss=0.1358 grad_norm=0.2128 lr=5.65e-05
+2026-07-15 20:04:42,167 INFO epoch=65 step=14425 loss=0.1359 grad_norm=0.4631 lr=5.62e-05
+2026-07-15 20:04:47,769 INFO epoch=65 step=14450 loss=0.1356 grad_norm=0.2260 lr=5.59e-05
+2026-07-15 20:04:53,347 INFO epoch=65 step=14475 loss=0.1354 grad_norm=0.3982 lr=5.56e-05
+2026-07-15 20:04:58,373 INFO epoch=65 avg_loss=0.1356 lr=5.53e-05
+2026-07-15 20:05:05,731 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0065.pt
+2026-07-15 20:05:22,010 INFO epoch=66 step=14500 loss=0.1386 grad_norm=0.6868 lr=5.53e-05
+2026-07-15 20:05:27,568 INFO epoch=66 step=14525 loss=0.1369 grad_norm=0.4516 lr=5.50e-05
+2026-07-15 20:05:33,130 INFO epoch=66 step=14550 loss=0.1370 grad_norm=0.4354 lr=5.46e-05
+2026-07-15 20:05:38,704 INFO epoch=66 step=14575 loss=0.1369 grad_norm=0.7081 lr=5.43e-05
+2026-07-15 20:05:44,285 INFO epoch=66 step=14600 loss=0.1368 grad_norm=0.8229 lr=5.40e-05
+2026-07-15 20:05:49,876 INFO epoch=66 step=14625 loss=0.1368 grad_norm=0.3996 lr=5.37e-05
+2026-07-15 20:05:55,479 INFO epoch=66 step=14650 loss=0.1366 grad_norm=0.4276 lr=5.34e-05
+2026-07-15 20:06:01,070 INFO epoch=66 step=14675 loss=0.1369 grad_norm=0.1740 lr=5.31e-05
+2026-07-15 20:06:06,655 INFO epoch=66 step=14700 loss=0.1366 grad_norm=0.1866 lr=5.28e-05
+2026-07-15 20:06:11,212 INFO epoch=66 avg_loss=0.1365 lr=5.26e-05
+2026-07-15 20:06:34,995 INFO epoch=67 step=14725 loss=0.1399 grad_norm=0.7130 lr=5.25e-05
+2026-07-15 20:06:40,550 INFO epoch=67 step=14750 loss=0.1375 grad_norm=0.2631 lr=5.22e-05
+2026-07-15 20:06:46,106 INFO epoch=67 step=14775 loss=0.1369 grad_norm=0.1903 lr=5.19e-05
+2026-07-15 20:06:51,692 INFO epoch=67 step=14800 loss=0.1354 grad_norm=0.4524 lr=5.16e-05
+2026-07-15 20:06:57,265 INFO epoch=67 step=14825 loss=0.1347 grad_norm=0.4067 lr=5.13e-05
+2026-07-15 20:07:02,876 INFO epoch=67 step=14850 loss=0.1352 grad_norm=0.4348 lr=5.10e-05
+2026-07-15 20:07:08,473 INFO epoch=67 step=14875 loss=0.1352 grad_norm=0.2444 lr=5.06e-05
+2026-07-15 20:07:14,036 INFO epoch=67 step=14900 loss=0.1353 grad_norm=0.3953 lr=5.03e-05
+2026-07-15 20:07:19,653 INFO epoch=67 step=14925 loss=0.1356 grad_norm=0.3115 lr=5.00e-05
+2026-07-15 20:07:23,793 INFO epoch=67 avg_loss=0.1359 lr=4.99e-05
+2026-07-15 20:07:48,368 INFO epoch=68 step=14950 loss=0.1395 grad_norm=0.4197 lr=4.97e-05
+2026-07-15 20:07:53,933 INFO epoch=68 step=14975 loss=0.1369 grad_norm=0.2237 lr=4.94e-05
+2026-07-15 20:07:59,525 INFO epoch=68 step=15000 loss=0.1382 grad_norm=0.3512 lr=4.91e-05
+2026-07-15 20:08:05,114 INFO epoch=68 step=15025 loss=0.1382 grad_norm=0.4172 lr=4.88e-05
+2026-07-15 20:08:10,684 INFO epoch=68 step=15050 loss=0.1373 grad_norm=0.2144 lr=4.85e-05
+2026-07-15 20:08:16,256 INFO epoch=68 step=15075 loss=0.1381 grad_norm=0.1656 lr=4.82e-05
+2026-07-15 20:08:21,840 INFO epoch=68 step=15100 loss=0.1376 grad_norm=0.6762 lr=4.79e-05
+2026-07-15 20:08:27,456 INFO epoch=68 step=15125 loss=0.1376 grad_norm=1.1427 lr=4.76e-05
+2026-07-15 20:08:33,040 INFO epoch=68 step=15150 loss=0.1376 grad_norm=0.4546 lr=4.74e-05
+2026-07-15 20:08:36,713 INFO epoch=68 avg_loss=0.1373 lr=4.72e-05
+2026-07-15 20:09:02,153 INFO epoch=69 step=15175 loss=0.1389 grad_norm=0.2704 lr=4.71e-05
+2026-07-15 20:09:07,702 INFO epoch=69 step=15200 loss=0.1369 grad_norm=0.3019 lr=4.68e-05
+2026-07-15 20:09:13,259 INFO epoch=69 step=15225 loss=0.1359 grad_norm=0.2282 lr=4.65e-05
+2026-07-15 20:09:18,856 INFO epoch=69 step=15250 loss=0.1359 grad_norm=0.2721 lr=4.62e-05
+2026-07-15 20:09:24,417 INFO epoch=69 step=15275 loss=0.1356 grad_norm=0.3675 lr=4.59e-05
+2026-07-15 20:09:30,056 INFO epoch=69 step=15300 loss=0.1358 grad_norm=0.2361 lr=4.56e-05
+2026-07-15 20:09:35,650 INFO epoch=69 step=15325 loss=0.1358 grad_norm=0.1698 lr=4.53e-05
+2026-07-15 20:09:41,243 INFO epoch=69 step=15350 loss=0.1358 grad_norm=0.4309 lr=4.50e-05
+2026-07-15 20:09:46,859 INFO epoch=69 step=15375 loss=0.1355 grad_norm=0.1795 lr=4.47e-05
+2026-07-15 20:09:50,216 INFO epoch=69 avg_loss=0.1353 lr=4.46e-05
+2026-07-15 20:10:15,516 INFO epoch=70 step=15400 loss=0.1399 grad_norm=0.1877 lr=4.44e-05
+2026-07-15 20:10:21,068 INFO epoch=70 step=15425 loss=0.1399 grad_norm=0.1702 lr=4.41e-05
+2026-07-15 20:10:26,639 INFO epoch=70 step=15450 loss=0.1396 grad_norm=0.3034 lr=4.38e-05
+2026-07-15 20:10:32,202 INFO epoch=70 step=15475 loss=0.1382 grad_norm=0.1521 lr=4.36e-05
+2026-07-15 20:10:37,783 INFO epoch=70 step=15500 loss=0.1380 grad_norm=0.3843 lr=4.33e-05
+2026-07-15 20:10:43,389 INFO epoch=70 step=15525 loss=0.1373 grad_norm=0.2832 lr=4.30e-05
+2026-07-15 20:10:48,965 INFO epoch=70 step=15550 loss=0.1364 grad_norm=0.1815 lr=4.27e-05
+2026-07-15 20:10:54,586 INFO epoch=70 step=15575 loss=0.1361 grad_norm=0.2024 lr=4.24e-05
+2026-07-15 20:11:00,173 INFO epoch=70 step=15600 loss=0.1362 grad_norm=0.2051 lr=4.21e-05
+2026-07-15 20:11:02,981 INFO epoch=70 avg_loss=0.1361 lr=4.20e-05
+2026-07-15 20:11:10,239 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_epoch_0070.pt
+2026-07-15 20:11:30,342 INFO epoch=71 step=15625 loss=0.1422 grad_norm=0.3814 lr=4.18e-05
+2026-07-15 20:11:35,939 INFO epoch=71 step=15650 loss=0.1374 grad_norm=0.4448 lr=4.16e-05
+2026-07-15 20:11:41,573 INFO epoch=71 step=15675 loss=0.1370 grad_norm=0.1543 lr=4.13e-05
+2026-07-15 20:11:47,222 INFO epoch=71 step=15700 loss=0.1361 grad_norm=0.1592 lr=4.10e-05
+2026-07-15 20:11:52,844 INFO epoch=71 step=15725 loss=0.1362 grad_norm=0.4049 lr=4.07e-05
+2026-07-15 20:11:58,493 INFO epoch=71 step=15750 loss=0.1361 grad_norm=0.1549 lr=4.04e-05
+2026-07-15 20:12:04,136 INFO epoch=71 step=15775 loss=0.1364 grad_norm=0.3087 lr=4.02e-05
+2026-07-15 20:12:09,788 INFO epoch=71 step=15800 loss=0.1362 grad_norm=0.4214 lr=3.99e-05
+2026-07-15 20:12:15,471 INFO epoch=71 step=15825 loss=0.1363 grad_norm=0.2308 lr=3.96e-05
+2026-07-15 20:12:17,956 INFO epoch=71 avg_loss=0.1363 lr=3.95e-05
+2026-07-15 20:12:47,712 INFO epoch=72 step=15850 loss=0.1363 grad_norm=0.2241 lr=3.93e-05
+2026-07-15 20:12:53,343 INFO epoch=72 step=15875 loss=0.1341 grad_norm=0.4427 lr=3.91e-05
+2026-07-15 20:12:58,914 INFO epoch=72 step=15900 loss=0.1347 grad_norm=0.6599 lr=3.88e-05
+2026-07-15 20:13:04,528 INFO epoch=72 step=15925 loss=0.1353 grad_norm=0.6028 lr=3.85e-05
+2026-07-15 20:13:10,142 INFO epoch=72 step=15950 loss=0.1352 grad_norm=0.2559 lr=3.82e-05
+2026-07-15 20:13:15,792 INFO epoch=72 step=15975 loss=0.1354 grad_norm=0.2411 lr=3.80e-05
+2026-07-15 20:13:21,469 INFO epoch=72 step=16000 loss=0.1359 grad_norm=0.2993 lr=3.77e-05
+2026-07-15 20:13:27,084 INFO epoch=72 step=16025 loss=0.1359 grad_norm=0.2256 lr=3.74e-05
+2026-07-15 20:13:32,703 INFO epoch=72 step=16050 loss=0.1357 grad_norm=0.5022 lr=3.71e-05
+2026-07-15 20:13:34,604 INFO epoch=72 avg_loss=0.1357 lr=3.71e-05
+2026-07-15 20:14:04,339 INFO epoch=73 step=16075 loss=0.1333 grad_norm=0.1937 lr=3.69e-05
+2026-07-15 20:14:09,952 INFO epoch=73 step=16100 loss=0.1338 grad_norm=0.3135 lr=3.66e-05
+2026-07-15 20:14:15,627 INFO epoch=73 step=16125 loss=0.1351 grad_norm=0.1430 lr=3.63e-05
+2026-07-15 20:14:21,254 INFO epoch=73 step=16150 loss=0.1364 grad_norm=0.3653 lr=3.61e-05
+2026-07-15 20:14:26,922 INFO epoch=73 step=16175 loss=0.1365 grad_norm=0.8895 lr=3.58e-05
+2026-07-15 20:14:32,600 INFO epoch=73 step=16200 loss=0.1367 grad_norm=0.3500 lr=3.55e-05
+2026-07-15 20:14:38,254 INFO epoch=73 step=16225 loss=0.1362 grad_norm=0.2928 lr=3.53e-05
+2026-07-15 20:14:43,919 INFO epoch=73 step=16250 loss=0.1360 grad_norm=0.1900 lr=3.50e-05
+2026-07-15 20:14:49,601 INFO epoch=73 step=16275 loss=0.1357 grad_norm=0.2396 lr=3.47e-05
+2026-07-15 20:14:51,178 INFO epoch=73 avg_loss=0.1357 lr=3.47e-05
+2026-07-15 20:14:59,636 INFO Saved checkpoint to C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_last.pt
+2026-07-15 20:14:59,638 INFO Wall-clock limit 1.50 h reached at epoch=73; saving score_last.pt and exiting 42.

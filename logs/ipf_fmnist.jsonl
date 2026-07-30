@@ -1,0 +1,4 @@
+{"ipf_iteration": 1, "phase": "summary", "global_step": 16, "last_fwd_loss": 0.0, "last_bwd_loss": 0.0, "wall_clock_seconds": 5.81}
+{"ipf_iteration": 2, "phase": "summary", "global_step": 32, "last_fwd_loss": 0.0, "last_bwd_loss": 0.0, "wall_clock_seconds": 11.28}
+{"ipf_iteration": 1, "phase": "summary", "global_step": 16, "last_fwd_loss": 0.14646947383880615, "last_bwd_loss": 0.04942208528518677, "wall_clock_seconds": 5.81}
+{"ipf_iteration": 2, "phase": "summary", "global_step": 32, "last_fwd_loss": 0.0717507153749466, "last_bwd_loss": 0.02310558594763279, "wall_clock_seconds": 11.37}

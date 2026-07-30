@@ -1,0 +1,12 @@
+C:\Users\artun\Desktop\ITS-project\scripts\generate_paper_figures.py:365: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend(fontsize=8)
+Generating paper figures...
+  Saved: fig1_fid_vs_nfe.png  fig1_fid_vs_nfe.pdf
+  Saved: fig2_training_dynamics.png  fig2_training_dynamics.pdf
+  Saved: fig3_energy_quality.png  fig3_energy_quality.pdf
+  Saved: fig4_crooks_verification.png  fig4_crooks_verification.pdf
+  Saved: fig5_path_kl_trajectory.png  fig5_path_kl_trajectory.pdf
+  Saved: fig6_control_drift_analysis.png  fig6_control_drift_analysis.pdf
+  Saved: fig7_ablation_bar_chart.png  fig7_ablation_bar_chart.pdf
+
+All figures saved to data\paper_figures/

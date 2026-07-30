@@ -1,0 +1,732 @@
+Training FashionMNIST score v2: 50 epochs, batch=256, device=auto
+Checkpoints -> C:\Users\artun\Desktop\ITS-project\checkpoints\score_fmnist_v2
+JSONL log    -> C:\Users\artun\Desktop\ITS-project\logs\fmnist_score_v2.jsonl
+[04/19/26 17:31:20] INFO     Resumed from                                      
+                             checkpoints\score_fmnist_v2\score_epoch_0015.pt   
+                             (epoch=15, step=3345)                             
+[04/19/26 17:31:47] WARNING  High grad norm: 11726.91 at epoch=16 step=3345    
+[04/19/26 17:31:48] WARNING  High grad norm: 21514.56 at epoch=16 step=3346    
+[04/19/26 17:31:49] WARNING  High grad norm: 8971.98 at epoch=16 step=3347     
+                    WARNING  High grad norm: 16253.27 at epoch=16 step=3348    
+                    WARNING  High grad norm: 21292.35 at epoch=16 step=3349    
+[04/19/26 17:31:51] WARNING  High grad norm: 7875.29 at epoch=16 step=3350     
+                    WARNING  High grad norm: 17523.19 at epoch=16 step=3351    
+                    WARNING  High grad norm: 17380.91 at epoch=16 step=3352    
+[04/19/26 17:31:53] WARNING  High grad norm: 9721.99 at epoch=16 step=3353     
+                    WARNING  High grad norm: 18395.30 at epoch=16 step=3354    
+                    WARNING  High grad norm: 24081.44 at epoch=16 step=3355    
+[04/19/26 17:31:55] WARNING  High grad norm: 8226.62 at epoch=16 step=3356     
+                    WARNING  High grad norm: 20412.09 at epoch=16 step=3357    
+                    WARNING  High grad norm: 26188.48 at epoch=16 step=3358    
+[04/19/26 17:31:56] WARNING  High grad norm: 12696.45 at epoch=16 step=3359    
+                    WARNING  High grad norm: 16782.15 at epoch=16 step=3360    
+[04/19/26 17:31:57] WARNING  High grad norm: 25898.68 at epoch=16 step=3361    
+[04/19/26 17:31:58] WARNING  High grad norm: 10550.65 at epoch=16 step=3362    
+                    WARNING  High grad norm: 16744.25 at epoch=16 step=3363    
+                    WARNING  High grad norm: 24672.00 at epoch=16 step=3364    
+[04/19/26 17:32:00] WARNING  High grad norm: 10178.22 at epoch=16 step=3365    
+                    WARNING  High grad norm: 16999.07 at epoch=16 step=3366    
+                    WARNING  High grad norm: 27627.36 at epoch=16 step=3367    
+[04/19/26 17:32:01] WARNING  High grad norm: 8509.52 at epoch=16 step=3368     
+[04/19/26 17:32:02] WARNING  High grad norm: 12321.99 at epoch=16 step=3369    
+                    WARNING  High grad norm: 12386.58 at epoch=16 step=3370    
+[04/19/26 17:32:03] WARNING  High grad norm: 10441.75 at epoch=16 step=3371    
+                    WARNING  High grad norm: 21073.07 at epoch=16 step=3372    
+                    WARNING  High grad norm: 28529.13 at epoch=16 step=3373    
+[04/19/26 17:32:05] WARNING  High grad norm: 18638.18 at epoch=16 step=3374    
+                    WARNING  High grad norm: 13572.35 at epoch=16 step=3375    
+                    WARNING  High grad norm: 23580.36 at epoch=16 step=3376    
+                    WARNING  High grad norm: 5957.94 at epoch=16 step=3377     
+[04/19/26 17:32:07] WARNING  High grad norm: 15920.51 at epoch=16 step=3378    
+                    WARNING  High grad norm: 27950.15 at epoch=16 step=3379    
+                    WARNING  High grad norm: 16161.91 at epoch=16 step=3380    
+[04/19/26 17:32:08] WARNING  High grad norm: 10802.87 at epoch=16 step=3381    
+[04/19/26 17:32:09] WARNING  High grad norm: 17255.78 at epoch=16 step=3382    
+                    WARNING  High grad norm: 8528.75 at epoch=16 step=3383     
+[04/19/26 17:32:10] WARNING  High grad norm: 24359.17 at epoch=16 step=3384    
+                    WARNING  High grad norm: 23307.18 at epoch=16 step=3385    
+[04/19/26 17:32:11] WARNING  High grad norm: 16418.18 at epoch=16 step=3386    
+[04/19/26 17:32:12] WARNING  High grad norm: 15345.20 at epoch=16 step=3387    
+                    WARNING  High grad norm: 19665.85 at epoch=16 step=3388    
+                    WARNING  High grad norm: 13076.14 at epoch=16 step=3389    
+                    WARNING  High grad norm: 11879.35 at epoch=16 step=3390    
+[04/19/26 17:32:13] WARNING  High grad norm: 19138.97 at epoch=16 step=3391    
+                    WARNING  High grad norm: 5636.91 at epoch=16 step=3392     
+                    WARNING  High grad norm: 13543.26 at epoch=16 step=3393    
+                    WARNING  High grad norm: 19673.38 at epoch=16 step=3394    
+[04/19/26 17:32:14] WARNING  High grad norm: 10292.69 at epoch=16 step=3395    
+                    WARNING  High grad norm: 19241.14 at epoch=16 step=3396    
+                    WARNING  High grad norm: 17341.20 at epoch=16 step=3397    
+[04/19/26 17:32:15] WARNING  High grad norm: 11610.00 at epoch=16 step=3398    
+                    WARNING  High grad norm: 14097.33 at epoch=16 step=3399    
+                    INFO     epoch=16 step=3400 loss=571.8746                  
+                             grad_norm=14097.3330 lr=1.59e-04                  
+                    WARNING  High grad norm: 13444.63 at epoch=16 step=3400    
+                    WARNING  High grad norm: 9140.29 at epoch=16 step=3401     
+[04/19/26 17:32:16] WARNING  High grad norm: 15089.89 at epoch=16 step=3402    
+                    WARNING  High grad norm: 20649.16 at epoch=16 step=3403    
+                    WARNING  High grad norm: 9554.42 at epoch=16 step=3404     
+                    WARNING  High grad norm: 16891.60 at epoch=16 step=3405    
+[04/19/26 17:32:17] WARNING  High grad norm: 22683.29 at epoch=16 step=3406    
+                    WARNING  High grad norm: 9580.09 at epoch=16 step=3407     
+                    WARNING  High grad norm: 20800.97 at epoch=16 step=3408    
+                    WARNING  High grad norm: 20505.57 at epoch=16 step=3409    
+[04/19/26 17:32:18] WARNING  High grad norm: 10712.50 at epoch=16 step=3410    
+                    WARNING  High grad norm: 10184.34 at epoch=16 step=3411    
+                    WARNING  High grad norm: 19834.97 at epoch=16 step=3412    
+                    WARNING  High grad norm: 10386.00 at epoch=16 step=3413    
+[04/19/26 17:32:19] WARNING  High grad norm: 12037.77 at epoch=16 step=3414    
+                    WARNING  High grad norm: 16927.73 at epoch=16 step=3415    
+                    WARNING  High grad norm: 8598.93 at epoch=16 step=3416     
+                    WARNING  High grad norm: 17711.55 at epoch=16 step=3417    
+[04/19/26 17:32:20] WARNING  High grad norm: 14804.06 at epoch=16 step=3418    
+                    WARNING  High grad norm: 11138.38 at epoch=16 step=3419    
+                    WARNING  High grad norm: 13826.13 at epoch=16 step=3420    
+                    WARNING  High grad norm: 19755.93 at epoch=16 step=3421    
+[04/19/26 17:32:21] WARNING  High grad norm: 5569.82 at epoch=16 step=3422     
+                    WARNING  High grad norm: 11660.07 at epoch=16 step=3423    
+                    WARNING  High grad norm: 14458.67 at epoch=16 step=3424    
+                    WARNING  High grad norm: 4006.17 at epoch=16 step=3425     
+[04/19/26 17:32:22] WARNING  High grad norm: 8548.74 at epoch=16 step=3426     
+                    WARNING  High grad norm: 3971.75 at epoch=16 step=3427     
+                    WARNING  High grad norm: 4704.97 at epoch=16 step=3428     
+                    WARNING  High grad norm: 4289.13 at epoch=16 step=3429     
+                    WARNING  High grad norm: 2768.25 at epoch=16 step=3430     
+[04/19/26 17:32:23] WARNING  High grad norm: 3674.33 at epoch=16 step=3431     
+                    WARNING  High grad norm: 10399.72 at epoch=16 step=3432    
+                    WARNING  High grad norm: 6438.00 at epoch=16 step=3433     
+                    WARNING  High grad norm: 14521.91 at epoch=16 step=3434    
+[04/19/26 17:32:24] WARNING  High grad norm: 11829.64 at epoch=16 step=3435    
+                    WARNING  High grad norm: 6825.45 at epoch=16 step=3436     
+                    WARNING  High grad norm: 10180.49 at epoch=16 step=3437    
+                    WARNING  High grad norm: 5909.10 at epoch=16 step=3438     
+[04/19/26 17:32:25] WARNING  High grad norm: 6519.17 at epoch=16 step=3439     
+                    WARNING  High grad norm: 8564.13 at epoch=16 step=3440     
+                    WARNING  High grad norm: 9996.61 at epoch=16 step=3441     
+                    WARNING  High grad norm: 13041.31 at epoch=16 step=3442    
+                    WARNING  High grad norm: 10034.11 at epoch=16 step=3443    
+[04/19/26 17:32:26] WARNING  High grad norm: 6769.54 at epoch=16 step=3444     
+                    WARNING  High grad norm: 7309.77 at epoch=16 step=3445     
+                    WARNING  High grad norm: 9592.23 at epoch=16 step=3446     
+                    WARNING  High grad norm: 9361.05 at epoch=16 step=3447     
+[04/19/26 17:32:27] WARNING  High grad norm: 5617.51 at epoch=16 step=3448     
+                    WARNING  High grad norm: 5046.47 at epoch=16 step=3449     
+                    WARNING  High grad norm: 9071.94 at epoch=16 step=3450     
+                    WARNING  High grad norm: 9939.40 at epoch=16 step=3451     
+                    WARNING  High grad norm: 8372.80 at epoch=16 step=3452     
+[04/19/26 17:32:28] WARNING  High grad norm: 8665.52 at epoch=16 step=3453     
+                    WARNING  High grad norm: 8898.78 at epoch=16 step=3454     
+                    WARNING  High grad norm: 7218.63 at epoch=16 step=3455     
+                    WARNING  High grad norm: 12946.83 at epoch=16 step=3456    
+[04/19/26 17:32:29] WARNING  High grad norm: 8722.28 at epoch=16 step=3457     
+                    WARNING  High grad norm: 3957.04 at epoch=16 step=3458     
+                    WARNING  High grad norm: 7552.77 at epoch=16 step=3459     
+                    WARNING  High grad norm: 7034.72 at epoch=16 step=3460     
+[04/19/26 17:32:30] WARNING  High grad norm: 5045.14 at epoch=16 step=3461     
+                    WARNING  High grad norm: 10148.24 at epoch=16 step=3462    
+                    WARNING  High grad norm: 9947.58 at epoch=16 step=3463     
+                    WARNING  High grad norm: 10598.32 at epoch=16 step=3464    
+                    WARNING  High grad norm: 10743.90 at epoch=16 step=3465    
+[04/19/26 17:32:31] WARNING  High grad norm: 6138.52 at epoch=16 step=3466     
+                    WARNING  High grad norm: 6839.49 at epoch=16 step=3467     
+                    WARNING  High grad norm: 10994.36 at epoch=16 step=3468    
+                    WARNING  High grad norm: 6136.12 at epoch=16 step=3469     
+[04/19/26 17:32:32] WARNING  High grad norm: 17378.18 at epoch=16 step=3470    
+                    WARNING  High grad norm: 16557.20 at epoch=16 step=3471    
+                    WARNING  High grad norm: 3140.15 at epoch=16 step=3472     
+                    WARNING  High grad norm: 13551.87 at epoch=16 step=3473    
+[04/19/26 17:32:33] WARNING  High grad norm: 20244.22 at epoch=16 step=3474    
+                    WARNING  High grad norm: 9460.34 at epoch=16 step=3475     
+                    WARNING  High grad norm: 12259.79 at epoch=16 step=3476    
+                    WARNING  High grad norm: 3150.39 at epoch=16 step=3477     
+                    WARNING  High grad norm: 12741.79 at epoch=16 step=3478    
+[04/19/26 17:32:34] WARNING  High grad norm: 6231.85 at epoch=16 step=3479     
+[04/19/26 17:32:35] WARNING  High grad norm: 11478.97 at epoch=16 step=3480    
+                    WARNING  High grad norm: 8509.08 at epoch=16 step=3481     
+[04/19/26 17:32:36] WARNING  High grad norm: 9409.74 at epoch=16 step=3482     
+                    WARNING  High grad norm: 9936.78 at epoch=16 step=3483     
+                    WARNING  High grad norm: 9696.63 at epoch=16 step=3484     
+[04/19/26 17:32:38] WARNING  High grad norm: 11530.72 at epoch=16 step=3485    
+                    WARNING  High grad norm: 8967.25 at epoch=16 step=3486     
+                    WARNING  High grad norm: 6192.74 at epoch=16 step=3487     
+                    WARNING  High grad norm: 11167.63 at epoch=16 step=3488    
+[04/19/26 17:32:40] WARNING  High grad norm: 9550.84 at epoch=16 step=3489     
+                    WARNING  High grad norm: 8476.61 at epoch=16 step=3490     
+[04/19/26 17:32:41] WARNING  High grad norm: 9171.00 at epoch=16 step=3491     
+                    WARNING  High grad norm: 8955.05 at epoch=16 step=3492     
+[04/19/26 17:32:42] WARNING  High grad norm: 5484.65 at epoch=16 step=3493     
+[04/19/26 17:32:43] WARNING  High grad norm: 11210.00 at epoch=16 step=3494    
+                    WARNING  High grad norm: 10240.09 at epoch=16 step=3495    
+                    WARNING  High grad norm: 7787.21 at epoch=16 step=3496     
+[04/19/26 17:32:44] WARNING  High grad norm: 4210.08 at epoch=16 step=3497     
+[04/19/26 17:32:45] WARNING  High grad norm: 11493.49 at epoch=16 step=3498    
+                    WARNING  High grad norm: 12053.97 at epoch=16 step=3499    
+                    INFO     epoch=16 step=3500 loss=576.5902                  
+                             grad_norm=12053.9717 lr=1.59e-04                  
+                    WARNING  High grad norm: 7599.18 at epoch=16 step=3500     
+[04/19/26 17:32:47] WARNING  High grad norm: 7476.76 at epoch=16 step=3501     
+                    WARNING  High grad norm: 10878.02 at epoch=16 step=3502    
+                    WARNING  High grad norm: 9356.85 at epoch=16 step=3503     
+[04/19/26 17:32:48] WARNING  High grad norm: 10757.61 at epoch=16 step=3504    
+                    WARNING  High grad norm: 8025.19 at epoch=16 step=3505     
+[04/19/26 17:32:49] WARNING  High grad norm: 6752.13 at epoch=16 step=3506     
+[04/19/26 17:32:50] WARNING  High grad norm: 5104.75 at epoch=16 step=3507     
+                    WARNING  High grad norm: 8295.73 at epoch=16 step=3508     
+                    WARNING  High grad norm: 9486.27 at epoch=16 step=3509     
+[04/19/26 17:32:52] WARNING  High grad norm: 11556.29 at epoch=16 step=3510    
+                    WARNING  High grad norm: 9437.63 at epoch=16 step=3511     
+                    WARNING  High grad norm: 10574.30 at epoch=16 step=3512    
+                    WARNING  High grad norm: 7920.27 at epoch=16 step=3513     
+[04/19/26 17:32:56] WARNING  High grad norm: 10652.89 at epoch=16 step=3514    
+                    WARNING  High grad norm: 9488.53 at epoch=16 step=3515     
+                    WARNING  High grad norm: 12108.81 at epoch=16 step=3516    
+[04/19/26 17:33:00] WARNING  High grad norm: 8544.89 at epoch=16 step=3517     
+[04/19/26 17:33:01] WARNING  High grad norm: 10300.75 at epoch=16 step=3518    
+                    WARNING  High grad norm: 10956.13 at epoch=16 step=3519    
+                    WARNING  High grad norm: 12139.76 at epoch=16 step=3520    
+[04/19/26 17:33:02] WARNING  High grad norm: 9181.19 at epoch=16 step=3521     
+                    WARNING  High grad norm: 7648.85 at epoch=16 step=3522     
+[04/19/26 17:33:06] WARNING  High grad norm: 9948.12 at epoch=16 step=3523     
+[04/19/26 17:33:07] WARNING  High grad norm: 4888.26 at epoch=16 step=3524     
+                    WARNING  High grad norm: 7781.68 at epoch=16 step=3525     
+                    WARNING  High grad norm: 9650.60 at epoch=16 step=3526     
+[04/19/26 17:33:12] WARNING  High grad norm: 8464.63 at epoch=16 step=3527     
+                    WARNING  High grad norm: 14168.91 at epoch=16 step=3528    
+[04/19/26 17:33:13] WARNING  High grad norm: 17877.16 at epoch=16 step=3529    
+                    WARNING  High grad norm: 5110.12 at epoch=16 step=3530     
+                    WARNING  High grad norm: 7119.03 at epoch=16 step=3531     
+[04/19/26 17:33:17] WARNING  High grad norm: 4629.60 at epoch=16 step=3532     
+                    WARNING  High grad norm: 6401.61 at epoch=16 step=3533     
+[04/19/26 17:33:18] WARNING  High grad norm: 9939.49 at epoch=16 step=3534     
+[04/19/26 17:33:21] WARNING  High grad norm: 4697.52 at epoch=16 step=3535     
+                    WARNING  High grad norm: 8465.58 at epoch=16 step=3536     
+[04/19/26 17:33:22] WARNING  High grad norm: 6118.18 at epoch=16 step=3537     
+                    WARNING  High grad norm: 3196.11 at epoch=16 step=3538     
+[04/19/26 17:33:25] WARNING  High grad norm: 3651.01 at epoch=16 step=3539     
+[04/19/26 17:33:26] WARNING  High grad norm: 6625.14 at epoch=16 step=3540     
+                    WARNING  High grad norm: 4212.90 at epoch=16 step=3541     
+                    WARNING  High grad norm: 4744.78 at epoch=16 step=3542     
+[04/19/26 17:33:27] WARNING  High grad norm: 10432.38 at epoch=16 step=3543    
+[04/19/26 17:33:29] WARNING  High grad norm: 12225.27 at epoch=16 step=3544    
+                    WARNING  High grad norm: 15189.21 at epoch=16 step=3545    
+[04/19/26 17:33:30] WARNING  High grad norm: 13756.98 at epoch=16 step=3546    
+[04/19/26 17:33:32] WARNING  High grad norm: 8918.04 at epoch=16 step=3547     
+                    WARNING  High grad norm: 4019.12 at epoch=16 step=3548     
+[04/19/26 17:33:33] WARNING  High grad norm: 14447.14 at epoch=16 step=3549    
+                    WARNING  High grad norm: 9211.66 at epoch=16 step=3550     
+                    WARNING  High grad norm: 6295.72 at epoch=16 step=3551     
+[04/19/26 17:33:35] WARNING  High grad norm: 8523.12 at epoch=16 step=3552     
+                    WARNING  High grad norm: 11221.83 at epoch=16 step=3553    
+[04/19/26 17:33:36] WARNING  High grad norm: 8131.17 at epoch=16 step=3554     
+                    WARNING  High grad norm: 17305.23 at epoch=16 step=3555    
+[04/19/26 17:33:38] WARNING  High grad norm: 12170.73 at epoch=16 step=3556    
+                    WARNING  High grad norm: 3986.46 at epoch=16 step=3557     
+                    WARNING  High grad norm: 5277.32 at epoch=16 step=3558     
+[04/19/26 17:33:39] WARNING  High grad norm: 7928.51 at epoch=16 step=3559     
+[04/19/26 17:33:40] WARNING  High grad norm: 7677.42 at epoch=16 step=3560     
+[04/19/26 17:33:41] WARNING  High grad norm: 15918.09 at epoch=16 step=3561    
+                    WARNING  High grad norm: 13277.53 at epoch=16 step=3562    
+                    WARNING  High grad norm: 4362.55 at epoch=16 step=3563     
+[04/19/26 17:33:43] WARNING  High grad norm: 5163.22 at epoch=16 step=3564     
+[04/19/26 17:33:44] WARNING  High grad norm: 6399.50 at epoch=16 step=3565     
+                    WARNING  High grad norm: 8933.75 at epoch=16 step=3566     
+                    WARNING  High grad norm: 12352.48 at epoch=16 step=3567    
+[04/19/26 17:33:46] INFO     epoch=16 avg_loss=577.2021 lr=1.59e-04            
+[04/19/26 17:34:12] WARNING  High grad norm: 13212.09 at epoch=17 step=3568    
+[04/19/26 17:34:13] WARNING  High grad norm: 4855.07 at epoch=17 step=3569     
+                    WARNING  High grad norm: 5697.38 at epoch=17 step=3570     
+[04/19/26 17:34:15] WARNING  High grad norm: 12560.66 at epoch=17 step=3571    
+                    WARNING  High grad norm: 7467.52 at epoch=17 step=3572     
+                    WARNING  High grad norm: 5813.05 at epoch=17 step=3573     
+[04/19/26 17:34:17] WARNING  High grad norm: 6338.34 at epoch=17 step=3574     
+                    WARNING  High grad norm: 8632.91 at epoch=17 step=3575     
+[04/19/26 17:34:18] WARNING  High grad norm: 3439.46 at epoch=17 step=3576     
+                    WARNING  High grad norm: 9575.82 at epoch=17 step=3577     
+[04/19/26 17:34:20] WARNING  High grad norm: 7830.83 at epoch=17 step=3578     
+                    WARNING  High grad norm: 11218.38 at epoch=17 step=3579    
+                    WARNING  High grad norm: 11241.84 at epoch=17 step=3580    
+[04/19/26 17:34:22] WARNING  High grad norm: 9646.50 at epoch=17 step=3581     
+                    WARNING  High grad norm: 7695.55 at epoch=17 step=3582     
+                    WARNING  High grad norm: 2876.86 at epoch=17 step=3583     
+[04/19/26 17:34:24] WARNING  High grad norm: 7093.05 at epoch=17 step=3584     
+                    WARNING  High grad norm: 10902.31 at epoch=17 step=3585    
+[04/19/26 17:34:25] WARNING  High grad norm: 10879.75 at epoch=17 step=3586    
+[04/19/26 17:34:26] WARNING  High grad norm: 12319.09 at epoch=17 step=3587    
+[04/19/26 17:34:27] WARNING  High grad norm: 10173.82 at epoch=17 step=3588    
+                    WARNING  High grad norm: 3400.35 at epoch=17 step=3589     
+                    WARNING  High grad norm: 5178.64 at epoch=17 step=3590     
+                    WARNING  High grad norm: 12264.03 at epoch=17 step=3591    
+[04/19/26 17:34:28] WARNING  High grad norm: 9626.55 at epoch=17 step=3592     
+                    WARNING  High grad norm: 12366.68 at epoch=17 step=3593    
+                    WARNING  High grad norm: 12063.96 at epoch=17 step=3594    
+[04/19/26 17:34:29] WARNING  High grad norm: 3059.26 at epoch=17 step=3595     
+                    WARNING  High grad norm: 13868.42 at epoch=17 step=3596    
+                    WARNING  High grad norm: 8583.68 at epoch=17 step=3597     
+[04/19/26 17:34:30] WARNING  High grad norm: 7298.55 at epoch=17 step=3598     
+                    WARNING  High grad norm: 7223.90 at epoch=17 step=3599     
+                    INFO     epoch=17 step=3600 loss=554.9523                  
+                             grad_norm=7223.9019 lr=1.59e-04                   
+                    WARNING  High grad norm: 3155.21 at epoch=17 step=3600     
+                    WARNING  High grad norm: 3244.28 at epoch=17 step=3601     
+[04/19/26 17:34:31] WARNING  High grad norm: 5388.29 at epoch=17 step=3602     
+                    WARNING  High grad norm: 5957.85 at epoch=17 step=3603     
+                    WARNING  High grad norm: 1563.66 at epoch=17 step=3604     
+[04/19/26 17:34:32] WARNING  High grad norm: 8593.38 at epoch=17 step=3605     
+                    WARNING  High grad norm: 3166.77 at epoch=17 step=3606     
+                    WARNING  High grad norm: 8810.70 at epoch=17 step=3607     
+[04/19/26 17:34:33] WARNING  High grad norm: 6169.07 at epoch=17 step=3608     
+                    WARNING  High grad norm: 2294.21 at epoch=17 step=3609     
+                    WARNING  High grad norm: 4931.21 at epoch=17 step=3610     
+                    WARNING  High grad norm: 8854.27 at epoch=17 step=3611     
+                    WARNING  High grad norm: 4546.42 at epoch=17 step=3612     
+[04/19/26 17:34:34] WARNING  High grad norm: 10817.89 at epoch=17 step=3613    
+                    WARNING  High grad norm: 6223.87 at epoch=17 step=3614     
+                    WARNING  High grad norm: 11393.66 at epoch=17 step=3615    
+                    WARNING  High grad norm: 12043.96 at epoch=17 step=3616    
+[04/19/26 17:34:35] WARNING  High grad norm: 8819.49 at epoch=17 step=3617     
+                    WARNING  High grad norm: 9748.25 at epoch=17 step=3618     
+                    WARNING  High grad norm: 8120.55 at epoch=17 step=3619     
+                    WARNING  High grad norm: 7781.38 at epoch=17 step=3620     
+                    WARNING  High grad norm: 7098.23 at epoch=17 step=3621     
+[04/19/26 17:34:36] WARNING  High grad norm: 7082.80 at epoch=17 step=3622     
+                    WARNING  High grad norm: 7332.76 at epoch=17 step=3623     
+                    WARNING  High grad norm: 4833.09 at epoch=17 step=3624     
+                    WARNING  High grad norm: 13956.25 at epoch=17 step=3625    
+[04/19/26 17:34:37] WARNING  High grad norm: 15872.69 at epoch=17 step=3626    
+                    WARNING  High grad norm: 6460.10 at epoch=17 step=3627     
+                    WARNING  High grad norm: 5460.00 at epoch=17 step=3628     
+                    WARNING  High grad norm: 9954.23 at epoch=17 step=3629     
+                    WARNING  High grad norm: 3872.21 at epoch=17 step=3630     
+[04/19/26 17:34:38] WARNING  High grad norm: 11048.87 at epoch=17 step=3631    
+                    WARNING  High grad norm: 9095.84 at epoch=17 step=3632     
+                    WARNING  High grad norm: 10582.33 at epoch=17 step=3633    
+                    WARNING  High grad norm: 13277.51 at epoch=17 step=3634    
+[04/19/26 17:34:39] WARNING  High grad norm: 2429.12 at epoch=17 step=3635     
+                    WARNING  High grad norm: 21465.71 at epoch=17 step=3636    
+                    WARNING  High grad norm: 23900.48 at epoch=17 step=3637    
+                    WARNING  High grad norm: 13863.82 at epoch=17 step=3638    
+[04/19/26 17:34:40] WARNING  High grad norm: 11434.07 at epoch=17 step=3639    
+                    WARNING  High grad norm: 19541.84 at epoch=17 step=3640    
+                    WARNING  High grad norm: 14288.24 at epoch=17 step=3641    
+                    WARNING  High grad norm: 7962.21 at epoch=17 step=3642     
+                    WARNING  High grad norm: 16757.00 at epoch=17 step=3643    
+[04/19/26 17:34:41] WARNING  High grad norm: 5916.58 at epoch=17 step=3644     
+[04/19/26 17:34:42] WARNING  High grad norm: 2098.65 at epoch=17 step=3645     
+[04/19/26 17:34:43] WARNING  High grad norm: 3972.94 at epoch=17 step=3646     
+                    WARNING  High grad norm: 9565.04 at epoch=17 step=3647     
+                    WARNING  High grad norm: 7702.74 at epoch=17 step=3648     
+[04/19/26 17:34:45] WARNING  High grad norm: 9659.59 at epoch=17 step=3649     
+                    WARNING  High grad norm: 6143.53 at epoch=17 step=3650     
+                    WARNING  High grad norm: 8520.31 at epoch=17 step=3651     
+[04/19/26 17:34:46] WARNING  High grad norm: 7348.46 at epoch=17 step=3652     
+                    WARNING  High grad norm: 11619.55 at epoch=17 step=3653    
+[04/19/26 17:34:47] WARNING  High grad norm: 8027.79 at epoch=17 step=3654     
+[04/19/26 17:34:48] WARNING  High grad norm: 2544.09 at epoch=17 step=3655     
+                    WARNING  High grad norm: 4003.78 at epoch=17 step=3656     
+                    WARNING  High grad norm: 19834.06 at epoch=17 step=3657    
+[04/19/26 17:34:50] WARNING  High grad norm: 7203.68 at epoch=17 step=3658     
+                    WARNING  High grad norm: 11133.33 at epoch=17 step=3659    
+                    WARNING  High grad norm: 9610.18 at epoch=17 step=3660     
+[04/19/26 17:34:51] WARNING  High grad norm: 7155.49 at epoch=17 step=3661     
+                    WARNING  High grad norm: 7601.62 at epoch=17 step=3662     
+[04/19/26 17:34:53] WARNING  High grad norm: 15738.05 at epoch=17 step=3663    
+                    WARNING  High grad norm: 16888.75 at epoch=17 step=3664    
+                    WARNING  High grad norm: 2073.19 at epoch=17 step=3665     
+                    WARNING  High grad norm: 10719.18 at epoch=17 step=3666    
+[04/19/26 17:34:55] WARNING  High grad norm: 5210.12 at epoch=17 step=3667     
+                    WARNING  High grad norm: 13770.18 at epoch=17 step=3668    
+                    WARNING  High grad norm: 17346.21 at epoch=17 step=3669    
+[04/19/26 17:34:56] WARNING  High grad norm: 4870.48 at epoch=17 step=3670     
+[04/19/26 17:34:57] WARNING  High grad norm: 18553.37 at epoch=17 step=3671    
+[04/19/26 17:34:58] WARNING  High grad norm: 16393.78 at epoch=17 step=3672    
+                    WARNING  High grad norm: 3924.83 at epoch=17 step=3673     
+                    WARNING  High grad norm: 11863.57 at epoch=17 step=3674    
+                    WARNING  High grad norm: 3522.54 at epoch=17 step=3675     
+[04/19/26 17:35:00] WARNING  High grad norm: 9349.02 at epoch=17 step=3676     
+                    WARNING  High grad norm: 4035.41 at epoch=17 step=3677     
+                    WARNING  High grad norm: 1637.12 at epoch=17 step=3678     
+[04/19/26 17:35:01] WARNING  High grad norm: 5709.52 at epoch=17 step=3679     
+[04/19/26 17:35:02] WARNING  High grad norm: 7468.83 at epoch=17 step=3680     
+[04/19/26 17:35:03] WARNING  High grad norm: 7829.39 at epoch=17 step=3681     
+                    WARNING  High grad norm: 3923.61 at epoch=17 step=3682     
+                    WARNING  High grad norm: 8104.24 at epoch=17 step=3683     
+[04/19/26 17:35:05] WARNING  High grad norm: 9098.89 at epoch=17 step=3684     
+                    WARNING  High grad norm: 6134.76 at epoch=17 step=3685     
+                    WARNING  High grad norm: 7114.54 at epoch=17 step=3686     
+                    WARNING  High grad norm: 9062.07 at epoch=17 step=3687     
+[04/19/26 17:35:07] WARNING  High grad norm: 8478.27 at epoch=17 step=3688     
+                    WARNING  High grad norm: 8417.60 at epoch=17 step=3689     
+[04/19/26 17:35:08] WARNING  High grad norm: 8058.02 at epoch=17 step=3690     
+                    WARNING  High grad norm: 10408.78 at epoch=17 step=3691    
+                    WARNING  High grad norm: 3344.49 at epoch=17 step=3692     
+[04/19/26 17:35:10] WARNING  High grad norm: 6047.51 at epoch=17 step=3693     
+                    WARNING  High grad norm: 13065.66 at epoch=17 step=3694    
+                    WARNING  High grad norm: 12016.78 at epoch=17 step=3695    
+                    WARNING  High grad norm: 7565.75 at epoch=17 step=3696     
+[04/19/26 17:35:12] WARNING  High grad norm: 7111.80 at epoch=17 step=3697     
+                    WARNING  High grad norm: 7949.46 at epoch=17 step=3698     
+[04/19/26 17:35:13] WARNING  High grad norm: 9489.48 at epoch=17 step=3699     
+                    INFO     epoch=17 step=3700 loss=563.1614                  
+                             grad_norm=9489.4814 lr=1.59e-04                   
+                    WARNING  High grad norm: 10076.86 at epoch=17 step=3700    
+                    WARNING  High grad norm: 14939.91 at epoch=17 step=3701    
+[04/19/26 17:35:15] WARNING  High grad norm: 5768.14 at epoch=17 step=3702     
+                    WARNING  High grad norm: 3988.50 at epoch=17 step=3703     
+                    WARNING  High grad norm: 13682.40 at epoch=17 step=3704    
+[04/19/26 17:35:17] WARNING  High grad norm: 8462.66 at epoch=17 step=3705     
+                    WARNING  High grad norm: 8707.41 at epoch=17 step=3706     
+[04/19/26 17:35:18] WARNING  High grad norm: 13350.10 at epoch=17 step=3707    
+                    WARNING  High grad norm: 4394.38 at epoch=17 step=3708     
+[04/19/26 17:35:19] WARNING  High grad norm: 5475.19 at epoch=17 step=3709     
+[04/19/26 17:35:20] WARNING  High grad norm: 9862.01 at epoch=17 step=3710     
+                    WARNING  High grad norm: 10117.03 at epoch=17 step=3711    
+                    WARNING  High grad norm: 7285.91 at epoch=17 step=3712     
+                    WARNING  High grad norm: 4809.58 at epoch=17 step=3713     
+[04/19/26 17:35:22] WARNING  High grad norm: 11952.74 at epoch=17 step=3714    
+                    WARNING  High grad norm: 11577.15 at epoch=17 step=3715    
+[04/19/26 17:35:23] WARNING  High grad norm: 8919.05 at epoch=17 step=3716     
+                    WARNING  High grad norm: 5403.90 at epoch=17 step=3717     
+[04/19/26 17:35:25] WARNING  High grad norm: 7084.19 at epoch=17 step=3718     
+                    WARNING  High grad norm: 4370.63 at epoch=17 step=3719     
+                    WARNING  High grad norm: 14301.94 at epoch=17 step=3720    
+                    WARNING  High grad norm: 19422.27 at epoch=17 step=3721    
+[04/19/26 17:35:27] WARNING  High grad norm: 3395.61 at epoch=17 step=3722     
+                    WARNING  High grad norm: 11246.77 at epoch=17 step=3723    
+                    WARNING  High grad norm: 8423.14 at epoch=17 step=3724     
+[04/19/26 17:35:28] WARNING  High grad norm: 2076.91 at epoch=17 step=3725     
+                    WARNING  High grad norm: 10105.41 at epoch=17 step=3726    
+[04/19/26 17:35:30] WARNING  High grad norm: 7738.96 at epoch=17 step=3727     
+                    WARNING  High grad norm: 12494.09 at epoch=17 step=3728    
+                    WARNING  High grad norm: 20758.04 at epoch=17 step=3729    
+                    WARNING  High grad norm: 2545.44 at epoch=17 step=3730     
+[04/19/26 17:35:32] WARNING  High grad norm: 10907.11 at epoch=17 step=3731    
+                    WARNING  High grad norm: 3745.70 at epoch=17 step=3732     
+                    WARNING  High grad norm: 3523.34 at epoch=17 step=3733     
+[04/19/26 17:35:33] WARNING  High grad norm: 9045.91 at epoch=17 step=3734     
+[04/19/26 17:35:34] WARNING  High grad norm: 4078.93 at epoch=17 step=3735     
+[04/19/26 17:35:35] WARNING  High grad norm: 8941.30 at epoch=17 step=3736     
+                    WARNING  High grad norm: 2699.95 at epoch=17 step=3737     
+                    WARNING  High grad norm: 6695.32 at epoch=17 step=3738     
+[04/19/26 17:35:37] WARNING  High grad norm: 3809.62 at epoch=17 step=3739     
+                    WARNING  High grad norm: 7566.89 at epoch=17 step=3740     
+                    WARNING  High grad norm: 3746.28 at epoch=17 step=3741     
+                    WARNING  High grad norm: 3261.96 at epoch=17 step=3742     
+[04/19/26 17:35:38] WARNING  High grad norm: 9020.67 at epoch=17 step=3743     
+[04/19/26 17:35:39] WARNING  High grad norm: 2922.29 at epoch=17 step=3744     
+[04/19/26 17:35:40] WARNING  High grad norm: 2633.56 at epoch=17 step=3745     
+                    WARNING  High grad norm: 2820.44 at epoch=17 step=3746     
+                    WARNING  High grad norm: 2457.95 at epoch=17 step=3747     
+[04/19/26 17:35:42] WARNING  High grad norm: 10319.92 at epoch=17 step=3748    
+                    WARNING  High grad norm: 3217.66 at epoch=17 step=3749     
+                    WARNING  High grad norm: 5702.07 at epoch=17 step=3750     
+[04/19/26 17:35:43] WARNING  High grad norm: 9204.08 at epoch=17 step=3751     
+[04/19/26 17:35:44] WARNING  High grad norm: 4664.75 at epoch=17 step=3752     
+[04/19/26 17:35:45] WARNING  High grad norm: 13443.26 at epoch=17 step=3753    
+                    WARNING  High grad norm: 12304.23 at epoch=17 step=3754    
+                    WARNING  High grad norm: 5576.91 at epoch=17 step=3755     
+[04/19/26 17:35:47] WARNING  High grad norm: 5551.32 at epoch=17 step=3756     
+                    WARNING  High grad norm: 21880.79 at epoch=17 step=3757    
+                    WARNING  High grad norm: 13721.77 at epoch=17 step=3758    
+[04/19/26 17:35:48] WARNING  High grad norm: 5760.97 at epoch=17 step=3759     
+                    WARNING  High grad norm: 9724.89 at epoch=17 step=3760     
+[04/19/26 17:35:50] WARNING  High grad norm: 3363.49 at epoch=17 step=3761     
+                    WARNING  High grad norm: 3855.44 at epoch=17 step=3762     
+                    WARNING  High grad norm: 13237.10 at epoch=17 step=3763    
+                    WARNING  High grad norm: 4950.71 at epoch=17 step=3764     
+[04/19/26 17:35:52] WARNING  High grad norm: 8542.54 at epoch=17 step=3765     
+                    WARNING  High grad norm: 2136.22 at epoch=17 step=3766     
+[04/19/26 17:35:53] WARNING  High grad norm: 6722.52 at epoch=17 step=3767     
+                    WARNING  High grad norm: 3909.70 at epoch=17 step=3768     
+[04/19/26 17:35:55] WARNING  High grad norm: 2019.77 at epoch=17 step=3769     
+                    WARNING  High grad norm: 3430.72 at epoch=17 step=3770     
+                    WARNING  High grad norm: 8162.86 at epoch=17 step=3771     
+                    WARNING  High grad norm: 6593.81 at epoch=17 step=3772     
+[04/19/26 17:35:57] WARNING  High grad norm: 4110.10 at epoch=17 step=3773     
+                    WARNING  High grad norm: 4077.95 at epoch=17 step=3774     
+[04/19/26 17:35:58] WARNING  High grad norm: 3188.54 at epoch=17 step=3775     
+                    WARNING  High grad norm: 8321.92 at epoch=17 step=3776     
+                    WARNING  High grad norm: 2561.49 at epoch=17 step=3777     
+[04/19/26 17:36:00] WARNING  High grad norm: 3533.68 at epoch=17 step=3778     
+                    WARNING  High grad norm: 3538.31 at epoch=17 step=3779     
+                    WARNING  High grad norm: 6577.38 at epoch=17 step=3780     
+                    WARNING  High grad norm: 2152.13 at epoch=17 step=3781     
+[04/19/26 17:36:02] WARNING  High grad norm: 2883.75 at epoch=17 step=3782     
+                    WARNING  High grad norm: 14724.99 at epoch=17 step=3783    
+[04/19/26 17:36:03] WARNING  High grad norm: 8159.90 at epoch=17 step=3784     
+                    WARNING  High grad norm: 9931.49 at epoch=17 step=3785     
+[04/19/26 17:36:05] WARNING  High grad norm: 13176.06 at epoch=17 step=3786    
+                    WARNING  High grad norm: 4716.02 at epoch=17 step=3787     
+                    WARNING  High grad norm: 1417.33 at epoch=17 step=3788     
+                    WARNING  High grad norm: 14914.58 at epoch=17 step=3789    
+[04/19/26 17:36:07] WARNING  High grad norm: 17863.99 at epoch=17 step=3790    
+[04/19/26 17:36:08] INFO     epoch=17 avg_loss=563.0236 lr=1.58e-04            
+[04/19/26 17:36:24] WARNING  High grad norm: 7935.17 at epoch=18 step=3791     
+[04/19/26 17:36:25] WARNING  High grad norm: 15001.19 at epoch=18 step=3792    
+                    WARNING  High grad norm: 3164.64 at epoch=18 step=3793     
+                    WARNING  High grad norm: 3893.39 at epoch=18 step=3794     
+                    WARNING  High grad norm: 4312.28 at epoch=18 step=3795     
+[04/19/26 17:36:26] WARNING  High grad norm: 3308.39 at epoch=18 step=3796     
+                    WARNING  High grad norm: 6592.76 at epoch=18 step=3797     
+                    WARNING  High grad norm: 3383.70 at epoch=18 step=3798     
+                    WARNING  High grad norm: 4112.29 at epoch=18 step=3799     
+                    INFO     epoch=18 step=3800 loss=582.1653                  
+                             grad_norm=4112.2915 lr=1.58e-04                   
+[04/19/26 17:36:27] WARNING  High grad norm: 7195.89 at epoch=18 step=3800     
+                    WARNING  High grad norm: 5776.76 at epoch=18 step=3801     
+                    WARNING  High grad norm: 11367.85 at epoch=18 step=3802    
+                    WARNING  High grad norm: 8127.55 at epoch=18 step=3803     
+[04/19/26 17:36:28] WARNING  High grad norm: 5147.74 at epoch=18 step=3804     
+                    WARNING  High grad norm: 4993.18 at epoch=18 step=3805     
+                    WARNING  High grad norm: 10551.71 at epoch=18 step=3806    
+                    WARNING  High grad norm: 6012.62 at epoch=18 step=3807     
+                    WARNING  High grad norm: 9206.04 at epoch=18 step=3808     
+[04/19/26 17:36:29] WARNING  High grad norm: 6067.06 at epoch=18 step=3809     
+                    WARNING  High grad norm: 16609.26 at epoch=18 step=3810    
+                    WARNING  High grad norm: 14354.41 at epoch=18 step=3811    
+                    WARNING  High grad norm: 3833.97 at epoch=18 step=3812     
+[04/19/26 17:36:30] WARNING  High grad norm: 3977.46 at epoch=18 step=3813     
+                    WARNING  High grad norm: 10648.53 at epoch=18 step=3814    
+                    WARNING  High grad norm: 5082.05 at epoch=18 step=3815     
+                    WARNING  High grad norm: 12188.07 at epoch=18 step=3816    
+                    WARNING  High grad norm: 10323.92 at epoch=18 step=3817    
+[04/19/26 17:36:31] WARNING  High grad norm: 5060.13 at epoch=18 step=3818     
+                    WARNING  High grad norm: 7897.71 at epoch=18 step=3819     
+                    WARNING  High grad norm: 15088.18 at epoch=18 step=3820    
+                    WARNING  High grad norm: 14050.42 at epoch=18 step=3821    
+[04/19/26 17:36:32] WARNING  High grad norm: 6335.79 at epoch=18 step=3822     
+                    WARNING  High grad norm: 4136.49 at epoch=18 step=3823     
+                    WARNING  High grad norm: 11430.94 at epoch=18 step=3824    
+                    WARNING  High grad norm: 7645.78 at epoch=18 step=3825     
+[04/19/26 17:36:33] WARNING  High grad norm: 11968.17 at epoch=18 step=3826    
+                    WARNING  High grad norm: 10300.03 at epoch=18 step=3827    
+                    WARNING  High grad norm: 3622.47 at epoch=18 step=3828     
+                    WARNING  High grad norm: 3671.00 at epoch=18 step=3829     
+                    WARNING  High grad norm: 10619.47 at epoch=18 step=3830    
+[04/19/26 17:36:34] WARNING  High grad norm: 8346.71 at epoch=18 step=3831     
+                    WARNING  High grad norm: 11384.07 at epoch=18 step=3832    
+                    WARNING  High grad norm: 4576.49 at epoch=18 step=3833     
+                    WARNING  High grad norm: 10373.24 at epoch=18 step=3834    
+[04/19/26 17:36:35] WARNING  High grad norm: 10082.96 at epoch=18 step=3835    
+                    WARNING  High grad norm: 5690.23 at epoch=18 step=3836     
+                    WARNING  High grad norm: 7724.90 at epoch=18 step=3837     
+                    WARNING  High grad norm: 9009.67 at epoch=18 step=3838     
+                    WARNING  High grad norm: 7413.02 at epoch=18 step=3839     
+[04/19/26 17:36:36] WARNING  High grad norm: 7904.02 at epoch=18 step=3840     
+                    WARNING  High grad norm: 8230.75 at epoch=18 step=3841     
+                    WARNING  High grad norm: 7645.92 at epoch=18 step=3842     
+                    WARNING  High grad norm: 5120.21 at epoch=18 step=3843     
+[04/19/26 17:36:37] WARNING  High grad norm: 8181.17 at epoch=18 step=3844     
+                    WARNING  High grad norm: 9060.76 at epoch=18 step=3845     
+                    WARNING  High grad norm: 7795.14 at epoch=18 step=3846     
+                    WARNING  High grad norm: 7355.21 at epoch=18 step=3847     
+[04/19/26 17:36:38] WARNING  High grad norm: 12758.45 at epoch=18 step=3848    
+                    WARNING  High grad norm: 15418.08 at epoch=18 step=3849    
+                    WARNING  High grad norm: 4696.47 at epoch=18 step=3850     
+                    WARNING  High grad norm: 6895.01 at epoch=18 step=3851     
+                    WARNING  High grad norm: 10231.66 at epoch=18 step=3852    
+[04/19/26 17:36:39] WARNING  High grad norm: 7510.32 at epoch=18 step=3853     
+                    WARNING  High grad norm: 9504.59 at epoch=18 step=3854     
+                    WARNING  High grad norm: 10986.28 at epoch=18 step=3855    
+                    WARNING  High grad norm: 9240.61 at epoch=18 step=3856     
+[04/19/26 17:36:40] WARNING  High grad norm: 14151.92 at epoch=18 step=3857    
+                    WARNING  High grad norm: 6378.11 at epoch=18 step=3858     
+[04/19/26 17:36:42] WARNING  High grad norm: 5504.83 at epoch=18 step=3859     
+                    WARNING  High grad norm: 8489.23 at epoch=18 step=3860     
+                    WARNING  High grad norm: 5308.98 at epoch=18 step=3861     
+                    WARNING  High grad norm: 15148.50 at epoch=18 step=3862    
+[04/19/26 17:36:44] WARNING  High grad norm: 12919.65 at epoch=18 step=3863    
+                    WARNING  High grad norm: 3210.04 at epoch=18 step=3864     
+[04/19/26 17:36:45] WARNING  High grad norm: 13903.97 at epoch=18 step=3865    
+                    WARNING  High grad norm: 6876.07 at epoch=18 step=3866     
+                    WARNING  High grad norm: 4954.81 at epoch=18 step=3867     
+[04/19/26 17:36:47] WARNING  High grad norm: 7576.63 at epoch=18 step=3868     
+                    WARNING  High grad norm: 1387.12 at epoch=18 step=3869     
+                    WARNING  High grad norm: 3976.60 at epoch=18 step=3870     
+[04/19/26 17:36:48] WARNING  High grad norm: 3466.73 at epoch=18 step=3871     
+[04/19/26 17:36:49] WARNING  High grad norm: 7952.41 at epoch=18 step=3872     
+[04/19/26 17:36:50] WARNING  High grad norm: 5776.36 at epoch=18 step=3873     
+                    WARNING  High grad norm: 7165.45 at epoch=18 step=3874     
+                    WARNING  High grad norm: 3841.54 at epoch=18 step=3875     
+[04/19/26 17:36:52] WARNING  High grad norm: 4125.82 at epoch=18 step=3876     
+                    WARNING  High grad norm: 9852.41 at epoch=18 step=3877     
+                    WARNING  High grad norm: 8627.46 at epoch=18 step=3878     
+[04/19/26 17:36:53] WARNING  High grad norm: 10663.62 at epoch=18 step=3879    
+[04/19/26 17:36:54] WARNING  High grad norm: 9000.12 at epoch=18 step=3880     
+[04/19/26 17:36:55] WARNING  High grad norm: 6324.20 at epoch=18 step=3881     
+                    WARNING  High grad norm: 6898.04 at epoch=18 step=3882     
+                    WARNING  High grad norm: 13032.01 at epoch=18 step=3883    
+[04/19/26 17:36:57] WARNING  High grad norm: 10102.83 at epoch=18 step=3884    
+                    WARNING  High grad norm: 8127.29 at epoch=18 step=3885     
+                    WARNING  High grad norm: 3180.25 at epoch=18 step=3886     
+[04/19/26 17:36:58] WARNING  High grad norm: 11507.14 at epoch=18 step=3887    
+[04/19/26 17:36:59] WARNING  High grad norm: 7194.29 at epoch=18 step=3888     
+                    WARNING  High grad norm: 12187.60 at epoch=18 step=3889    
+[04/19/26 17:37:00] WARNING  High grad norm: 7528.85 at epoch=18 step=3890     
+                    WARNING  High grad norm: 9684.16 at epoch=18 step=3891     
+                    WARNING  High grad norm: 6721.89 at epoch=18 step=3892     
+[04/19/26 17:37:02] WARNING  High grad norm: 9737.50 at epoch=18 step=3893     
+                    WARNING  High grad norm: 6432.32 at epoch=18 step=3894     
+                    WARNING  High grad norm: 9381.20 at epoch=18 step=3895     
+[04/19/26 17:37:03] WARNING  High grad norm: 7965.40 at epoch=18 step=3896     
+[04/19/26 17:37:04] WARNING  High grad norm: 8271.83 at epoch=18 step=3897     
+[04/19/26 17:37:05] WARNING  High grad norm: 6402.83 at epoch=18 step=3898     
+                    WARNING  High grad norm: 8070.54 at epoch=18 step=3899     
+                    INFO     epoch=18 step=3900 loss=544.0417                  
+                             grad_norm=8070.5415 lr=1.58e-04                   
+                    WARNING  High grad norm: 9458.93 at epoch=18 step=3900     
+[04/19/26 17:37:07] WARNING  High grad norm: 12605.69 at epoch=18 step=3901    
+                    WARNING  High grad norm: 9830.57 at epoch=18 step=3902     
+                    WARNING  High grad norm: 7638.54 at epoch=18 step=3903     
+                    WARNING  High grad norm: 4628.88 at epoch=18 step=3904     
+[04/19/26 17:37:09] WARNING  High grad norm: 11897.31 at epoch=18 step=3905    
+                    WARNING  High grad norm: 7910.42 at epoch=18 step=3906     
+[04/19/26 17:37:10] WARNING  High grad norm: 8857.01 at epoch=18 step=3907     
+                    WARNING  High grad norm: 11911.10 at epoch=18 step=3908    
+                    WARNING  High grad norm: 6980.35 at epoch=18 step=3909     
+[04/19/26 17:37:12] WARNING  High grad norm: 7665.12 at epoch=18 step=3910     
+                    WARNING  High grad norm: 10189.58 at epoch=18 step=3911    
+                    WARNING  High grad norm: 9096.96 at epoch=18 step=3912     
+                    WARNING  High grad norm: 8061.76 at epoch=18 step=3913     
+[04/19/26 17:37:14] WARNING  High grad norm: 8804.14 at epoch=18 step=3914     
+                    WARNING  High grad norm: 9198.45 at epoch=18 step=3915     
+[04/19/26 17:37:15] WARNING  High grad norm: 8391.14 at epoch=18 step=3916     
+                    WARNING  High grad norm: 6701.49 at epoch=18 step=3917     
+[04/19/26 17:37:17] WARNING  High grad norm: 5311.70 at epoch=18 step=3918     
+                    WARNING  High grad norm: 6575.39 at epoch=18 step=3919     
+                    WARNING  High grad norm: 8356.97 at epoch=18 step=3920     
+                    WARNING  High grad norm: 7592.13 at epoch=18 step=3921     
+[04/19/26 17:37:19] WARNING  High grad norm: 7553.79 at epoch=18 step=3922     
+                    WARNING  High grad norm: 8794.87 at epoch=18 step=3923     
+[04/19/26 17:37:20] WARNING  High grad norm: 10312.67 at epoch=18 step=3924    
+                    WARNING  High grad norm: 8896.80 at epoch=18 step=3925     
+[04/19/26 17:37:21] WARNING  High grad norm: 5055.64 at epoch=18 step=3926     
+[04/19/26 17:37:22] WARNING  High grad norm: 11579.53 at epoch=18 step=3927    
+                    WARNING  High grad norm: 11116.58 at epoch=18 step=3928    
+                    WARNING  High grad norm: 9772.42 at epoch=18 step=3929     
+                    WARNING  High grad norm: 8489.33 at epoch=18 step=3930     
+[04/19/26 17:37:24] WARNING  High grad norm: 5706.18 at epoch=18 step=3931     
+                    WARNING  High grad norm: 4034.62 at epoch=18 step=3932     
+[04/19/26 17:37:25] WARNING  High grad norm: 12657.07 at epoch=18 step=3933    
+                    WARNING  High grad norm: 16374.37 at epoch=18 step=3934    
+[04/19/26 17:37:26] WARNING  High grad norm: 7553.12 at epoch=18 step=3935     
+[04/19/26 17:37:27] WARNING  High grad norm: 8992.13 at epoch=18 step=3936     
+                    WARNING  High grad norm: 7533.39 at epoch=18 step=3937     
+                    WARNING  High grad norm: 8518.06 at epoch=18 step=3938     
+[04/19/26 17:37:29] WARNING  High grad norm: 11172.68 at epoch=18 step=3939    
+                    WARNING  High grad norm: 12071.60 at epoch=18 step=3940    
+                    WARNING  High grad norm: 3654.24 at epoch=18 step=3941     
+[04/19/26 17:37:30] WARNING  High grad norm: 4958.63 at epoch=18 step=3942     
+                    WARNING  High grad norm: 9711.42 at epoch=18 step=3943     
+[04/19/26 17:37:31] WARNING  High grad norm: 7286.39 at epoch=18 step=3944     
+[04/19/26 17:37:32] WARNING  High grad norm: 14265.67 at epoch=18 step=3945    
+                    WARNING  High grad norm: 11059.24 at epoch=18 step=3946    
+                    WARNING  High grad norm: 3667.30 at epoch=18 step=3947     
+[04/19/26 17:37:34] WARNING  High grad norm: 4408.63 at epoch=18 step=3948     
+                    WARNING  High grad norm: 6984.26 at epoch=18 step=3949     
+                    WARNING  High grad norm: 4479.22 at epoch=18 step=3950     
+[04/19/26 17:37:35] WARNING  High grad norm: 16321.20 at epoch=18 step=3951    
+[04/19/26 17:37:36] WARNING  High grad norm: 13994.90 at epoch=18 step=3952    
+                    WARNING  High grad norm: 5672.62 at epoch=18 step=3953     
+[04/19/26 17:37:37] WARNING  High grad norm: 7438.45 at epoch=18 step=3954     
+                    WARNING  High grad norm: 9782.67 at epoch=18 step=3955     
+                    WARNING  High grad norm: 6782.93 at epoch=18 step=3956     
+[04/19/26 17:37:39] WARNING  High grad norm: 10481.51 at epoch=18 step=3957    
+                    WARNING  High grad norm: 10624.29 at epoch=18 step=3958    
+                    WARNING  High grad norm: 6050.11 at epoch=18 step=3959     
+[04/19/26 17:37:40] WARNING  High grad norm: 2951.35 at epoch=18 step=3960     
+[04/19/26 17:37:41] WARNING  High grad norm: 6439.21 at epoch=18 step=3961     
+[04/19/26 17:37:42] WARNING  High grad norm: 4115.62 at epoch=18 step=3962     
+                    WARNING  High grad norm: 22993.71 at epoch=18 step=3963    
+                    WARNING  High grad norm: 26470.95 at epoch=18 step=3964    
+[04/19/26 17:37:44] WARNING  High grad norm: 4430.37 at epoch=18 step=3965     
+                    WARNING  High grad norm: 29851.18 at epoch=18 step=3966    
+                    WARNING  High grad norm: 35675.90 at epoch=18 step=3967    
+                    WARNING  High grad norm: 40974.25 at epoch=18 step=3968    
+[04/19/26 17:37:45] WARNING  High grad norm: 6759.66 at epoch=18 step=3969     
+[04/19/26 17:37:46] WARNING  High grad norm: 30383.53 at epoch=18 step=3970    
+[04/19/26 17:37:47] WARNING  High grad norm: 54738.12 at epoch=18 step=3971    
+                    WARNING  High grad norm: 25241.75 at epoch=18 step=3972    
+                    WARNING  High grad norm: 18419.28 at epoch=18 step=3973    
+[04/19/26 17:37:49] WARNING  High grad norm: 13717.83 at epoch=18 step=3974    
+                    WARNING  High grad norm: 22582.87 at epoch=18 step=3975    
+                    WARNING  High grad norm: 18048.03 at epoch=18 step=3976    
+                    WARNING  High grad norm: 3802.43 at epoch=18 step=3977     
+[04/19/26 17:37:51] WARNING  High grad norm: 25895.80 at epoch=18 step=3978    
+                    WARNING  High grad norm: 25296.22 at epoch=18 step=3979    
+[04/19/26 17:37:52] WARNING  High grad norm: 13938.04 at epoch=18 step=3980    
+                    WARNING  High grad norm: 26872.66 at epoch=18 step=3981    
+                    WARNING  High grad norm: 25692.82 at epoch=18 step=3982    
+[04/19/26 17:37:54] WARNING  High grad norm: 13168.92 at epoch=18 step=3983    
+                    WARNING  High grad norm: 11667.90 at epoch=18 step=3984    
+                    WARNING  High grad norm: 19535.75 at epoch=18 step=3985    
+                    WARNING  High grad norm: 9091.68 at epoch=18 step=3986     
+[04/19/26 17:37:56] WARNING  High grad norm: 12363.26 at epoch=18 step=3987    
+                    WARNING  High grad norm: 11538.56 at epoch=18 step=3988    
+[04/19/26 17:37:57] WARNING  High grad norm: 7614.78 at epoch=18 step=3989     
+                    WARNING  High grad norm: 19800.24 at epoch=18 step=3990    
+[04/19/26 17:37:58] WARNING  High grad norm: 19698.15 at epoch=18 step=3991    
+[04/19/26 17:37:59] WARNING  High grad norm: 11198.89 at epoch=18 step=3992    
+                    WARNING  High grad norm: 15204.36 at epoch=18 step=3993    
+                    WARNING  High grad norm: 22619.30 at epoch=18 step=3994    
+[04/19/26 17:38:01] WARNING  High grad norm: 12488.59 at epoch=18 step=3995    
+                    WARNING  High grad norm: 13340.03 at epoch=18 step=3996    
+                    WARNING  High grad norm: 21861.69 at epoch=18 step=3997    
+[04/19/26 17:38:02] WARNING  High grad norm: 7614.92 at epoch=18 step=3998     
+                    WARNING  High grad norm: 14083.32 at epoch=18 step=3999    
+                    INFO     epoch=18 step=4000 loss=553.7610                  
+                             grad_norm=14083.3174 lr=1.58e-04                  
+[04/19/26 17:38:04] WARNING  High grad norm: 22522.50 at epoch=18 step=4000    
+                    WARNING  High grad norm: 16046.24 at epoch=18 step=4001    
+                    WARNING  High grad norm: 17965.76 at epoch=18 step=4002    
+                    WARNING  High grad norm: 18445.37 at epoch=18 step=4003    
+[04/19/26 17:38:06] WARNING  High grad norm: 11038.45 at epoch=18 step=4004    
+                    WARNING  High grad norm: 14256.86 at epoch=18 step=4005    
+                    WARNING  High grad norm: 19133.79 at epoch=18 step=4006    
+[04/19/26 17:38:07] WARNING  High grad norm: 9225.68 at epoch=18 step=4007     
+[04/19/26 17:38:08] WARNING  High grad norm: 17793.60 at epoch=18 step=4008    
+[04/19/26 17:38:09] WARNING  High grad norm: 19265.58 at epoch=18 step=4009    
+                    WARNING  High grad norm: 12983.03 at epoch=18 step=4010    
+                    WARNING  High grad norm: 14995.56 at epoch=18 step=4011    
+                    WARNING  High grad norm: 17789.02 at epoch=18 step=4012    
+[04/19/26 17:38:11] WARNING  High grad norm: 14770.15 at epoch=18 step=4013    
+                    INFO     epoch=18 avg_loss=557.4246 lr=1.58e-04            
+[04/19/26 17:38:28] WARNING  High grad norm: 16315.48 at epoch=19 step=4014    
+                    WARNING  High grad norm: 13250.13 at epoch=19 step=4015    
+[04/19/26 17:38:29] WARNING  High grad norm: 16781.61 at epoch=19 step=4016    
+                    WARNING  High grad norm: 11216.00 at epoch=19 step=4017    
+                    WARNING  High grad norm: 18140.07 at epoch=19 step=4018    
+                    WARNING  High grad norm: 11345.79 at epoch=19 step=4019    
+[04/19/26 17:38:30] WARNING  High grad norm: 10879.28 at epoch=19 step=4020    
+[04/19/26 17:38:31] WARNING  High grad norm: 18711.37 at epoch=19 step=4021    
+[04/19/26 17:38:32] WARNING  High grad norm: 12869.38 at epoch=19 step=4022    
+                    WARNING  High grad norm: 16790.69 at epoch=19 step=4023    
+[04/19/26 17:38:34] WARNING  High grad norm: 20115.35 at epoch=19 step=4024    
+                    WARNING  High grad norm: 9667.86 at epoch=19 step=4025     
+                    WARNING  High grad norm: 13631.46 at epoch=19 step=4026    
+                    WARNING  High grad norm: 15363.80 at epoch=19 step=4027    
+[04/19/26 17:38:35] WARNING  High grad norm: 12185.02 at epoch=19 step=4028    
+                    WARNING  High grad norm: 11336.96 at epoch=19 step=4029    
+                    WARNING  High grad norm: 14796.83 at epoch=19 step=4030    
+                    WARNING  High grad norm: 7343.11 at epoch=19 step=4031     
+                    WARNING  High grad norm: 16381.23 at epoch=19 step=4032    
+[04/19/26 17:38:36] WARNING  High grad norm: 32564.73 at epoch=19 step=4033    
+                    WARNING  High grad norm: 16070.89 at epoch=19 step=4034    
+                    WARNING  High grad norm: 14987.90 at epoch=19 step=4035    
+                    WARNING  High grad norm: 17783.92 at epoch=19 step=4036    
+[04/19/26 17:38:37] WARNING  High grad norm: 9588.44 at epoch=19 step=4037     
+                    WARNING  High grad norm: 13712.57 at epoch=19 step=4038    
+                    WARNING  High grad norm: 13594.38 at epoch=19 step=4039    
+                    WARNING  High grad norm: 9986.43 at epoch=19 step=4040     
+[04/19/26 17:38:38] WARNING  High grad norm: 15000.13 at epoch=19 step=4041    
+                    WARNING  High grad norm: 24569.93 at epoch=19 step=4042    
+                    WARNING  High grad norm: 13419.57 at epoch=19 step=4043    
+                    WARNING  High grad norm: 10442.77 at epoch=19 step=4044    
+                    WARNING  High grad norm: 20234.38 at epoch=19 step=4045    
+[04/19/26 17:38:39] WARNING  High grad norm: 7421.98 at epoch=19 step=4046     
+                    WARNING  High grad norm: 12518.15 at epoch=19 step=4047    
+                    WARNING  High grad norm: 18693.57 at epoch=19 step=4048    
+                    WARNING  High grad norm: 8991.92 at epoch=19 step=4049     
+[04/19/26 17:38:40] WARNING  High grad norm: 21009.25 at epoch=19 step=4050    
+                    WARNING  High grad norm: 18633.40 at epoch=19 step=4051    
+                    WARNING  High grad norm: 15544.84 at epoch=19 step=4052    
+                    WARNING  High grad norm: 8390.23 at epoch=19 step=4053     

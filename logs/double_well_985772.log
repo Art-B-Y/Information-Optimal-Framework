@@ -1,0 +1,136 @@
+2026-04-16 16:55:22,913 INFO step=1 loss=0.2619 quality=0.1349 control=0.0024 entropy=-0.0129 left=0.00 right=0.94 spread=0.306 bal=0.94
+2026-04-16 16:55:22,915 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.929 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-16 16:55:23,100 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.141 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-16 16:55:23,284 INFO diagnostics step=3 balance=-0.16 pen=0.0260 final_abs=0.353 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 00:03:40,579 INFO step=1 loss=0.2673 quality=0.1355 control=0.0028 entropy=-0.0098 left=0.00 right=0.94 spread=0.306 bal=0.94
+2026-04-19 00:03:40,583 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.928 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 00:03:41,015 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.135 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 00:03:41,448 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.341 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 00:07:52,590 INFO step=1 loss=0.2673 quality=0.1355 control=0.0028 entropy=-0.0098 left=0.00 right=0.94 spread=0.306 bal=0.94
+2026-04-19 00:07:52,593 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.928 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 00:07:52,984 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.135 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 00:07:53,377 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.341 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 00:10:04,635 INFO step=1 loss=0.2673 quality=0.1355 control=0.0028 entropy=-0.0098 left=0.00 right=0.94 spread=0.306 bal=0.94
+2026-04-19 00:10:04,638 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.928 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 00:10:04,908 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.135 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 00:10:05,195 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.341 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 16:54:13,898 INFO step=1 loss=0.2673 quality=0.1355 control=0.0028 entropy=-0.0098 left=0.00 right=0.94 spread=0.306 bal=0.94
+2026-04-19 16:54:13,899 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.928 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 16:54:14,098 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.135 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 16:54:14,299 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.341 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 17:28:08,306 INFO step=1 loss=0.2574 quality=0.1395 control=0.0062 entropy=-0.0221 left=0.00 right=0.94 spread=0.305 bal=0.94
+2026-04-19 17:28:08,310 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.922 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 17:28:08,723 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.148 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-19 17:28:09,147 INFO diagnostics step=3 balance=-0.19 pen=0.0375 final_abs=0.363 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-21 22:59:06,095 INFO step=1 loss=0.2574 quality=0.1395 control=0.0062 entropy=-0.0221 left=0.00 right=0.94 spread=0.305 bal=0.94
+2026-04-21 22:59:06,098 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.922 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-21 22:59:06,323 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.148 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-21 22:59:06,540 INFO diagnostics step=3 balance=-0.19 pen=0.0375 final_abs=0.363 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 10:44:39,010 INFO step=1 loss=0.2680 quality=0.1344 control=0.0017 entropy=-0.0078 left=0.00 right=0.94 spread=0.306 bal=0.94
+2026-04-23 10:44:39,013 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.930 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 10:44:39,287 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.127 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 10:44:39,573 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.334 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 10:47:01,060 INFO step=1 loss=0.2680 quality=0.1344 control=0.0017 entropy=-0.0078 left=0.00 right=0.94 spread=0.306 bal=0.94
+2026-04-23 10:47:01,061 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.930 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 10:47:01,274 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.127 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 10:47:01,483 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.334 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 14:01:52,965 INFO step=1 loss=0.2680 quality=0.1344 control=0.0017 entropy=-0.0078 left=0.00 right=0.94 spread=0.306 bal=0.94
+2026-04-23 14:01:52,967 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.930 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 14:01:53,188 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.127 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 14:01:53,401 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.334 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 17:06:38,580 INFO step=1 loss=0.2680 quality=0.1344 control=0.0017 entropy=-0.0078 left=0.00 right=0.94 spread=0.306 bal=0.94
+2026-04-23 17:06:38,583 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.930 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 17:06:38,877 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.127 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 17:06:39,187 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.334 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 17:10:41,454 INFO step=1 loss=0.2680 quality=0.1344 control=0.0017 entropy=-0.0078 left=0.00 right=0.94 spread=0.306 bal=0.94
+2026-04-23 17:10:41,456 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.930 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 17:10:41,668 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.127 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 17:10:41,874 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.334 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 17:29:31,892 INFO step=1 loss=0.2785 quality=0.1312 control=0.0008 entropy=0.0021 left=0.00 right=0.94 spread=0.307 bal=0.94
+2026-04-23 17:29:31,895 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.935 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 17:29:32,132 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.116 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 17:29:32,364 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.322 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 22:02:37,505 INFO step=1 loss=0.2722 quality=0.1294 control=0.0014 entropy=-0.0013 left=0.00 right=0.94 spread=0.307 bal=0.94
+2026-04-23 22:02:37,509 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.938 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 22:02:37,744 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.128 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 22:02:37,994 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.321 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 22:08:31,916 INFO step=1 loss=0.2722 quality=0.1294 control=0.0014 entropy=-0.0013 left=0.00 right=0.94 spread=0.307 bal=0.94
+2026-04-23 22:08:31,919 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.938 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 22:08:32,145 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.128 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-23 22:08:32,397 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.321 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 03:51:56,002 INFO step=1 loss=0.2722 quality=0.1294 control=0.0014 entropy=-0.0013 left=0.00 right=0.94 spread=0.307 bal=0.94
+2026-04-24 03:51:56,004 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.938 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 03:51:56,293 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.128 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 03:51:56,589 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.321 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 03:52:44,245 INFO step=1 loss=0.2722 quality=0.1294 control=0.0014 entropy=-0.0013 left=0.00 right=0.94 spread=0.307 bal=0.94
+2026-04-24 03:52:44,247 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.938 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 03:52:44,458 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.128 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 03:52:44,661 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.321 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 20:11:22,729 INFO step=1 loss=0.2722 quality=0.1294 control=0.0014 entropy=-0.0013 left=0.00 right=0.94 spread=0.307 bal=0.94
+2026-04-24 20:11:22,732 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.938 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 20:11:23,055 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.128 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 20:11:23,379 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.321 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 20:12:33,778 INFO step=1 loss=0.2722 quality=0.1294 control=0.0014 entropy=-0.0013 left=0.00 right=0.94 spread=0.307 bal=0.94
+2026-04-24 20:12:33,781 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.938 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 20:12:34,001 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.128 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-24 20:12:34,234 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.321 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 00:11:29,279 INFO step=1 loss=0.2722 quality=0.1294 control=0.0014 entropy=-0.0013 left=0.00 right=0.94 spread=0.307 bal=0.94
+2026-04-25 00:11:29,283 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.938 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 00:11:29,490 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.128 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 00:11:29,699 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.321 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 00:28:52,353 INFO step=1 loss=0.2722 quality=0.1294 control=0.0014 entropy=-0.0013 left=0.00 right=0.94 spread=0.307 bal=0.94
+2026-04-25 00:28:52,355 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.938 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 00:28:52,648 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.128 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 00:28:52,961 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.321 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 00:31:42,152 INFO step=1 loss=0.2722 quality=0.1294 control=0.0014 entropy=-0.0013 left=0.00 right=0.94 spread=0.307 bal=0.94
+2026-04-25 00:31:42,153 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.938 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 00:31:42,361 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.128 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 00:31:42,563 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.321 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 13:28:08,142 INFO step=1 loss=0.2722 quality=0.1294 control=0.0014 entropy=-0.0013 left=0.00 right=0.94 spread=0.307 bal=0.94
+2026-04-25 13:28:08,145 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.938 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 13:28:08,347 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.128 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-25 13:28:08,562 INFO diagnostics step=3 balance=-0.13 pen=0.0166 final_abs=0.321 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-03 17:49:46,700 INFO step=1 loss=0.2974 quality=0.1234 control=0.0048 entropy=0.0177 left=0.00 right=0.94 spread=0.308 bal=0.94
+2026-05-03 17:49:46,701 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.951 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-03 17:49:46,894 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.104 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-03 17:49:47,089 INFO diagnostics step=3 balance=-0.06 pen=0.0042 final_abs=0.295 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-03 18:19:31,460 INFO step=1 loss=0.2974 quality=0.1234 control=0.0048 entropy=0.0177 left=0.00 right=0.94 spread=0.308 bal=0.94
+2026-05-03 18:19:31,462 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.951 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-03 18:19:31,667 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.104 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-03 18:19:31,866 INFO diagnostics step=3 balance=-0.06 pen=0.0042 final_abs=0.295 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-03 23:44:16,894 INFO step=1 loss=0.2974 quality=0.1234 control=0.0048 entropy=0.0177 left=0.00 right=0.94 spread=0.308 bal=0.94
+2026-05-03 23:44:16,896 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.951 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-03 23:44:17,092 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.104 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-03 23:44:17,313 INFO diagnostics step=3 balance=-0.06 pen=0.0042 final_abs=0.295 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-07 01:04:01,077 INFO step=1 loss=0.2974 quality=0.1234 control=0.0048 entropy=0.0177 left=0.00 right=0.94 spread=0.308 bal=0.94
+2026-05-07 01:04:01,080 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.951 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-07 01:04:01,287 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.104 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-07 01:04:01,497 INFO diagnostics step=3 balance=-0.06 pen=0.0042 final_abs=0.295 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-08 22:07:01,528 INFO step=1 loss=0.2974 quality=0.1234 control=0.0048 entropy=0.0177 left=0.00 right=0.94 spread=0.308 bal=0.94
+2026-05-08 22:07:01,530 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.951 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-08 22:07:01,738 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.104 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-05-08 22:07:01,941 INFO diagnostics step=3 balance=-0.06 pen=0.0042 final_abs=0.295 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 15:17:05,164 INFO step=1 loss=0.2974 quality=0.1234 control=0.0048 entropy=0.0177 left=0.00 right=0.94 spread=0.308 bal=0.94
+2026-07-15 15:17:05,167 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.951 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 15:17:05,532 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.104 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 15:17:05,899 INFO diagnostics step=3 balance=-0.06 pen=0.0042 final_abs=0.295 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 15:18:54,255 INFO step=1 loss=0.2974 quality=0.1234 control=0.0048 entropy=0.0177 left=0.00 right=0.94 spread=0.308 bal=0.94
+2026-07-15 15:18:54,258 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.951 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 15:18:54,555 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.104 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 15:18:54,855 INFO diagnostics step=3 balance=-0.06 pen=0.0042 final_abs=0.295 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 16:03:06,611 INFO step=1 loss=0.2974 quality=0.1234 control=0.0048 entropy=0.0177 left=0.00 right=0.94 spread=0.308 bal=0.94
+2026-07-15 16:03:06,625 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.951 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 16:03:06,919 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.104 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 16:03:07,200 INFO diagnostics step=3 balance=-0.06 pen=0.0042 final_abs=0.295 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 16:11:05,187 INFO step=1 loss=0.2974 quality=0.1234 control=0.0048 entropy=0.0177 left=0.00 right=0.94 spread=0.308 bal=0.94
+2026-07-15 16:11:05,189 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.951 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 16:11:05,457 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.104 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 16:11:05,690 INFO diagnostics step=3 balance=-0.06 pen=0.0042 final_abs=0.295 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 17:13:12,900 INFO step=1 loss=0.2974 quality=0.1234 control=0.0048 entropy=0.0177 left=0.00 right=0.94 spread=0.308 bal=0.94
+2026-07-15 17:13:12,902 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.951 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 17:13:13,192 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.104 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 17:13:13,456 INFO diagnostics step=3 balance=-0.06 pen=0.0042 final_abs=0.295 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-16 01:02:40,167 INFO step=1 loss=0.2974 quality=0.1234 control=0.0048 entropy=0.0177 left=0.00 right=0.94 spread=0.308 bal=0.94
+2026-07-16 01:02:40,169 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.951 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-16 01:02:40,383 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.104 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-16 01:02:40,590 INFO diagnostics step=3 balance=-0.06 pen=0.0042 final_abs=0.295 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1

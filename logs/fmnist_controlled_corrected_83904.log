@@ -1,0 +1,32 @@
+2026-07-16 00:47:26,693 INFO Loaded pretrained score backbone from C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_score_corrected_baseline\score_best.pt
+2026-07-16 00:47:26,704 INFO Score model frozen -- only control policy will be trained.
+2026-07-16 00:47:26,911 INFO Applied scaled output init (std=1.0e-04) to output_proj.
+2026-07-16 00:47:26,913 INFO WarmupSchedule: warmup=0 ramp=3 target_pkL=0.0100 target_reinf=0.1000
+2026-07-16 00:47:26,915 INFO TwoPhaseScheduler: phase1=3 epochs at lr=1.0e-05, phase2 cosine from 2.0e-04
+2026-07-16 00:47:27,575 INFO Autosave thread started: every 20 min -> C:\Users\artun\Desktop\ITS-project\checkpoints\fmnist_controlled_corrected/autosave.pt
+2026-07-16 00:47:42,587 WARNING High control grad norm: 283166.50 at step=0
+2026-07-16 00:47:52,398 WARNING High control grad norm: 769226.25 at step=1
+2026-07-16 00:48:01,893 WARNING High control grad norm: 37309.32 at step=2
+2026-07-16 00:48:11,456 WARNING High control grad norm: 263493.84 at step=3
+2026-07-16 00:48:21,037 WARNING High control grad norm: 250839.11 at step=4
+2026-07-16 00:48:30,605 WARNING High control grad norm: 92615.90 at step=5
+2026-07-16 00:48:40,236 WARNING High control grad norm: 26506.81 at step=6
+2026-07-16 00:48:49,850 WARNING High control grad norm: 237238.00 at step=7
+2026-07-16 00:48:59,529 WARNING High control grad norm: 238243.12 at step=8
+2026-07-16 00:49:09,247 WARNING High control grad norm: 322620.31 at step=9
+2026-07-16 00:49:18,974 WARNING High control grad norm: 169934.80 at step=10
+2026-07-16 00:49:28,619 WARNING High control grad norm: 300098.97 at step=11
+2026-07-16 00:49:38,197 WARNING High control grad norm: 449300.38 at step=12
+2026-07-16 00:49:47,762 WARNING High control grad norm: 41108.17 at step=13
+2026-07-16 00:49:57,376 WARNING High control grad norm: 38294.99 at step=14
+2026-07-16 00:50:06,993 WARNING High control grad norm: 514776.16 at step=15
+2026-07-16 00:50:16,679 WARNING High control grad norm: 267260.00 at step=16
+2026-07-16 00:50:26,359 WARNING High control grad norm: 25318.80 at step=17
+2026-07-16 00:50:36,029 WARNING High control grad norm: 510272.47 at step=18
+2026-07-16 00:50:45,658 WARNING High control grad norm: 384898.16 at step=19
+2026-07-16 00:50:55,273 WARNING High control grad norm: 199095.16 at step=20
+2026-07-16 00:51:04,890 WARNING High control grad norm: 391134.91 at step=21
+2026-07-16 00:51:14,468 WARNING High control grad norm: 207313.20 at step=22
+2026-07-16 00:51:24,034 WARNING High control grad norm: 182886.19 at step=23
+2026-07-16 00:51:33,669 WARNING High control grad norm: 235070.38 at step=24
+2026-07-16 00:51:43,275 WARNING High control grad norm: 73283.26 at step=25

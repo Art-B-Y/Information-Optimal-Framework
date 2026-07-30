@@ -1,0 +1,35 @@
+Baseline evals: dataset=fashionmnist, device=cuda, N=5000
+Samplers: ['ddpm', 'ddim', 'sde'], NFE: [50, 100, 200, 500]
+Checkpoint: checkpoints/score_fmnist_v2/score_epoch_0050.pt
+Loaded EMA shadow weights.
+  Evaluating ddpm at NFE=50... C:\Users\artun\Desktop\ITS-project\.venv\Lib\site-packages\torchmetrics\utilities\prints.py:43: UserWarning: Metric `InceptionScore` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)  # noqa: B028
+FID=260.23 IS=1.860
+  Evaluating ddim at NFE=50... FID=317.67 IS=1.475
+  Evaluating sde at NFE=50... FID=326.09 IS=1.429
+  Evaluating ddpm at NFE=100... FID=228.09 IS=2.313
+  Evaluating ddim at NFE=100... FID=256.19 IS=1.924
+  Evaluating sde at NFE=100... FID=325.20 IS=1.437
+  Evaluating ddpm at NFE=200... FID=197.40 IS=2.331
+  Evaluating ddim at NFE=200... FID=225.06 IS=2.193
+  Evaluating sde at NFE=200... FID=325.69 IS=1.440
+  Evaluating ddpm at NFE=500... FID=260.79 IS=1.660
+  Evaluating ddim at NFE=500... FID=268.89 IS=1.644
+  Evaluating sde at NFE=500... FID=325.97 IS=1.437
+
+Results -> C:\Users\artun\Desktop\ITS-project\data\results\baseline_evals_fashionmnist.json
+
+Sampler  NFE         FID       IS
+--------------------------------
+ddpm     50       260.23    1.860
+ddim     50       317.67    1.475
+sde      50       326.09    1.429
+ddpm     100      228.09    2.313
+ddim     100      256.19    1.924
+sde      100      325.20    1.437
+ddpm     200      197.40    2.331
+ddim     200      225.06    2.193
+sde      200      325.69    1.440
+ddpm     500      260.79    1.660
+ddim     500      268.89    1.644
+sde      500      325.97    1.437

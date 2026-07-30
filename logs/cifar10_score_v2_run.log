@@ -1,0 +1,10 @@
+Training CIFAR-10 score v2: 50 epochs, base_channels=64, batch=64, device=cuda
+Traceback (most recent call last):
+  File "C:\Users\artun\Desktop\ITS-project\scripts\train_cifar10_score_v2.py", line 95, in <module>
+    main()
+  File "C:\Users\artun\Desktop\ITS-project\scripts\train_cifar10_score_v2.py", line 82, in main
+    print(f"Checkpoints \u2192 {ckpt_dir}")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 12: character maps to <undefined>

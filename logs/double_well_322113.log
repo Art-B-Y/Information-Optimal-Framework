@@ -1,0 +1,6 @@
+2026-07-15 15:11:29,116 INFO Unable to initialize backend 'rocm': module 'jaxlib.xla_extension' has no attribute 'GpuAllocatorConfig'
+2026-07-15 15:11:29,131 INFO Unable to initialize backend 'tpu': UNIMPLEMENTED: LoadPjrtPlugin is not implemented on windows yet.
+2026-07-15 15:11:30,312 INFO step=1 loss=0.2601 quality=0.1412 control=0.0070 entropy=-0.0222 left=0.00 right=0.94 spread=0.305 bal=0.94
+2026-07-15 15:11:30,318 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.918 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 15:11:30,774 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.150 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-07-15 15:11:31,237 INFO diagnostics step=3 balance=-0.19 pen=0.0375 final_abs=0.367 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1

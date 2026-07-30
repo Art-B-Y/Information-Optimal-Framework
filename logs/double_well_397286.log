@@ -1,0 +1,4 @@
+2026-04-14 22:44:20,308 INFO step=1 loss=0.2543 quality=0.1468 control=0.0168 entropy=-0.0373 left=0.00 right=0.94 spread=0.304 bal=0.94
+2026-04-14 22:44:20,312 INFO diagnostics step=1 balance=0.94 pen=0.8751 final_abs=0.909 c_w=0.120 d_w=0.200 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-14 22:44:20,485 INFO diagnostics step=2 balance=-0.77 pen=0.5994 final_abs=1.162 c_w=0.200 d_w=0.300 b_w=0.000 temp=1.000 steps=30 batch=1
+2026-04-14 22:44:20,655 INFO diagnostics step=3 balance=-0.19 pen=0.0375 final_abs=0.389 c_w=0.280 d_w=0.400 b_w=0.000 temp=1.000 steps=30 batch=1

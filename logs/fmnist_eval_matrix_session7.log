@@ -1,0 +1,8 @@
+DDPM NFE=50 seed=42... C:\Users\artun\Desktop\ITS-project\.venv\Lib\site-packages\torchmetrics\utilities\prints.py:43: UserWarning: Metric `InceptionScore` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)  # noqa: B028
+FID=299.13
+DDPM NFE=200 seed=42... FID=233.63
+DDIM NFE=50 seed=42... FID=339.26
+DDIM NFE=200 seed=42... FID=254.82
+
+Evaluation matrix -> C:\Users\artun\Desktop\ITS-project\data\results\fmnist_eval_matrix_final.json

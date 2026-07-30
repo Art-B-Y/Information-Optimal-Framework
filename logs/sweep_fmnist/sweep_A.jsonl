@@ -1,0 +1,2 @@
+{"epoch": 1, "global_step": 50, "total_loss": 1147.376220703125, "dsm_loss": 1147.376220703125, "control_energy": 0.025228770449757576, "path_kl": 9.918286323547363, "quality_loss": 0.0, "jarzynski": -21.124130249023438, "grad_norm_score": 72594.359375, "grad_norm_control": 3.7973888538545e-05, "wall_clock_seconds": 550.5534362792969}
+{"epoch": 1, "global_step": 63, "cos_sim_score_ctrl": -0.0009248768910765648, "score_drift_mag": 9.697312355041504, "ctrl_drift_mag": 2.0660400390625, "ctrl_score_mag_ratio": 0.2130528504620554, "wall_clock_seconds": 684.5220458507538}

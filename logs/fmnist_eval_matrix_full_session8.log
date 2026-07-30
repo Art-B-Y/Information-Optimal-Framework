@@ -1,0 +1,29 @@
+DDPM NFE=50 seed=42... C:\Users\artun\Desktop\ITS-project\.venv\Lib\site-packages\torchmetrics\utilities\prints.py:43: UserWarning: Metric `InceptionScore` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)  # noqa: B028
+FID=267.31
+DDPM NFE=50 seed=123... FID=268.51
+DDPM NFE=50 seed=7... FID=266.67
+DDPM NFE=100 seed=42... FID=237.14
+DDPM NFE=100 seed=123... FID=235.41
+DDPM NFE=100 seed=7... FID=236.29
+DDPM NFE=200 seed=42... FID=202.60
+DDPM NFE=200 seed=123... FID=199.95
+DDPM NFE=200 seed=7... FID=201.65
+DDPM NFE=500 seed=42... FID=264.64
+DDPM NFE=500 seed=123... FID=260.31
+DDPM NFE=500 seed=7... FID=260.09
+DDIM NFE=50 seed=42... FID=320.56
+DDIM NFE=50 seed=123... FID=323.04
+DDIM NFE=50 seed=7... FID=322.42
+DDIM NFE=100 seed=42... FID=261.46
+DDIM NFE=100 seed=123... FID=261.71
+DDIM NFE=100 seed=7... FID=262.13
+DDIM NFE=200 seed=42... FID=227.16
+DDIM NFE=200 seed=123... FID=229.05
+DDIM NFE=200 seed=7... FID=227.98
+DDIM NFE=500 seed=42... FID=271.70
+DDIM NFE=500 seed=123... FID=271.91
+DDIM NFE=500 seed=7... FID=270.20
+
+Evaluation matrix complete: 24/24 runs at 2048 samples
+Saved -> C:\Users\artun\Desktop\ITS-project\data\results\fmnist_eval_matrix_final.json

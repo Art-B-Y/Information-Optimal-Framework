@@ -1,0 +1,130 @@
+Evaluating seed=42 NFE=100 N=2048... C:\Users\artun\Desktop\ITS-project\.venv\Lib\site-packages\torchmetrics\utilities\prints.py:43: UserWarning: Metric `InceptionScore` will save all extracted features in buffer. For large datasets this may lead to large memory footprint.
+  warnings.warn(*args, **kwargs)  # noqa: B028
+FID=327.11
+Evaluating seed=123 NFE=100 N=2048... FID=326.12
+Evaluating seed=7 NFE=100 N=2048... FID=329.19
+
+Config D FID (N=2048, 3 seeds): 327.47 ± 1.57
+  95% CI: [325.69, 329.25]
+  Seeds: [327.1059875488281, 326.11553955078125, 329.1949462890625]
+Saved -> C:\Users\artun\Desktop\ITS-project\data\results\controlled_config_d_multiseed.json
+Computing entropy production profile (256 trajectories, 100 steps)...
+
+Entropy production profile:
+  Total controlled entropy: 0.910047
+  Total uncontrolled entropy: 0.0 (by definition)
+  Result -> C:\Users\artun\Desktop\ITS-project\data\results\entropy_production_profile.json
+usage: compute_memorization_check.py [-h] --score-ckpt SCORE_CKPT
+                                     [--num-generated NUM_GENERATED]
+                                     [--threshold THRESHOLD]
+                                     [--batch-size BATCH_SIZE] [--nfe NFE]
+                                     [--device DEVICE]
+compute_memorization_check.py: error: unrecognized arguments: --num-samples 1000
+Training FashionMNIST classifier...
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz to C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw\train-images-idx3-ubyte.gz
+  0%|          | 0.00/26.4M [00:00<?, ?B/s]  0%|          | 98.3k/26.4M [00:00<00:29, 895kB/s]  1%|1         | 328k/26.4M [00:00<00:16, 1.62MB/s]  3%|2         | 754k/26.4M [00:00<00:10, 2.43MB/s]  4%|3         | 1.05M/26.4M [00:00<00:09, 2.58MB/s]  5%|4         | 1.31M/26.4M [00:00<00:09, 2.59MB/s]  6%|6         | 1.64M/26.4M [00:00<00:09, 2.53MB/s]  7%|7         | 1.90M/26.4M [00:00<00:09, 2.50MB/s]  8%|8         | 2.16M/26.4M [00:00<00:09, 2.54MB/s]  9%|9         | 2.42M/26.4M [00:01<00:10, 2.31MB/s] 10%|#         | 2.72M/26.4M [00:01<00:09, 2.49MB/s] 11%|#1        | 2.98M/26.4M [00:01<00:10, 2.22MB/s] 12%|#2        | 3.24M/26.4M [00:01<00:11, 2.07MB/s] 13%|#3        | 3.47M/26.4M [00:01<00:11, 2.02MB/s] 14%|#4        | 3.70M/26.4M [00:01<00:12, 1.89MB/s] 15%|#4        | 3.93M/26.4M [00:01<00:11, 1.92MB/s] 16%|#5        | 4.16M/26.4M [00:01<00:11, 1.92MB/s] 16%|#6        | 4.36M/26.4M [00:02<00:11, 1.86MB/s] 17%|#7        | 4.62M/26.4M [00:02<00:11, 1.97MB/s] 18%|#8        | 4.85M/26.4M [00:02<00:11, 1.96MB/s] 19%|#9        | 5.08M/26.4M [00:02<00:10, 1.95MB/s] 20%|##        | 5.31M/26.4M [00:02<00:10, 1.96MB/s] 21%|##1       | 5.57M/26.4M [00:02<00:10, 2.04MB/s] 22%|##1       | 5.80M/26.4M [00:02<00:10, 2.00MB/s] 23%|##2       | 6.03M/26.4M [00:02<00:10, 1.92MB/s] 24%|##3       | 6.32M/26.4M [00:02<00:09, 2.17MB/s] 25%|##4       | 6.55M/26.4M [00:03<00:09, 1.99MB/s] 26%|##5       | 6.82M/26.4M [00:03<00:09, 2.15MB/s] 27%|##6       | 7.11M/26.4M [00:03<00:08, 2.16MB/s] 28%|##7       | 7.37M/26.4M [00:03<00:08, 2.27MB/s] 29%|##9       | 7.67M/26.4M [00:03<00:08, 2.25MB/s] 30%|##9       | 7.90M/26.4M [00:03<00:08, 2.25MB/s] 31%|###1      | 8.26M/26.4M [00:03<00:07, 2.34MB/s] 32%|###2      | 8.52M/26.4M [00:03<00:07, 2.40MB/s] 33%|###3      | 8.78M/26.4M [00:04<00:07, 2.36MB/s] 34%|###4      | 9.04M/26.4M [00:04<00:08, 2.03MB/s] 35%|###5      | 9.27M/26.4M [00:04<00:08, 2.05MB/s] 36%|###5      | 9.50M/26.4M [00:04<00:08, 1.98MB/s] 37%|###6      | 9.73M/26.4M [00:04<00:08, 2.01MB/s] 38%|###7      | 9.99M/26.4M [00:04<00:08, 2.00MB/s] 39%|###8      | 10.2M/26.4M [00:04<00:07, 2.06MB/s] 40%|###9      | 10.5M/26.4M [00:04<00:07, 2.00MB/s] 41%|####      | 10.8M/26.4M [00:05<00:07, 2.11MB/s] 42%|####2     | 11.1M/26.4M [00:05<00:07, 2.12MB/s] 43%|####2     | 11.3M/26.4M [00:05<00:07, 1.93MB/s] 44%|####3     | 11.6M/26.4M [00:05<00:07, 1.89MB/s] 45%|####4     | 11.8M/26.4M [00:05<00:07, 1.87MB/s] 45%|####5     | 12.0M/26.4M [00:05<00:08, 1.77MB/s] 46%|####6     | 12.2M/26.4M [00:05<00:08, 1.74MB/s] 47%|####6     | 12.4M/26.4M [00:05<00:08, 1.75MB/s] 47%|####7     | 12.6M/26.4M [00:06<00:09, 1.45MB/s] 48%|####8     | 12.7M/26.4M [00:06<00:09, 1.50MB/s] 49%|####8     | 12.9M/26.4M [00:06<00:09, 1.47MB/s] 49%|####9     | 13.1M/26.4M [00:06<00:09, 1.40MB/s] 50%|#####     | 13.2M/26.4M [00:06<00:09, 1.40MB/s] 51%|#####     | 13.4M/26.4M [00:06<00:09, 1.38MB/s] 51%|#####1    | 13.6M/26.4M [00:06<00:09, 1.42MB/s] 52%|#####1    | 13.7M/26.4M [00:07<00:09, 1.36MB/s] 53%|#####2    | 13.9M/26.4M [00:07<00:08, 1.50MB/s] 53%|#####3    | 14.1M/26.4M [00:07<00:08, 1.45MB/s] 54%|#####3    | 14.3M/26.4M [00:07<00:08, 1.47MB/s] 55%|#####4    | 14.5M/26.4M [00:07<00:07, 1.60MB/s] 55%|#####5    | 14.6M/26.4M [00:07<00:07, 1.55MB/s] 56%|#####6    | 14.8M/26.4M [00:07<00:07, 1.57MB/s] 57%|#####6    | 15.0M/26.4M [00:07<00:07, 1.56MB/s] 58%|#####7    | 15.3M/26.4M [00:07<00:06, 1.67MB/s] 59%|#####8    | 15.5M/26.4M [00:08<00:06, 1.65MB/s] 60%|#####9    | 15.7M/26.4M [00:08<00:06, 1.58MB/s] 60%|######    | 15.9M/26.4M [00:08<00:07, 1.48MB/s] 61%|######    | 16.1M/26.4M [00:08<00:06, 1.50MB/s] 62%|######1   | 16.3M/26.4M [00:08<00:06, 1.52MB/s] 62%|######2   | 16.4M/26.4M [00:08<00:06, 1.51MB/s] 63%|######2   | 16.6M/26.4M [00:08<00:06, 1.54MB/s] 63%|######3   | 16.8M/26.4M [00:08<00:06, 1.51MB/s] 64%|######4   | 16.9M/26.4M [00:09<00:06, 1.54MB/s] 65%|######4   | 17.2M/26.4M [00:09<00:05, 1.56MB/s] 66%|######5   | 17.4M/26.4M [00:09<00:05, 1.68MB/s] 67%|######6   | 17.6M/26.4M [00:09<00:05, 1.66MB/s] 67%|######7   | 17.8M/26.4M [00:09<00:05, 1.67MB/s] 68%|######8   | 18.0M/26.4M [00:09<00:05, 1.58MB/s] 69%|######8   | 18.2M/26.4M [00:09<00:05, 1.50MB/s] 69%|######9   | 18.3M/26.4M [00:09<00:05, 1.48MB/s] 70%|######9   | 18.5M/26.4M [00:10<00:05, 1.37MB/s] 71%|#######   | 18.6M/26.4M [00:10<00:05, 1.38MB/s] 71%|#######1  | 18.8M/26.4M [00:10<00:05, 1.38MB/s] 72%|#######1  | 19.0M/26.4M [00:10<00:05, 1.40MB/s] 72%|#######2  | 19.1M/26.4M [00:10<00:05, 1.39MB/s] 73%|#######3  | 19.3M/26.4M [00:10<00:04, 1.49MB/s] 74%|#######3  | 19.5M/26.4M [00:10<00:04, 1.45MB/s] 75%|#######4  | 19.7M/26.4M [00:10<00:04, 1.54MB/s] 75%|#######5  | 19.9M/26.4M [00:11<00:04, 1.56MB/s] 76%|#######6  | 20.1M/26.4M [00:11<00:03, 1.61MB/s] 77%|#######6  | 20.3M/26.4M [00:11<00:03, 1.60MB/s] 78%|#######7  | 20.5M/26.4M [00:11<00:03, 1.72MB/s] 78%|#######8  | 20.7M/26.4M [00:11<00:03, 1.70MB/s] 79%|#######9  | 20.9M/26.4M [00:11<00:03, 1.80MB/s] 80%|#######9  | 21.1M/26.4M [00:11<00:03, 1.73MB/s] 81%|########  | 21.3M/26.4M [00:11<00:02, 1.70MB/s] 82%|########1 | 21.6M/26.4M [00:11<00:02, 1.73MB/s] 83%|########2 | 21.9M/26.4M [00:12<00:02, 1.76MB/s] 83%|########3 | 22.1M/26.4M [00:12<00:02, 1.60MB/s] 85%|########4 | 22.3M/26.4M [00:12<00:02, 1.76MB/s] 85%|########5 | 22.5M/26.4M [00:12<00:02, 1.63MB/s] 86%|########6 | 22.8M/26.4M [00:12<00:02, 1.62MB/s] 87%|########7 | 23.0M/26.4M [00:12<00:01, 1.69MB/s] 88%|########8 | 23.3M/26.4M [00:13<00:01, 1.67MB/s] 89%|########8 | 23.5M/26.4M [00:13<00:01, 1.56MB/s] 89%|########9 | 23.6M/26.4M [00:13<00:01, 1.42MB/s] 90%|######### | 23.8M/26.4M [00:13<00:01, 1.35MB/s] 91%|######### | 24.0M/26.4M [00:13<00:02, 1.18MB/s] 91%|#########1| 24.1M/26.4M [00:13<00:01, 1.17MB/s] 92%|#########1| 24.2M/26.4M [00:13<00:01, 1.11MB/s] 92%|#########2| 24.4M/26.4M [00:14<00:01, 1.12MB/s] 93%|#########3| 24.6M/26.4M [00:14<00:01, 1.14MB/s] 94%|#########3| 24.7M/26.4M [00:14<00:01, 1.14MB/s] 94%|#########4| 24.9M/26.4M [00:14<00:01, 1.14MB/s] 95%|#########4| 25.1M/26.4M [00:14<00:01, 1.21MB/s] 96%|#########5| 25.3M/26.4M [00:14<00:00, 1.27MB/s] 96%|#########6| 25.5M/26.4M [00:14<00:00, 1.31MB/s] 97%|#########6| 25.6M/26.4M [00:15<00:00, 1.30MB/s] 97%|#########7| 25.8M/26.4M [00:15<00:00, 1.17MB/s] 98%|#########7| 25.9M/26.4M [00:15<00:00, 1.10MB/s] 99%|#########8| 26.1M/26.4M [00:15<00:00, 1.12MB/s] 99%|#########9| 26.2M/26.4M [00:15<00:00, 1.13MB/s]100%|#########9| 26.4M/26.4M [00:15<00:00, 1.14MB/s]100%|##########| 26.4M/26.4M [00:15<00:00, 1.68MB/s]
+Extracting C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw\train-images-idx3-ubyte.gz to C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw
+
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-labels-idx1-ubyte.gz
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-labels-idx1-ubyte.gz to C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw\train-labels-idx1-ubyte.gz
+  0%|          | 0.00/29.5k [00:00<?, ?B/s]100%|##########| 29.5k/29.5k [00:00<00:00, 528kB/s]
+Extracting C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw\train-labels-idx1-ubyte.gz to C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw
+
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-images-idx3-ubyte.gz
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-images-idx3-ubyte.gz to C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw\t10k-images-idx3-ubyte.gz
+  0%|          | 0.00/4.42M [00:00<?, ?B/s]  1%|1         | 65.5k/4.42M [00:00<00:08, 544kB/s]  5%|5         | 229k/4.42M [00:00<00:03, 1.13MB/s]  9%|8         | 393k/4.42M [00:00<00:03, 1.10MB/s] 24%|##3       | 1.05M/4.42M [00:00<00:01, 2.92MB/s] 32%|###1      | 1.41M/4.42M [00:00<00:00, 3.13MB/s] 40%|####      | 1.77M/4.42M [00:00<00:00, 3.26MB/s] 48%|####8     | 2.13M/4.42M [00:00<00:00, 3.27MB/s] 58%|#####7    | 2.56M/4.42M [00:00<00:00, 3.19MB/s] 65%|######5   | 2.88M/4.42M [00:01<00:00, 3.12MB/s] 73%|#######2  | 3.21M/4.42M [00:01<00:00, 3.11MB/s] 80%|########  | 3.54M/4.42M [00:01<00:00, 2.82MB/s] 87%|########6 | 3.83M/4.42M [00:01<00:00, 2.84MB/s] 93%|#########3| 4.13M/4.42M [00:01<00:00, 2.84MB/s]100%|##########| 4.42M/4.42M [00:01<00:00, 2.86MB/s]100%|##########| 4.42M/4.42M [00:01<00:00, 2.77MB/s]
+Extracting C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw\t10k-images-idx3-ubyte.gz to C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw
+
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz
+Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz to C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw\t10k-labels-idx1-ubyte.gz
+  0%|          | 0.00/5.15k [00:00<?, ?B/s]100%|##########| 5.15k/5.15k [00:00<?, ?B/s]
+Extracting C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw\t10k-labels-idx1-ubyte.gz to C:\Users\artun\Desktop\ITS-project\data\FashionMNIST\raw
+
+  Classifier epoch 1/5 loss=0.5451
+  Classifier epoch 2/5 loss=0.3341
+  Classifier epoch 3/5 loss=0.2866
+  Classifier epoch 4/5 loss=0.2575
+  Classifier epoch 5/5 loss=0.2325
+Traceback (most recent call last):
+  File "C:\Users\artun\Desktop\ITS-project\scripts\compute_mode_coverage.py", line 164, in <module>
+    main()
+  File "C:\Users\artun\Desktop\ITS-project\scripts\compute_mode_coverage.py", line 134, in main
+    simulator = ScoreSDESimulator(sde_cfg)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ScoreSDESimulator.__init__() missing 1 required positional argument: 'config'
+C:\Users\artun\Desktop\ITS-project\scripts\generate_paper_figures.py:365: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend(fontsize=8)
+Generating paper figures...
+  Saved: fig1_fid_vs_nfe.png  fig1_fid_vs_nfe.pdf
+  Saved: fig2_training_dynamics.png  fig2_training_dynamics.pdf
+  Saved: fig3_energy_quality.png  fig3_energy_quality.pdf
+  Saved: fig4_crooks_verification.png  fig4_crooks_verification.pdf
+  Saved: fig5_path_kl_trajectory.png  fig5_path_kl_trajectory.pdf
+  Saved: fig6_control_drift_analysis.png  fig6_control_drift_analysis.pdf
+  Saved: fig7_ablation_bar_chart.png  fig7_ablation_bar_chart.pdf
+  Saved: pareto_frontier.png  pareto_frontier.pdf
+  Saved: nfe_efficiency_curves.png  nfe_efficiency_curves.pdf
+  Saved: mode_coverage_radar.png  mode_coverage_radar.pdf
+  Saved: entropy_production_profile.png  entropy_production_profile.pdf
+  Saved: path_kl_vs_fid_trajectory.png  path_kl_vs_fid_trajectory.pdf
+  Saved: ablation_fid_chart.png  ablation_fid_chart.pdf
+
+All figures saved to data\paper_figures/
+Found 12 baseline rows, 8 proposed rows.
+LaTeX table: data\results\results_table.tex
+Plain text:  data\results\results_table.txt
+Report written to C:\Users\artun\Desktop\ITS-project\data\results\its_analytics_report.html  (341 KB)
+Environment snapshot written to C:\Users\artun\Desktop\ITS-project\data\results\environment_snapshot.txt
+
+============================================================
+[STEP] Controlled Config D multi-seed (3 seeds, 2048 samples)
+  cmd: C:\Users\artun\Desktop\ITS-project\.venv\Scripts\python.exe scripts/eval_controlled_multiseed.py --ctrl-ckpt C:\Users\artun\Desktop\ITS-project\checkpoints\controlled_config_d_seed42\controlled_last.pt --score-ckpt C:\Users\artun\Desktop\ITS-project\checkpoints\score_fmnist_v2\score_best.pt --num-samples 2048 --nfe 100
+============================================================
+[DONE] Controlled Config D multi-seed (3 seeds, 2048 samples)
+
+============================================================
+[STEP] Entropy production profile
+  cmd: C:\Users\artun\Desktop\ITS-project\.venv\Scripts\python.exe scripts/compute_entropy_production.py --score-ckpt C:\Users\artun\Desktop\ITS-project\checkpoints\score_fmnist_v2\score_best.pt --ctrl-ckpt C:\Users\artun\Desktop\ITS-project\checkpoints\controlled_config_d_seed42\controlled_last.pt --n-trajectories 256 --nfe 100
+============================================================
+[DONE] Entropy production profile
+
+============================================================
+[STEP] Memorization check (1000 samples)
+  cmd: C:\Users\artun\Desktop\ITS-project\.venv\Scripts\python.exe scripts/compute_memorization_check.py --score-ckpt C:\Users\artun\Desktop\ITS-project\checkpoints\score_fmnist_v2\score_best.pt --num-samples 1000
+============================================================
+[FAILED] Memorization check (1000 samples) (exit 2)
+
+============================================================
+[STEP] Mode coverage analysis
+  cmd: C:\Users\artun\Desktop\ITS-project\.venv\Scripts\python.exe scripts/compute_mode_coverage.py --score-ckpt C:\Users\artun\Desktop\ITS-project\checkpoints\score_fmnist_v2\score_best.pt --num-samples 1000
+============================================================
+[FAILED] Mode coverage analysis (exit 1)
+
+============================================================
+[STEP] Generate paper figures
+  cmd: C:\Users\artun\Desktop\ITS-project\.venv\Scripts\python.exe scripts/generate_paper_figures.py
+============================================================
+[DONE] Generate paper figures
+
+============================================================
+[STEP] Generate results table
+  cmd: C:\Users\artun\Desktop\ITS-project\.venv\Scripts\python.exe scripts/generate_results_table.py
+============================================================
+[DONE] Generate results table
+
+============================================================
+[STEP] Generate analytics report
+  cmd: C:\Users\artun\Desktop\ITS-project\.venv\Scripts\python.exe scripts/generate_report.py --output data/results/its_analytics_report.html
+============================================================
+[DONE] Generate analytics report
+
+============================================================
+[STEP] Environment snapshot
+  cmd: C:\Users\artun\Desktop\ITS-project\.venv\Scripts\python.exe scripts/snapshot_environment.py
+============================================================
+[DONE] Environment snapshot
+
+============================================================
+Session 8 pipeline complete.
+============================================================

@@ -1,0 +1,19 @@
+2026-04-21 06:48:11,842 INFO Loaded pretrained score backbone from checkpoints/score_fmnist_v2/score_epoch_0050.pt
+2026-04-21 06:48:11,853 INFO Score model frozen — only control policy will be trained.
+2026-04-21 06:48:27,298 INFO epoch=1 step=100 loss=695.2382 dsm=695.2380 control=0.0154 path_kl=5.6737 jar=-13.7102 quality=0.0000
+2026-04-21 06:48:35,713 INFO epoch=1 done
+2026-04-21 06:48:35,735 INFO epoch=1 diag: cos_sim=0.0017 ctrl_mag=1.4864 score_mag=20.0032 ratio=0.0743
+2026-04-21 06:48:42,316 INFO epoch=2 step=200 loss=493.0763 dsm=493.0762 control=0.0064 path_kl=2.6907 jar=-6.7124 quality=0.0000
+2026-04-21 06:48:56,865 INFO epoch=2 step=300 loss=342.8765 dsm=342.8765 control=0.0033 path_kl=0.0830 jar=-2.8247 quality=0.0000
+2026-04-21 06:48:58,826 INFO epoch=2 done
+2026-04-21 06:48:58,836 INFO epoch=2 diag: cos_sim=-0.0025 ctrl_mag=0.8502 score_mag=20.0032 ratio=0.0425
+2026-04-21 06:49:11,552 INFO epoch=3 step=400 loss=548.9665 dsm=548.9665 control=0.0021 path_kl=1.0280 jar=-2.6852 quality=0.0000
+2026-04-21 06:49:22,092 INFO epoch=3 done
+2026-04-21 06:49:22,103 INFO epoch=3 diag: cos_sim=-0.0028 ctrl_mag=0.6223 score_mag=20.0032 ratio=0.0311
+2026-04-21 06:49:26,667 INFO epoch=4 step=500 loss=661.2142 dsm=661.2142 control=0.0016 path_kl=0.3852 jar=-1.3049 quality=0.0000
+2026-04-21 06:49:41,667 INFO epoch=4 step=600 loss=673.7967 dsm=673.7967 control=0.0013 path_kl=0.9290 jar=-1.7496 quality=0.0000
+2026-04-21 06:49:45,714 INFO epoch=4 done
+2026-04-21 06:49:45,724 INFO epoch=4 diag: cos_sim=-0.0042 ctrl_mag=0.5449 score_mag=20.0032 ratio=0.0272
+2026-04-21 06:49:56,378 INFO epoch=5 step=700 loss=682.7856 dsm=682.7856 control=0.0013 path_kl=0.4574 jar=-1.0852 quality=0.0000
+2026-04-21 06:50:08,739 INFO epoch=5 done
+2026-04-21 06:50:08,747 INFO epoch=5 diag: cos_sim=-0.0048 ctrl_mag=0.5318 score_mag=20.0032 ratio=0.0266

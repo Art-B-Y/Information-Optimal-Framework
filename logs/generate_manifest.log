@@ -1,0 +1,3 @@
+Reproducibility manifest: C:\Users\artun\Desktop\ITS-project\data\results\reproducibility_manifest.json
+  Environment: {'git_commit': 'unknown', 'pytorch_version': '2.5.1+cu121', 'cuda_available': True, 'cuda_version': '12.1', 'gpu_name': 'NVIDIA GeForce GTX 1650 Ti', 'python_version': '3.11.9'}
+  Result entries: 5

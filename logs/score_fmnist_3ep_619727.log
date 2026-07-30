@@ -1,0 +1,19 @@
+2026-04-13 23:49:20,340 INFO epoch=1 step=200 loss=1573.8359
+2026-04-13 23:50:19,951 INFO epoch=1 step=400 loss=1276.5219
+2026-04-13 23:51:19,585 INFO epoch=1 step=600 loss=1134.6987
+2026-04-13 23:52:18,644 INFO epoch=1 step=800 loss=1041.4657
+2026-04-13 23:52:45,242 INFO epoch=1 avg_loss=1010.8420
+2026-04-13 23:52:45,290 INFO Saved checkpoint to checkpoints\score_fmnist_test\score_epoch_0001.pt
+2026-04-13 23:53:17,591 INFO epoch=2 step=1000 loss=729.5847
+2026-04-13 23:54:17,926 INFO epoch=2 step=1200 loss=716.8448
+2026-04-13 23:55:20,874 INFO epoch=2 step=1400 loss=710.1733
+2026-04-13 23:56:20,153 INFO epoch=2 step=1600 loss=707.1213
+2026-04-13 23:57:14,306 INFO epoch=2 avg_loss=704.9726
+2026-04-13 23:57:14,332 INFO Saved checkpoint to checkpoints\score_fmnist_test\score_epoch_0002.pt
+2026-04-13 23:57:19,601 INFO epoch=3 step=1800 loss=656.4030
+2026-04-13 23:58:19,131 INFO epoch=3 step=2000 loss=664.4708
+2026-04-13 23:59:17,088 INFO epoch=3 step=2200 loss=663.5649
+2026-04-14 00:00:16,099 INFO epoch=3 step=2400 loss=658.5703
+2026-04-14 00:01:13,571 INFO epoch=3 step=2600 loss=656.9848
+2026-04-14 00:01:34,098 INFO epoch=3 avg_loss=656.4390
+2026-04-14 00:01:34,126 INFO Saved checkpoint to checkpoints\score_fmnist_test\score_epoch_0003.pt

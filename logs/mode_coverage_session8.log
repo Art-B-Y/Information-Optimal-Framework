@@ -1,0 +1,16 @@
+Loaded cached classifier.
+Generating 1000 samples...
+
+Mode coverage:
+  T-shirt: 0.000
+  Trouser: 0.000
+  Pullover: 0.000
+  Dress: 0.000
+  Coat: 0.000
+  Sandal: 0.000
+  Shirt: 0.000
+  Sneaker: 0.000
+  Bag: 1.000
+  Ankle boot: 0.000
+  Entropy: -0.000 / max 2.303 (-0.0%)
+  Result -> C:\Users\artun\Desktop\ITS-project\data\results\mode_coverage.json

@@ -1,0 +1,543 @@
+2026-04-23 17:11:49,150 INFO Loaded pretrained score backbone from checkpoints/score_fmnist_v2/score_best.pt
+2026-04-23 17:11:49,161 INFO Score model frozen — only control policy will be trained.
+2026-04-23 17:12:35,150 WARNING High control grad norm: 952.64 at step=1
+2026-04-23 17:12:53,140 WARNING High control grad norm: 798.56 at step=2
+2026-04-23 17:13:10,929 WARNING High control grad norm: 321.39 at step=3
+2026-04-23 17:13:28,408 WARNING High control grad norm: 267.98 at step=4
+2026-04-23 17:13:45,818 WARNING High control grad norm: 465.13 at step=5
+2026-04-23 17:14:03,558 WARNING High control grad norm: 396.09 at step=6
+2026-04-23 17:14:21,152 WARNING High control grad norm: 180.18 at step=7
+2026-04-23 17:14:38,591 WARNING High control grad norm: 157.61 at step=8
+2026-04-23 17:14:56,234 WARNING High control grad norm: 272.18 at step=9
+2026-04-23 17:15:13,652 WARNING High control grad norm: 235.35 at step=10
+2026-04-23 17:15:31,084 WARNING High control grad norm: 67.06 at step=11
+2026-04-23 17:15:48,509 WARNING High control grad norm: 152.17 at step=12
+2026-04-23 17:16:06,097 WARNING High control grad norm: 274.38 at step=13
+2026-04-23 17:16:24,083 WARNING High control grad norm: 220.84 at step=14
+2026-04-23 17:16:42,062 WARNING High control grad norm: 72.51 at step=15
+2026-04-23 17:16:59,859 WARNING High control grad norm: 125.00 at step=16
+2026-04-23 17:17:17,525 WARNING High control grad norm: 174.58 at step=17
+2026-04-23 17:17:34,941 WARNING High control grad norm: 160.63 at step=18
+2026-04-23 17:17:52,610 WARNING High control grad norm: 51.86 at step=19
+2026-04-23 17:18:10,220 WARNING High control grad norm: 128.53 at step=20
+2026-04-23 17:18:28,052 WARNING High control grad norm: 188.66 at step=21
+2026-04-23 17:18:45,866 WARNING High control grad norm: 179.62 at step=22
+2026-04-23 17:19:03,508 WARNING High control grad norm: 79.78 at step=23
+2026-04-23 17:19:21,308 WARNING High control grad norm: 80.93 at step=24
+2026-04-23 17:19:38,699 WARNING High control grad norm: 176.25 at step=25
+2026-04-23 17:19:56,477 WARNING High control grad norm: 161.29 at step=26
+2026-04-23 17:20:14,210 WARNING High control grad norm: 55.56 at step=27
+2026-04-23 17:20:31,630 WARNING High control grad norm: 116.97 at step=28
+2026-04-23 17:20:49,255 WARNING High control grad norm: 151.60 at step=29
+2026-04-23 17:21:06,742 WARNING High control grad norm: 135.48 at step=30
+2026-04-23 17:21:24,503 WARNING High control grad norm: 53.66 at step=31
+2026-04-23 17:21:42,234 WARNING High control grad norm: 111.60 at step=32
+2026-04-23 17:22:00,235 WARNING High control grad norm: 146.91 at step=33
+2026-04-23 17:22:17,575 WARNING High control grad norm: 124.40 at step=34
+2026-04-23 17:22:35,008 WARNING High control grad norm: 42.01 at step=35
+2026-04-23 17:22:52,910 WARNING High control grad norm: 82.10 at step=36
+2026-04-23 17:23:10,330 WARNING High control grad norm: 158.53 at step=37
+2026-04-23 17:23:28,305 WARNING High control grad norm: 123.33 at step=38
+2026-04-23 17:23:28,852 INFO epoch=1 done
+2026-04-23 17:23:28,877 INFO epoch=1 diag: cos_sim=0.1403 ctrl_mag=0.2770 score_mag=17.6473 ratio=0.0157
+2026-04-23 17:23:46,889 WARNING High control grad norm: 61.33 at step=40
+2026-04-23 17:24:04,584 WARNING High control grad norm: 99.35 at step=41
+2026-04-23 17:24:21,962 WARNING High control grad norm: 63.00 at step=42
+2026-04-23 17:24:41,132 WARNING High control grad norm: 39.24 at step=43
+2026-04-23 17:25:00,433 WARNING High control grad norm: 29.23 at step=44
+2026-04-23 17:25:57,658 WARNING High control grad norm: 63.52 at step=47
+2026-04-23 17:26:16,762 WARNING High control grad norm: 62.79 at step=48
+2026-04-23 17:26:55,219 WARNING High control grad norm: 100.17 at step=50
+2026-04-23 17:27:14,378 WARNING High control grad norm: 147.81 at step=51
+2026-04-23 17:27:33,479 WARNING High control grad norm: 109.27 at step=52
+2026-04-23 17:27:52,698 WARNING High control grad norm: 39.65 at step=53
+2026-04-23 17:28:11,759 WARNING High control grad norm: 95.40 at step=54
+2026-04-23 17:28:30,848 WARNING High control grad norm: 153.31 at step=55
+2026-04-23 17:28:49,954 WARNING High control grad norm: 145.78 at step=56
+2026-04-23 17:29:24,773 WARNING High control grad norm: 72.04 at step=57
+2026-04-23 17:29:47,590 WARNING High control grad norm: 34.77 at step=58
+2026-04-23 17:30:06,057 WARNING High control grad norm: 88.94 at step=59
+2026-04-23 17:30:24,141 WARNING High control grad norm: 78.69 at step=60
+2026-04-23 17:31:54,422 WARNING High control grad norm: 34.55 at step=65
+2026-04-23 17:32:30,354 WARNING High control grad norm: 25.51 at step=67
+2026-04-23 17:33:06,569 WARNING High control grad norm: 44.52 at step=69
+2026-04-23 17:33:24,638 WARNING High control grad norm: 23.12 at step=70
+2026-04-23 17:33:42,538 WARNING High control grad norm: 41.26 at step=71
+2026-04-23 17:34:00,693 WARNING High control grad norm: 37.40 at step=72
+2026-04-23 17:34:18,863 WARNING High control grad norm: 29.87 at step=73
+2026-04-23 17:34:37,840 WARNING High control grad norm: 22.05 at step=74
+2026-04-23 17:34:56,152 WARNING High control grad norm: 35.03 at step=75
+2026-04-23 17:35:14,609 WARNING High control grad norm: 43.62 at step=76
+2026-04-23 17:35:32,880 WARNING High control grad norm: 30.77 at step=77
+2026-04-23 17:35:51,389 WARNING High control grad norm: 33.39 at step=78
+2026-04-23 17:35:51,721 WARNING High control grad norm: 83.40 at step=79
+2026-04-23 17:35:51,723 INFO epoch=2 done
+2026-04-23 17:35:51,736 INFO epoch=2 diag: cos_sim=0.1192 ctrl_mag=0.0709 score_mag=17.6473 ratio=0.0040
+2026-04-23 17:36:09,991 WARNING High control grad norm: 27.61 at step=80
+2026-04-23 17:37:05,118 WARNING High control grad norm: 46.47 at step=83
+2026-04-23 17:37:23,500 WARNING High control grad norm: 23.60 at step=84
+2026-04-23 17:37:41,982 WARNING High control grad norm: 63.28 at step=85
+2026-04-23 17:38:00,249 WARNING High control grad norm: 53.82 at step=86
+2026-04-23 17:38:37,117 WARNING High control grad norm: 41.64 at step=88
+2026-04-23 17:38:55,596 WARNING High control grad norm: 112.06 at step=89
+2026-04-23 17:39:13,856 WARNING High control grad norm: 48.16 at step=90
+2026-04-23 17:39:32,591 WARNING High control grad norm: 31.96 at step=91
+2026-04-23 17:39:51,078 WARNING High control grad norm: 70.92 at step=92
+2026-04-23 17:40:09,297 WARNING High control grad norm: 22.31 at step=93
+2026-04-23 17:40:27,607 WARNING High control grad norm: 71.96 at step=94
+2026-04-23 17:40:46,210 WARNING High control grad norm: 84.37 at step=95
+2026-04-23 17:41:04,648 WARNING High control grad norm: 59.42 at step=96
+2026-04-23 17:41:23,674 WARNING High control grad norm: 36.46 at step=97
+2026-04-23 17:41:42,559 WARNING High control grad norm: 71.21 at step=98
+2026-04-23 17:42:00,934 WARNING High control grad norm: 35.26 at step=99
+2026-04-23 17:42:00,937 INFO epoch=3 step=100 loss=397.4767 dsm=397.4706 control=0.0001 path_kl=0.0608 jar=-0.0955 quality=0.0000
+2026-04-23 17:42:19,767 WARNING High control grad norm: 62.75 at step=100
+2026-04-23 17:42:38,169 WARNING High control grad norm: 86.84 at step=101
+2026-04-23 17:42:56,736 WARNING High control grad norm: 65.90 at step=102
+2026-04-23 17:43:15,006 WARNING High control grad norm: 49.38 at step=103
+2026-04-23 17:43:33,582 WARNING High control grad norm: 74.66 at step=104
+2026-04-23 17:43:52,576 WARNING High control grad norm: 40.41 at step=105
+2026-04-23 17:44:12,141 WARNING High control grad norm: 69.76 at step=106
+2026-04-23 17:44:31,536 WARNING High control grad norm: 73.36 at step=107
+2026-04-23 17:44:50,262 WARNING High control grad norm: 62.08 at step=108
+2026-04-23 17:45:09,451 WARNING High control grad norm: 49.44 at step=109
+2026-04-23 17:45:28,469 WARNING High control grad norm: 74.16 at step=110
+2026-04-23 17:45:47,640 WARNING High control grad norm: 45.55 at step=111
+2026-04-23 17:46:06,874 WARNING High control grad norm: 46.45 at step=112
+2026-04-23 17:46:25,874 WARNING High control grad norm: 84.64 at step=113
+2026-04-23 17:46:44,686 WARNING High control grad norm: 35.51 at step=114
+2026-04-23 17:47:03,385 WARNING High control grad norm: 54.04 at step=115
+2026-04-23 17:47:22,250 WARNING High control grad norm: 68.74 at step=116
+2026-04-23 17:47:41,360 WARNING High control grad norm: 44.47 at step=117
+2026-04-23 17:47:59,869 WARNING High control grad norm: 45.90 at step=118
+2026-04-23 17:48:00,202 WARNING High control grad norm: 50.01 at step=119
+2026-04-23 17:48:00,204 INFO epoch=3 done
+2026-04-23 17:48:00,216 INFO epoch=3 diag: cos_sim=-0.1753 ctrl_mag=0.1164 score_mag=17.6473 ratio=0.0066
+2026-04-23 17:48:18,550 WARNING High control grad norm: 40.75 at step=120
+2026-04-23 17:48:36,633 WARNING High control grad norm: 59.76 at step=121
+2026-04-23 17:48:54,668 WARNING High control grad norm: 52.75 at step=122
+2026-04-23 17:49:13,058 WARNING High control grad norm: 20.56 at step=123
+2026-04-23 17:49:31,351 WARNING High control grad norm: 81.33 at step=124
+2026-04-23 17:49:49,529 WARNING High control grad norm: 88.19 at step=125
+2026-04-23 17:50:07,865 WARNING High control grad norm: 68.68 at step=126
+2026-04-23 17:50:44,128 WARNING High control grad norm: 151.78 at step=128
+2026-04-23 17:51:02,126 WARNING High control grad norm: 181.52 at step=129
+2026-04-23 17:51:20,394 WARNING High control grad norm: 196.26 at step=130
+2026-04-23 17:51:38,447 WARNING High control grad norm: 133.29 at step=131
+2026-04-23 17:51:56,529 WARNING High control grad norm: 38.30 at step=132
+2026-04-23 17:52:14,605 WARNING High control grad norm: 103.56 at step=133
+2026-04-23 17:52:33,109 WARNING High control grad norm: 176.17 at step=134
+2026-04-23 17:52:51,652 WARNING High control grad norm: 179.29 at step=135
+2026-04-23 17:53:10,334 WARNING High control grad norm: 144.84 at step=136
+2026-04-23 17:53:28,586 WARNING High control grad norm: 77.44 at step=137
+2026-04-23 17:53:46,732 WARNING High control grad norm: 66.12 at step=138
+2026-04-23 17:54:05,443 WARNING High control grad norm: 115.60 at step=139
+2026-04-23 17:54:23,657 WARNING High control grad norm: 121.08 at step=140
+2026-04-23 17:54:41,835 WARNING High control grad norm: 74.49 at step=141
+2026-04-23 17:55:18,789 WARNING High control grad norm: 31.03 at step=143
+2026-04-23 17:55:55,275 WARNING High control grad norm: 55.06 at step=145
+2026-04-23 17:56:13,445 WARNING High control grad norm: 59.89 at step=146
+2026-04-23 17:56:31,923 WARNING High control grad norm: 24.26 at step=147
+2026-04-23 17:56:50,090 WARNING High control grad norm: 47.37 at step=148
+2026-04-23 17:57:08,371 WARNING High control grad norm: 76.74 at step=149
+2026-04-23 17:57:26,388 WARNING High control grad norm: 54.09 at step=150
+2026-04-23 17:58:02,724 WARNING High control grad norm: 22.41 at step=152
+2026-04-23 17:58:39,165 WARNING High control grad norm: 71.26 at step=154
+2026-04-23 17:58:57,268 WARNING High control grad norm: 79.36 at step=155
+2026-04-23 17:59:15,221 WARNING High control grad norm: 58.42 at step=156
+2026-04-23 17:59:51,785 WARNING High control grad norm: 41.29 at step=158
+2026-04-23 17:59:52,123 WARNING High control grad norm: 31.68 at step=159
+2026-04-23 17:59:52,125 INFO epoch=4 done
+2026-04-23 17:59:52,138 INFO epoch=4 diag: cos_sim=0.1101 ctrl_mag=0.2706 score_mag=17.6473 ratio=0.0153
+2026-04-23 18:00:10,273 WARNING High control grad norm: 34.94 at step=160
+2026-04-23 18:00:46,401 WARNING High control grad norm: 52.48 at step=162
+2026-04-23 18:01:04,429 WARNING High control grad norm: 39.97 at step=163
+2026-04-23 18:01:40,676 WARNING High control grad norm: 60.87 at step=165
+2026-04-23 18:01:58,822 WARNING High control grad norm: 91.48 at step=166
+2026-04-23 18:02:16,985 WARNING High control grad norm: 79.64 at step=167
+2026-04-23 18:02:35,184 WARNING High control grad norm: 26.86 at step=168
+2026-04-23 18:02:53,250 WARNING High control grad norm: 72.50 at step=169
+2026-04-23 18:03:11,429 WARNING High control grad norm: 113.78 at step=170
+2026-04-23 18:03:29,729 WARNING High control grad norm: 102.24 at step=171
+2026-04-23 18:03:47,736 WARNING High control grad norm: 46.58 at step=172
+2026-04-23 18:04:06,130 WARNING High control grad norm: 20.25 at step=173
+2026-04-23 18:04:24,163 WARNING High control grad norm: 29.43 at step=174
+2026-04-23 18:05:18,783 WARNING High control grad norm: 23.73 at step=177
+2026-04-23 18:05:36,745 WARNING High control grad norm: 20.93 at step=178
+2026-04-23 18:06:13,442 WARNING High control grad norm: 21.59 at step=180
+2026-04-23 18:06:31,883 WARNING High control grad norm: 32.54 at step=181
+2026-04-23 18:06:50,031 WARNING High control grad norm: 24.99 at step=182
+2026-04-23 18:07:44,662 WARNING High control grad norm: 34.17 at step=185
+2026-04-23 18:08:02,669 WARNING High control grad norm: 22.26 at step=186
+2026-04-23 18:09:52,260 WARNING High control grad norm: 64.96 at step=192
+2026-04-23 18:10:10,336 WARNING High control grad norm: 55.14 at step=193
+2026-04-23 18:10:28,547 WARNING High control grad norm: 44.50 at step=194
+2026-04-23 18:10:46,557 WARNING High control grad norm: 22.78 at step=195
+2026-04-23 18:11:04,822 WARNING High control grad norm: 37.49 at step=196
+2026-04-23 18:11:41,516 WARNING High control grad norm: 36.87 at step=198
+2026-04-23 18:11:41,830 INFO epoch=5 step=200 loss=163.7388 dsm=163.7232 control=0.0006 path_kl=0.0085 jar=-0.4146 quality=1.4782
+2026-04-23 18:11:41,833 INFO epoch=5 done
+2026-04-23 18:11:41,846 INFO epoch=5 diag: cos_sim=-0.1487 ctrl_mag=0.6048 score_mag=17.6473 ratio=0.0343
+2026-04-23 18:12:00,290 WARNING High control grad norm: 28.85 at step=200
+2026-04-23 18:12:18,328 WARNING High control grad norm: 35.18 at step=201
+2026-04-23 18:12:36,488 WARNING High control grad norm: 43.08 at step=202
+2026-04-23 18:13:12,687 WARNING High control grad norm: 67.06 at step=204
+2026-04-23 18:13:30,654 WARNING High control grad norm: 73.05 at step=205
+2026-04-23 18:13:48,873 WARNING High control grad norm: 48.25 at step=206
+2026-04-23 18:15:01,468 WARNING High control grad norm: 57.83 at step=210
+2026-04-23 18:15:19,632 WARNING High control grad norm: 54.98 at step=211
+2026-04-23 18:15:37,710 WARNING High control grad norm: 43.61 at step=212
+2026-04-23 18:15:55,666 WARNING High control grad norm: 44.03 at step=213
+2026-04-23 18:16:13,822 WARNING High control grad norm: 70.67 at step=214
+2026-04-23 18:16:32,106 WARNING High control grad norm: 43.01 at step=215
+2026-04-23 18:16:50,170 WARNING High control grad norm: 21.11 at step=216
+2026-04-23 18:17:08,211 WARNING High control grad norm: 37.17 at step=217
+2026-04-23 18:18:20,494 WARNING High control grad norm: 61.05 at step=221
+2026-04-23 18:18:38,504 WARNING High control grad norm: 40.70 at step=222
+2026-04-23 18:19:14,575 WARNING High control grad norm: 28.67 at step=224
+2026-04-23 18:19:32,733 WARNING High control grad norm: 31.77 at step=225
+2026-04-23 18:19:50,830 WARNING High control grad norm: 39.06 at step=226
+2026-04-23 18:20:45,036 WARNING High control grad norm: 23.59 at step=229
+2026-04-23 18:21:39,193 WARNING High control grad norm: 38.58 at step=232
+2026-04-23 18:22:33,382 WARNING High control grad norm: 38.10 at step=235
+2026-04-23 18:23:09,454 WARNING High control grad norm: 20.83 at step=237
+2026-04-23 18:23:28,124 WARNING High control grad norm: 77.74 at step=239
+2026-04-23 18:23:28,126 INFO epoch=6 done
+2026-04-23 18:23:28,141 INFO epoch=6 diag: cos_sim=0.0938 ctrl_mag=0.1736 score_mag=17.6473 ratio=0.0098
+2026-04-23 18:23:46,208 WARNING High control grad norm: 36.70 at step=240
+2026-04-23 18:24:04,630 WARNING High control grad norm: 27.73 at step=241
+2026-04-23 18:24:22,861 WARNING High control grad norm: 28.91 at step=242
+2026-04-23 18:25:16,823 WARNING High control grad norm: 30.72 at step=245
+2026-04-23 18:25:34,980 WARNING High control grad norm: 22.23 at step=246
+2026-04-23 18:27:09,012 WARNING High control grad norm: 33.80 at step=251
+2026-04-23 18:27:27,672 WARNING High control grad norm: 25.93 at step=252
+2026-04-23 18:28:23,410 WARNING High control grad norm: 43.07 at step=255
+2026-04-23 18:28:41,331 WARNING High control grad norm: 39.01 at step=256
+2026-04-23 18:28:59,405 WARNING High control grad norm: 20.64 at step=257
+2026-04-23 18:29:17,427 WARNING High control grad norm: 21.98 at step=258
+2026-04-23 18:30:48,542 WARNING High control grad norm: 34.51 at step=263
+2026-04-23 18:31:08,280 WARNING High control grad norm: 21.21 at step=264
+2026-04-23 18:31:26,734 WARNING High control grad norm: 30.70 at step=265
+2026-04-23 18:31:45,235 WARNING High control grad norm: 26.27 at step=266
+2026-04-23 18:32:23,246 WARNING High control grad norm: 62.51 at step=268
+2026-04-23 18:32:41,986 WARNING High control grad norm: 104.89 at step=269
+2026-04-23 18:32:59,962 WARNING High control grad norm: 75.96 at step=270
+2026-04-23 18:33:35,701 WARNING High control grad norm: 78.32 at step=272
+2026-04-23 18:33:53,539 WARNING High control grad norm: 130.36 at step=273
+2026-04-23 18:34:11,586 WARNING High control grad norm: 108.31 at step=274
+2026-04-23 18:34:29,361 WARNING High control grad norm: 79.09 at step=275
+2026-04-23 18:34:47,309 WARNING High control grad norm: 20.08 at step=276
+2026-04-23 18:35:05,247 WARNING High control grad norm: 51.05 at step=277
+2026-04-23 18:35:23,644 WARNING High control grad norm: 33.45 at step=278
+2026-04-23 18:35:23,975 WARNING High control grad norm: 20.86 at step=279
+2026-04-23 18:35:23,981 INFO epoch=7 done
+2026-04-23 18:35:23,996 INFO epoch=7 diag: cos_sim=0.0940 ctrl_mag=0.1336 score_mag=17.6473 ratio=0.0076
+2026-04-23 18:35:42,499 WARNING High control grad norm: 34.44 at step=280
+2026-04-23 18:36:19,019 WARNING High control grad norm: 58.81 at step=282
+2026-04-23 18:36:36,905 WARNING High control grad norm: 51.02 at step=283
+2026-04-23 18:36:55,772 WARNING High control grad norm: 23.43 at step=284
+2026-04-23 18:37:14,317 WARNING High control grad norm: 48.01 at step=285
+2026-04-23 18:37:33,304 WARNING High control grad norm: 73.27 at step=286
+2026-04-23 18:37:52,521 WARNING High control grad norm: 60.76 at step=287
+2026-04-23 18:39:22,128 WARNING High control grad norm: 28.47 at step=292
+2026-04-23 18:39:57,737 WARNING High control grad norm: 26.16 at step=294
+2026-04-23 18:40:15,510 WARNING High control grad norm: 43.26 at step=295
+2026-04-23 18:41:09,037 WARNING High control grad norm: 38.75 at step=298
+2026-04-23 18:41:26,823 WARNING High control grad norm: 40.44 at step=299
+2026-04-23 18:41:26,825 INFO epoch=8 step=300 loss=530.4987 dsm=530.4911 control=0.0003 path_kl=0.0754 jar=-0.2574 quality=0.0000
+2026-04-23 18:42:02,334 WARNING High control grad norm: 35.29 at step=301
+2026-04-23 18:42:39,743 WARNING High control grad norm: 28.17 at step=303
+2026-04-23 18:42:58,554 WARNING High control grad norm: 26.65 at step=304
+2026-04-23 18:43:54,285 WARNING High control grad norm: 35.43 at step=307
+2026-04-23 18:44:12,212 WARNING High control grad norm: 39.26 at step=308
+2026-04-23 18:44:31,150 WARNING High control grad norm: 24.55 at step=309
+2026-04-23 18:44:49,784 WARNING High control grad norm: 23.93 at step=310
+2026-04-23 18:45:43,535 WARNING High control grad norm: 27.59 at step=313
+2026-04-23 18:46:01,298 WARNING High control grad norm: 29.24 at step=314
+2026-04-23 18:46:36,897 WARNING High control grad norm: 21.34 at step=316
+2026-04-23 18:47:12,942 WARNING High control grad norm: 24.38 at step=319
+2026-04-23 18:47:12,944 INFO epoch=8 done
+2026-04-23 18:47:12,956 INFO epoch=8 diag: cos_sim=-0.0789 ctrl_mag=0.2050 score_mag=17.6473 ratio=0.0116
+2026-04-23 18:47:30,705 WARNING High control grad norm: 100.85 at step=320
+2026-04-23 18:47:48,630 WARNING High control grad norm: 142.12 at step=321
+2026-04-23 18:48:06,739 WARNING High control grad norm: 107.43 at step=322
+2026-04-23 18:48:24,742 WARNING High control grad norm: 64.47 at step=323
+2026-04-23 18:48:42,476 WARNING High control grad norm: 45.43 at step=324
+2026-04-23 18:49:01,114 WARNING High control grad norm: 75.46 at step=325
+2026-04-23 18:49:19,475 WARNING High control grad norm: 75.38 at step=326
+2026-04-23 18:49:37,601 WARNING High control grad norm: 22.21 at step=327
+2026-04-23 18:49:55,378 WARNING High control grad norm: 63.02 at step=328
+2026-04-23 18:50:13,544 WARNING High control grad norm: 100.59 at step=329
+2026-04-23 18:50:31,501 WARNING High control grad norm: 65.88 at step=330
+2026-04-23 18:50:49,286 WARNING High control grad norm: 25.67 at step=331
+2026-04-23 18:51:08,096 WARNING High control grad norm: 67.00 at step=332
+2026-04-23 18:51:26,728 WARNING High control grad norm: 93.52 at step=333
+2026-04-23 18:51:44,605 WARNING High control grad norm: 83.38 at step=334
+2026-04-23 18:52:02,394 WARNING High control grad norm: 45.56 at step=335
+2026-04-23 18:52:20,288 WARNING High control grad norm: 36.84 at step=336
+2026-04-23 18:52:38,232 WARNING High control grad norm: 70.48 at step=337
+2026-04-23 18:52:56,078 WARNING High control grad norm: 58.87 at step=338
+2026-04-23 18:53:31,972 WARNING High control grad norm: 69.65 at step=340
+2026-04-23 18:53:49,795 WARNING High control grad norm: 95.47 at step=341
+2026-04-23 18:54:07,636 WARNING High control grad norm: 79.41 at step=342
+2026-04-23 18:54:25,550 WARNING High control grad norm: 57.01 at step=343
+2026-04-23 18:54:43,446 WARNING High control grad norm: 37.92 at step=344
+2026-04-23 18:55:01,327 WARNING High control grad norm: 62.57 at step=345
+2026-04-23 18:55:19,156 WARNING High control grad norm: 42.35 at step=346
+2026-04-23 18:55:54,739 WARNING High control grad norm: 54.69 at step=348
+2026-04-23 18:56:12,649 WARNING High control grad norm: 85.09 at step=349
+2026-04-23 18:56:31,289 WARNING High control grad norm: 82.50 at step=350
+2026-04-23 18:56:49,192 WARNING High control grad norm: 45.95 at step=351
+2026-04-23 18:57:24,721 WARNING High control grad norm: 66.36 at step=353
+2026-04-23 18:57:42,511 WARNING High control grad norm: 67.21 at step=354
+2026-04-23 18:58:18,586 WARNING High control grad norm: 46.21 at step=356
+2026-04-23 18:58:37,124 WARNING High control grad norm: 74.99 at step=357
+2026-04-23 18:58:55,963 WARNING High control grad norm: 66.73 at step=358
+2026-04-23 18:58:56,293 WARNING High control grad norm: 27.15 at step=359
+2026-04-23 18:58:56,296 INFO epoch=9 done
+2026-04-23 18:58:56,308 INFO epoch=9 diag: cos_sim=-0.0632 ctrl_mag=0.0526 score_mag=17.6473 ratio=0.0030
+2026-04-23 18:59:15,502 WARNING High control grad norm: 31.04 at step=360
+2026-04-23 18:59:33,624 WARNING High control grad norm: 55.35 at step=361
+2026-04-23 18:59:52,261 WARNING High control grad norm: 47.84 at step=362
+2026-04-23 19:00:10,390 WARNING High control grad norm: 30.42 at step=363
+2026-04-23 19:00:28,847 WARNING High control grad norm: 36.78 at step=364
+2026-04-23 19:00:47,513 WARNING High control grad norm: 71.40 at step=365
+2026-04-23 19:01:06,470 WARNING High control grad norm: 43.05 at step=366
+2026-04-23 19:01:25,114 WARNING High control grad norm: 31.61 at step=367
+2026-04-23 19:01:43,566 WARNING High control grad norm: 37.64 at step=368
+2026-04-23 19:02:01,505 WARNING High control grad norm: 57.50 at step=369
+2026-04-23 19:02:19,253 WARNING High control grad norm: 58.55 at step=370
+2026-04-23 19:02:37,071 WARNING High control grad norm: 20.99 at step=371
+2026-04-23 19:02:54,902 WARNING High control grad norm: 21.31 at step=372
+2026-04-23 19:03:12,839 WARNING High control grad norm: 55.09 at step=373
+2026-04-23 19:03:30,618 WARNING High control grad norm: 43.31 at step=374
+2026-04-23 19:04:06,453 WARNING High control grad norm: 30.73 at step=376
+2026-04-23 19:04:24,444 WARNING High control grad norm: 47.01 at step=377
+2026-04-23 19:04:42,317 WARNING High control grad norm: 58.36 at step=378
+2026-04-23 19:05:00,166 WARNING High control grad norm: 26.44 at step=379
+2026-04-23 19:05:17,927 WARNING High control grad norm: 38.49 at step=380
+2026-04-23 19:05:35,706 WARNING High control grad norm: 57.63 at step=381
+2026-04-23 19:05:53,499 WARNING High control grad norm: 43.85 at step=382
+2026-04-23 19:06:11,321 WARNING High control grad norm: 23.62 at step=383
+2026-04-23 19:06:29,149 WARNING High control grad norm: 35.70 at step=384
+2026-04-23 19:06:46,918 WARNING High control grad norm: 64.84 at step=385
+2026-04-23 19:07:04,736 WARNING High control grad norm: 59.32 at step=386
+2026-04-23 19:07:22,538 WARNING High control grad norm: 30.43 at step=387
+2026-04-23 19:07:40,719 WARNING High control grad norm: 36.34 at step=388
+2026-04-23 19:07:58,544 WARNING High control grad norm: 46.30 at step=389
+2026-04-23 19:08:16,350 WARNING High control grad norm: 40.90 at step=390
+2026-04-23 19:09:09,807 WARNING High control grad norm: 48.47 at step=393
+2026-04-23 19:09:28,000 WARNING High control grad norm: 38.62 at step=394
+2026-04-23 19:10:03,561 WARNING High control grad norm: 26.59 at step=396
+2026-04-23 19:10:21,308 WARNING High control grad norm: 40.04 at step=397
+2026-04-23 19:10:39,151 WARNING High control grad norm: 34.88 at step=398
+2026-04-23 19:10:39,471 INFO epoch=10 step=400 loss=176.6529 dsm=176.6464 control=0.0000 path_kl=-0.0182 jar=0.0029 quality=0.8312
+2026-04-23 19:10:39,474 INFO epoch=10 done
+2026-04-23 19:10:39,488 INFO epoch=10 diag: cos_sim=0.0992 ctrl_mag=0.0478 score_mag=17.6473 ratio=0.0027
+2026-04-23 19:10:57,876 WARNING High control grad norm: 23.33 at step=400
+2026-04-23 19:11:15,840 WARNING High control grad norm: 33.41 at step=401
+2026-04-23 19:11:33,669 WARNING High control grad norm: 34.90 at step=402
+2026-04-23 19:13:21,468 WARNING High control grad norm: 20.52 at step=408
+2026-04-23 19:13:57,479 WARNING High control grad norm: 20.73 at step=410
+2026-04-23 19:14:15,396 WARNING High control grad norm: 26.70 at step=411
+2026-04-23 19:15:08,932 WARNING High control grad norm: 29.95 at step=414
+2026-04-23 19:20:15,190 WARNING High control grad norm: 27.89 at step=431
+2026-04-23 19:20:33,924 WARNING High control grad norm: 28.27 at step=432
+2026-04-23 19:21:46,847 WARNING High control grad norm: 20.59 at step=436
+2026-04-23 19:22:22,598 WARNING High control grad norm: 20.71 at step=438
+2026-04-23 19:22:22,918 WARNING High control grad norm: 27.17 at step=439
+2026-04-23 19:22:22,920 INFO epoch=11 done
+2026-04-23 19:22:22,934 INFO epoch=11 diag: cos_sim=-0.1419 ctrl_mag=0.1910 score_mag=17.6473 ratio=0.0108
+2026-04-23 19:25:03,336 WARNING High control grad norm: 30.74 at step=448
+2026-04-23 19:25:39,170 WARNING High control grad norm: 29.18 at step=450
+2026-04-23 19:25:58,006 WARNING High control grad norm: 39.87 at step=451
+2026-04-23 19:26:15,886 WARNING High control grad norm: 25.55 at step=452
+2026-04-23 19:29:33,847 WARNING High control grad norm: 29.11 at step=463
+2026-04-23 19:29:51,749 WARNING High control grad norm: 28.16 at step=464
+2026-04-23 19:30:27,704 WARNING High control grad norm: 32.58 at step=466
+2026-04-23 19:30:45,683 WARNING High control grad norm: 30.90 at step=467
+2026-04-23 19:31:03,536 WARNING High control grad norm: 37.25 at step=468
+2026-04-23 19:31:39,499 WARNING High control grad norm: 42.87 at step=470
+2026-04-23 19:31:57,645 WARNING High control grad norm: 44.47 at step=471
+2026-04-23 19:32:15,593 WARNING High control grad norm: 55.15 at step=472
+2026-04-23 19:32:33,490 WARNING High control grad norm: 23.55 at step=473
+2026-04-23 19:34:03,416 WARNING High control grad norm: 20.57 at step=479
+2026-04-23 19:34:03,418 INFO epoch=12 done
+2026-04-23 19:34:03,431 INFO epoch=12 diag: cos_sim=0.0599 ctrl_mag=0.0949 score_mag=17.6473 ratio=0.0054
+2026-04-23 19:35:15,506 WARNING High control grad norm: 24.91 at step=483
+2026-04-23 19:35:33,448 WARNING High control grad norm: 20.51 at step=484
+2026-04-23 19:35:51,341 WARNING High control grad norm: 33.18 at step=485
+2026-04-23 19:36:09,228 WARNING High control grad norm: 22.34 at step=486
+2026-04-23 19:40:06,510 WARNING High control grad norm: 36.50 at step=499
+2026-04-23 19:40:06,513 INFO epoch=13 step=500 loss=373.2478 dsm=373.2376 control=0.0003 path_kl=0.1018 jar=-0.2530 quality=0.0000
+2026-04-23 19:40:24,713 WARNING High control grad norm: 38.79 at step=500
+2026-04-23 19:40:42,950 WARNING High control grad norm: 38.22 at step=501
+2026-04-23 19:41:18,986 WARNING High control grad norm: 20.30 at step=503
+2026-04-23 19:41:36,801 WARNING High control grad norm: 48.86 at step=504
+2026-04-23 19:41:54,802 WARNING High control grad norm: 34.57 at step=505
+2026-04-23 19:42:12,716 WARNING High control grad norm: 22.86 at step=506
+2026-04-23 19:42:48,710 WARNING High control grad norm: 32.62 at step=508
+2026-04-23 19:43:42,486 WARNING High control grad norm: 21.31 at step=511
+2026-04-23 19:44:00,279 WARNING High control grad norm: 37.62 at step=512
+2026-04-23 19:44:18,330 WARNING High control grad norm: 32.83 at step=513
+2026-04-23 19:44:36,372 WARNING High control grad norm: 23.20 at step=514
+2026-04-23 19:44:54,365 WARNING High control grad norm: 24.36 at step=515
+2026-04-23 19:45:12,155 WARNING High control grad norm: 24.62 at step=516
+2026-04-23 19:45:30,146 WARNING High control grad norm: 23.57 at step=517
+2026-04-23 19:45:48,230 WARNING High control grad norm: 40.75 at step=519
+2026-04-23 19:45:48,234 INFO epoch=13 done
+2026-04-23 19:45:48,247 INFO epoch=13 diag: cos_sim=0.0500 ctrl_mag=0.1013 score_mag=17.6473 ratio=0.0057
+2026-04-23 19:46:06,291 WARNING High control grad norm: 34.42 at step=520
+2026-04-23 19:46:24,221 WARNING High control grad norm: 27.81 at step=521
+2026-04-23 19:46:42,026 WARNING High control grad norm: 24.27 at step=522
+2026-04-23 19:47:17,793 WARNING High control grad norm: 24.26 at step=524
+2026-04-23 19:47:35,534 WARNING High control grad norm: 37.65 at step=525
+2026-04-23 19:48:29,091 WARNING High control grad norm: 31.52 at step=528
+2026-04-23 19:50:33,732 WARNING High control grad norm: 30.81 at step=535
+2026-04-23 19:50:51,657 WARNING High control grad norm: 39.83 at step=536
+2026-04-23 19:51:45,305 WARNING High control grad norm: 30.48 at step=539
+2026-04-23 19:52:02,973 WARNING High control grad norm: 51.09 at step=540
+2026-04-23 19:52:20,749 WARNING High control grad norm: 34.62 at step=541
+2026-04-23 19:52:38,496 WARNING High control grad norm: 31.74 at step=542
+2026-04-23 19:53:13,887 WARNING High control grad norm: 23.48 at step=544
+2026-04-23 19:53:32,026 WARNING High control grad norm: 28.69 at step=545
+2026-04-23 20:20:45,255 WARNING High control grad norm: 21.94 at step=557
+2026-04-23 20:21:03,461 INFO epoch=14 done
+2026-04-23 20:21:03,475 INFO epoch=14 diag: cos_sim=-0.1314 ctrl_mag=0.0444 score_mag=17.6473 ratio=0.0025
+2026-04-23 20:21:21,548 WARNING High control grad norm: 45.82 at step=560
+2026-04-23 20:21:39,677 WARNING High control grad norm: 51.01 at step=561
+2026-04-23 20:21:57,591 WARNING High control grad norm: 42.04 at step=562
+2026-04-23 20:22:15,844 WARNING High control grad norm: 32.72 at step=563
+2026-04-23 20:22:52,452 WARNING High control grad norm: 33.73 at step=565
+2026-04-23 20:23:10,815 WARNING High control grad norm: 43.57 at step=566
+2026-04-23 20:23:29,052 WARNING High control grad norm: 57.54 at step=567
+2026-04-23 20:23:46,969 WARNING High control grad norm: 49.58 at step=568
+2026-04-23 20:24:04,820 WARNING High control grad norm: 28.90 at step=569
+2026-04-23 20:24:40,772 WARNING High control grad norm: 35.23 at step=571
+2026-04-23 20:24:58,607 WARNING High control grad norm: 31.30 at step=572
+2026-04-23 20:25:16,668 WARNING High control grad norm: 30.46 at step=573
+2026-04-23 20:26:10,783 WARNING High control grad norm: 20.90 at step=576
+2026-04-23 20:26:28,733 WARNING High control grad norm: 27.52 at step=577
+2026-04-23 20:28:16,094 WARNING High control grad norm: 25.12 at step=583
+2026-04-23 20:28:33,978 WARNING High control grad norm: 30.52 at step=584
+2026-04-23 20:28:51,962 WARNING High control grad norm: 23.03 at step=585
+2026-04-23 20:30:57,496 WARNING High control grad norm: 21.09 at step=592
+2026-04-23 20:32:46,178 INFO epoch=15 step=600 loss=140.5669 dsm=140.5624 control=0.0001 path_kl=-0.0306 jar=-0.0023 quality=0.7564
+2026-04-23 20:32:46,185 INFO epoch=15 done
+2026-04-23 20:32:46,197 INFO epoch=15 diag: cos_sim=0.1276 ctrl_mag=0.2483 score_mag=17.6473 ratio=0.0141
+2026-04-23 20:36:39,742 WARNING High control grad norm: 20.31 at step=612
+2026-04-23 20:36:57,779 WARNING High control grad norm: 29.67 at step=613
+2026-04-23 20:37:15,716 WARNING High control grad norm: 27.89 at step=614
+2026-04-23 20:38:09,534 WARNING High control grad norm: 24.17 at step=617
+2026-04-23 20:38:27,888 WARNING High control grad norm: 20.86 at step=618
+2026-04-23 20:39:21,872 WARNING High control grad norm: 22.51 at step=621
+2026-04-23 20:40:33,969 WARNING High control grad norm: 26.25 at step=625
+2026-04-23 20:40:51,892 WARNING High control grad norm: 20.67 at step=626
+2026-04-23 20:41:46,556 WARNING High control grad norm: 21.92 at step=629
+2026-04-23 20:42:04,539 WARNING High control grad norm: 29.02 at step=630
+2026-04-23 20:42:22,634 WARNING High control grad norm: 26.02 at step=631
+2026-04-23 20:43:35,079 WARNING High control grad norm: 32.70 at step=635
+2026-04-23 20:43:53,169 WARNING High control grad norm: 25.09 at step=636
+2026-04-23 20:44:11,172 WARNING High control grad norm: 23.91 at step=637
+2026-04-23 20:44:29,235 INFO epoch=16 done
+2026-04-23 20:44:29,247 INFO epoch=16 diag: cos_sim=-0.0139 ctrl_mag=0.0887 score_mag=17.6473 ratio=0.0050
+2026-04-23 20:45:05,413 WARNING High control grad norm: 25.91 at step=641
+2026-04-23 20:55:58,666 WARNING High control grad norm: 21.01 at step=677
+2026-04-23 20:56:16,774 INFO epoch=17 done
+2026-04-23 20:56:16,786 INFO epoch=17 diag: cos_sim=-0.1139 ctrl_mag=0.1845 score_mag=17.6473 ratio=0.0105
+2026-04-23 20:56:34,767 WARNING High control grad norm: 40.80 at step=680
+2026-04-23 20:56:52,743 WARNING High control grad norm: 44.42 at step=681
+2026-04-23 20:57:10,901 WARNING High control grad norm: 40.31 at step=682
+2026-04-23 20:57:28,703 WARNING High control grad norm: 25.20 at step=683
+2026-04-23 20:58:05,294 WARNING High control grad norm: 27.04 at step=685
+2026-04-23 20:58:23,488 WARNING High control grad norm: 47.20 at step=686
+2026-04-23 20:58:42,074 WARNING High control grad norm: 54.66 at step=687
+2026-04-23 20:59:00,506 WARNING High control grad norm: 42.59 at step=688
+2026-04-23 21:02:23,423 WARNING High control grad norm: 31.92 at step=699
+2026-04-23 21:02:23,425 INFO epoch=18 step=700 loss=614.1088 dsm=614.0929 control=0.0003 path_kl=0.1591 jar=-0.2229 quality=0.0000
+2026-04-23 21:03:55,429 WARNING High control grad norm: 35.59 at step=704
+2026-04-23 21:04:13,854 WARNING High control grad norm: 37.54 at step=705
+2026-04-23 21:04:31,825 WARNING High control grad norm: 26.26 at step=706
+2026-04-23 21:08:11,596 INFO epoch=18 done
+2026-04-23 21:08:11,607 INFO epoch=18 diag: cos_sim=0.1922 ctrl_mag=0.1354 score_mag=17.6473 ratio=0.0077
+2026-04-23 21:19:59,967 INFO epoch=19 done
+2026-04-23 21:19:59,979 INFO epoch=19 diag: cos_sim=0.2273 ctrl_mag=0.0503 score_mag=17.6473 ratio=0.0028
+2026-04-23 21:28:06,479 WARNING High control grad norm: 22.08 at step=786
+2026-04-23 21:31:44,319 INFO epoch=20 step=800 loss=236.3307 dsm=236.3392 control=0.0001 path_kl=-0.1847 jar=0.1647 quality=0.9964
+2026-04-23 21:31:44,322 INFO epoch=20 done
+2026-04-23 21:31:44,334 INFO epoch=20 diag: cos_sim=0.0583 ctrl_mag=0.0819 score_mag=17.6473 ratio=0.0046
+2026-04-23 21:32:20,399 WARNING High control grad norm: 23.20 at step=801
+2026-04-23 21:35:39,379 WARNING High control grad norm: 24.40 at step=812
+2026-04-23 21:36:15,137 WARNING High control grad norm: 20.46 at step=814
+2026-04-23 21:43:28,793 INFO epoch=21 done
+2026-04-23 21:43:28,805 INFO epoch=21 diag: cos_sim=0.2947 ctrl_mag=0.0321 score_mag=17.6473 ratio=0.0018
+2026-04-23 21:55:35,978 INFO epoch=22 done
+2026-04-23 21:55:35,997 INFO epoch=22 diag: cos_sim=-0.1383 ctrl_mag=0.1310 score_mag=17.6473 ratio=0.0074
+2026-04-23 22:02:06,512 INFO epoch=23 step=900 loss=443.6623 dsm=443.6553 control=0.0001 path_kl=0.0704 jar=-0.2374 quality=0.0000
+2026-04-23 22:09:02,923 INFO epoch=23 done
+2026-04-23 22:09:02,950 INFO epoch=23 diag: cos_sim=0.1390 ctrl_mag=0.0263 score_mag=17.6473 ratio=0.0015
+2026-04-23 22:21:09,555 INFO epoch=24 done
+2026-04-23 22:21:09,574 INFO epoch=24 diag: cos_sim=-0.1519 ctrl_mag=0.0353 score_mag=17.6473 ratio=0.0020
+2026-04-23 22:33:02,494 INFO epoch=25 step=1000 loss=362.4074 dsm=362.3839 control=0.0000 path_kl=0.1129 jar=-0.1246 quality=1.2225
+2026-04-23 22:33:02,499 INFO epoch=25 done
+2026-04-23 22:33:02,511 INFO epoch=25 diag: cos_sim=-0.0943 ctrl_mag=0.0995 score_mag=17.6473 ratio=0.0056
+2026-04-23 22:44:53,210 INFO epoch=26 done
+2026-04-23 22:44:53,227 INFO epoch=26 diag: cos_sim=0.0356 ctrl_mag=0.0835 score_mag=17.6473 ratio=0.0047
+2026-04-23 22:56:41,037 INFO epoch=27 done
+2026-04-23 22:56:41,056 INFO epoch=27 diag: cos_sim=-0.1136 ctrl_mag=0.0548 score_mag=17.6473 ratio=0.0031
+2026-04-23 23:02:43,809 INFO epoch=28 step=1100 loss=501.1457 dsm=501.1429 control=0.0000 path_kl=0.0277 jar=-0.0622 quality=0.0000
+2026-04-23 23:08:30,618 INFO epoch=28 done
+2026-04-23 23:08:30,639 INFO epoch=28 diag: cos_sim=-0.1432 ctrl_mag=0.0573 score_mag=17.6473 ratio=0.0032
+2026-04-23 23:20:20,413 INFO epoch=29 done
+2026-04-23 23:20:20,429 INFO epoch=29 diag: cos_sim=-0.1898 ctrl_mag=0.1688 score_mag=17.6473 ratio=0.0096
+2026-04-23 23:32:09,054 INFO epoch=30 step=1200 loss=137.1879 dsm=137.1763 control=0.0000 path_kl=0.0293 jar=-0.0371 quality=0.8637
+2026-04-23 23:32:09,062 INFO epoch=30 done
+2026-04-23 23:32:09,077 INFO epoch=30 diag: cos_sim=0.1847 ctrl_mag=0.0673 score_mag=17.6473 ratio=0.0038
+2026-04-23 23:43:57,052 INFO epoch=31 done
+2026-04-23 23:43:57,070 INFO epoch=31 diag: cos_sim=0.0082 ctrl_mag=0.0177 score_mag=17.6473 ratio=0.0010
+2026-04-23 23:55:44,721 INFO epoch=32 done
+2026-04-23 23:55:44,735 INFO epoch=32 diag: cos_sim=0.1482 ctrl_mag=0.0473 score_mag=17.6473 ratio=0.0027
+2026-04-24 00:01:48,135 INFO epoch=33 step=1300 loss=557.5541 dsm=557.5554 control=0.0000 path_kl=-0.0135 jar=0.0025 quality=0.0000
+2026-04-24 00:07:32,199 INFO epoch=33 done
+2026-04-24 00:07:32,213 INFO epoch=33 diag: cos_sim=0.0750 ctrl_mag=0.0643 score_mag=17.6473 ratio=0.0036
+2026-04-24 00:19:22,196 INFO epoch=34 done
+2026-04-24 00:19:22,208 INFO epoch=34 diag: cos_sim=-0.0340 ctrl_mag=0.0618 score_mag=17.6473 ratio=0.0035
+2026-04-24 00:31:14,458 INFO epoch=35 step=1400 loss=509.2187 dsm=509.2090 control=0.0000 path_kl=0.0049 jar=-0.0053 quality=0.9186
+2026-04-24 00:31:14,465 INFO epoch=35 done
+2026-04-24 00:31:14,481 INFO epoch=35 diag: cos_sim=0.1450 ctrl_mag=0.0459 score_mag=17.6473 ratio=0.0026
+2026-04-24 00:43:02,686 INFO epoch=36 done
+2026-04-24 00:43:02,700 INFO epoch=36 diag: cos_sim=0.1148 ctrl_mag=0.0343 score_mag=17.6473 ratio=0.0019
+2026-04-24 00:54:53,927 INFO epoch=37 done
+2026-04-24 00:54:53,942 INFO epoch=37 diag: cos_sim=0.0108 ctrl_mag=0.0625 score_mag=17.6473 ratio=0.0035
+2026-04-24 01:00:56,686 INFO epoch=38 step=1500 loss=522.7595 dsm=522.7583 control=0.0000 path_kl=0.0122 jar=-0.0150 quality=0.0000
+2026-04-24 01:06:41,024 INFO epoch=38 done
+2026-04-24 01:06:41,038 INFO epoch=38 diag: cos_sim=0.1781 ctrl_mag=0.0191 score_mag=17.6473 ratio=0.0011
+2026-04-24 01:18:30,615 INFO epoch=39 done
+2026-04-24 01:18:30,632 INFO epoch=39 diag: cos_sim=0.2249 ctrl_mag=0.0133 score_mag=17.6473 ratio=0.0008
+2026-04-24 01:30:17,915 INFO epoch=40 step=1600 loss=491.8986 dsm=491.8898 control=0.0000 path_kl=0.0063 jar=-0.0075 quality=0.8174
+2026-04-24 01:30:17,919 INFO epoch=40 done
+2026-04-24 01:30:17,935 INFO epoch=40 diag: cos_sim=-0.1556 ctrl_mag=0.0270 score_mag=17.6473 ratio=0.0015
+2026-04-24 01:42:10,707 INFO epoch=41 done
+2026-04-24 01:42:10,725 INFO epoch=41 diag: cos_sim=-0.0385 ctrl_mag=0.0206 score_mag=17.6473 ratio=0.0012
+2026-04-24 01:53:58,361 INFO epoch=42 done
+2026-04-24 01:53:58,375 INFO epoch=42 diag: cos_sim=0.1534 ctrl_mag=0.0086 score_mag=17.6473 ratio=0.0005
+2026-04-24 02:00:01,527 INFO epoch=43 step=1700 loss=658.8682 dsm=658.8683 control=0.0000 path_kl=-0.0009 jar=-0.0016 quality=0.0000
+2026-04-24 02:05:47,815 INFO epoch=43 done
+2026-04-24 02:05:47,827 INFO epoch=43 diag: cos_sim=-0.1265 ctrl_mag=0.0232 score_mag=17.6473 ratio=0.0013
+2026-04-24 02:17:40,622 INFO epoch=44 done
+2026-04-24 02:17:40,637 INFO epoch=44 diag: cos_sim=-0.1245 ctrl_mag=0.0117 score_mag=17.6473 ratio=0.0007
+2026-04-24 02:29:32,524 INFO epoch=45 step=1800 loss=1083.1019 dsm=1083.0872 control=0.0000 path_kl=0.0255 jar=-0.0284 quality=1.2148
+2026-04-24 02:29:32,528 INFO epoch=45 done
+2026-04-24 02:29:32,540 INFO epoch=45 diag: cos_sim=-0.0490 ctrl_mag=0.0168 score_mag=17.6473 ratio=0.0010
+2026-04-24 02:41:25,541 INFO epoch=46 done
+2026-04-24 02:41:25,558 INFO epoch=46 diag: cos_sim=-0.0810 ctrl_mag=0.0216 score_mag=17.6473 ratio=0.0012
+2026-04-24 02:53:20,779 INFO epoch=47 done
+2026-04-24 02:53:20,794 INFO epoch=47 diag: cos_sim=-0.1119 ctrl_mag=0.0133 score_mag=17.6473 ratio=0.0008
+2026-04-24 02:59:26,101 INFO epoch=48 step=1900 loss=555.4182 dsm=555.4177 control=0.0000 path_kl=0.0048 jar=-0.0055 quality=0.0000
+2026-04-24 03:05:12,948 INFO epoch=48 done
+2026-04-24 03:05:12,959 INFO epoch=48 diag: cos_sim=-0.1256 ctrl_mag=0.0119 score_mag=17.6473 ratio=0.0007
+2026-04-24 03:17:05,168 INFO epoch=49 done
+2026-04-24 03:17:05,181 INFO epoch=49 diag: cos_sim=-0.1186 ctrl_mag=0.0112 score_mag=17.6473 ratio=0.0006
+2026-04-24 03:29:01,212 INFO epoch=50 step=2000 loss=540.8075 dsm=540.8004 control=0.0000 path_kl=-0.0135 jar=0.0126 quality=0.8466
+2026-04-24 03:29:01,216 INFO epoch=50 done
+2026-04-24 03:29:01,229 INFO epoch=50 diag: cos_sim=-0.1137 ctrl_mag=0.0114 score_mag=17.6473 ratio=0.0006

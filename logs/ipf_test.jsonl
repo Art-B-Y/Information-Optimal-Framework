@@ -1,0 +1,14 @@
+{"ipf_iteration": 1, "phase": "forward", "epoch": 1, "global_step": 5, "batch_idx": 5, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 0.82}
+{"ipf_iteration": 1, "phase": "forward", "epoch": 1, "global_step": 10, "batch_idx": 10, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 1.51}
+{"ipf_iteration": 1, "phase": "forward", "epoch": 1, "global_step": 15, "batch_idx": 15, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 2.18}
+{"ipf_iteration": 1, "phase": "backward", "epoch": 1, "global_step": 20, "batch_idx": 4, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 2.87}
+{"ipf_iteration": 1, "phase": "backward", "epoch": 1, "global_step": 25, "batch_idx": 9, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 3.55}
+{"ipf_iteration": 1, "phase": "backward", "epoch": 1, "global_step": 30, "batch_idx": 14, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 4.29}
+{"ipf_iteration": 1, "phase": "summary", "global_step": 32, "last_fwd_loss": 0.0, "last_bwd_loss": 0.0, "wall_clock_seconds": 4.59}
+{"ipf_iteration": 2, "phase": "forward", "epoch": 1, "global_step": 35, "batch_idx": 3, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 5.02}
+{"ipf_iteration": 2, "phase": "forward", "epoch": 1, "global_step": 40, "batch_idx": 8, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 5.76}
+{"ipf_iteration": 2, "phase": "forward", "epoch": 1, "global_step": 45, "batch_idx": 13, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 6.57}
+{"ipf_iteration": 2, "phase": "backward", "epoch": 1, "global_step": 50, "batch_idx": 2, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 7.38}
+{"ipf_iteration": 2, "phase": "backward", "epoch": 1, "global_step": 55, "batch_idx": 7, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 8.16}
+{"ipf_iteration": 2, "phase": "backward", "epoch": 1, "global_step": 60, "batch_idx": 12, "ipf_loss": 0.0, "ctrl_norm": 0.0, "grad_norm": 0.0, "wall_clock_seconds": 8.9}
+{"ipf_iteration": 2, "phase": "summary", "global_step": 64, "last_fwd_loss": 0.0, "last_bwd_loss": 0.0, "wall_clock_seconds": 9.47}
