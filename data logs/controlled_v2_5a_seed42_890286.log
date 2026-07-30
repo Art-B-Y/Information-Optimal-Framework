@@ -1,0 +1,25 @@
+2026-04-25 00:48:20,838 INFO Loaded pretrained score backbone from C:\Users\artun\Desktop\ITS-project\checkpoints\score_fmnist_v2\score_best.pt
+2026-04-25 00:48:20,850 INFO Score model frozen -- only control policy will be trained.
+2026-04-25 00:48:20,876 INFO Applied scaled output init (std=1.0e-04) to output_proj.
+2026-04-25 00:48:20,878 INFO WarmupSchedule: warmup=5 ramp=5 target_pkL=0.0100 target_reinf=0.1000
+2026-04-25 00:48:20,879 INFO TwoPhaseScheduler: phase1=5 epochs at lr=1.0e-05, phase2 cosine from 5.0e-04
+2026-04-25 00:48:41,821 WARNING High control grad norm: 34163.86 at step=0
+2026-04-25 00:49:00,179 WARNING High control grad norm: 24298.34 at step=1
+2026-04-25 00:49:17,618 WARNING High control grad norm: 26581.61 at step=2
+2026-04-25 00:49:37,104 WARNING High control grad norm: 28978.33 at step=3
+2026-04-25 00:49:54,326 WARNING High control grad norm: 26813.39 at step=4
+2026-04-25 00:50:11,529 WARNING High control grad norm: 28805.19 at step=5
+2026-04-25 00:50:28,927 WARNING High control grad norm: 32771.99 at step=6
+2026-04-25 00:50:46,297 WARNING High control grad norm: 26778.27 at step=7
+2026-04-25 00:51:03,732 WARNING High control grad norm: 29049.29 at step=8
+2026-04-25 00:51:21,168 WARNING High control grad norm: 27938.44 at step=9
+2026-04-25 00:51:40,357 WARNING High control grad norm: 37129.54 at step=10
+2026-04-25 00:51:59,685 WARNING High control grad norm: 25856.11 at step=11
+2026-04-25 00:52:17,098 WARNING High control grad norm: 29175.69 at step=12
+2026-04-25 00:52:36,555 WARNING High control grad norm: 27731.80 at step=13
+2026-04-25 00:52:55,965 WARNING High control grad norm: 34792.50 at step=14
+2026-04-25 00:53:13,232 WARNING High control grad norm: 23148.28 at step=15
+2026-04-25 00:53:30,579 WARNING High control grad norm: 23810.14 at step=16
+2026-04-25 00:53:47,850 WARNING High control grad norm: 24358.18 at step=17
+2026-04-25 01:00:52,596 WARNING High control grad norm: 25206.32 at step=18
+2026-04-25 06:52:13,350 WARNING High control grad norm: 29444.69 at step=19
