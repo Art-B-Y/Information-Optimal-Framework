@@ -1,0 +1,39 @@
+{
+  "loss_magnitudes": {
+    "dsm_loss": 0.7424036264419556,
+    "control_energy": 9.263214906241046e-07,
+    "path_kl": -0.011033257469534874,
+    "quality_loss": 1.9553027153015137
+  },
+  "weighted_loss_magnitudes": {
+    "dsm_loss": 0.7424036264419556,
+    "control_energy_weighted": 9.263214906241047e-09,
+    "path_kl_weighted": -0.0011033257469534874,
+    "quality_loss_weighted": 0.019553027153015136
+  },
+  "gradient_magnitudes_output_layer": {
+    "dsm_loss": 0.0,
+    "control_energy_weighted": 8.328855074068997e-06,
+    "path_kl_weighted": 1.452115535736084,
+    "quality_loss_weighted": 0.0,
+    "total": 1.4521177411079407
+  },
+  "gradient_magnitudes_first_conv": {
+    "dsm_loss": 0.0,
+    "control_energy_weighted": 1.135193553741809e-10,
+    "path_kl_weighted": 2.52333175012609e-05,
+    "quality_loss_weighted": 0.0
+  },
+  "dominance_ratios": {
+    "control_energy_vs_quality": 8328855074.068996,
+    "path_kl_vs_quality": 174347.55709494135,
+    "quality_vs_control_energy": 0.0
+  },
+  "diagnosis": "PATH_KL_DOMINANT_QUALITY_BROKEN",
+  "redesign_implications": {
+    "detach_control_energy": true,
+    "reduce_path_kl_weight": true,
+    "increase_quality_weight": true,
+    "use_trajectory_quality": true
+  }
+}

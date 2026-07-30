@@ -1,0 +1,402 @@
+================================================================================
+ITS PROJECT — PHASE 1 AUDIT LOG (TECHNICAL ERROR ELIMINATION)
+Generated: 2026-07-15
+Scope: full-repository audit + fixes. NO experimental results produced (by design).
+================================================================================
+
+METHOD
+------
+Every module in src/its/, every script in scripts/, every config in configs/, every
+test in tests/, every document in docs/, every results JSON in data/results/, every
+session summary and audit log (Sessions 4-10), every JSONL training log, and every
+checkpoint directory was read. 12 parallel reader agents produced 213 candidate
+findings (40 critical, 48 high). Every headline finding was then ADVERSARIALLY
+VERIFIED by 3 independent agents with distinct lenses (pure math / autograd
+semantics / executed numerical test), and each was reduced to a MINIMAL EXECUTED
+REPRODUCTION before being accepted. Findings that survived only as arguments were
+discarded.
+
+Adversarial verification materially corrected the initial analysis twice; both
+corrections are recorded below (see A4 and B2). This is why the step was worth it.
+
+================================================================================
+PART 1 — CHECKLIST ITEMS FROM THE BRIEF: AUDITED, ALREADY CLEAN
+================================================================================
+The brief's Phase 1 checklist presumed a set of errors. They were checked and are
+NOT present — prior sessions did this work properly. Reported honestly rather than
+inventing fixes:
+
+  [OK] Imports resolve from project root ............ all modules import cleanly
+  [OK] torch.load includes map_location ............ 49/49 call sites in src/, scripts/, tests/
+  [OK] Divisions by sigma clamped .................. score_unet.py:208 (min=1e-5), before both uses
+  [OK] Divisions by sqrt(1-alpha_bar) clamped ...... ddpm.py:53,61,69,71 (min=1e-5)
+  [OK] Divisions by temperature .................... no unguarded site exists
+  [OK] Logs/exps guarded ........................... jarzynski uses stable logsumexp; time-embed clamps before log
+  [OK] score_to_eps before DDPM AND DDIM updates ... ddpm.py:58, correctly before both branches
+  [OK] Control policy reshape chain ................ verified by execution: (B,1,28,28)->view(B,-1)->view_as(x) exact
+  [OK] Device consistency .......................... no mismatches found
+  [OK] Segmented/fault-tolerant infrastructure ..... INTACT: exit-code-42 handoff, atomic autosave
+                                                     (.tmp+rename), --resume-latest, --max-wall-hours
+  [OK] Session 10 v2 components importable ......... all callable individually
+  [OK] Source encoding ............................. all files valid UTF-8, no mojibake
+  [OK] Config completeness ......................... no stale references to removed modules
+
+  CONCLUSION: the codebase's SURFACE hygiene is genuinely good. Every real defect
+  found is SEMANTIC, and every one produces plausible-looking output. That is
+  precisely why ten sessions did not catch them.
+
+================================================================================
+PART 2 — THE DEFECTS ACTUALLY FOUND, AND THE FIXES APPLIED
+================================================================================
+
+--------------------------------------------------------------------------------
+A1/A2 [FIXED] The score-SDE sampler did not sample from the data distribution
+--------------------------------------------------------------------------------
+FILES: src/its/sde/score_sde.py:66 ; src/its/training/controlled_score_training.py:531 (duplicate)
+
+WAS:  drift = 0.5*beta_t*(-x - score)          # = -0.5*beta*x - 0.5*beta*score
+      x = x + drift*step_size + sqrt(beta_t*step_size)*noise   # step_size=+1/N while t DESCENDS
+
+Three compounding errors:
+  (i)   sign inverted on BOTH drift terms (positive step used with a reverse-drift formula)
+  (ii)  score coefficient 0.5*beta instead of beta (factor 2)
+  (iii) the model is trained with a VE kernel (score_training.py:244 `noisy = x + sigma*noise`,
+        target `-noise/sigma`, log-uniform sigma in [0.01,1]) but sampled with VP linear-beta
+        dynamics. There is no SDE for which this (sigma-schedule, beta-schedule) pair is a
+        discretisation.
+
+PROOF (executed, exact analytic score, data N(0, 0.5^2), target variance 0.25):
+    steps      code's rule      corrected rule
+      50       var = 20.32      var = 0.2570
+     100       var = 20.65      var = 0.2525
+     200       var = 21.00      var = 0.2511
+     500       var = 21.13      var = 0.2516
+  The code's rule converges to ~84x the true variance and does NOT improve with NFE.
+  This exactly predicts the observed SDE baseline FID 326.09/325.20/325.69 at NFE
+  50/100/200 -- flat, which is impossible for a working sampler.
+  Independently reproduced by a reader agent on N(3.0,0.5^2): the loop returns
+  mean ~= -9.87 (target +3.0), and with the score forced to zero returns N(0,I),
+  i.e. it relaxes to noise regardless of the score model.
+
+FIX: implemented the correct VE reverse-diffusion predictor matching the VE-trained
+     model: x <- x + dvar*score + sqrt(dvar)*z with dvar = sigma_i^2 - sigma_{i-1}^2.
+     Added ScoreSDEConfig.parameterisation ("ve" default | "legacy_vp"), the latter
+     retained ONLY to reproduce archived runs and documented as never valid for a
+     result. VE prior init corrected to N(0, sigma_max^2) (was always N(0,I)).
+     Applied to BOTH the eval sampler and the training rollout (simulate_path).
+
+VERIFIED AFTER FIX (executed, analytic score, target mean 3.0 / std 0.5):
+    NFE=50  -> mean +2.9654 std 0.5328
+    NFE=100 -> mean +2.9696 std 0.5149
+    NFE=200 -> mean +2.9688 std 0.5085
+    NFE=500 -> mean +2.9703 std 0.5046      <-- converges AND improves with NFE
+    legacy_vp for contrast -> mean -74.30 std 20.65 (and worsening with NFE)
+
+--------------------------------------------------------------------------------
+A3 [FIXED] Control was silently disabled in EVERY evaluation
+--------------------------------------------------------------------------------
+FILES: src/its/sde/score_sde.py:24 (default), :70 (gate) ;
+       scripts/eval_controlled_multiseed.py:51 and :125 ; +4 further eval call-sites
+
+WAS:  ScoreSDEConfig.control_weight defaulted to 0.0, and sample() gated the entire
+      control branch behind `if control is not None and cfg.control_weight > 0:`.
+      eval_controlled_multiseed.py:125 constructed the config WITHOUT control_weight,
+      and :51 REBUILT it copying five fields and dropping control_weight again.
+      The control policy was loaded, passed to evaluate_sampler, and NEVER APPLIED.
+
+THIS IS THE SINGLE MOST CONSEQUENTIAL FINDING OF THE AUDIT. It explains, exactly:
+  - controlled FID 327.47 ~= SDE baseline 325-326  -> they are the SAME computation
+  - ablation_study.json: B, C, D, F, conv, no-EMA all fid=326.0024719238281 to 16
+    significant digits, ACROSS DIFFERENT ARCHITECTURES -> none applied control
+  - conv_checkpoint_fid_trajectory.json: all 10 epochs fid=335.1768493652344
+    identical -> checkpoint weights never reached the sampler
+  - controlled_config_d_multiseed.json byte-identical to controlled_conv_multiseed.json
+
+  CONSEQUENCE FOR THE PAPER: the inference "controlled FID = baseline FID => the
+  controller collapsed" is INVALID. Those FIDs are identical for a trivial reason.
+  The project's headline finding across Sessions 9-10 loses its FID evidence.
+
+FIX: (a) sample() now RAISES ValueError if a control policy is supplied while
+         control_weight <= 0 -- it can no longer fail silently;
+     (b) eval_controlled_multiseed.py uses dataclasses.replace(sde_cfg, num_steps=nfe)
+         so no field can be dropped by omission, plus an explicit assert;
+     (c) control_weight=1.0 passed explicitly at the call-site;
+     (d) beta_max aligned 5.0 -> 10.0 (train/eval mismatch, C6).
+
+--------------------------------------------------------------------------------
+A4 [FIXED] The Girsanov log-Radon-Nikodym / path-KL formula was wrong
+--------------------------------------------------------------------------------
+FILES: controlled_score_training.py:544,549 ; sde/score_sde.py:83,109 ;
+       objectives/loss_components.py:57,238  (FOUR copies of the same wrong expression)
+
+WAS:  log_rn_step = <u,eps>*sqrt(beta*dt) - 0.5*||u||^2*dt   ;  path_kl = -log_rn.mean()
+
+TRUE: log_rn_step = <delta,z>/sqrt(var) + ||delta||^2/(2*var)  ;  path_kl = +log_rn.mean()
+      (delta = the drift shift actually integrated; var = the step's noise variance)
+
+PROOF (executed against exact Gaussian log-densities):
+      correct formula vs ground truth: err = 3.3e-16
+      code's formula  vs ground truth: err = 9.4e-01 in a SINGLE step
+      code's path_kl off by exactly a factor beta_t (= 3.0 in the test)
+      Independently Monte-Carlo verified by an adversarial agent to 4.4e-15.
+  Since beta sweeps 0.1 -> 10 during sampling this is a TIME-VARYING distortion; it
+  cannot be absorbed into path_kl_weight. Path-space KL is one of the five headline
+  quantities the framework claims to track: every path-KL ever reported is wrong.
+
+  *** CORRECTION FROM ADVERSARIAL VERIFICATION (recorded because it matters) ***
+  My initial claim said the code "multiplies by beta in both terms". That is WRONG:
+  the quadratic term contains NO beta at all -- it OMITS the required 1/beta. The
+  net error is a factor of beta in both terms, but by a different mechanism.
+  More importantly, a verifier proved that fixing line 544 ALONE would be
+  CATASTROPHIC: line 549's `path_kl = -log_rn.mean()` sign-compensates the error,
+  and correcting the formula without flipping that sign yields a "path KL" that is
+  NEGATIVE and unbounded below in ||u||. The two MUST change together. This is why
+  the bug survived ten sessions: two sign errors cancelled, producing a positive,
+  plausible-looking ~0.5*||u||^2*dt.
+
+FIX: created src/its/sde/girsanov.py holding the SINGLE correct implementation,
+     stated in terms of the realised drift shift and realised noise variance (so it
+     is correct for VP, VE, or any Euler scheme). All four call-sites now use it.
+     The sign flip and the formula were changed together, and both functions carry
+     a comment stating they are a matched pair.
+
+--------------------------------------------------------------------------------
+B2 [FIXED] The v2 REINFORCE objective was unbounded below (caused the 5A divergence)
+--------------------------------------------------------------------------------
+FILE: src/its/objectives/loss_components.py:159
+
+WAS:  baseline = rewards.detach().mean()
+      return -((rewards.detach() - baseline) * log_probs).mean()
+
+  log_probs (the Girsanov exponent) grows QUADRATICALLY in ||u|| and is unbounded.
+  With a mean-zero baseline, ~half of every batch has advantage < 0 BY CONSTRUCTION,
+  and for those samples -A_i*log_prob_i -> -inf as ||u|| -> inf. Additionally the
+  advantage was not standardised and rewards were not in [0,1] as the docstring
+  claimed -- they reached ~1e6.
+
+  WHY grad_clip=1.0 DID NOT SAVE IT: clipping bounds step SIZE, not divergence. On
+  an objective unbounded below, clipped descent still marches to infinity at a
+  bounded rate. The observed STEADY MONOTONIC growth of the control/score ratio
+  (19.9 -> 55,000 over 30 epochs) is exactly that signature.
+
+  *** CORRECTION FROM ADVERSARIAL VERIFICATION ***
+  The divergence has TWO phases, not one (my initial single-cause account was wrong):
+    Phase 1 (ep 1-5): WarmupSchedule zeroes path_kl_weight AND reinforce_weight while
+      detach_control_energy=True removes control energy from the gradient -> ||u||
+      has NO REGULARISER AT ALL. Control energy grew 25,000x (0.21 -> 5301) before
+      any Girsanov term was switched on. Ratio already 19.9 at epoch 1.
+    Phase 2 (ep 6+): reinforce_weight becomes non-zero and total_loss goes negative
+      at EXACTLY epoch 6 -> the unbounded surrogate takes over -> -1.59e14.
+  Also proven: fixing the Girsanov sign alone does NOT fix this. With the corrected
+  log_rn ~ +||u||^2/(2*var), the pathology MIGRATES to positive-advantage samples.
+  The surrogate itself must be bounded.
+
+FIX: standardise the advantage by its std (scale-free, standard variance reduction),
+     clamp the standardised advantage to +/-5, clamp the log-prob factor to +/-50.
+     Both clips apply to the score-function COEFFICIENT, so the estimator remains an
+     unbiased policy gradient in the unclipped region.
+
+--------------------------------------------------------------------------------
+C1 [FIXED] The trajectory quality loss had a silently broken gradient
+--------------------------------------------------------------------------------
+FILE: src/its/objectives/loss_components.py:139
+
+WAS:  gen_sq = (gen_feats**2).sum(1, keepdim=True)
+      with torch.no_grad():
+          real_sq = ...
+          cross = gen_feats @ real_feats.T      # <-- INSIDE no_grad: DETACHED
+      dist2 = gen_sq + real_sq.T - 2*cross      # gradient flows ONLY through gen_sq
+
+PROOF (executed): the forward value is BIT-IDENTICAL to a correct cdist
+  implementation, but the gradient is exactly 2*gen_feats/(B*tau) -- the gradient of
+  ||phi(gen)||^2, i.e. pure shrinkage of Inception features toward the ORIGIN, with
+  ZERO pull toward the nearest real sample. Cosine similarity to the correct
+  gradient: 0.7415. Confirmed bit-for-bit by three independent verifiers; one noted
+  the nearest-neighbour search is 100% gradient-irrelevant (all columns share the
+  same gradient).
+  This was the load-bearing fix Session 10 introduced to CURE the collapse, and it
+  did not do what it claimed.
+
+FIX: moved `cross` out of the no_grad block (only real_sq, which depends solely on
+     already-detached real_feats, remains detached).
+
+--------------------------------------------------------------------------------
+C2 [FIXED] compute_v2_total_loss added control energy with no weight
+--------------------------------------------------------------------------------
+FILE: src/its/objectives/loss_components.py:313
+WAS:  `... + ce` -- a bare term with an implicit weight of 1.0 while every other term
+      carried an explicit coefficient; the configured control weight was ignored.
+FIX:  added an explicit control_energy_weight parameter (default 0.0).
+
+--------------------------------------------------------------------------------
+C3 [FIXED] Entropy production was computed on the UNCONTROLLED trajectory
+--------------------------------------------------------------------------------
+FILE: scripts/compute_entropy_production.py:63
+WAS:  the control was computed (line 54) and tallied into the energy (line 57) but
+      NEVER added to the drift -- `drift = 0.5*beta_t*(-x - score)` with no ctrl term.
+      The reported "ITS entropy production" therefore described the uncontrolled path.
+      data/results/entropy_production_profile.json is void.
+FIX:  the control term is now integrated into the state update.
+
+--------------------------------------------------------------------------------
+C6 [FIXED] Latent Girsanov-path bugs
+--------------------------------------------------------------------------------
+  - controlled_score_training.py:546 integrated `control_weight * control` into the
+    drift while :544 passed the BARE control_vec to the Girsanov term -- inconsistent
+    whenever control_weight != 1. FIXED: the exponent now receives the exact tensor
+    that was integrated.
+  - jarzynski_subsample > 1 summed only every N-th step with NO 1/N rescaling,
+    silently under-counting path_kl. FIXED: rescaled in both sampler and trainer.
+    (Run 5A used subsample=1, so this was never triggered.)
+  - Jarzynski saturation: the estimate pins to the +/-clip rail once any trajectory
+    saturates (run 5A logged exactly -50.0 for most epochs -- a rail, not a
+    measurement). FIXED: sample() now emits a `jarzynski_saturated` flag.
+
+================================================================================
+PART 3 — DEFECTS FOUND AND DOCUMENTED BUT NOT FIXED THIS SESSION
+================================================================================
+Recorded honestly rather than silently skipped. All are in docs/current_state_diagnosis.md.
+
+  [OPEN] C4 — scripts/extended_baseline_analysis.py:108 and :188: two PROVEN crashes.
+         :108 `hasattr(ctrl_policy,"config")` always true (the MLP ControlPolicy also
+         sets self.config), so the 4-D branch is always taken; :188 loads
+         checkpoints/fmnist_classifier.pt into an architecture different from the one
+         compute_mode_coverage.py writes to that same path. Deferred: the script
+         produces no result needed before Phase 2.
+
+  [OPEN] C5 — samplers/sb_solver.py compute_ipf_loss is a pure 0.5/sigma^2*sum||u||^2
+         penalty whose unique minimiser is u=0. There is NO endpoint/marginal
+         constraint, so IPF as written CANNOT converge to a bridge, and
+         ipf_toy_convergence.json measures nothing. Deferred: needs a design decision
+         (implement the bridge constraint, or declare IPF out of scope for the paper).
+
+  [OPEN] C7 — docs/controller_collapse_analysis.md:84 reports per-seed FIDs
+         "(seed 42: 328.0, seed 1: 327.5, seed 7: 327.0)" that exist in NO results
+         file (actual: 327.11 / 326.12 / 329.19, and seed 1 was never run).
+         docs/paper_requirements_roadmap.md:13 asserts the v2 redesign "fixes this"
+         (it diverged); its §8 lists the Girsanov path-KL formulation as
+         "Already Unconditionally Publishable" while §1.8 of the same document proves
+         path-KL is the collapse mechanism and A4 above proves the formula is wrong.
+         Deferred: these documents describe a superseded understanding; rewriting them
+         belongs with the paper rewrite, not Phase 1.
+
+  [OPEN] Phase 1E — quarantining the void results into
+         data/results/deprecated_broken_sampler/. NOT done: moving a project's entire
+         result history is the user's call. An additive, non-destructive notice was
+         written instead: data/results/RESULTS_ARE_VOID_READ_ME.md.
+
+  [OPEN] Phase 0 — the environment regression (see Part 5). NOT fixed: reinstalling
+         torch is an environment mutation requiring confirmation.
+
+================================================================================
+PART 4 — THE TEST SUITE
+================================================================================
+BASELINE BEFORE ANY CHANGES: 76 passed, 1 skipped, 966s (77 collected).
+  The 1 skip is test_phase5_hardening.py:1018 "CUDA not available" (see Part 5).
+  Skipped with a clear reason, not deleted, per the brief.
+
+  *** THE MOST IMPORTANT FACT IN THIS AUDIT ***
+  The suite was 76/77 GREEN while the sampler did not sample from the data
+  distribution, control was silently disabled in every evaluation, path-KL was wrong
+  by a factor of beta_t, and the quality gradient pointed in a different direction
+  from the loss it claimed to descend. NOT ONE test failed. Every test asserted
+  shapes, finiteness, or importability -- never that a number was scientifically
+  RIGHT. A test suite that cannot fail on broken science is not a safety net; it is
+  a source of false confidence, and it supplied ten sessions of it.
+
+ADDED: tests/test_scientific_correctness.py (12 tests), each tied to a specific
+defect and each FALSIFIED against the pre-audit code to prove it can fail:
+
+  test_sampler_recovers_known_gaussian ........... A1/A2  falsified: pre-audit mean -1080 vs target +3.0 -> FAILS
+  test_sampler_error_decreases_with_nfe .......... A1     the test whose absence cost ten sessions
+  test_control_changes_the_sample ................ A3
+  test_control_weight_zero_with_policy_raises .... A3
+  test_girsanov_matches_exact_log_density_ratio .. A4     falsified: pre-audit 0.6162 vs exact 0.7190 -> FAILS
+  test_path_kl_is_nonnegative_and_matches_analytic A4
+  test_path_kl_minimised_at_zero_control ......... A4
+  test_trajectory_quality_gradient_matches_fd .... C1
+  test_reinforce_loss_bounded_as_control_grows ... B2     falsified: pre-audit -9.94e7 -> FAILS
+  test_reinforce_invariant_to_reward_scale ....... B2
+  test_v2_total_loss_control_energy_has_weight ... C2
+  test_no_bit_identical_fids_across_architectures  A3     data-integrity guard
+
+  NOTE ON HONESTY: the first draft of test_reinforce_loss_bounded PASSED on the
+  pre-audit code -- it used random log_probs, whose mean cancels, so it was vacuous.
+  Falsification caught this and the test was rewritten to model the real geometry
+  (log_rn strictly negative, growing in ||u||, correlated with reward). It now fails
+  correctly on the old code. A test that cannot fail on the bug it targets is worse
+  than no test, because it certifies the bug as fixed.
+
+STATUS AFTER FIXES: 12/12 new tests pass. 59/59 pass in the fast subset
+(all files except the ~16-min test_phase5_hardening.py). Full-suite confirmation is
+recorded in the session summary.
+
+Also verified by execution after the fixes:
+  - simulate_path runs end-to-end; path_kl = +3.08 (>= 0, as a KL must be);
+    gradients flow into the control policy (grad norm 5.34e2);
+    jarzynski returns a real value (-1.008) instead of being pinned at the -50 rail.
+
+================================================================================
+PART 5 — ENVIRONMENT REGRESSION (BLOCKS ALL TRAINING — NOT FIXED)
+================================================================================
+                     RECORDED (gpu_environment.json)   ACTUAL (measured now)
+  torch              2.5.1+cu121                       2.3.1+cpu
+  torchvision        --                                0.18.1+cpu
+  torch.version.cuda 12.1                              None
+  cuda_available     true                              False
+
+The HARDWARE IS PRESENT AND HEALTHY: nvidia-smi reports GTX 1650 Ti, 4096 MiB,
+driver 566.36, CUDA 12.7, 0% utilisation. The installed WHEELS are CPU-only --
+something reinstalled torch from the default PyPI index.
+
+THIS IS WHY RUN 5A TOOK 176 HOURS FOR 39 EPOCHS: it trained on CPU. Extrapolating,
+a 100-epoch run costs ~450 h ~= 19 days on CPU. No Phase 2 training is realistic
+until this is fixed.
+
+NOT APPLIED — requires confirmation (environment mutation, ~2.5 GB download):
+  pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 \
+      --index-url https://download.pytorch.org/whl/cu121
+
+================================================================================
+PART 6 — BACKUP
+================================================================================
+This project is NOT a git repository, so there is no version-control undo. Before
+any edit, the pre-audit src/, scripts/ and tests/ trees were copied to:
+      data/results/_pre_phase1_backup_20260715/   (2.4 MB)
+That is the only way to revert the Phase 1 changes.
+
+================================================================================
+PART 7 — VERDICT
+================================================================================
+IS THE CODEBASE READY FOR THE PHASE 2 TRAINING RUNS?
+
+  NO — and that is the honest answer, not a hedge. Two blockers remain, neither of
+  which is a code defect:
+
+  1. PHASE 0 (environment): torch is CPU-only. Training is ~50-100x too slow to be
+     viable. Requires a confirmed reinstall.
+
+  2. GATE 2.2 (substrate validation): the sampler is now provably correct ON AN
+     ANALYTIC SCORE. It has NOT been shown correct on the real score model, because
+     that requires generating samples -- an experimental result, which this phase is
+     forbidden from producing until the code is correct. The FIRST action of Phase 2
+     must be to retrain the score model under the now-consistent kernel and verify
+     the UNCONTROLLED sampler reaches FID < 30 at NFE=100 AND improves with NFE.
+     Until that gate passes, no ITS number means anything.
+
+WHAT PHASE 1 DID ACHIEVE:
+  - The four fatal defects (A1, A2, A3, A4) are fixed, each verified by execution.
+  - The v2 objective's unboundedness (B2) and its broken quality gradient (C1) are
+    fixed -- these are why run 5A diverged and why the Session 10 redesign could
+    never have worked.
+  - The Girsanov expression is de-duplicated from four copies into one tested module.
+  - The test suite can now FAIL on broken science; every new test was falsified
+    against the pre-audit code to prove it.
+  - Three open defects and two blocked actions are documented rather than hidden.
+
+WHAT PHASE 1 CANNOT ACHIEVE:
+  No amount of code correctness recovers the existing results. Every experimental
+  number in this project is void and must be regenerated from a retrained score
+  model. The project is further from a paper than its own record suggested. See
+  docs/roadmap_current.md.
+================================================================================

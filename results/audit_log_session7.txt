@@ -1,0 +1,57 @@
+=== ITS SESSION 7 AUDIT LOG ===
+
+STEP 1A — IMPORT AUDIT
+All required imports verified OK:
+  [OK] its
+  [OK] its.controllers.neural_control.ConvControlPolicy
+  [OK] its.controllers.neural_control.ControlPolicy
+  [OK] its.samplers.controlled_sde.ControlledSDESampler (alias added)
+  [OK] its.samplers.ddpm.DDPMSampler
+  [OK] its.samplers.sb_solver.SchrodingerBridgeSampler
+  [OK] its.sde.score_sde.ScoreSDE (alias added)
+  [OK] its.sde.conversions.score_to_eps
+  [OK] its.sde.conversions.eps_to_score
+  [OK] its.models.score_unet.ScoreUNet
+  [OK] its.physics.fluctuation.JarzynskiEstimator (class added)
+  [OK] its.eval.evaluator.Evaluator (class added)
+
+FIXES APPLIED IN 1A:
+  - controlled_sde.py: added ControlledSDESampler = ControlledSampler alias
+  - score_sde.py: added ScoreSDE = ScoreSDESimulator alias
+  - fluctuation.py: added JarzynskiEstimator class wrapping jarzynski_work_estimate
+  - evaluator.py: added Evaluator class wrapping evaluate_sampler/evaluate_ddpm_baseline
+
+STEP 1B — CHECKPOINT AUDIT
+  score_fmnist_v2: 10 checkpoints, latest=score_epoch_0050.pt
+    Keys verified: ['model_state_dict', 'model_config', 'optimizer_state_dict', 'epoch', 'global_step']
+  controlled_config_d_seed42: 7 checkpoints, latest=controlled_last.pt
+    Keys verified: ['score_state_dict', 'control_state_dict', 'score_config', 'control_config', 'ema_state_dict']
+  ipf_fmnist_full: 6 checkpoints, latest=ipf_last.pt
+    Keys verified: ['forward_policy_state_dict', 'backward_policy_state_dict', 'ipf_iteration']
+
+STEP 1C — RESULTS FILE AUDIT
+  [OK] ablation_study.json (3785 bytes)
+  [OK] baseline_evals_fashionmnist.json (3160 bytes)
+  [OK] cifar10_baseline_eval.json (564 bytes)
+  [OK] control_drift_analysis.json (4165 bytes)
+  [OK] controlled_config_d_results.json (481 bytes)
+  [OK] controlled_fmnist_eval.json (521 bytes)
+  [OK] crooks_verification.json (850 bytes)
+  [OK] eval_results.json (1788 bytes)
+  [OK] fmnist_score_v2_metrics.json (122 bytes)
+  [OK] gpu_environment.json (344 bytes)
+  [OK] hyperparam_sweep_fmnist.json (7152 bytes)
+  [OK] ipf_toy_convergence.json (2153 bytes)
+  [OK] pareto_frontier_final.json (1362 bytes)
+  [OK] reproducibility_manifest.json (1959 bytes)
+  ablation_study.json: num_samples=2048, 7 configs
+  FID provenance: num_samples=2048 present. Seed not recorded. Flag for recomputation with 3 seeds in Step 3C.
+
+STEP 1D — TEST SUITE
+  34/34 tests passing (315.58s)
+
+STEP 1E — ANALYTICS REPORT
+  Size: 346,400 bytes (limit: 5,242,880) — OK
+  HTML structure: well-formed (<html> and </html> present)
+
+AUDIT COMPLETE — no blocking issues. All fixes applied. Proceeding to Step 2.

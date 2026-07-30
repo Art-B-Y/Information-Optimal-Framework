@@ -1,0 +1,203 @@
+ITS PROJECT — SESSION 5 SUMMARY
+Generated: 2026-04-19
+=============================================================
+
+Session 5 transitions the ITS project from a working prototype to paper-grade
+infrastructure. Key achievements: root-cause diagnosis of the FID uniformity problem
+(N=256 noise floor), extended training infrastructure with YAML-driven suite runner and
+early stopping, complete information-theoretic analysis pipeline (path KL trajectory,
+Jarzynski validity, Crooks verification), all 5 publication-ready paper artifacts, and
+26 tests passing (up from 21). Google Cloud VM activated for GPU-accelerated training.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. ROOT CAUSE ANALYSIS — FID UNIFORMITY PROBLEM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Previous session: All 6 sweep configs produced FID ≈ 439 with no hyperparameter sensitivity.
+
+Diagnosed causes (Step 1 audit):
+  • PRIMARY: N=256 FID has 30–80 point Monte Carlo variance. Config differences < noise floor.
+  • SECONDARY: 1 epoch / 2000 samples = 31 gradient steps — control policy barely moves from zero.
+  • SECONDARY: Score model weight ratios vs random init ≈ 1.0 across all layers (barely trained).
+  • CAT5: DDPM sqrt(1–alpha_bar_t) could produce NaN at t=0 (fixed).
+  • CAT6: Hydra struct mode rejects unknown config keys without prior YAML declaration (fixed).
+
+Fix strategy:
+  • Use N≥2048 for all reported FID values.
+  • Train ≥5 epochs on full dataset (60k FashionMNIST).
+  • Use Google Cloud VM for GPU-accelerated runs.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. FILES CREATED (Session 5)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TRAINING INFRASTRUCTURE
+  scripts/run_experiment_suite.py           NEW — YAML-driven sequential training runner
+                                              • Loads suite YAML with multiple run configs
+                                              • Catches failures, continues to next run
+                                              • Incremental JSON logging with timestamp
+                                              • --dry-run flag for validation
+
+  configs/suites/fmnist_config_sweep.yaml   NEW — 5-epoch sweep of configs C, D, F
+                                              • eval_after: true, eval_num_samples: 2048
+                                              • eval_seed: 42 for reproducibility
+
+  scripts/select_best_checkpoint.py         NEW — information-theoretic checkpoint selection
+                                              • Reads JSONL, aggregates per-epoch metrics
+                                              • Criterion: min path_kl where dsm ≤ min_dsm × 1.05
+                                              • Prints ranked table
+
+THERMODYNAMIC ANALYSIS
+  scripts/analyze_thermodynamics.py         NEW — Steps 4A–4D
+                                              • 4A: path_kl_trajectory() from JSONL log
+                                              • 4C: jarzynski_validity() — std(W)/kT < 2.0
+                                              • 4D: crooks_crossing_point() — P_F vs P_R(-W)
+                                              • Saves 3 JSON files to data/results/
+
+PAPER INFRASTRUCTURE
+  scripts/generate_results_table.py         NEW — LaTeX + plain-text results table
+                                              • Reads baseline_comparison + extended_sweep JSON
+                                              • Fallback to stale Session 1–3 data
+                                              • \textbf{} best, \underline{} second-best
+                                              • Saves results_table.tex and results_table.txt
+
+  scripts/generate_paper_figures.py         NEW — 5 publication-quality figures
+                                              • Figure 1: FID vs NFE with Pareto frontier
+                                              • Figure 2: Training dynamics (DSM, path KL, ctrl energy)
+                                              • Figure 3: Control energy vs FID scatter
+                                              • Figure 4: Crooks work distribution histograms
+                                              • Figure 5: Path KL trajectory + moving average
+                                              • PNG (300 DPI) + PDF (vector) for each
+
+  data/results/reproducibility_manifest.json  NEW — complete reproduction guide
+                                              • Environment versions, dataset specs
+                                              • Exact commands for every experiment
+                                              • Known issues and their fixes
+
+  docs/negative_results.md                  NEW — 8 documented failed approaches
+                                              • Train-split FID, N=256 variance, zero-init control
+                                              • Hydra struct enforcement, DDPM NaN, IPF unverified
+                                              • Feature-matching uncertain effect
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. FILES MODIFIED (Session 5)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  src/its/samplers/ddpm.py                  MODIFIED — DDPM NaN guard
+                                              • (1 – alpha_bar_t).clamp(min=1e-5) before sqrt
+                                              • Applied to DDPM, DDIM, and x0_pred formulas
+
+  configs/experiment/controlled_mnist.yaml  MODIFIED — new config fields
+                                              • dataset_subset_size: 0
+                                              • early_stop_patience: 0
+                                              • early_stop_min_delta: 0.01
+
+  configs/experiment/controlled_cifar.yaml  MODIFIED — new config fields + base_channels note
+                                              • Same 3 new fields as MNIST config
+                                              • Warning comment: base_channels=128 for ep50 backbone
+
+  src/its/training/controlled_score_training.py  MODIFIED — early stopping
+                                              • new fields: early_stop_patience, early_stop_min_delta
+                                              • Path-KL based early stopping at end of each epoch
+                                              • Logs "Early stopping at epoch N" warning
+
+  scripts/generate_report.py                MODIFIED — Session 5 refresh
+                                              • Loads extended_sweep, baseline, thermodynamics JSONs
+                                              • 17 new phase_rows for Sessions 4 and 5
+                                              • Config D JSONL chart section
+                                              • Updated next-steps callouts
+                                              • Footer: sessions 1–5, 26 tests
+
+  tests/test_phase5_hardening.py            MODIFIED — 5 new tests (17 → 22 in this file)
+                                              • test_pareto_frontier_computation
+                                              • test_crooks_crossing_point
+                                              • test_run_suite_continues_after_failure
+                                              • test_ipf_phase_alternation
+                                              • test_ddpm_no_nan_at_t0
+                                              All 26 total tests pass (497 s on CPU).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4. BUG FIXES (Session 5)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  CAT5: DDPM sqrt NaN at t=0
+    Root cause: 1 – alpha_bar_t can be slightly negative due to float rounding when
+    alpha_bar → 1 at t=0 in VP-SDE schedule.
+    Fix: clamp(min=1e-5) before every sqrt(1 – alpha_bar_t) call.
+
+  CAT6: Hydra struct enforcement rejects new config keys
+    Root cause: Hydra's struct mode is strict about unknown keys.
+    Fix: Added dataset_subset_size, early_stop_patience, early_stop_min_delta to both
+    controlled_mnist.yaml and controlled_cifar.yaml before adding to dataclass.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5. TEST SUITE STATUS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Session 1:  8 tests
+  Session 2:  8 tests (same)
+  Session 3:  9 tests (+test_schrodinger_bridge_shapes)
+  Session 4: 21 tests (+12: checkpoint_roundtrip, controlled_*, ddpm_epsilon,
+             jarzynski_*, eval_requires_checkpoint, convolutional_*, score_to_eps,
+             sb_shapes, resume_flag, nan_guard, latest_pt, watch_training,
+             freeze_score, time_embedding, attention, backward_compat)
+  Session 5: 26 tests (+5: pareto_frontier, crooks_crossing, suite_continues,
+             ipf_alternation, ddpm_no_nan)
+
+  All 26 pass in 497 seconds on CPU-only.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6. PENDING WORK (not completed in Session 5)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Step 3 — Scientific Results (requires GPU):
+    • Config D 10-epoch full-dataset FashionMNIST training (GPU)
+    • Configs C and F training + evaluation
+    • DDPM / DDIM baselines at N=2048, seed=42
+    • Statistical reliability (3 seeds × 3 configs)
+    • Pareto frontier with test-split FID values
+    • extended_sweep_comparison.json and baseline_comparison_equal_nfe.json
+
+  Step 5B — Architecture comparison:
+    • Original vs time-embedding 2-epoch / 2000-sample short comparison
+    • Not run due to session crashes and priority reordering
+
+  Step 6 — IPF/SB verification:
+    • Phase alternation log verification (forward / backward entries in JSONL)
+    • Non-zero ipf_loss confirmation
+    • Checkpoint with both policy dicts
+    • sb_samples_initial.png saved to data/results/
+
+  Step 8 — Analytics report is now refreshed but Config D chart will be empty
+  until GPU training run completes and JSONL is written to logs/.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+7. RECOMMENDED NEXT SESSION PLAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Priority 1 (Google Cloud VM — GPU):
+    python scripts/run_experiment.py experiment=controlled_mnist \
+      training.epochs=10 \
+      training.jsonl_log=logs/config_D_10ep.jsonl \
+      training.run_name=config_D_10ep \
+      training.control_weight=0.01 \
+      training.path_kl_weight=0.1 \
+      training.quality_weight=0.01
+
+  Priority 2 (after training):
+    python scripts/eval_samples.py --sampler ddpm --num-samples 2048 --eval-seed 42
+    python scripts/eval_samples.py --sampler ddim --num-samples 2048 --eval-seed 42
+    python scripts/eval_samples.py --checkpoint <best_ckpt> --num-samples 2048 --eval-seed 42
+
+  Priority 3:
+    python scripts/analyze_thermodynamics.py --jsonl logs/config_D_10ep.jsonl
+    python scripts/generate_results_table.py
+    python scripts/generate_paper_figures.py
+
+  Priority 4 (IPF verification):
+    python scripts/train_schrodinger_bridge.py --iterations 2 --subset 500
+    Verify JSONL has {"phase": "forward"} and {"phase": "backward"} entries.
+
+=============================================================
+END OF SESSION 5 SUMMARY
+=============================================================

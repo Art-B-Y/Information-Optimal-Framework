@@ -1,0 +1,12 @@
+{
+  "num_generated": 1000,
+  "num_train": 60000,
+  "threshold": 0.05,
+  "nn_distances_mean": 29.79511754798889,
+  "nn_distances_min": 28.740480422973633,
+  "nn_distances_max": 30.82324981689453,
+  "fraction_below_threshold": 0.0,
+  "memorization_concern": false,
+  "score_ckpt": "checkpoints/score_fmnist_v2/score_best.pt",
+  "nfe": 100
+}

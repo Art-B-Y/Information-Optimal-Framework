@@ -1,0 +1,306 @@
+================================================================================
+ITS PROJECT — AUDIT, ROADMAP, AND PHASE 1 EXECUTION
+Session date: 2026-07-15
+Verdict: SUCCESS (as an audit). The project's experimental record did not survive it.
+================================================================================
+
+READ THIS FIRST
+---------------
+Every experimental result this project has ever produced is VOID. Not imprecise —
+void, for four independent reasons, each individually sufficient and each proven by
+an executed minimal reproduction rather than an argument. The "controller collapse"
+finding that Sessions 9-10 built the paper around is substantially an ARTIFACT of a
+bug. The code is now fixed; the results must all be regenerated.
+
+This is a worse position than the project's own record described, and it is the
+honest one.
+
+================================================================================
+OBJECTIVE 1 — INITIAL PURPOSE AND FINAL GOAL      (docs/project_understanding.md)
+================================================================================
+
+INITIAL PURPOSE
+  ITS models image generation as a CONTROLLED STOCHASTIC PROCESS, treating sampling
+  as a stochastic optimal control problem. A pretrained score model supplies the
+  baseline reverse-diffusion drift; ITS augments it with a learned neural control
+  drift u_theta(x,t). The central controlled SDE:
+
+      dx = [ f(x,t) - g(t)^2 * grad_x log p_t(x) + g(t)*u_theta(x,t) ] dt + g(t) dW_bar
+           |________ pretrained score drift ________|  |__ learned __|
+
+  Control is not free: Girsanov gives its exact information cost,
+      KL(P^u || P^0) = E[ int_0^1 ||u(x,t)||^2 / (2 g(t)^2) dt ]
+
+  THE FIVE TRACKED QUANTITIES:
+    1. Sample quality        — FID / Inception Score
+    2. Control energy        — E[||u||^2]
+    3. Entropy production    — non-equilibrium irreversibility of the sampling path
+    4. Information cost      — path-space KL via the Girsanov log-RN derivative
+    5. Compute cost          — NFE per sample
+
+  The intended payoff: a Pareto frontier over (quality, energy, information,
+  compute), supported by a thermodynamic suite (Crooks, Jarzynski, entropy profiles).
+
+FINAL GOAL
+  A rigorous, publishable paper whose every claim is supported by scientifically
+  sound experimental results. Not "a paper that says ITS wins" — a paper whose
+  claims match what the experiments actually show.
+
+  The realistic contribution CANNOT be determined yet. The project believed it was
+  "collapse diagnosis + redesigned objective + thermodynamic framework -> TMLR".
+  That framing is not currently supported (see Objective 2). The honest restatement:
+
+      A paper demonstrating image generation as a controlled stochastic process with
+      full thermodynamic and information-theoretic accounting — ON A SAMPLER THAT
+      PROVABLY SAMPLES FROM THE DATA DISTRIBUTION, WITH CONTROL PROVABLY APPLIED,
+      AND WITH A PATH-KL THAT PROVABLY IS THE GIRSANOV KL.
+
+  All three "provably"s failed. All three are now fixed in code but unproven on real
+  data. Whether the contribution ends up positive, negative, or methodological cannot
+  be known until the substrate is validated and the experiments re-run. Any framing
+  chosen now would be a guess.
+
+================================================================================
+OBJECTIVE 2 — KEY DIAGNOSTIC FINDINGS         (docs/current_state_diagnosis.md)
+================================================================================
+
+THE FOUR FATAL DEFECTS (each with an executed proof)
+
+ A1. THE SAMPLER DID NOT SAMPLE FROM THE DATA DISTRIBUTION.
+     score_sde.py:66 (and duplicated in simulate_path): drift = 0.5*beta*(-x-score)
+     with a POSITIVE step while t descends. Sign inverted on both terms, factor 2 on
+     the score. PROOF, exact analytic score, target variance 0.25:
+         steps:   50      100     200     500
+         code:    20.32   20.65   21.00   21.13    <- ~84x too wide, NEVER improves
+         fixed:   0.2570  0.2525  0.2511  0.2516   <- converges, improves with NFE
+     This exactly predicts the observed SDE FID 326.1/325.2/325.7 at NFE 50/100/200 —
+     flat, which is impossible for a working sampler.
+
+ A2. VE-TRAINED, VP-SAMPLED. score_training.py:244 uses the VE kernel
+     `noisy = x + sigma*noise` with target `-noise/sigma`; the sampler applied VP
+     linear-beta dynamics. Incompatible diffusion families. Also explains why even
+     the "good" DDPM baseline is FID 197 — a healthy FashionMNIST model reaches < 20.
+
+ A3. CONTROL WAS SILENTLY DISABLED IN EVERY EVALUATION.  *** THE BIG ONE ***
+     ScoreSDEConfig.control_weight defaults to 0.0 and gates the control branch. NO
+     eval call-site ever passed it. The policy was loaded, passed in, never applied.
+     This explains, exactly:
+       - controlled FID 327.47 ~= SDE baseline 325-326  -> the SAME computation
+       - ablation_study.json: B/C/D/F/conv/no-EMA all fid=326.0024719238281 to 16
+         digits, ACROSS DIFFERENT ARCHITECTURES
+       - conv_checkpoint_fid_trajectory.json: all 10 epochs fid=335.1768493652344 —
+         an exactly constant "learning curve"
+       - controlled_config_d_multiseed.json BYTE-IDENTICAL to controlled_conv_multiseed.json
+
+     CONSEQUENCE: the inference "controlled FID = baseline FID => the controller
+     collapsed" is INVALID. The project's headline finding loses its FID evidence.
+     The collapse RATIO (0.061%) is a real training-diagnostic measurement — but of a
+     run conducted inside the A1 dynamics.
+
+ A4. THE GIRSANOV / PATH-KL FORMULA WAS WRONG by a factor of beta_t (4 copies).
+     Correct: log_rn = <delta,z>/sqrt(var) + ||delta||^2/(2*var); path_kl = +mean(log_rn).
+     PROOF: correct formula matches exact Gaussian log-densities to 3.3e-16; the
+     code's is off by 0.94 in a single step. Since beta sweeps 0.1->10 this is a
+     TIME-VARYING distortion — not absorbable into path_kl_weight. Path-space KL is
+     one of the five headline quantities: every path-KL ever reported is wrong.
+
+SESSION 10 v2 OBJECTIVE — STATUS: IT DID NOT STALL, IT DIVERGED
+  Run 5A: 39/100 epochs, 176.1 wall-clock HOURS, NEVER EVALUATED.
+  Runs 5B and 5C were NEVER STARTED (their checkpoint dirs are empty).
+    control/score magnitude ratio: ep1=19.9  ep10=937  ep20=1.96e4  ep30=5.38e4
+    total_loss: first negative at ep6; ep39 = -1.59e14
+    grad_norm_control: >1e3 at ep1; reached `inf`; ep39 = 2.06e16
+    quality_loss grew 3297 -> 2.5e6 (samples got WORSE); jarzynski pinned at -50 (its rail)
+    cos_sim(score, control) ~= -0.1: the control is orthogonal noise, not steering
+  So the controller went from COLLAPSED (0.061%) to EXPLODED (55,000%). Neither works.
+
+  WHY, in two phases (adversarial verification corrected my initial single-cause account):
+    Phase 1 (ep1-5): WarmupSchedule zeroes path_kl_weight AND reinforce_weight while
+      detach_control_energy=True removes control energy from the gradient -> ||u|| had
+      NO REGULARISER AT ALL. Control energy grew 25,000x before any Girsanov term was on.
+    Phase 2 (ep6+): the REINFORCE surrogate is UNBOUNDED BELOW. total_loss goes negative
+      at exactly ep6, when reinforce_weight first becomes non-zero.
+  grad_clip=1.0 WAS ACTIVE and could not help: clipping bounds step SIZE, not
+  divergence. On an objective unbounded below, clipped descent still marches to
+  infinity — at a bounded rate. That is precisely the observed steady monotonic growth.
+
+NOTHING WAS EVER PAPER-GRADE
+  Bar: N >= 5000 (FashionMNIST) / 10000 (CIFAR-10), >= 3 seeds.
+  - EXACTLY ONE file reaches N=5000: baseline_evals_fashionmnist.json — with 1 SEED.
+  - Everything else is N=2048/512/256, including all 24 entries of
+    fmnist_eval_matrix_final.json, which project memory recorded as "paper-grade".
+    THAT RECORD WAS WRONG.
+  - CIFAR-10 has NO real results: its file self-documents as random-weight, N=256.
+
+ENVIRONMENT REGRESSION (blocks all training)
+  Recorded: torch 2.5.1+cu121, cuda_available=true
+  ACTUAL:   torch 2.3.1+cpu, torch.version.cuda=None, cuda_available=FALSE
+  The HARDWARE IS FINE (nvidia-smi: GTX 1650 Ti, 4096 MiB, driver 566.36, CUDA 12.7).
+  The installed wheels are CPU-only. THIS IS WHY RUN 5A TOOK 176 HOURS.
+
+WHY TEN SESSIONS DID NOT CATCH ANY OF THIS
+  1. Every defect is convention-level and produces PLAUSIBLE output. Path-KL was
+     positive and shaped like 0.5*||u||^2*dt (two sign errors cancelling). The quality
+     loss's forward value was BIT-EXACT. A broken sampler still makes images, and
+     FID 325 reads as "needs more training", not "integrating the wrong SDE".
+  2. The test suite tested the wrong thing: 77 tests, 76 green, all shape/finiteness/
+     importability. Not one would fail if the sampler emitted N(0,I).
+  3. Impossible numbers were never checked — six ablations identical to 16 digits
+     across different architectures; a 10-point learning curve exactly constant.
+  4. Each session built on the previous session's CONCLUSIONS rather than its DATA.
+
+================================================================================
+OBJECTIVE 3 — ROADMAP STRUCTURE                    (docs/roadmap_current.md)
+================================================================================
+  Phase 0  Restore CUDA                  ~0 GPU-h   BLOCKS 2-4. Needs confirmation.
+  Phase 1  Technical error elimination   ~0 GPU-h   *** COMPLETE ***
+  Phase 2  Rerun ALL training          80-110 GPU-h  deps 0,1. Contains GATE 2.2.
+  Phase 3  Paper-grade evaluations     15-20 GPU-h  deps 2
+  Phase 4  Scientific analyses         10-15 GPU-h  deps 3
+  Phase 5  Paper artifacts               ~1 GPU-h   deps 4
+  Phase 6  Framing and venue              --        deps 2-4
+  TOTAL: ~105-145 GPU-h  =  2-4 weeks on the local 1650 Ti, or 3-5 days on rented A100s.
+
+  GATE 2.2 IS THE CRUX OF THE ENTIRE PROJECT:
+      Can the UNCONTROLLED sampler reach FID < 30 at NFE=100 AND improve with NFE?
+  Until that is YES, no ITS number means anything. Its absence is what let this
+  project spend ten sessions building a thermodynamic interpretation on top of noise.
+
+  Nothing from the existing record is reusable — even the score model must be
+  retrained, because every checkpoint was trained inside the A1 dynamics.
+
+  VENUE: cannot be decided now; the old decision tree branched on results that do not
+  exist. One contribution survives independently of every re-run — the failure
+  analysis itself: four convention-level defects, each producing plausible output,
+  surviving ten sessions and a 77-test suite because the tests checked shapes and not
+  science. That is a real, publishable lesson about validating scientific ML software
+  — but it is a lesson about METHOD, not about controlled diffusion, and it should
+  not be mistaken for the paper the project set out to write.
+
+================================================================================
+OBJECTIVE 4 — PHASE 1: EVERY ERROR FIXED       (data/results/audit_phase1.txt)
+================================================================================
+
+AUDITED AND ALREADY CLEAN (reported honestly, not invented):
+  imports; 49/49 torch.load with map_location; sigma / sqrt(1-alpha_bar) / beta
+  divisions all clamped; score_to_eps correctly placed before BOTH DDPM and DDIM;
+  control reshape chain verified by execution; device consistency; config
+  completeness; UTF-8 clean; segmented/fault-tolerant infra INTACT (exit-42, atomic
+  autosave, resume). Prior sessions did this work properly. Every real defect was
+  SEMANTIC.
+
+FIXED THIS SESSION:
+  A1/A2  Correct VE reverse-diffusion sampler in BOTH the eval sampler and
+         simulate_path; parameterisation flag ("ve" | "legacy_vp" for archive
+         reproduction only); VE prior init N(0, sigma_max^2).
+         VERIFIED: analytic score -> mean 2.97/std 0.5046 (target 3.0/0.5), improving
+         with NFE. legacy_vp for contrast: mean -74.30, worsening.
+  A3     sample() now RAISES if a policy is passed with control_weight<=0 — it can no
+         longer fail silently. eval_controlled_multiseed uses dataclasses.replace so
+         no field can be dropped by omission; control_weight=1.0 explicit; beta
+         aligned 5.0 -> 10.0.
+  A4     NEW src/its/sde/girsanov.py — ONE correct implementation replacing 4 wrong
+         copies, stated in realised drift-shift / noise-variance terms (valid for VP,
+         VE, any Euler scheme). Sign flipped JOINTLY with the formula (verification
+         proved fixing either alone is catastrophic).
+  B2     REINFORCE bounded: standardised advantage (scale-free), clamp advantage +/-5
+         and log-prob +/-50, applied to the score-function coefficient so the
+         estimator stays an unbiased policy gradient in the unclipped region.
+  C1     `cross` moved OUT of the torch.no_grad() block. The gradient was exactly
+         2*gen_feats/(B*tau) — pure Inception-feature shrinkage toward the origin,
+         with ZERO pull toward the nearest real sample, while the forward value was
+         bit-exact. This was Session 10's load-bearing fix for the collapse.
+  C2     compute_v2_total_loss: explicit control_energy_weight (was a bare `+ ce`).
+  C3     compute_entropy_production.py:63 — control now integrated into the drift
+         (it was tallied into the energy but never applied).
+  C6     Girsanov receives the exact integrated tensor (not the bare control);
+         jarzynski_subsample rescaled; jarzynski_saturated flag added (5A logged
+         exactly -50.0 — a clip rail, not a measurement).
+
+DOCUMENTED, NOT FIXED (deferred with reasons, not hidden):
+  C4  two proven crashes in extended_baseline_analysis.py (:108 always-true hasattr
+      dispatch; :188 classifier checkpoint collision) — produces nothing needed pre-Phase 2
+  C5  sb_solver.compute_ipf_loss has NO marginal constraint -> IPF cannot converge to
+      a bridge; ipf_toy_convergence.json measures nothing — needs a design decision
+  C7  docs report per-seed FIDs existing in no results file (and a seed never run);
+      paper_requirements_roadmap.md asserts the v2 redesign "fixes this" (it diverged)
+  1E  quarantining the void results — NOT done: moving a project's entire result
+      history is the user's call. Additive notice written instead:
+      data/results/RESULTS_ARE_VOID_READ_ME.md
+  Phase 0  the CUDA reinstall — environment mutation, needs confirmation
+
+TWO ACTIONS DELIBERATELY NOT TAKEN
+  Both were surfaced for a decision, but the harness reported that no genuine user
+  input had been received, so the conservative path was taken: fix code (which the
+  brief explicitly mandates), mutate nothing else.
+    1. Reinstalling torch (2.5 GB download, environment mutation)
+    2. Moving/deleting any results file
+  BACKUP: this project is NOT a git repository. Pre-audit src/, scripts/, tests/ are
+  at data/results/_pre_phase1_backup_20260715/ — the only undo path for Phase 1.
+
+================================================================================
+TEST SUITE STATUS
+================================================================================
+  BEFORE (baseline, pre-change):  76 passed, 1 skipped, 966s  (77 collected)
+    The skip is test_phase5_hardening.py:1018 "CUDA not available" — skipped with a
+    clear reason, not deleted, per the brief.
+
+  *** THE MOST IMPORTANT FACT IN THIS AUDIT ***
+  The suite was 76/77 GREEN while the sampler emitted noise, control was disabled in
+  every eval, path-KL was wrong by a factor of beta_t, and the quality gradient
+  pointed the wrong way. NOT ONE test failed. A test suite that cannot fail on broken
+  science is not a safety net — it is a source of false confidence, and it supplied
+  ten sessions of it.
+
+  ADDED: tests/test_scientific_correctness.py — 12 tests, EACH FALSIFIED against the
+  pre-audit code to prove it can fail. Three confirmed kills:
+     sampler test      : pre-audit mean -1080  vs target +3.0   -> FAILS correctly
+     girsanov test     : pre-audit 0.6162      vs exact 0.7190  -> FAILS correctly
+     reinforce test    : pre-audit -9.94e7     (unbounded)      -> FAILS correctly
+
+  HONESTY NOTE: the first draft of the REINFORCE test PASSED on the broken code — it
+  used random log_probs whose mean cancels, making it vacuous. Falsification caught
+  it; it was rewritten to model the real geometry. A test that cannot fail on the bug
+  it targets is worse than no test: it certifies the bug as fixed. That is exactly the
+  mechanism by which this project accumulated 77 green tests over a broken sampler.
+
+  AFTER FIXES: 12/12 new tests pass; 59/59 pass in the fast subset (every file except
+  the ~16-minute test_phase5_hardening.py). Full-suite result: see FINAL_TEST_STATUS
+  at the bottom of this file.
+
+  Also verified by execution post-fix: simulate_path runs end-to-end; path_kl = +3.08
+  (>= 0, as a KL must be); gradients flow into the control policy (norm 5.34e2);
+  jarzynski returns a real -1.008 instead of its -50 rail.
+
+================================================================================
+THE EXACT NEXT ACTION
+================================================================================
+NOT "launch the Session 10 v2 run". The previous roadmap made that the top priority
+believing it was merely unfinished. It is not unfinished — IT DIVERGED, for two
+proven reasons now fixed (B2, C1), inside a sampler that never generated data (A1).
+Re-running it before Gate 2.2 would burn ~25 GPU-h to produce another
+uninterpretable number.
+
+  STEP 1 — Phase 0, restore CUDA (15 min, blocks everything):
+    pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 \
+        --index-url https://download.pytorch.org/whl/cu121
+    python -c "import torch; assert torch.cuda.is_available(); print(torch.cuda.get_device_name(0))"
+    python -m pytest tests/ -q            # expect 89/89, no CUDA skip
+
+  STEP 2 — Phase 2.1, retrain the score model under the corrected VE kernel (~2-3 GPU-h):
+    python scripts/train_fmnist_score_v2.py
+
+  STEP 3 — GATE 2.2, the question the whole paper depends on:
+    python scripts/run_baseline_evals.py --num-samples 5000 --seeds 42 123 7
+    >>> The UNCONTROLLED sampler must reach FID < 30 at NFE=100 and improve
+    >>> monotonically with NFE. DO NOT PROCEED PAST THIS GATE.
+
+  If Gate 2.2 fails, the kernel or the score model is still wrong and nothing
+  downstream can be trusted — far cheaper to learn from one 3-hour run than from
+  another ten sessions.
+
+================================================================================
+FINAL_TEST_STATUS: 89 collected — 88 passed, 1 skipped (CUDA not available).
+  77 pre-existing (76 pass + 1 CUDA skip) + 12 new scientific-correctness tests.
+  No regressions from the Phase 1 changes.
+================================================================================

@@ -1,0 +1,112 @@
+{
+  "dataset": "fashionmnist",
+  "checkpoint": "checkpoints/score_fmnist_v2/score_epoch_0050.pt",
+  "num_samples": 5000,
+  "seed": 42,
+  "runs": [
+    {
+      "sampler": "ddpm",
+      "nfe": 50,
+      "fid": 260.2322082519531,
+      "inception_score_mean": 1.8596585988998413,
+      "inception_score_std": 0.03108183667063713,
+      "nfe_per_sample": 50.0
+    },
+    {
+      "sampler": "ddim",
+      "nfe": 50,
+      "fid": 317.6703796386719,
+      "inception_score_mean": 1.4752308130264282,
+      "inception_score_std": 0.018335621803998947,
+      "nfe_per_sample": 50.0
+    },
+    {
+      "sampler": "sde",
+      "nfe": 50,
+      "fid": 326.0852966308594,
+      "inception_score_mean": 1.4285186529159546,
+      "inception_score_std": 0.010410492308437824,
+      "nfe_per_sample": 50.0,
+      "wall_clock_sec": 134.85599422454834,
+      "num_samples": 5000
+    },
+    {
+      "sampler": "ddpm",
+      "nfe": 100,
+      "fid": 228.09475708007812,
+      "inception_score_mean": 2.312926769256592,
+      "inception_score_std": 0.043200790882110596,
+      "nfe_per_sample": 100.0
+    },
+    {
+      "sampler": "ddim",
+      "nfe": 100,
+      "fid": 256.1881103515625,
+      "inception_score_mean": 1.9237037897109985,
+      "inception_score_std": 0.03231741860508919,
+      "nfe_per_sample": 100.0
+    },
+    {
+      "sampler": "sde",
+      "nfe": 100,
+      "fid": 325.20172119140625,
+      "inception_score_mean": 1.4374828338623047,
+      "inception_score_std": 0.010986849665641785,
+      "nfe_per_sample": 100.0,
+      "wall_clock_sec": 231.86121344566345,
+      "num_samples": 5000
+    },
+    {
+      "sampler": "ddpm",
+      "nfe": 200,
+      "fid": 197.40399169921875,
+      "inception_score_mean": 2.3310353755950928,
+      "inception_score_std": 0.05252740904688835,
+      "nfe_per_sample": 200.0
+    },
+    {
+      "sampler": "ddim",
+      "nfe": 200,
+      "fid": 225.06089782714844,
+      "inception_score_mean": 2.1928951740264893,
+      "inception_score_std": 0.032560527324676514,
+      "nfe_per_sample": 200.0
+    },
+    {
+      "sampler": "sde",
+      "nfe": 200,
+      "fid": 325.6888732910156,
+      "inception_score_mean": 1.4404321908950806,
+      "inception_score_std": 0.013293810188770294,
+      "nfe_per_sample": 200.0,
+      "wall_clock_sec": 411.0523679256439,
+      "num_samples": 5000
+    },
+    {
+      "sampler": "ddpm",
+      "nfe": 500,
+      "fid": 260.7857971191406,
+      "inception_score_mean": 1.6604957580566406,
+      "inception_score_std": 0.024850519374012947,
+      "nfe_per_sample": 500.0
+    },
+    {
+      "sampler": "ddim",
+      "nfe": 500,
+      "fid": 268.8854064941406,
+      "inception_score_mean": 1.643903374671936,
+      "inception_score_std": 0.019409403204917908,
+      "nfe_per_sample": 500.0
+    },
+    {
+      "sampler": "sde",
+      "nfe": 500,
+      "fid": 325.9651794433594,
+      "inception_score_mean": 1.4374444484710693,
+      "inception_score_std": 0.02124626189470291,
+      "nfe_per_sample": 500.0,
+      "wall_clock_sec": 893.3817584514618,
+      "num_samples": 5000
+    }
+  ]
+}

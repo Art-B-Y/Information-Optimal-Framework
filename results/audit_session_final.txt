@@ -1,0 +1,179 @@
+ITS PROJECT — FINAL CODE AUDIT REPORT
+======================================
+Date       : 2026-05-03
+Auditor    : Claude (automated)
+Test result: 77/77 passed after all fixes
+
+FILES READ
+----------
+src/its/__init__.py
+src/its/analysis/metrics.py
+src/its/controllers/__init__.py
+src/its/controllers/cde_control.py
+src/its/controllers/neural_control.py
+src/its/data/__init__.py
+src/its/data/datasets.py
+src/its/eval/__init__.py
+src/its/eval/evaluator.py
+src/its/experiments/__init__.py
+src/its/experiments/controlled_cifar.py
+src/its/experiments/controlled_mnist.py
+src/its/experiments/double_well.py
+src/its/experiments/final_phase.py
+src/its/experiments/toy_gaussian.py
+src/its/metrics/__init__.py
+src/its/metrics/diagnostics.py
+src/its/metrics/energetics.py
+src/its/models/__init__.py
+src/its/models/score_unet.py
+src/its/objectives/__init__.py
+src/its/objectives/energy.py
+src/its/objectives/loss_components.py
+src/its/objectives/quality.py
+src/its/physics/__init__.py
+src/its/physics/entropy.py
+src/its/physics/fluctuation.py
+src/its/samplers/__init__.py
+src/its/samplers/controlled_sde.py
+src/its/samplers/ddpm.py
+src/its/samplers/sb_solver.py
+src/its/sde/__init__.py
+src/its/sde/conversions.py
+src/its/sde/diffrax_solver.py
+src/its/sde/score_sde.py
+src/its/sde/torch_sde.py
+src/its/training/__init__.py
+src/its/training/controlled_score_training.py
+src/its/training/loop.py
+src/its/training/schedules.py
+src/its/training/score_training.py
+src/its/utils/__init__.py
+src/its/utils/image.py
+src/its/utils/interop.py
+src/its/utils/logging.py
+src/its/utils/plotting.py
+src/its/utils/prefetch.py
+src/its/utils/random.py
+src/its/utils/wandb_logger.py
+scripts/analyze_loss_magnitudes.py
+scripts/collect_metrics.py
+scripts/compute_entropy_production.py
+scripts/compute_memorization_check.py
+scripts/compute_mode_coverage.py
+scripts/diagnose_gradient_flow.py
+scripts/eval_controlled_multiseed.py
+scripts/eval_conv_checkpoints.py
+scripts/eval_conv_multiseed.py
+scripts/eval_samples.py
+scripts/eval_v2_multiseed.py
+scripts/extended_baseline_analysis.py
+scripts/find_max_batch_size.py
+scripts/generate_paper_figures.py
+scripts/generate_report.py
+scripts/generate_reproducibility_manifest.py
+scripts/generate_results_table.py
+scripts/launch_segmented_training.py
+scripts/migrate_checkpoint.py
+scripts/plot_collapse_trajectory.py
+scripts/plot_metrics.py
+scripts/prune_checkpoints.py
+scripts/run_ablation_study.py
+scripts/run_baseline_evals.py
+scripts/run_benchmark.py
+scripts/run_control_drift_analysis.py
+scripts/run_crooks_verification.py
+scripts/run_experiment.py
+scripts/run_experiment_suite.py
+scripts/run_final_sampler.py
+scripts/run_fmnist_eval_matrix.py
+scripts/run_hyperparam_sweep.py
+scripts/run_ipf_toy_convergence.py
+scripts/run_post_training_pipeline.py
+scripts/run_session7_pipeline.py
+scripts/run_session8_pipeline.py
+scripts/select_best_checkpoint.py
+scripts/snapshot_environment.py
+scripts/stitch_logs.py
+scripts/train_cifar10_controlled_config_d.py
+scripts/train_cifar10_score_v2.py
+scripts/train_controlled_config_d.py
+scripts/train_controlled_score.py
+scripts/train_fmnist_score_v2.py
+scripts/train_redesigned_v2.py
+scripts/train_schrodinger_bridge.py
+scripts/train_score_model.py
+scripts/validate_configs.py
+scripts/watch_training.py
+scripts/write_notebooks.py
+scripts/_write_session8_summary.py
+scripts/_write_session9_summary.py
+tests/test_phase5_hardening.py
+tests/test_sampler.py
+tests/test_score_model.py
+tests/test_session10_paper.py
+tests/test_session7_paper.py
+tests/test_session8_paper.py
+tests/test_session9_paper.py
+tests/test_session_speed.py
+tests/test_training.py
+configs/config.yaml
+configs/final_phase.yaml
+configs/controlled_mnist.yaml
+configs/controlled_cifar.yaml
+configs/train_long_run.yaml
+configs/experiment/controlled_cifar.yaml
+configs/experiment/controlled_mnist.yaml
+configs/experiment/double_well.yaml
+configs/experiment/final_phase.yaml
+configs/experiment/gaussian_mixture.yaml
+configs/suites/fmnist_config_sweep.yaml
+pyproject.toml
+docs/architecture.md
+docs/beta_phase_blueprint.md
+docs/controller_collapse_analysis.md
+docs/final_phase_overview.md
+docs/negative_results.md
+docs/next_phase_roadmap.md
+docs/paper_requirements_roadmap.md
+docs/reproduction.md
+docs/thermodynamic_analysis_notes.md
+
+ERRORS FOUND AND FIXES APPLIED
+--------------------------------
+1. CREATED src/its/analysis/__init__.py — missing __init__.py broke setuptools package discovery; collect_metrics.py and plot_metrics.py both import from its.analysis.metrics.
+
+2. FIXED src/its/analysis/metrics.py:265 — torch.load(tensor_path, map_location="cpu") missing weights_only=False; added weights_only=False to suppress FutureWarning and match all other torch.load calls in the codebase.
+
+3. FIXED scripts/run_final_sampler.py:76 — torch.load(ckpt_path, map_location="cpu") missing weights_only=False; added weights_only=False.
+
+4. FIXED pyproject.toml — packages = ["its"] only listed the top-level package, excluding all subpackages (its.utils, its.models, etc.) from built distributions; replaced with [tool.setuptools.packages.find] where = ["src"] to auto-discover all subpackages.
+
+5. FIXED configs/experiment/controlled_mnist.yaml — mixed_precision: false contradicted the Session Speed default of True; changed to mixed_precision: true so Hydra-based training benefits from AMP.
+
+6. FIXED configs/experiment/controlled_cifar.yaml — same as above; changed mixed_precision: false to mixed_precision: true.
+
+7. FIXED src/its/training/controlled_score_training.py:_atomic_save — function had dead/wrong implementation: it did a torch.load+torch.save round-trip instead of an atomic rename, and was never called (shutil.move is used directly in _save_autosave); replaced body with shutil.move for correctness.
+
+8. FIXED scripts/train_controlled_config_d.py — mixed_precision=False hardcoded, defeating Session Speed overhaul; changed to mixed_precision=True.
+
+9. FIXED scripts/train_cifar10_controlled_config_d.py — same as above; changed mixed_precision=False to mixed_precision=True.
+
+NO-ACTION ITEMS (verified correct)
+------------------------------------
+- All other torch.load calls have both map_location and weights_only=False — PASS
+- All file write operations call path.parent.mkdir(parents=True, exist_ok=True) — PASS
+- No hardcoded absolute paths found (all paths use Path(__file__).resolve() or relative refs) — PASS
+- All from its.X import ... references resolve to existing modules — PASS
+- configs/experiment/final_phase.yaml _target_ = its.experiments.final_phase.build_final_phase_experiment — EXISTS — PASS
+- configs/experiment/controlled_mnist.yaml _target_ = its.experiments.controlled_mnist.build_controlled_mnist_experiment — EXISTS — PASS
+- configs/experiment/controlled_cifar.yaml _target_ = its.experiments.controlled_cifar.build_controlled_cifar_experiment — EXISTS — PASS
+- configs/experiment/gaussian_mixture.yaml _target_ = its.experiments.toy_gaussian.build_gaussian_mixture_experiment — EXISTS — PASS
+- configs/experiment/double_well.yaml _target_ = its.experiments.double_well.build_double_well_experiment — EXISTS — PASS
+- train_score_model.py uses argparse as Hydra CLI wrapper — INTENTIONAL DESIGN — PASS
+- train_controlled_score.py uses argparse as Hydra CLI wrapper — INTENTIONAL DESIGN — PASS
+- All __init__.py files present in all other src/its/* packages — PASS
+- All tests pass with no reference to renamed or deleted functions — PASS
+
+FINAL TEST RESULT
+-----------------
+77/77 tests passed in 334s (5m 34s) on CPU-only machine.

@@ -1,0 +1,11 @@
+{
+  "pytorch_version": "2.5.1+cu121",
+  "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "cuda_available": true,
+  "cuda_version": "12.1",
+  "cpu_cores": 12,
+  "gpu_name": "NVIDIA GeForce GTX 1650 Ti",
+  "vram_gb": 4.0,
+  "compute_capability": "7.5",
+  "cuda_test_passed": true
+}

@@ -1,0 +1,231 @@
+ITS PROJECT — SESSION 7 SUMMARY
+Generated: 2026-04-21
+================================================================================
+
+1. FILES CREATED OR MODIFIED
+================================================================================
+
+CREATED:
+  src/its/samplers/controlled_sde.py    — Added ControlledSDESampler alias
+  src/its/sde/score_sde.py              — Added ScoreSDE alias
+  src/its/physics/fluctuation.py        — Added JarzynskiEstimator class
+  src/its/eval/evaluator.py             — Added Evaluator wrapper class
+  scripts/train_cifar10_controlled_config_d.py — CIFAR-10 controlled training script
+  scripts/snapshot_environment.py       — Environment snapshot for reproducibility
+  scripts/reproduce_paper_results.sh    — End-to-end reproduction shell script
+  scripts/run_session7_pipeline.py      — Post-training pipeline orchestrator
+  scripts/run_fmnist_eval_matrix.py     — Definitive FashionMNIST evaluation matrix
+  scripts/compute_memorization_check.py — Memorization check via NN distance
+  scripts/compute_mode_coverage.py      — Mode coverage via classifier
+  tests/test_session7_paper.py          — 7 new paper-readiness tests (Step 8)
+  docs/paper_requirements_roadmap.md    — Complete paper submission roadmap (Step 7)
+  data/results/audit_log_session7.txt   — Full Step 1 audit log
+  data/results/environment_snapshot.txt — GPU/Python/pip environment snapshot
+
+MODIFIED:
+  scripts/generate_paper_figures.py     — Added 6 new figure types (Session 7)
+                                          pareto_frontier, nfe_efficiency_curves,
+                                          mode_coverage_radar, entropy_production_profile,
+                                          path_kl_vs_fid_trajectory, ablation_fid_chart
+
+NEW FIGURES (data/paper_figures/):
+  pareto_frontier.{png,pdf}
+  nfe_efficiency_curves.{png,pdf}
+  mode_coverage_radar.{png,pdf}
+  entropy_production_profile.{png,pdf}
+  path_kl_vs_fid_trajectory.{png,pdf}
+  ablation_fid_chart.{png,pdf}
+  crooks_verification.{png,pdf}         — canonical alias
+  control_drift_analysis.{png,pdf}      — canonical alias
+
+2. TEST SUITE STATUS
+================================================================================
+
+Session 6 baseline:  34/34 passing
+Session 7 new tests: 5 passing, 2 skipped (require GPU eval matrix not yet generated)
+
+Total collected: 41 tests
+  Passing:  39 (34 existing + 5 new)
+  Skipped:   2 (test_nfe_efficiency_curve_data_complete,
+                test_confidence_interval_in_eval_results — await fmnist_eval_matrix_final.json)
+  Failed:    0
+
+Skipped tests will pass automatically once run_fmnist_eval_matrix.py completes.
+
+3. TRAINING RUN STATUS
+================================================================================
+
+FashionMNIST score v2 (Step 2B):
+  Status: IN PROGRESS (epoch ~64/100 as of summary write)
+  Loss trajectory: 483→482→475→479→485→477→484→480→486→482→476→484→482 (oscillating)
+  Best: val_dsm=474.6 at epoch 45 (Session 6)
+  At LR=1e-6: essentially plateau — no significant further improvement expected
+  ETA: ~36 minutes to epoch 100
+
+Config D controlled 60 epochs (Step 2C):
+  Status: PENDING — will run after FashionMNIST score v2 completes
+  Previous: 30 epochs, FID=323.94, grad_norm declining from 14→5.84
+  To run: python scripts/train_controlled_config_d.py --score-ckpt <best> --epochs 60
+
+CIFAR-10 score v2 (Step 2A):
+  Status: NOT STARTED — requires ~4-6 GPU-hours on GTX 1650 Ti
+  To run: python scripts/train_cifar10_score_v2.py --epochs 50
+
+CIFAR-10 Config D controlled (Step 2D):
+  Status: NOT STARTED — requires CIFAR-10 score model first
+  Script created: scripts/train_cifar10_controlled_config_d.py
+
+SB IPF extension (Step 2E):
+  Status: NOT STARTED — 5 iterations at bwd_loss=2.3e-5 completed in Session 6
+  Command: python scripts/train_schrodinger_bridge.py --resume-from checkpoints/ipf_fmnist_full/ipf_last.pt --ipf-iterations 5 ...
+
+4. FASHIONMNIST RESULTS TABLE (Current)
+================================================================================
+
+Sampler          | NFE | FID     | IS Mean | Samples | Seeds | Notes
+-----------------|-----|---------|---------|---------|-------|------------------
+DDPM (baseline)  |  50 | 260.23  | 1.8597  | 5000    |   1   | Session 6
+DDPM (baseline)  | 100 | 228.09  | —       | 5000    |   1   | Session 6
+DDPM (baseline)  | 200 | 197.40  | —       | 5000    |   1   | Session 6 (best)
+DDPM (baseline)  | 500 | 260.79  | —       | 5000    |   1   | Session 6
+DDIM (baseline)  |  50 | 317.67  | 1.4752  | 5000    |   1   | Session 6
+DDIM (baseline)  | 100 | 256.19  | —       | 5000    |   1   | Session 6
+DDIM (baseline)  | 200 | 225.06  | —       | 5000    |   1   | Session 6
+DDIM (baseline)  | 500 | 268.89  | —       | 5000    |   1   | Session 6
+Score SDE        | 100 | 325.20  | —       | 5000    |   1   | Session 6
+Config D (ours)  | 100 | 323.94  | 1.4382  | 5000    |   1   | 30 epochs, Session 6
+
+Ablation D       | 100 | 326.00  | 1.4425  | 2048    |   1   | 5 epochs
+Ablation no-frz  | 100 | 329.62  | 1.4379  | 2048    |   1   | 5 epochs
+Ablation conv    | 100 | 326.00  | 1.4425  | 2048    |   1   | 5 epochs (MLP≈conv)
+
+5. CIFAR-10 RESULTS TABLE (Current)
+================================================================================
+
+Status: No full training runs completed yet.
+CIFAR-10 score model training has not been started (requires ~5h on GTX 1650 Ti).
+Only preliminary Session 6 data exists in data/results/cifar10_baseline_eval.json.
+
+6. PARETO FRONTIER RESULT
+================================================================================
+
+Is any controlled sampler Pareto-optimal over DDPM and DDIM on FashionMNIST?
+
+Answer: NO.
+
+Config D controlled (30 epochs) achieves FID=323.94 at NFE=100.
+Comparison at equal NFE:
+  - DDPM at NFE=100: FID=228.09 (baseline wins by 42%)
+  - DDIM at NFE=100: FID=256.19 (baseline wins by 21%)
+
+The controlled sampler is WORSE than both baselines at NFE=100.
+At no tested NFE point does the controlled sampler achieve lower FID than DDPM.
+
+There is no Pareto improvement in current results. This is the honest finding.
+
+7. JARZYNSKI VALIDITY RESULT
+================================================================================
+
+Crooks verification (data/results/crooks_verification.json):
+  Jarzynski forward ΔF = 0.3500 ± 0.003 (true: 0.3466) — PASSED
+  Crooks crossing point = 0.3166 ± 0.030 — PASSED
+  std(work)/kT: forward_std=0.4389, reverse_std=0.2755
+  => std(work)/kT ≈ 0.44 — within the reliable regime (< 1.0)
+
+Jarzynski validity: VALID — std(work)/kT is below 1.0 threshold.
+
+8. CROOKS VERIFICATION RESULT
+================================================================================
+
+Jarzynski ΔF = 0.350, Crooks ΔF = 0.317
+Relative agreement: |0.350 - 0.317| / 0.350 = 9.4% — within 20% threshold
+Result: PASSED
+
+9. MEMORIZATION CHECK RESULT
+================================================================================
+
+Status: NOT YET COMPUTED
+Script ready: scripts/compute_memorization_check.py
+To run after training: python scripts/compute_memorization_check.py --score-ckpt <best>
+
+10. MODE COVERAGE ENTROPY
+================================================================================
+
+Status: NOT YET COMPUTED
+Script ready: scripts/compute_mode_coverage.py
+To run after training: python scripts/compute_mode_coverage.py --score-ckpt <best>
+
+Baseline expectation: uniform distribution (entropy = ln(10) ≈ 2.303).
+Score models trained without conditional information typically show non-uniform
+class distributions indicating some mode preference.
+
+11. PAPER REQUIREMENTS ROADMAP SUMMARY
+================================================================================
+
+Category 1 (Complete/paper-ready):   5 items
+Category 2 (Need more epochs):        4 items (FashionMNIST Config D, CIFAR-10)
+Category 3 (Need 3-seed eval):        3 items (FID tables, CI intervals)
+Category 4 (Analyses not run):        5 items (memorization, mode coverage, etc.)
+Category 5 (Architecture experiments): 5 items (ConvControl, CIFAR-10 ablations)
+Category 6 (Paper writing):           10 items (most can start now)
+Category 7 (Submission checklist):     8 items
+Category 8 (Venue selection):          1 assessment
+
+Estimated remaining GPU-hours: ~65h
+Estimated calendar time before submission: 3-4 weeks (with access to >1 GPU)
+On single GTX 1650 Ti (sequential): 7-10 days of continuous running.
+
+Full roadmap: docs/paper_requirements_roadmap.md
+
+12. SINGLE MOST IMPORTANT ACTION FOR SESSION 8
+================================================================================
+
+Run the convolutional control policy (Config ablation_conv) to full convergence
+(30 epochs instead of 5) and evaluate FID with 2048 samples.
+
+Rationale: The 5-epoch ablation_conv FID=326.00 is IDENTICAL to the MLP policy (Config D).
+Both share the same score backbone and training setup. The question is whether
+ConvControl with full training (30+ epochs) achieves FID < 228 (DDPM at NFE=100).
+If yes, the paper's claim upgrades from "methodological contribution" to
+"achieves Pareto improvement." This determines venue selection.
+
+Command for Session 8:
+  python scripts/train_controlled_config_d.py \
+    --score-ckpt checkpoints/score_fmnist_v2/score_best.pt \
+    --epochs 30 \
+    --seed 42 \
+    [additional flag needed: --use-conv-control True]
+
+Note: The ablation_conv config is currently inside run_ablation_study.py.
+A standalone script for ConvControl full training should be created in Session 8.
+
+13. RECOMMENDED PAPER VENUE
+================================================================================
+
+Recommendation: TMLR (Transactions on Machine Learning Research)
+
+Justification: The current results show that Config D controlled sampling
+achieves FID=323.94 at NFE=100 on FashionMNIST, compared to DDPM's 228.09
+at equal NFE — a 42% worse FID. The controlled sampler does not achieve Pareto
+optimality over any baseline method at any tested NFE.
+
+However, the paper's contributions extend beyond the FID number:
+  1. A principled information-theoretic framework for SDE control via Girsanov
+     change of measure — novel mathematical formulation
+  2. Thermodynamic diagnostics (path KL, entropy production, control drift
+     orthogonality) that provide interpretable measures of generation quality
+  3. A verified Schrödinger bridge implementation with IPF convergence
+  4. Crooks/Jarzynski verification showing the thermodynamic consistency of
+     the framework
+
+TMLR accepts papers that contribute to methodology and theory without requiring
+state-of-the-art benchmark performance. The combination of novel framework +
+honest reporting + interpretable diagnostics fits TMLR's editorial policy.
+
+NeurIPS/ICML main track: Not currently competitive (requires Pareto improvement).
+NeurIPS/ICML workshop: Competitive for diffusion model or theory workshops.
+ICLR: Unlikely without stronger empirical results.
+
+================================================================================
+END OF SESSION 7 SUMMARY
+================================================================================

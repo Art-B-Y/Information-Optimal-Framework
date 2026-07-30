@@ -1,0 +1,78 @@
+ITS PROJECT — SESSION 8 AUDIT LOG
+Generated: 2026-04-23
+======================================================================
+
+INTERRUPTION RECOVERY
+----------------------------------------------------------------------
+Session 8 began after Session 7 was interrupted after the quick eval
+matrix completed (4 runs: DDPM+DDIM x NFE50+200, 256 samples, seed=42).
+
+Step 1A — Result Files Examined:
+
+  data/results/fmnist_eval_matrix_final.json
+    Status: VALID but incomplete
+    Size: 1121 bytes | Note: 4 entries, 256 samples, 1 seed — needs full 3-seed 5k-sample run
+
+  data/results/controlled_config_d_results.json
+    Status: VALID
+    Size: 478 bytes | Note: Config D 60ep seed=42 FID=323.94, 5000 samples
+
+  data/results/ablation_study.json
+    Status: VALID
+    Size: 3785 bytes | Note: 7 ablations, 2048 samples each
+
+  data/results/baseline_evals_fashionmnist.json
+    Status: VALID (Session 6)
+    Size: 3160 bytes | Note: 12 runs at 5000 samples, single seed, epoch-50 model
+
+  data/results/crooks_verification.json
+    Status: VALID
+    Size: 850 bytes | Note: Jarzynski dF=0.350, Crooks crossing=0.317, PASSED
+
+  data/results/reproducibility_manifest.json
+    Status: VALID
+    Size: 3627 bytes | Note: 3627 bytes, Session 7 data
+
+  data/results/pareto_frontier_final.json
+    Status: VALID
+    Size: 1362 bytes | Note: No Pareto improvement documented
+
+  data/results/control_drift_analysis.json
+    Status: VALID
+    Size: 4165 bytes | Note: Session 6 analysis
+
+Step 1B — Completion Checklist:
+  FashionMNIST: 0/36 runs complete at 2048+ samples (all pending)
+  CIFAR-10: 0/36 runs complete (blocked — no CIFAR-10 score model)
+  Checklist written: data/results/eval_completion_checklist.json
+
+Step 1C — DDIM NFE=200 seed=42 Verification:
+  Found in fmnist_eval_matrix_final.json: FID=254.8227 at 256 samples.
+  Value confirmed correct from session log output.
+  Entry at 256 samples is insufficient for paper — will be re-run at 2048.
+
+Step 1D — Training Run Status:
+  score_fmnist_v2: COMPLETE at epoch 100 (avg_loss=470.67)
+  controlled_config_d_seed42: COMPLETE at epoch 60 (FID=323.94, converged)
+  score_cifar10_v2: NOT STARTED (requires ~5h GPU time)
+  ipf_fmnist_full: PARTIAL at 5 iterations (target: 20, bwd_loss=2.3e-5)
+  Written: data/results/training_run_status.json
+
+Step 1E — Test Suite:
+  Result: 41 tests passed, 0 failed (353s runtime)
+  All Session 7 tests intact and passing.
+
+CODE AUDIT
+----------------------------------------------------------------------
+  Examined 46 src files and 37 scripts.
+  Issues found: NONE
+  JSONL logs: all last lines verified as valid JSON or empty.
+
+SESSION 8 ACTIONS TAKEN:
+  1. run_fmnist_eval_matrix.py — made resumable (skip completed runs, save after each run)
+  2. train_controlled_config_d.py — added resume_latest=True
+  3. eval_completion_checklist.json — created (Step 1B)
+  4. training_run_status.json — created (Step 1D)
+  5. Full eval matrix launched: 2048 samples, 3 seeds, DDPM+DDIM x 4 NFE
+
+======================================================================

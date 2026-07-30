@@ -1,0 +1,10 @@
+{
+  "script": "scripts\\train_score_corrected_baseline.py",
+  "run_id": null,
+  "target_epochs": 100,
+  "completed_epochs": 73,
+  "total_segments": 2,
+  "total_wall_hours": 2.0701847406228384,
+  "max_segment_hours": 1.5,
+  "checkpoint_dir": "checkpoints\\fmnist_score_corrected_baseline"
+}

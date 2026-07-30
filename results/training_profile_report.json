@@ -1,0 +1,45 @@
+{
+  "profile_date": "2026-05-03",
+  "session": "session_speed",
+  "device": "NVIDIA GeForce GTX 1650 Ti (4 GB)",
+  "dataset": "fashionmnist",
+  "baseline_config": {
+    "num_workers": 0,
+    "pin_memory": true,
+    "mixed_precision": false,
+    "batch_size": 32,
+    "sde_steps": 50
+  },
+  "bottlenecks_identified": [
+    {
+      "rank": 1,
+      "name": "DataLoader single-threaded",
+      "description": "num_workers=0 serialises dataset loading to the main process, starving the GPU between batches.",
+      "estimated_overhead_pct": 60,
+      "fix": "num_workers=4, prefetch_factor=2, persistent_workers=True"
+    },
+    {
+      "rank": 2,
+      "name": "CPU-GPU sync on every step",
+      "description": "loss.item() called every training step forces the CPU to wait for the GPU kernel to complete, breaking pipelining.",
+      "estimated_overhead_pct": 25,
+      "fix": "Move .item() inside the log block (every log_interval steps only)"
+    },
+    {
+      "rank": 3,
+      "name": "Mixed precision disabled",
+      "description": "mixed_precision=False (default) causes all matmuls to run in FP32; FP16 AMP reduces memory bandwidth pressure by 2x.",
+      "estimated_overhead_pct": 30,
+      "fix": "mixed_precision=True (default changed)"
+    },
+    {
+      "rank": 4,
+      "name": "No fault tolerance",
+      "description": "No autosave; an 8-day run crashed with zero recoverable state.",
+      "estimated_overhead_pct": 0,
+      "fix": "30-min autosave daemon thread + atomic write + wall-clock segmentation"
+    }
+  ],
+  "profiler": "manual_timing + gpu_utilization_monitoring",
+  "notes": "Profile conducted on Session Speed overhaul. Exact GPU utilisation percentages are estimates based on observed step times before/after fixes."
+}

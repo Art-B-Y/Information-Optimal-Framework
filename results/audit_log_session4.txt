@@ -1,0 +1,229 @@
+ITS PROJECT — SESSION 4 CODE AUDIT LOG
+Generated: 2026-04-15
+=============================================================
+
+Auditor: Claude Sonnet 4.6 (automated session)
+Files audited: 43 Python source files + 10 YAML configs
+Test suite baseline: 13/13 passing before audit
+Test suite after audit: 17/17 passing (4 new tests added)
+
+=============================================================
+CATEGORY 1 — IMPORT CORRECTNESS
+=============================================================
+
+File: src/its/__init__.py
+  Issue: None. All imports resolve. `TrainingConfig`, `run_training` from
+         `training.loop` exist. `ControlConfig`, `ControlPolicy` from
+         `controllers.neural_control` exist. No references to removed modules.
+
+File: src/its/sde/torch_sde.py
+  Issue (minor): `class _ControlledSDE(torchsde.SDEIto if torchsde else object)`
+         uses a conditional base class. The ternary correctly evaluates to `object`
+         when torchsde=None (lazy evaluation), so no AttributeError at import time.
+         __init__ has a guard that raises ImportError explicitly. Behavior is safe.
+  Status: No fix needed. Pattern is intentional.
+
+File: src/its/sde/diffrax_solver.py
+  Issue (minor): `jax = None; diffrax = None` fallback. Both entry points
+         (`sample_with_diffrax`, `_make_solver`) raise explicit ImportError if
+         called when diffrax is None. Safe.
+  Status: No fix needed.
+
+File: src/its/eval/evaluator.py  [FIXED — see CAT1-1 below]
+
+All other files: imports resolve correctly. No references to removed
+  `sampler_jax`, `controller_torch`, or old `training_loop` modules found.
+
+CAT1-1 FIX: evaluator.py _make_dataset() used train=True for all datasets.
+  Bug: FID computed against training images artificially inflates score for
+       models that memorise training data. Standard practice is to compare
+       generated samples to the held-out test split.
+  Fix: Changed train=True → train=False for FashionMNIST, MNIST, CIFAR-10
+       in _make_dataset(). Added assertion that dataset.train == False.
+  Files changed: src/its/eval/evaluator.py
+
+=============================================================
+CATEGORY 2 — SHAPE CONSISTENCY
+=============================================================
+
+File: src/its/sde/score_sde.py
+  Issue: None found. ConvControlPolicy dispatch is correct:
+    - ConvControlPolicy: receives (B,C,H,W), returns (B,C,H,W), then
+      control_vec = control_vec_4d.view(x.shape[0], -1) for Girsanov term
+    - MLP: flat_x = x.view(x.shape[0], -1), control_vec = (B, D)
+    - control_term = cfg.control_weight * control_vec.view_as(x) reshapes back.
+  t_batch shape: (B, 1) — matches ConvControlPolicy.forward() which squeezes to (B,).
+
+File: src/its/training/controlled_score_training.py simulate_path()
+  Issue: None found. Same dispatch logic as score_sde.py, consistent shapes.
+
+File: src/its/samplers/sb_solver.py
+  Issue: None found. sample_forward/sample_backward return x_T with same
+         shape as input x_init (B,C,H,W). trajectory is (steps+1,B,C,H,W).
+         controls is (steps,B,C,H,W). All correctly sized.
+
+File: src/its/physics/fluctuation.py
+  Issue: jarzynski_work_estimate expects 1D numpy array (per-sample work values).
+         Called correctly in score_sde.py: log_rn shape is (B,) after stacking.
+  Status: No shape bug found.
+
+File: src/its/models/score_unet.py  [FIXED — see CAT3-1 below]
+
+=============================================================
+CATEGORY 3 — NUMERICAL STABILITY
+=============================================================
+
+CAT3-1 FIX: score_unet.py ScoreUNet.forward() — sigma not clamped.
+  Bug: h = x / sigma and return score / sigma — if sigma reaches 0.0 (e.g.
+       at the very end of a diffusion trajectory where t→0), these operations
+       produce NaN/Inf. sigma_t at t=eps≈1e-3 is finite but near zero.
+  Fix: Added sigma = sigma.clamp(min=1e-5) before the first division.
+       This prevents NaN without materially affecting training at normal sigma values.
+  Files changed: src/its/models/score_unet.py
+
+CAT3-2 FIX: conversions.py eps_to_score() — unguarded division by sigma.
+  Bug: return -eps / sigma — if sigma=0 is passed, produces NaN.
+       Used primarily in test code and exported API but should be robust.
+  Fix: Added sigma = sigma.clamp(min=1e-5) before division.
+  Files changed: src/its/sde/conversions.py
+
+CAT3-3 FIX: fluctuation.py jarzynski_work_estimate() — dead code.
+  Bug: Variable `log_z` was computed (m + log(mean(exp(...)))) but never
+       used. Left from a prior refactor of the logsumexp implementation.
+       The actual return path correctly uses `log_mean_exp` computed from `lse`.
+  Fix: Removed the dead `log_z` line. Added clarifying comment explaining
+       the LogMeanExp derivation.
+  Files changed: src/its/physics/fluctuation.py
+
+Additional checks (no fix needed):
+  - SinusoidalTimeEmbedding.forward(): at t=0 produces [0,...,0,1,...,1] (no NaN).
+    At t=1, sin/cos of moderate values, all finite. Safe.
+  - _FiLMLayer: scale+shift are linear operations on bounded time embedding. Safe.
+  - DSM loss: sigma is always > 0 from log-uniform sampling (exp of finite number).
+    target = -noise/sigma: safe since sigma_min=0.01.
+  - Girsanov log-RN: can produce large values for large control, but
+    jarzynski_work_estimate applies max_clip to prevent overflow in exp(). Safe.
+
+=============================================================
+CATEGORY 4 — CONFIGURATION COMPLETENESS
+=============================================================
+
+CAT4-1 FIX: Same as CAT1-1 — evaluator.py train=True. See above.
+
+CAT4-2 FIX: YAML configs missing Session-3-added fields.
+  Bug: configs/experiment/controlled_mnist.yaml and controlled_cifar.yaml
+       did not include quality_weight, nan_tolerance, save_every_n_epochs, jsonl_log.
+       These fields exist in ControlledScoreTrainingConfig (added Session 3) but
+       had no YAML entry, so Hydra would use the Python default but the config
+       was silently incomplete for documentation and override purposes.
+  Fix: Added all four fields with sensible defaults to both YAML files.
+  Files changed:
+    configs/experiment/controlled_mnist.yaml
+    configs/experiment/controlled_cifar.yaml
+
+CAT4-3 (documented, not fixed as code): controlled_cifar.yaml has base_channels=64
+  but the existing score_epoch_0050.pt checkpoint requires base_channels=128.
+  The YAML is the default config for NEW training runs, and base_channels=64 is
+  a reasonable default for CPU-budget training. The epoch-50 checkpoint was
+  trained with base_channels=128 (train_long_run.yaml override). Loading the
+  epoch-50 checkpoint into a base_channels=64 model would fail WITHOUT the
+  _rebuild_from_config() fix from Session 3, which reads model_config from the
+  checkpoint and rebuilds. With that fix in place (scripts/eval_samples.py),
+  checkpoint loading is architecture-independent. No code change needed.
+
+Config validation: python scripts/validate_configs.py → 6/6 OK after fixes.
+
+=============================================================
+CATEGORY 5 — TEST COVERAGE GAPS
+=============================================================
+
+All four missing tests added to tests/test_phase5_hardening.py:
+
+CAT5-1 ADD: test_resume_flag_end_to_end
+  Trains 1 epoch, resumes, trains to epoch 2. Verifies:
+    - score_epoch_0001.pt has epoch=1
+    - score_epoch_0002.pt has epoch=2
+    - stats["epochs"]==1 on resumed pass (only 1 epoch of new work)
+  Uses DatasetConfig(subset_size=16) for fast execution.
+  Runtime: ~5s on CPU.
+
+CAT5-2 ADD: test_nan_guard_controlled_training
+  Patches torch.isfinite to return False on the first loss check only.
+  Verifies training completes (nan_tolerance=5 > 1 NaN batch).
+  Uses dataset_subset_size=16 for fast execution.
+  Runtime: ~9s on CPU.
+
+CAT5-3 ADD: test_latest_pt_mechanism
+  Runs 1-epoch controlled training with save_interval=1.
+  Verifies controlled_last.pt exists AND has same epoch as controlled_epoch_0001.pt.
+  Runtime: ~5s on CPU.
+
+CAT5-4 ADD: test_watch_training_parses_jsonl
+  Writes 5 synthetic JSONL records, runs watch_training.py --once,
+  verifies exit code 0 and tabular output contains expected column headers.
+  Runtime: ~30s (subprocess with Python startup).
+
+Infrastructure additions:
+  - DatasetConfig.subset_size: Optional[int] field added to datasets.py
+    (used by build_dataset via random_split for fast test runs)
+  - ControlledScoreTrainingConfig.dataset_subset_size: int field added to
+    controlled_score_training.py (used by _make_dataloader via Subset)
+
+New test count: 13 existing + 4 new = 17 total, all passing.
+
+=============================================================
+CATEGORY 6 — sb_solver.py INTEGRATION CHECK
+=============================================================
+
+File: src/its/samplers/sb_solver.py
+
+Import check:
+  - No removed modules imported.
+  - `from ..controllers import ConvControlConfig, ConvControlPolicy` — resolves correctly.
+  - Both `ConvControlConfig` and `ConvControlPolicy` are exported from
+    controllers/__init__.py. No circular imports.
+
+Architecture check:
+  - SchrodingerBridgeSampler.__init__ creates ConvControlConfig with
+    in_channels, base_channels, num_blocks, time_embed_dim — matches
+    ConvControlConfig dataclass fields exactly (verified by import test).
+  - ConvControlPolicy input assertion: input must be (B, C, H, W).
+    _euler_maruyama passes x_init directly to policy(x, t_tensor), which
+    is (B, C, H, W) throughout. Correct.
+
+compute_ipf_loss check:
+  - Returns (1/(2σ²)) * mean(sum_t ||u||² Δt). Scalar, non-negative.
+  - With random non-zero controls, produces finite positive scalar.
+
+train_step_forward / train_step_backward:
+  - Both call sample_forward/sample_backward, compute IPF loss, backprop.
+  - NaN guard: if loss is non-finite, logs warning and returns NaN metrics.
+  - Confirmed by test_schrodinger_bridge_shapes (passes, 14s on CPU).
+
+Synthetic forward/backward on (4,1,16,16):
+  - Manually verified via test; no shape errors or NaN values.
+
+=============================================================
+SUMMARY OF ALL CHANGES
+=============================================================
+
+Files modified:
+  src/its/models/score_unet.py            sigma clamp (CAT3-1)
+  src/its/sde/conversions.py              eps_to_score sigma clamp (CAT3-2)
+  src/its/physics/fluctuation.py          dead code removal (CAT3-3)
+  src/its/eval/evaluator.py               train=False fix (CAT1-1/CAT4-1)
+  src/its/data/datasets.py                subset_size field (CAT5 infrastructure)
+  src/its/training/controlled_score_training.py  dataset_subset_size field (CAT5 infrastructure)
+  configs/experiment/controlled_mnist.yaml  missing YAML fields (CAT4-2)
+  configs/experiment/controlled_cifar.yaml  missing YAML fields (CAT4-2)
+
+Files added:
+  (test additions to existing file only)
+
+Test file modified:
+  tests/test_phase5_hardening.py          4 new tests (CAT5-1 through CAT5-4)
+  Import: added DatasetConfig
+
+Total issues found: 7 (4 bugs + 3 code quality)
+Total fixes applied: 7
+All 17 tests passing after audit.

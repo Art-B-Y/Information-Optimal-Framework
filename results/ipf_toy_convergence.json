@@ -1,0 +1,68 @@
+{
+  "iterations": 5,
+  "steps_per_iter": 30,
+  "batch_size": 64,
+  "history": [
+    {
+      "iteration": 1,
+      "fwd_loss_start": 0.0033662538044154644,
+      "fwd_loss_end": 2.1684136299882084e-05,
+      "fwd_loss_mean": 0.00037222913979348957,
+      "bwd_loss_start": 0.11782819032669067,
+      "bwd_loss_end": 0.00013666159065905958,
+      "bwd_loss_mean": 0.012551195435905053,
+      "fwd_nonzero": true,
+      "bwd_nonzero": true
+    },
+    {
+      "iteration": 2,
+      "fwd_loss_start": 1.2580596376210451e-05,
+      "fwd_loss_end": 3.891806045430712e-06,
+      "fwd_loss_mean": 1.3092022451625477e-05,
+      "bwd_loss_start": 0.00025571323931217194,
+      "bwd_loss_end": 8.352376607945189e-05,
+      "bwd_loss_mean": 0.0002780400215366778,
+      "fwd_nonzero": true,
+      "bwd_nonzero": true
+    },
+    {
+      "iteration": 3,
+      "fwd_loss_start": 4.115760475542629e-06,
+      "fwd_loss_end": 2.426252422083053e-06,
+      "fwd_loss_mean": 3.342572798222439e-06,
+      "bwd_loss_start": 6.513858534162864e-05,
+      "bwd_loss_end": 1.8619186448631808e-05,
+      "bwd_loss_mean": 2.7234310922115888e-05,
+      "fwd_nonzero": true,
+      "bwd_nonzero": true
+    },
+    {
+      "iteration": 4,
+      "fwd_loss_start": 2.8027825464960188e-06,
+      "fwd_loss_end": 1.8067652263198397e-06,
+      "fwd_loss_mean": 2.2968375560594723e-06,
+      "bwd_loss_start": 1.72134859894868e-05,
+      "bwd_loss_end": 1.0667167771316599e-05,
+      "bwd_loss_mean": 1.2811721990146908e-05,
+      "fwd_nonzero": true,
+      "bwd_nonzero": true
+    },
+    {
+      "iteration": 5,
+      "fwd_loss_start": 1.7848326478997478e-06,
+      "fwd_loss_end": 1.195624349747959e-06,
+      "fwd_loss_mean": 1.4894070924735086e-06,
+      "bwd_loss_start": 1.1067651939811185e-05,
+      "bwd_loss_end": 8.483537385473028e-06,
+      "bwd_loss_mean": 9.554171235019264e-06,
+      "fwd_nonzero": true,
+      "bwd_nonzero": true
+    }
+  ],
+  "fwd_max_loss": 0.0033662538044154644,
+  "bwd_max_loss": 0.11782819032669067,
+  "fwd_learned": true,
+  "bwd_learned": true,
+  "fwd_changed": true,
+  "converged": true
+}

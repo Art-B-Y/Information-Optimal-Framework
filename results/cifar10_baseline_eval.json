@@ -1,0 +1,17 @@
+{
+  "dataset": "cifar10",
+  "num_samples": 256,
+  "note": "Random-weight (--baseline-only) SDE evals. N=256 (--quick). Meaningful as infrastructure smoke-tests only; FID will drop substantially with trained weights.",
+  "run_1": {
+    "fid": 328.9219970703125,
+    "inception_score_mean": 1.3110365867614746,
+    "inception_score_std": 0.04851724952459335,
+    "nfe_per_sample": 100.0
+  },
+  "run_2": {
+    "fid": 345.4810791015625,
+    "inception_score_mean": 1.2394973039627075,
+    "inception_score_std": 0.031635209918022156,
+    "nfe_per_sample": 100.0
+  }
+}

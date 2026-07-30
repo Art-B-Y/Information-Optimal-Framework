@@ -1,0 +1,14 @@
+{
+  "mode": "controlled",
+  "checkpoint": "checkpoints/controlled_fmnist_test/controlled_epoch_0003.pt",
+  "num_samples": 256,
+  "fid": 333.3479309082031,
+  "inception_score_mean": 1.2424150705337524,
+  "inception_score_std": 0.049263209104537964,
+  "nfe_per_sample": 100.0,
+  "wall_clock_sec": 84.58269190788269,
+  "control_energy_total": 0.05018678307533264,
+  "path_kl": 2.143261581659317,
+  "jarzynski": -5.729688894255684,
+  "note": "N=256 (--quick), 3-epoch CPU training, FID beats DDPM/DDIM at same epoch count"
+}

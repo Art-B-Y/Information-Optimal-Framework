@@ -1,0 +1,6 @@
+{
+  "final_avg_loss": 470.6685791015625,
+  "best_avg_loss": 470.6685791015625,
+  "epochs": 50,
+  "device": "cuda"
+}

@@ -1,0 +1,155 @@
+ITS PROJECT — SESSION 6 CODE AUDIT
+Generated: 2026-04-19
+=============================================================
+
+SCOPE: GPU environment verification + full codebase audit before extended training.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. GPU ENVIRONMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Initial state: torch 2.3.0+cpu installed; NVIDIA GeForce GTX 1650 Ti present
+  with driver 566.36 (supports CUDA 12.7), but CUDA toolkit not found via nvcc.
+
+ACTION: Reinstalled PyTorch with CUDA 12.1 support:
+  pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+
+Result after reinstall:
+  PyTorch: 2.5.1+cu121
+  CUDA available: True
+  GPU: NVIDIA GeForce GTX 1650 Ti
+  VRAM: 4.0 GB
+  Compute capability: 7.5
+  CUDA version: 12.1
+  CUDA tensor test: PASSED
+
+Note: its-beta package requires torch<2.4, but 2.5.1 is installed. The package
+constraint is overly strict — all ITS code is compatible with 2.5.1. No functional
+issues observed. Test suite: 26/26 passing after reinstall.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. FILES AUDITED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+src/its/training/score_training.py           AUDITED
+src/its/training/controlled_score_training.py AUDITED
+src/its/samplers/ddpm.py                     AUDITED
+src/its/samplers/sb_solver.py                AUDITED
+src/its/sde/conversions.py                   AUDITED
+src/its/models/score_unet.py                 AUDITED
+src/its/controllers/neural_control.py        AUDITED
+src/its/eval/evaluator.py                    AUDITED
+src/its/analysis/metrics.py                  AUDITED
+scripts/eval_samples.py                      AUDITED
+scripts/run_experiment.py                    AUDITED
+scripts/train_score_model.py                 AUDITED
+scripts/train_controlled_score.py            AUDITED
+scripts/train_schrodinger_bridge.py          AUDITED
+scripts/select_best_checkpoint.py            AUDITED
+scripts/generate_paper_figures.py            AUDITED
+scripts/generate_results_table.py            AUDITED
+scripts/analyze_thermodynamics.py            AUDITED
+scripts/run_experiment_suite.py              AUDITED
+scripts/migrate_checkpoint.py                AUDITED
+scripts/run_final_sampler.py                 AUDITED
+scripts/run_hyperparam_sweep.py              AUDITED
+tests/test_phase5_hardening.py               AUDITED
+tests/test_sampler.py                        AUDITED
+tests/test_score_model.py                    AUDITED
+tests/test_training.py                       AUDITED
+configs/experiment/controlled_mnist.yaml     AUDITED
+configs/experiment/controlled_cifar.yaml     AUDITED
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. AUDIT RESULTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CHECK 1: torch.load map_location
+  Status: PASS
+  All torch.load calls include map_location parameter.
+  Files: score_training.py:144, controlled_score_training.py:208,299,
+         migrate_checkpoint.py:77, eval_samples.py:150,206,
+         run_final_sampler.py:76, run_hyperparam_sweep.py:174,
+         test_phase5_hardening.py (multiple), analysis/metrics.py:265
+
+CHECK 2: torch.save directory creation
+  Status: PASS
+  All torch.save calls have parent directory creation before saving.
+  - score_training.py: mkdir at line 185 before training loop
+  - controlled_score_training.py: mkdir at line 404 before training loop
+  - train_schrodinger_bridge.py: mkdir at lines 170-171 before loop
+  - run_final_sampler.py: mkdir at line 111 immediately before save
+
+CHECK 3: Model and batch device consistency
+  Status: PASS
+  - score_training.py: model.to(device) line 176, batch x.to(device) line 215
+  - controlled_score_training.py: model.to(device) line 359, batch x.to(device) line 449
+  - ConvControlPolicy: moved to device in build_control_policy() line 243
+
+CHECK 4: Controlled training device checks
+  Status: PASS
+  - ConvControlPolicy: moved via build_control_policy(device=device)
+  - Inception-v3 extractor: .to(device) called at end of _build_feature_extractor()
+  - EMA: created AFTER model.to(device), shadow params inherit device
+  - freeze_score_model: requires_grad=False set at lines 375-380, BEFORE optimizer at 392
+
+CHECK 5: select_best_checkpoint.py fewer-than-3-epochs
+  Status: PASS
+  Returns early with error message if no JSONL records found.
+  No hardcoded epoch count assumption.
+
+CHECK 6: generate_paper_figures.py missing data
+  Status: PASS
+  _load_json() returns None for missing files; each figure shows stub text instead of crashing.
+
+CHECK 7: DDPM score_to_eps conversion
+  Status: PASS
+  score_to_eps called at line 58, before any DDPM/DDIM update (lines 60-79).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4. ISSUES FOUND AND FIXED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ISSUE S6-1: EMA state not restored on checkpoint resume
+  Severity: MEDIUM
+  File: src/its/training/controlled_score_training.py
+  Location: _load_checkpoint() function (line 200-217)
+  Root cause: Function signature did not accept EMA parameter; no EMA state
+    dict loading on resume. EMA accumulated statistics were lost when resuming.
+  Fix: Added `ema: Optional[ExponentialMovingAverage] = None` parameter;
+    loads `checkpoint["ema_state_dict"]` if present and ema is not None.
+  Also updated call site at line 407 to pass `ema=ema`.
+
+ISSUE S6-2: torch.load without weights_only in score_training.py
+  Severity: LOW (FutureWarning only)
+  File: src/its/training/score_training.py line 144
+  Fix: Added `weights_only=False` to suppress FutureWarning from PyTorch 2.5.
+
+ISSUE S6-3: torch.load without weights_only in controlled_score_training.py
+  Severity: LOW (FutureWarning only)
+  File: src/its/training/controlled_score_training.py line 208
+  Fix: Added `weights_only=False`.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5. TEST SUITE STATUS POST-AUDIT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+26/26 tests passing (330 seconds on CPU, 12 cores)
+No regressions introduced by PyTorch 2.5.1+cu121 upgrade.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6. GPU BATCH SIZE CONSTRAINTS (GTX 1650 Ti, 4 GB VRAM)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Estimated safe batch sizes for training:
+  FashionMNIST score UNet (base_channels=64):  batch=256  (28x28x1)
+  FashionMNIST controlled training:            batch=128  (score + control)
+  CIFAR-10 score UNet (base_channels=64):      batch=128  (32x32x3)
+  CIFAR-10 controlled training:                batch=64   (score + control)
+
+Note: Inception-v3 quality extractor adds ~1.2 GB VRAM at batch=64.
+If OOM occurs, reduce quality_weight=0.0 or batch_size by half.
+
+=============================================================
+END OF SESSION 6 AUDIT LOG
+=============================================================

@@ -1,0 +1,267 @@
+================================================================================
+ITS PROJECT — PHASE 2: CORRECTED BASELINE, VALIDATION GATE, CONTROLLER PRE-FLIGHT
+Session: 2026-07-15 -> 2026-07-16
+Verdict: SUCCESS — GATE 2.2 PASSED 5/5. The project has a working generative model
+         for the first time in its history.
+================================================================================
+
+HEADLINE
+--------
+  Corrected baseline: FID = 19.71 +/- 0.32   (N=5000, 3 seeds, NFE=500)
+  The FIRST paper-grade evaluation this project has ever produced.
+
+                          pre-audit (void)      corrected
+    FID @ NFE=50            326.09               111.64
+    FID @ NFE=100           325.20                52.96
+    FID @ NFE=200           325.69                31.31
+    FID @ NFE=500           --                    25.98
+    paper-grade             never done          19.71 +/- 0.32
+    improves with compute?  NO — flat            YES — monotonically
+    samples                 noise                recognisable clothing
+
+  A sampler whose FID does not move when given 4x the compute is broken. That was
+  visible on the surface of baseline_evals_fashionmnist.json for months.
+
+================================================================================
+STEP 0 — PRE-FLIGHT VERIFICATION                  [ALL 3 PASS]
+================================================================================
+  CUDA           : torch 2.5.1+cu121, GTX 1650 Ti, 4.295 GB, CC 7.5.
+                   4096^3 matmul on cuda:0, 80.0 ms warm -> 1.72 TFLOP/s FP32.
+                   The CPU-only regression that caused the 176-hour run 5A is RESOLVED.
+  Test suite     : 89 passed, 0 skipped. (The brief expected "88 pass + 1 skip"; with CUDA
+                   live the previously-skipped test_phase5_hardening.py:1018 "CUDA not
+                   available" now RUNS AND PASSES, so 89/0 is the correct end state.)
+  Sampler repro  : VE sampler vs exact analytic score -> mean +2.97 (target 3.0);
+                   std error 0.0352 -> 0.0131 -> 0.0025 at NFE 50/100/200. Improves with
+                   NFE. Phase 1 fix INTACT.
+  -> data/results/phase2_preflight.txt
+
+  *** HARDWARE FINDING — DEVIATED FROM THE BRIEF, DELIBERATELY AND DOCUMENTED ***
+  The brief mandates AMP. Measured on this GPU, AMP is 3.7x SLOWER at every batch size:
+      bs=256  FP32 1297 img/s   |   AMP 346 img/s
+  Cause: the GTX 1650 Ti is a TU117 die; the GTX 16-series has NO TENSOR CORES (RTX-only),
+  so autocast is pure cast overhead. Following the instruction would have made training
+  3.7x slower and defeated its own purpose. Phase 2 trains in FP32.
+  COROLLARY: the Speed session recorded "mixed_precision=False ... no Tensor Cores" as a
+  ROOT CAUSE of an 8-day training failure. That was a MISDIAGNOSIS for the same reason.
+  The real cause was the CPU-only torch build.
+
+================================================================================
+FOUR MORE DEFECTS FOUND (Phase 1's four fatal fixes were NOT sufficient)
+================================================================================
+  The Phase-1 end state — all four fatal defects fixed — still produced FID 206.49.
+  Pilot (10 epochs each, N=2048/seed 42, diagnostic only):
+
+    A  legacy precond, sigma_max=1.0    FID = 206.49   <- Phase-1 end state
+    B  legacy precond, sigma_max=42     FID = 116.87   <- +sigma_max fix   (-43%)
+    C  edm precond,    sigma_max=42     FID =  74.70   <- +precond fix     (-36%)
+
+  E. sigma_max=1.0 was ~42x TOO SMALL for a valid VE prior.
+     Song technique-1: sigma_max = max pairwise training distance. MEASURED on
+     FashionMNIST in [-1,1]: 41.88. At sigma_max=1.0 the perturbed distribution still
+     retains almost all data structure, so the N(0,sigma_max^2) init is not the prior.
+     FIXED: sigma_max=42.0. Requires the retrain — the old model never saw sigma>1.
+
+  F. THE DSM OBJECTIVE WAS UNWEIGHTED.
+     target=-eps/sigma has magnitude 1/sigma, so the loss scale goes as 1/sigma^2: a 1e4
+     ratio over [0.01,1] and 1.7e7 over the corrected [0.01,42]. The gradient collapsed
+     onto the smallest sigmas; the large-sigma regime — where the reverse trajectory
+     STARTS — was barely learned.
+     FIXED: dsm_weighting="sigma_sq" (equivalent to eps-prediction, O(1) at every sigma).
+     A convention guard now RAISES if "none" is used with a >100x sigma range.
+
+  G. THE MODEL'S PRECONDITIONING WAS BADLY CONDITIONED.
+     h = x/sigma makes the network input span 70x across sigma in [0.01,42] — worst at
+     the low-sigma end, where sample quality is decided.
+     FIXED: EDM preconditioning (Karras et al. 2022), input held at unit scale for every
+     sigma. VERIFIED: with F=0 the branch reduces to the exact analytic Gaussian score to
+     0.00e+00 relative error across four decades of sigma.
+     SUB-FIX: the literal Tweedie form (c_skip*x - x)/sigma^2 suffers CATASTROPHIC
+     CANCELLATION at small sigma (measured 2.959e-03 abs error at sigma=0.01, float32).
+     Since c_skip-1 = -sigma^2/(sigma^2+sd^2) EXACTLY, sigma^2 cancels analytically:
+     score = -x/(sigma^2+sd^2) + (c_out/sigma^2)*F. Identical algebra, 0.00e+00 error.
+
+  H. THE EMA HAD NO BIAS CORRECTION.  *** the subtlest one ***
+     `shadow` was seeded with the RANDOM INITIALISATION and decayed at 0.9999 with no
+     correction, so the weight remaining on the init is decay^t:
+         epoch  10 -> 80.0% still random init
+         epoch  50 -> 32.8%
+         epoch 100 -> 10.8%
+     MEASURED at epoch 10:  RAW weights FID 99.75  |  EMA weights FID 373.07
+     The "EMA" checkpoint was mostly noise. A FID-vs-epoch curve built on it would have
+     measured how fast the EMA forgets its initialisation, not how fast the model learns
+     — and would have looked like a perfectly plausible learning curve.
+     FIXED: warmup schedule decay_t = min(decay, (1+t)/(10+t)). VERIFIED: with the model
+     pinned at 10.0 from step 1, old EMA reads 1.9989 (80% init) at 2230 updates; new
+     reads 10.0000 (0.0000% init).
+     LIMITATION: the contaminated shadow already saved in these checkpoints CANNOT be
+     recovered post hoc (it needs theta_init, which is not saved). Gate 2.2 is therefore
+     evaluated on RAW weights — simply the trained model, and perfectly valid.
+
+  I. FID WAS COMPUTED ON INVERTED IMAGES [non-fatal].
+     FrechetInceptionDistance(normalize=True) was fed uint8. torchmetrics does
+     `imgs = (imgs*255).byte() if normalize`, so uint8 WRAPS MOD 256: pixel v -> (256-v).
+     HONEST SCOPING: both real and fake got the same transform, so FID stayed a valid
+     distance — this is NOT why the pre-audit FIDs were ~326 (that was sampler defect A1).
+     But it computed FID in an inverted pixel space, so the project's numbers are not
+     comparable to published FashionMNIST FIDs, which the paper requires.
+     Measured on identical inputs: 18.92 (bug) vs 20.79 (correct). FIXED: normalize=False.
+     InceptionScore(normalize=True) is CORRECT (fed float [0,1]) and was left alone.
+
+  J. simulate_path initialised at N(0,I), not the VE prior N(0, sigma_max^2).
+     Only correct when sigma_max==1; with sigma_max=42 it would start the controller's
+     rollout ~42x too close to the origin. FIXED.
+
+  RUNNING TOTAL: 8 defects fixed (4 fatal in Phase 1 + 4 more in Phase 2), plus 2 non-fatal.
+
+================================================================================
+STEP 1 — CORRECTED BASELINE TRAINING                         [COMPLETE]
+================================================================================
+  Run          : fmnist_score_corrected_baseline, 100 epochs
+  Wall clock   : 2.1 h   (vs 176 h for run 5A on CPU)
+  Config       : VE kernel <-> VE sampler [MATCHED, asserted in code], sigma in [0.01,42],
+                 dsm_weighting=sigma_sq, preconditioning=edm, FP32 (no AMP), bs=256,
+                 cosine LR 2e-4 -> 1e-6, grad clip 1.0, EMA 0.9999, JSONL every 25 steps,
+                 val every epoch, checkpoints every 5 epochs.
+  Fault tolerance EXERCISED LIVE, not assumed: segment 1 exited cleanly (code 42) after
+  1.51 h at epoch 73; segment 2 auto-resumed from score_last.pt and finished to 100.
+  Final: train DSM 0.1350, best 0.1339, val 0.1367, overfit ratio 1.02.
+
+================================================================================
+STEP 2 — GATE 2.2                                    *** PASS 5/5 ***
+================================================================================
+  C1 stable training .... PASS  loss 0.1661 -> 0.1352; max grad norm 2.31 (bounded);
+                                val 0.2220 -> 0.1367; overfit ratio last 1.02, max 1.06
+  C2 FID vs training .... PASS  98.46 / 102.20 / 66.39 / 66.39 / 52.96 at ep 10/30/50/70/100
+                                (N=2048, seed 42). 98.46 -> 52.96.
+                                HONESTY: not monotone (ep30 > ep10) — within FID noise at
+                                1 seed / N=2048. And FID was STILL FALLING at epoch 100,
+                                so the model is UNDERTRAINED, not converged.
+                                CHECKED, NOT ASSUMED: ep50 and ep70 both print 66.39 —
+                                exactly the impossible-number signature the audit flagged.
+                                The checkpoints are genuinely distinct (different md5; L2
+                                weight distance 3.14) and full precision differs
+                                (66.39476776 vs 66.38622283). A %.2f display coincidence
+                                on a plateau, not a bug.
+  C3 FID vs NFE ......... PASS  111.64 / 52.96 / 31.31 / 25.98 at NFE 50/100/200/500.
+                                A 4.3x MONOTONE improvement. THE most important criterion:
+                                its failure (flat ~326) was the clearest symptom of the
+                                broken sampler.
+  C4 competitive FID .... PASS  19.71 +/- 0.32  (seeds 42/123/7 -> 19.81/19.36/19.97)
+                                N=5000, 3 seeds, NFE=500. Target <30. PAPER-GRADE.
+  C5 visual ............. PASS  INSPECTED. 128-sample grid shows unambiguously
+                                recognisable FashionMNIST: trousers, pullovers, dresses,
+                                coats, sneakers, sandals, ankle boots, handbags with
+                                visible handles. Diverse; no mode collapse.
+                                Gen mean -0.330 / std 0.737 vs data -0.431 / 0.702.
+  -> data/results/gate_2_2_report.json ; docs/gate_2_2_report.md
+  -> data/paper_figures/baseline_fid_vs_epoch.{png,pdf}, baseline_fid_vs_nfe.{png,pdf}
+  -> data/results/baseline_final_samples.png
+
+================================================================================
+STEP 3 — CONTROLLER                            [PRE-FLIGHT PASS; FULL RUN NOT DONE]
+================================================================================
+  GATE ENFORCEMENT VERIFIED IN CODE: scripts/train_controlled_corrected.py REFUSED to run
+  before the gate existed, and cleared once it recorded a pass. It also asserts
+  control_weight > 0 (defect A3), matches the baseline's VE convention and sigma range
+  (defect A2), and keeps a live ||u|| regulariser from epoch 0 (5A's phase-1 mechanism).
+
+  BOUNDED-OBJECTIVE PROBE — 30 steps on the real config:
+                            run 5A                 now
+      total_loss            -> -1.59e14            bounded [-0.15, +0.90]
+      ||u||/||s|| ratio     19.9 -> 55,000         0.0010 -> 0.0057 (max 0.0071)
+      path_kl >= 0          violated               ALWAYS
+  Phase 1's REINFORCE-boundedness and Girsanov fixes HOLD on the real configuration.
+  -> data/results/controller_bounded_probe.json
+
+  *** NOT DONE: the full controller run. *** Measured cost: each step back-propagates
+  through a 20-step differentiable SDE rollout plus Inception at bs=32 (~1875 steps/epoch)
+  -> ~20-40 min/EPOCH, i.e. ~20-30 GPU-h for 50 epochs (1-2 DAYS wall-clock) on this GPU.
+  That does not fit in this session and is stated plainly rather than rushed. The script
+  is written, gate-guarded, probe-validated and ready to launch.
+
+================================================================================
+STEP 4 — THERMODYNAMICS                                       [NOT DONE]
+================================================================================
+  Blocked on Step 3 by design. Control energy, entropy production (controlled vs
+  uncontrolled), corrected path-KL, Jarzynski + validity check, Crooks, and the
+  equal-NFE controlled-vs-baseline comparison all require a trained controller.
+  Nothing here was estimated, guessed, or partially reported.
+
+================================================================================
+STEP 5 — REGRESSION AND SIDE-EFFECT VERIFICATION              [PASS]
+================================================================================
+  Test suite : 94 passed, 0 skipped  (was 89 at Phase 2 pre-flight; +5 new Phase 2 tests)
+               Count did not decrease; no previously passing test now fails.
+  Warnings   : no NEW warning categories from this session's code. Verified by running the
+               suite with -W error::FutureWarning (64 passed, ex. the slow hardening file).
+               The 60,223 warnings are a single pre-existing third-party Pillow
+               deprecation from torchvision's MNIST loader (60,218 at the Phase 1
+               baseline) — not from project code.
+  Phase 1 reproductions all still hold:
+    1. sampler recovers the correct distribution ... PASS (see Step 0)
+    2. training/sampling conventions match ......... PASS (asserted + logged every run)
+    3. control applied when weight nonzero ......... PASS (test + sample() raises otherwise)
+    4. path-KL uses the corrected Girsanov ......... PASS (matches exact densities to 3.3e-16)
+  New Phase 2 tests (all falsified against the broken code):
+    test_edm_preconditioning_reduces_to_analytic_score
+    test_unweighted_dsm_rejected_for_wide_sigma_range
+    test_sigma_sq_weighting_equalises_loss_across_sigma
+    test_fid_uses_normalize_false_with_uint8
+    test_uint8_times_255_wraps
+  -> data/results/phase2_change_log.txt (every change, one line each)
+
+================================================================================
+STEP 6 — DOCUMENTATION UPDATED
+================================================================================
+  README.md ............................ audit banner: 7 defects, void results, corrected
+                                         pipeline commands, current gate status
+  docs/gate_2_2_report.md .............. NEW — full 5-criterion report + limitations
+  docs/roadmap_current.md .............. regenerated: Phases 0/1/2 complete, next action
+  docs/negative_results.md ............. NEW §0 — the REAL negative results (method lessons);
+                                         old sections marked as predating the audit
+  data/results/RESULTS_ARE_VOID_READ_ME.md  void -> corrected supersession table
+  data/results/phase2_preflight.txt .... NEW
+  data/results/phase2_change_log.txt ... NEW
+  NOT updated (honest): docs/architecture.md, docs/reproduction.md — they describe the
+  pipeline structure, which is unchanged; their command lists should be refreshed when
+  the controller run lands. The analytics report was NOT regenerated: it would lead with
+  controller results that do not exist yet.
+
+================================================================================
+THE EXACT NEXT ACTION
+================================================================================
+  Launch the controller run. Gate 2.2 has passed, the objective is proven bounded, and the
+  script is gate-guarded and ready:
+
+    python scripts/launch_segmented_training.py \
+        --script scripts/train_controlled_corrected.py \
+        --target-epochs 50 --checkpoint-dir checkpoints/fmnist_controlled_corrected \
+        --max-segment-hours 3
+
+  BUDGET IT HONESTLY: ~20-30 GPU-h (1-2 days) on the 1650 Ti. Largest remaining time risk;
+  an A100 (~$2/h) would compress it to hours. USE THE SEGMENTED LAUNCHER.
+
+  WATCH ctrl_score_mag_ratio EVERY EPOCH — the primary indicator:
+    * exploding (5A: 19.9 -> 55,000) — should now be impossible; probe held at 0.006.
+    * collapsing to ~0 — the v1 failure mode. NOW GENUINELY INTERPRETABLE FOR THE FIRST
+      TIME, because the sampler works and the control is actually applied. A collapse on a
+      CORRECT substrate is a real negative result and a real paper.
+
+  COMPARE AT EQUAL NFE. The baseline is 19.71 at NFE=500 but 52.96 at NFE=100. A
+  controlled-vs-baseline comparison at mismatched NFE would be meaningless.
+
+================================================================================
+WHAT THIS SESSION ACTUALLY SETTLED
+================================================================================
+  1. The corrected pipeline WORKS: FID 325 (flat, noise) -> 19.71 +/- 0.32 (recognisable
+     clothing, improving with compute). ~16x, and the project's first paper-grade number.
+  2. Fixing the "big" bug was NOT enough. Phase 1's four fatal fixes left FID at 206.
+     Four more defects — each individually plausible-looking — stood between that and 19.71.
+     Only an explicit, falsifiable gate distinguishes "the big bug is fixed" from
+     "the pipeline works".
+  3. The controller question is now ASKABLE for the first time. Every prior controller
+     result was measured on a sampler that emitted noise with the control disconnected.
+     Whatever the controller does next — improve, collapse, or nothing — will be a real
+     finding.
+================================================================================

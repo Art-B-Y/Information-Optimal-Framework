@@ -1,0 +1,19 @@
+{
+  "config": "D",
+  "epochs": 60,
+  "runs": [
+    {
+      "seed": 42,
+      "loss": 194.6807403564453,
+      "dsm_loss": 194.63992309570312,
+      "control_energy": 0.0028552559670060873,
+      "path_kl": 0.3056122064590454,
+      "jarzynski": -1.748509168624878,
+      "quality_loss": 1.0220997333526611,
+      "fid": 323.9447326660156,
+      "inception_score_mean": 1.4381588697433472,
+      "nfe_per_sample": 100,
+      "num_samples_eval": 5000
+    }
+  ]
+}

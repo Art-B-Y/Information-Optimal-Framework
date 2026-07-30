@@ -1,0 +1,52 @@
+{
+  "DDPM (3-ep score, FashionMNIST)": {
+    "fid": 360.92559814453125,
+    "inception_score_mean": 1.5049337148666382,
+    "inception_score_std": 0.09269885718822479,
+    "nfe_per_sample": 50.0
+  },
+  "DDIM (3-ep score, FashionMNIST)": {
+    "fid": 375.15826416015625,
+    "inception_score_mean": 1.3438056707382202,
+    "inception_score_std": 0.0602419413626194,
+    "nfe_per_sample": 50.0
+  },
+  "Controlled SDE (3-ep, FashionMNIST)": {
+    "fid": 333.3479309082031,
+    "inception_score_mean": 1.2424150705337524,
+    "inception_score_std": 0.049263209104537964,
+    "nfe_per_sample": 100.0,
+    "wall_clock_sec": 84.58269190788269,
+    "num_samples": 256,
+    "control_energy_total": 0.05018678307533264,
+    "path_kl": 2.143261581659317,
+    "jarzynski": -5.729688894255684
+  },
+  "Baseline SDE (random weights)": {
+    "fid": 564.6534423828125,
+    "inception_score_mean": 1.1561347246170044,
+    "inception_score_std": 0.032976482063531876,
+    "nfe_per_sample": 100.0,
+    "wall_clock_sec": 160.12731671333313,
+    "num_samples": 256,
+    "control_energy_total": 0.18611808493733406,
+    "path_kl": 9.156239032745361,
+    "jarzynski": -19.32511140058808
+  },
+  "SDE baseline (random, CIFAR-10, N=256)": {
+    "fid": 328.9219970703125,
+    "inception_score_mean": 1.3110365867614746,
+    "inception_score_std": 0.04851724952459335,
+    "nfe_per_sample": 100.0,
+    "num_samples": 256,
+    "note": "CIFAR-10, random weights (--baseline-only), N=256 --quick"
+  },
+  "SDE baseline 2 (random, CIFAR-10, N=256)": {
+    "fid": 345.4810791015625,
+    "inception_score_mean": 1.2394973039627075,
+    "inception_score_std": 0.031635209918022156,
+    "nfe_per_sample": 100.0,
+    "num_samples": 256,
+    "note": "CIFAR-10, random weights (--baseline-only), second run, N=256 --quick"
+  }
+}

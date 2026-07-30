@@ -1,0 +1,154 @@
+ITS Project — Session 6 Summary
+================================
+Date: 2026-04-19
+GPU: GTX 1650 Ti (4GB VRAM, Compute 7.5, CUDA 12.7 / cuDNN 9.x)
+PyTorch: 2.5.1+cu121 (reinstalled from CPU-only 2.3.0)
+
+Objective: Transition to paper-grade results using newly activated GPU.
+=======================================================================
+
+STEP 1: GPU Environment Setup + Code Audit
+-------------------------------------------
+- Installed PyTorch with CUDA 12.1 index URL (torch 2.5.1+cu121)
+- GPU confirmed: cuda_test_passed=True, VRAM=4.0GB, cuda_available=True
+- Saved: data/results/gpu_environment.json
+- Full code audit (40+ files):
+  * Issue S6-1 (MEDIUM): EMA state not restored on checkpoint resume
+    Fix: _load_checkpoint() now accepts `ema` parameter and loads ema_state_dict
+  * Issue S6-2/S6-3 (LOW): torch.load() missing weights_only=False (FutureWarning)
+    Fix: Added weights_only=False to both training module load calls
+- Audit log: data/results/audit_log_session6.txt
+
+STEP 2: Extended Score Training Scripts
+----------------------------------------
+- Created scripts/train_fmnist_score_v2.py:
+  * 50 epochs, batch=256, GPU, time_embedding=True, base_channels=64
+  * cosine LR schedule, val loss every 5 epochs
+  * Saves to checkpoints/score_fmnist_v2/ (every 5 epochs)
+  * JSONL log: logs/fmnist_score_v2.jsonl
+- Created scripts/train_cifar10_score_v2.py:
+  * 50 epochs, batch=64, GPU, time_embedding=True, attention=True, base_channels=64
+  * Saves to checkpoints/score_cifar10_v2/ (every 10 epochs)
+
+STEP 3: Controlled Config D Training Script
+--------------------------------------------
+- Created scripts/train_controlled_config_d.py:
+  * Full model: path_kl=0.1, quality=0.01, freeze_score_model=True
+  * 30 epochs, 3-seed reliability (seeds 42/123/7) with --all-seeds flag
+  * Requires: score_fmnist_v2/score_epoch_0050.pt (available after training)
+
+STEP 4: IPF Toy Convergence Verification
+------------------------------------------
+- Created scripts/run_ipf_toy_convergence.py:
+  * 2D Gaussian source->target, 5 IPF iterations, 30 steps each
+  * Verifies forward and backward policies learn (nonzero, decreasing loss)
+- RESULT: CONVERGED (fwd_learned=True, bwd_learned=True)
+  * Forward max loss: 0.003366 (starts near 0, grows as policy learns)
+  * Backward max loss: 0.117828 (same pattern)
+- Output: data/results/ipf_toy_convergence.json
+- Key insight: output_proj zero-init creates dead gradient; tiny perturbation init
+  needed for toy demo while full training still starts from near-zero.
+
+STEP 5: Ablation Study Infrastructure
+---------------------------------------
+- Created scripts/run_ablation_study.py:
+  * 6 ablations: B (no KL/quality), C (KL only), D (full), F (strong quality),
+    no-EMA, no-freeze
+  * Each trains 5 epochs (or 2 with --quick) and reports DSM + control energy
+- Requires: score_fmnist_v2/score_epoch_0050.pt
+
+STEP 6: Scientific Consolidation Scripts
+------------------------------------------
+- Crooks/Jarzynski verification (scripts/run_crooks_verification.py):
+  * Harmonic trap k1=1→k2=2 Langevin dynamics, N=5000 trajectories
+  * RESULT: PASSED (Jarzynski error=0.003, Crooks slope=1.06 vs beta=1.0)
+  * Output: data/results/crooks_verification.json
+  * Paper figure updated: data/paper_figures/fig4_crooks_verification.png
+
+- Control drift analysis (scripts/run_control_drift_analysis.py):
+  * Analyzes cos_sim, ctrl_mag, score_mag from JSONL logs or checkpoints
+  * Output: data/results/control_drift_analysis.json
+
+STEP 7: Diagnostic Improvements
+----------------------------------
+- Score training enhancements (src/its/training/score_training.py):
+  * Cosine annealing LR schedule: CosineAnnealingLR over total steps
+  * Validation loss: val_every_n_epochs, overfitting warning if val/train > 1.2
+  * LR logged to JSONL at every log_interval step
+  * weights_only=False fix for torch.load()
+
+- Controlled training enhancements (src/its/training/controlled_score_training.py):
+  * Cosine annealing LR schedule for control optimizer
+  * EMA resume fix (Issue S6-1)
+  * weights_only=False fix
+  * LR logged to JSONL
+
+- YAML configs updated (controlled_mnist.yaml + controlled_cifar.yaml):
+  * use_lr_schedule: true
+  * lr_min: 1.0e-6
+  * log_sample_diversity: false
+
+STEP 8: Analytics Report Updates
+-----------------------------------
+- generate_report.py updated:
+  * Now parses JSONL format (Sessions 6 v2 logs) with val_dsm_loss, LR series
+  * Prefers fmnist_score_v2.jsonl over old text log
+  * Config D JSONL search extended to controlled_config_d_*.jsonl
+- generate_results_table.py updated:
+  * Parses baseline_evals_{dataset}.json format from run_baseline_evals.py
+
+STEP 9: New Tests (8 tests, all passing)
+------------------------------------------
+- test_lr_scheduler_applies: cosine schedule LR decreases after 2 epochs
+- test_validation_loss_computed: val_dsm_loss appears in JSONL
+- test_sample_diversity_nonzero: diversity > 0 for random model
+- test_sb_toy_convergence_finite: IPF loss is finite/nonzero from trajectory
+- test_pareto_frontier_correctness: exactly {(1,9),(2,5),(5,2)} on frontier
+- test_ablation_config_b_trains: Config B (no KL/quality) trains 1 epoch OK
+- test_gpu_device_consistency: model+batch on same CUDA device
+- test_checkpoint_map_location: loaded checkpoint tensors on CPU
+Total test count: 26 → 34 (all 34 passing in 707s)
+
+STEP 10: Documentation Updates
+---------------------------------
+- docs/reproduction.md: Section 12 added (GPU training commands, Session 6)
+- docs/architecture.md: Section 8b added (LR schedule, val loss, EMA fix)
+- docs/next_phase_roadmap.md: Sessions 5-6 completed section added
+- data/results/session_summary_session6.txt (this file)
+
+TRAINING STATUS (as of session end)
+---------------------------------------
+FashionMNIST v2 (50 epoch target):
+  * RUNNING: epoch 32/50, checkpoints at epochs 5/10/15/20/25/30
+  * val/train ratio: 0.987 (epoch 30) — no overfitting
+  * LR: 6.16e-5 (cosine decay from 2e-4)
+  * ETA: ~22 min to epoch 50
+
+CIFAR-10 v2: PENDING (launch after FashionMNIST completes)
+Controlled Config D: PENDING (requires epoch_0050 checkpoint)
+Baseline evals: PENDING (requires epoch_0050 checkpoint)
+Ablation study: PENDING (requires epoch_0050 checkpoint)
+
+PENDING AFTER TRAINING COMPLETES
+---------------------------------
+1. Launch CIFAR-10 v2 training (50ep, ~3-4hrs)
+2. Run baseline evals: python scripts/run_baseline_evals.py --dataset fashionmnist --model-ckpt checkpoints/score_fmnist_v2/score_epoch_0050.pt
+3. Run Config D: python scripts/train_controlled_config_d.py --score-ckpt checkpoints/score_fmnist_v2/score_epoch_0050.pt --epochs 30 --all-seeds
+4. Run ablation: python scripts/run_ablation_study.py --score-ckpt checkpoints/score_fmnist_v2/score_epoch_0050.pt
+5. Regenerate report: python scripts/generate_report.py
+6. Regenerate paper figures: python scripts/generate_paper_figures.py
+7. Update results table: python scripts/generate_results_table.py
+
+KNOWN ISSUES / NOTES
+---------------------
+- Two training processes were briefly running simultaneously (PID 29532 + 27756);
+  killed the resume process (PID 27756), original continues unaffected.
+- JSONL log has mixed epoch-order entries from the dual-process period (epochs 16-18)
+  but training is otherwise clean from epoch 19 onward.
+- IPF toy convergence: ConvControlPolicy zero-init creates dead gradient at start;
+  script re-inits output_proj with small nonzero weights for demo purposes only.
+  This does NOT affect production training (which starts from near-zero correctly).
+- Crooks verification uses synthetic harmonic trap (not real model trajectories);
+  verifies the physics engine (jarzynski_work_estimate, crooks_ratio) is correct.
+- MLP vs Conv ablation (mentioned in brief) cannot be run directly — ConvControlPolicy
+  is not yet integrated into ControlledScoreTrainingConfig. Would need separate script.

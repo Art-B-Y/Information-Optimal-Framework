@@ -1,0 +1,35 @@
+ITS Results Table
+=============================================================================================
+NOTE: Rows marked [stale] used training split for FID — included for reference only.
+All other rows use the test split (train=False).
+
+Sampler                Dataset             FID      N     IS   NFE   Ctrl-E   Path-KL  Epochs
+---------------------------------------------------------------------------------------------
+DDPM (v2)              fashionmnist     260.23    5000   1.86    50        —         —       —
+DDIM (v2)              fashionmnist     317.67    5000   1.48    50        —         —       —
+SDE (v2)               fashionmnist     326.09    5000   1.43    50        —         —       —
+DDPM (v2)              fashionmnist     228.09    5000   2.31   100        —         —       —
+DDIM (v2)              fashionmnist     256.19    5000   1.92   100        —         —       —
+SDE (v2)               fashionmnist     325.20    5000   1.44   100        —         —       —
+DDPM (v2)              fashionmnist     197.40 *  5000   2.33   200        —         —       —
+DDIM (v2)              fashionmnist     225.06 +  5000   2.19   200        —         —       —
+SDE (v2)               fashionmnist     325.69    5000   1.44   200        —         —       —
+DDPM (v2)              fashionmnist     260.79    5000   1.66   500        —         —       —
+DDIM (v2)              fashionmnist     268.89    5000   1.64   500        —         —       —
+SDE (v2)               fashionmnist     325.97    5000   1.44   500        —         —       —
+--------------------------------------------------------------------------------------------- ← baselines above, proposed below
+ITS-Config-D (controll FashionMNIST     323.94    5000      —   100   0.0029     0.306      60
+ITS-Config-D (3-seed C FashionMNIST     327.47    2048      —   100        —         —      60
+ITS-ConvControl        FashionMNIST     327.11    2048      —   100        —         —      50
+ITS-ConvControl (3-see FashionMNIST     327.47    2048      —   100        —         —      50
+ITS-Ablation-B         FashionMNIST     326.00    2048   1.44   100   0.0013     0.583       5
+ITS-Ablation-C         FashionMNIST     326.00    2048   1.44   100   0.0226     7.978       5
+ITS-Ablation-D         FashionMNIST     326.00    2048   1.44   100   0.0226     7.978       5
+ITS-Ablation-F         FashionMNIST     326.00    2048   1.44   100   0.0226     7.979       5
+ITS-Ablation-conv      FashionMNIST     326.00    2048   1.44   100   0.0000     0.037       5
+ITS-Ablation-no-EMA    FashionMNIST     326.00    2048   1.44   100   0.0226     7.978       5
+ITS-Ablation-no-freeze FashionMNIST     329.62    2048   1.44   100   0.0224     9.056       5
+---------------------------------------------------------------------------------------------
+* = best in column   + = second-best
+
+LaTeX version: data/results/results_table.tex

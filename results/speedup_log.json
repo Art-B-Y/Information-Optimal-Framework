@@ -1,0 +1,58 @@
+{
+  "session": "session_speed",
+  "date": "2026-05-03",
+  "device": "NVIDIA GeForce GTX 1650 Ti (4 GB)",
+  "dataset": "fashionmnist",
+  "fixes_applied": [
+    {
+      "step": "Step 2A",
+      "name": "DataLoader parallelism",
+      "change": "num_workers: 0 -> 4, prefetch_factor=2, persistent_workers=True",
+      "estimated_speedup_x": 1.6,
+      "notes": "Eliminates data starvation on GPU; factor depends on disk/CPU speed"
+    },
+    {
+      "step": "Step 2B",
+      "name": "Remove .item() from inner loop",
+      "change": "loss.item() moved from every step to every log_interval steps",
+      "estimated_speedup_x": 1.25,
+      "notes": "Eliminates CPU-GPU sync barrier; most impactful on fast GPUs"
+    },
+    {
+      "step": "Step 2C",
+      "name": "Automatic Mixed Precision",
+      "change": "mixed_precision: False -> True (default)",
+      "estimated_speedup_x": 1.5,
+      "notes": "FP16 matmuls + GradScaler; Tensor Cores on GTX 1650 Ti give ~1.3-1.6x"
+    },
+    {
+      "step": "Step 2E",
+      "name": "zero_grad set_to_none",
+      "change": "zero_grad() -> zero_grad(set_to_none=True)",
+      "estimated_speedup_x": 1.02,
+      "notes": "Avoids memset of gradient buffers; minor but free"
+    },
+    {
+      "step": "Step 5A",
+      "name": "TF32",
+      "change": "allow_tf32=True (new default); torch.backends.cuda.matmul.allow_tf32=True",
+      "estimated_speedup_x": 1.15,
+      "notes": "Ampere+ Tensor Core format; GTX 1650 Ti (Turing) has limited benefit"
+    },
+    {
+      "step": "Step 5D",
+      "name": "CUDA stream prefetcher",
+      "change": "CUDAPrefetcher wraps DataLoader to overlap H2D transfer with compute",
+      "estimated_speedup_x": 1.05,
+      "notes": "Marginal on datasets that fit in RAM; larger benefit with large images"
+    }
+  ],
+  "combined_estimated_speedup_x": 3.5,
+  "combined_estimated_speedup_description": "Conservative estimate; 10-15h projected run now expected in 3-4h (vs 8+ days unoptimised)",
+  "fault_tolerance_additions": [
+    "30-min autosave daemon thread (atomic write to .tmp, then rename)",
+    "Resume from autosave.pt or controlled_last.pt via --resume-latest",
+    "Wall-clock segmentation: exit code 42 at max_wall_hours, relaunched by launch_segmented_training.py",
+    "Checkpoint retention policy: keep last 5 + every 10th epoch"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "generated": "2026-04-23",
+  "runs": {
+    "score_fmnist_v2": {
+      "target_epochs": 100,
+      "final_epoch": 100,
+      "status": "complete",
+      "best_checkpoint": "checkpoints/score_fmnist_v2/score_best.pt",
+      "best_avg_loss": 470.67,
+      "jsonl_log": "logs/fmnist_score_v2.jsonl",
+      "notes": "Completed in Session 7. Best at epoch 100 avg_loss=470.67."
+    },
+    "controlled_config_d_seed42": {
+      "target_epochs": 60,
+      "final_epoch": 60,
+      "status": "complete",
+      "best_checkpoint": "checkpoints/controlled_config_d_seed42/controlled_last.pt",
+      "final_fid": 323.94,
+      "jsonl_log": "logs/controlled_config_d_seed42.jsonl",
+      "notes": "Resumed from epoch 30 to 60 in Session 8. FID=323.94 (same as 30ep \u2014 converged)."
+    },
+    "score_cifar10_v2": {
+      "target_epochs": 200,
+      "final_epoch": 0,
+      "status": "not_started",
+      "best_checkpoint": null,
+      "jsonl_log": "logs/cifar10_score_v2.jsonl",
+      "notes": "Not started. Requires ~5h on GTX 1650 Ti."
+    },
+    "ipf_fmnist_full": {
+      "target_epochs": 20,
+      "final_epoch": 5,
+      "status": "partial",
+      "best_checkpoint": "checkpoints/ipf_fmnist_full/ipf_last.pt",
+      "best_bwd_loss": 2.3e-05,
+      "jsonl_log": "logs/ipf_fmnist_full.jsonl",
+      "notes": "Completed 5 iterations (target: 20). bwd_loss=2.3e-5 at iter 5."
+    }
+  }
+}

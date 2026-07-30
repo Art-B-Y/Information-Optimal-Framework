@@ -1,0 +1,47 @@
+{
+  "projection_date": "2026-05-03",
+  "session": "session_speed",
+  "device": "NVIDIA GeForce GTX 1650 Ti (4 GB GDDR6)",
+  "dataset": "fashionmnist",
+  "batch_size": 32,
+  "sde_steps": 20,
+  "training_samples": 60000,
+  "steps_per_epoch": 1875,
+  "runs": [
+    {
+      "run_id": "5a",
+      "description": "Frozen backbone + v2 objective (100 epochs)",
+      "epochs": 100,
+      "optimised_steps_per_sec": 14.0,
+      "estimated_hours": 3.7,
+      "segments_at_4h": 1,
+      "notes": "Faster: score model frozen, only ConvControlPolicy trained"
+    },
+    {
+      "run_id": "5b",
+      "description": "Joint fine-tune + distillation (100 epochs)",
+      "epochs": 100,
+      "optimised_steps_per_sec": 10.5,
+      "estimated_hours": 5.0,
+      "segments_at_4h": 2,
+      "notes": "Both score + control training; distillation adds ~20% overhead"
+    },
+    {
+      "run_id": "5c",
+      "description": "Path-KL ablation (100 epochs)",
+      "epochs": 100,
+      "optimised_steps_per_sec": 14.0,
+      "estimated_hours": 3.7,
+      "segments_at_4h": 1,
+      "notes": "Same as 5a architecture; path_kl_weight=0 simplifies loss"
+    }
+  ],
+  "total_projected_hours": 12.4,
+  "total_segments_at_4h": 4,
+  "comparison": {
+    "unoptimised_estimate_days": 8.0,
+    "optimised_estimate_hours": 12.4,
+    "speedup_x": 15.5,
+    "unoptimised_note": "Observed: 8+ days without finishing; actual crash at day 8 with no saved results"
+  }
+}

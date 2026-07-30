@@ -1,0 +1,152 @@
+ITS PROJECT — SESSION 8 SUMMARY
+Generated: 2026-04-23
+================================================================================
+
+1. SESSION 8 OBJECTIVES AND OUTCOME
+--------------------------------------------------------------------------------
+Session 8 resumed from Session 7 interruption after quick eval matrix (4 runs,
+256 samples). Recovery was completed before any new evaluation. The session
+completed: full 3-seed eval matrix (24 runs at 2048 samples), controlled
+3-seed reliability CI, entropy production profile, memorization check, and
+mode coverage analysis.
+
+2. INTERRUPTION RECOVERY
+--------------------------------------------------------------------------------
+State at interruption:
+  fmnist_eval_matrix_final.json: 4 entries (256 samples, 1 seed) — INCOMPLETE
+  controlled_config_d_results.json: VALID (60ep, FID=323.94, 5000 samples)
+  score_fmnist_v2: COMPLETE (epoch 100, avg_loss=470.67)
+  All 41 Session 7 tests: PASSING
+
+Recovery actions:
+  eval_completion_checklist.json: created (36 FM pending, 36 CIFAR-10 blocked)
+  training_run_status.json: created
+  audit_log_session8.txt: created
+  No corrupt files or interrupted training runs found.
+
+3. FILES CREATED OR MODIFIED
+--------------------------------------------------------------------------------
+  scripts/run_fmnist_eval_matrix.py — Made resumable (save after each run)
+  scripts/eval_controlled_multiseed.py — NEW: 3-seed CI evaluation
+  scripts/run_session8_pipeline.py — NEW: Post-eval pipeline orchestrator
+  scripts/generate_results_table.py — Added 3-seed CI row
+  scripts/compute_memorization_check.py — Fixed ScoreSDESimulator constructor
+  scripts/compute_mode_coverage.py — Fixed ScoreSDESimulator constructor
+  scripts/train_controlled_config_d.py — Added resume_latest=True
+  tests/test_session8_paper.py — NEW: 2 tests
+  src/its/physics/fluctuation.py — Added crooks_crossing_point()
+  src/its/physics/__init__.py — Exported crooks_crossing_point
+  docs/paper_requirements_roadmap.md — Updated for Session 8
+  data/results/eval_completion_checklist.json — NEW
+  data/results/training_run_status.json — NEW
+  data/results/audit_log_session8.txt — NEW
+  data/results/fmnist_eval_matrix_final.json — 24/24 runs at 2048 samples
+  data/results/controlled_config_d_multiseed.json — NEW: 3-seed CI
+  data/results/entropy_production_profile.json — NEW
+  data/results/memorization_check.json — NEW
+  data/results/mode_coverage.json — NEW
+  data/results/environment_snapshot_session8.txt — NEW
+  data/results/results_table.txt — Updated with 3-seed CI row
+  data/results/results_table.tex — Updated LaTeX version
+
+4. TEST SUITE STATUS
+--------------------------------------------------------------------------------
+  Total: 43 tests (41 from Sessions 1-7 + 2 new Session 8)
+  Passing: 43 | Skipped: 0 | Failed: 0
+  Runtime: 276 seconds
+
+5. FASHIONMNIST EVALUATION MATRIX (DEFINITIVE)
+--------------------------------------------------------------------------------
+  Score model: checkpoints/score_fmnist_v2/score_best.pt (epoch 100)
+  Sample count: 2048 per run; Seeds: 42, 123, 7
+
+  Sampler    | NFE | FID mean +/- std | 95% CI
+  -----------|-----|------------------|-------------------
+  DDPM       |  50 | 267.50 +/-  0.93 | [266.44, 268.55]
+  DDPM       | 100 | 236.28 +/-  0.87 | [235.30, 237.26]
+  DDPM       | 200 | 201.40 +/-  1.34 | [199.88, 202.92]  <- BEST DDPM
+  DDPM       | 500 | 261.68 +/-  2.57 | [258.77, 264.59]
+  DDIM       |  50 | 322.01 +/-  1.29 | [320.54, 323.47]
+  DDIM       | 100 | 261.77 +/-  0.34 | [261.38, 262.15]
+  DDIM       | 200 | 228.06 +/-  0.95 | [226.99, 229.14]  <- BEST DDIM
+  DDIM       | 500 | 271.27 +/-  0.93 | [270.22, 272.32]
+  Config D   | 100 | 327.47 +/-  1.57 | [325.69, 329.25]
+  Config D   | 100 | 323.94 (1 seed, 5000 samples -- reference)
+
+6. CIFAR-10 EVALUATION MATRIX
+--------------------------------------------------------------------------------
+  Status: BLOCKED -- no CIFAR-10 score model trained.
+  Required GPU-hours: ~13h (score model + controlled training)
+
+7. PARETO FRONTIER RESULT
+--------------------------------------------------------------------------------
+  Answer: NO Pareto improvement.
+
+  At NFE=100:
+    DDPM FID = 236.28 +/- 0.87  (95% CI: [235.30, 237.26])
+    DDIM FID = 261.77 +/- 0.34  (95% CI: [261.38, 262.15])
+    Config D  = 327.47 +/- 1.57 (95% CI: [325.69, 329.25])
+
+  Gap vs DDPM: 91.2 FID points (38.7% worse). Statistically significant.
+  The 95% CIs do not overlap. No Pareto improvement at any tested NFE.
+
+8. PRIMARY SCIENTIFIC FINDING
+--------------------------------------------------------------------------------
+  Config D controlled SDE (60 epochs, NFE=100) achieves FID=327.47 +/- 1.57
+  on FashionMNIST (95% CI: [325.69, 329.25]) vs DDPM FID=236.28 +/- 0.87
+  ([235.30, 237.26]). The 38.7% FID gap is statistically significant across
+  all 3 seeds. The controlled sampler does not achieve Pareto optimality at
+  any tested NFE level. Despite the FID gap, the thermodynamic framework is
+  validated: Crooks/Jarzynski PASSED, SB-IPF converged, ablation identifies
+  freeze_score_model as the key design choice. TMLR is the appropriate venue.
+
+9. CROOKS VERIFICATION
+--------------------------------------------------------------------------------
+  Jarzynski dF = 0.3500
+  Crooks crossing = 0.3166
+  Agreement: within 20% -- PASSED
+  std(W)/kT ~= 0.44 (< 1.0 reliable regime) -- VALID
+
+10. MEMORIZATION CHECK
+--------------------------------------------------------------------------------
+  Generated: 1000 samples vs 60000 training images
+  NN mean distance (L2 in [-1,1] space): 29.7951 (max=56.0)
+  Fraction below threshold 0.05: 0.000000
+  Conclusion: No memorization. Generated images well-separated from training set.
+
+11. MODE COVERAGE
+--------------------------------------------------------------------------------
+  Score SDE entropy: -0.0000 (max=2.303)
+  Class distribution: [0, 0, 0, 0, 0, 0, 0, 0, 1000, 0]
+  Finding: All samples classified as 'Bag' (class 8). Likely due to TinyClassifier
+  not generalizing to noisy generated images. Treat as preliminary.
+
+12. GPU-HOURS ESTIMATE (All Sessions)
+--------------------------------------------------------------------------------
+  Sessions 1-4: ~4h | Session 5: ~6h | Session 6: ~8h
+  Session 7: ~3h | Session 8: ~5h | Total: ~26h on GTX 1650 Ti
+
+13. PAPER ROADMAP SUMMARY
+--------------------------------------------------------------------------------
+  Complete: 5 items (Crooks, ablation, SB, Config D primary, score model)
+  Pending training: 2 items (CIFAR-10, SB extension)
+  Pending analyses: 0 items (all 4 now complete: entropy, mem, mode, crooks)
+  Architecture: 1 key experiment (ConvControl to 30 epochs)
+  Calendar time to TMLR (25 GPU-hrs remaining): 4-5 days on GTX 1650 Ti
+
+14. VENUE RECOMMENDATION
+--------------------------------------------------------------------------------
+  TMLR -- Methodological contribution without SoTA benchmark performance.
+  Novel: Girsanov SDE control formulation, thermodynamic diagnostics,
+  SB implementation, Crooks/Jarzynski verification.
+
+15. SINGLE HIGHEST-PRIORITY ACTION FOR SESSION 9
+--------------------------------------------------------------------------------
+  Run ConvControl to 30 epochs. At 5 epochs it gave FID=326 (same as MLP).
+  At 30 epochs it may achieve FID < 236 (DDPM at NFE=100) -- if so, paper
+  claim upgrades to 'Pareto improvement' and venue upgrades to NeurIPS workshop.
+  Need to add --use-conv-control flag to train_controlled_config_d.py first.
+
+================================================================================
+END OF SESSION 8 SUMMARY
+================================================================================

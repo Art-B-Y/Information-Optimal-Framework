@@ -1,0 +1,72 @@
+[
+  {
+    "epoch": 5,
+    "fid": 335.1768493652344,
+    "nfe": 100,
+    "num_samples": 512,
+    "ckpt": "controlled_epoch_0005.pt"
+  },
+  {
+    "epoch": 10,
+    "fid": 335.1768493652344,
+    "nfe": 100,
+    "num_samples": 512,
+    "ckpt": "controlled_epoch_0010.pt"
+  },
+  {
+    "epoch": 15,
+    "fid": 335.1768493652344,
+    "nfe": 100,
+    "num_samples": 512,
+    "ckpt": "controlled_epoch_0015.pt"
+  },
+  {
+    "epoch": 20,
+    "fid": 335.1768493652344,
+    "nfe": 100,
+    "num_samples": 512,
+    "ckpt": "controlled_epoch_0020.pt"
+  },
+  {
+    "epoch": 25,
+    "fid": 335.1768493652344,
+    "nfe": 100,
+    "num_samples": 512,
+    "ckpt": "controlled_epoch_0025.pt"
+  },
+  {
+    "epoch": 30,
+    "fid": 335.1768493652344,
+    "nfe": 100,
+    "num_samples": 512,
+    "ckpt": "controlled_epoch_0030.pt"
+  },
+  {
+    "epoch": 35,
+    "fid": 335.1768493652344,
+    "nfe": 100,
+    "num_samples": 512,
+    "ckpt": "controlled_epoch_0035.pt"
+  },
+  {
+    "epoch": 40,
+    "fid": 335.1768493652344,
+    "nfe": 100,
+    "num_samples": 512,
+    "ckpt": "controlled_epoch_0040.pt"
+  },
+  {
+    "epoch": 45,
+    "fid": 335.1768493652344,
+    "nfe": 100,
+    "num_samples": 512,
+    "ckpt": "controlled_epoch_0045.pt"
+  },
+  {
+    "epoch": 50,
+    "fid": 335.1768493652344,
+    "nfe": 100,
+    "num_samples": 512,
+    "ckpt": "controlled_epoch_0050.pt"
+  }
+]

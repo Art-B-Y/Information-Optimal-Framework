@@ -1,0 +1,101 @@
+{
+  "environment": {
+    "git_commit": "unknown",
+    "pytorch_version": "2.5.1+cu121",
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "gpu_name": "NVIDIA GeForce GTX 1650 Ti",
+    "python_version": "3.11.9"
+  },
+  "results": [
+    {
+      "file": "data\\results\\baseline_evals_fashionmnist.json",
+      "description": "Baseline evaluation \u2014 fashionmnist",
+      "checkpoint": "checkpoints/score_fmnist_v2/score_epoch_0050.pt",
+      "num_samples": 5000,
+      "seed": 42,
+      "command": "python scripts/run_baseline_evals.py --dataset fashionmnist --model-ckpt checkpoints/score_fmnist_v2/score_epoch_0050.pt --num-samples 5000 --seed 42"
+    },
+    {
+      "file": "data\\results\\controlled_config_d_results.json",
+      "description": "Controlled training Config D \u2014 FashionMNIST",
+      "seeds": [
+        42
+      ],
+      "epochs": 60,
+      "command": "python scripts/train_controlled_config_d.py --score-ckpt checkpoints/score_fmnist_v2/score_epoch_0050.pt --epochs 30 --all-seeds"
+    },
+    {
+      "file": "data\\results\\ablation_study.json",
+      "description": "Ablation study \u2014 7 configs on FashionMNIST",
+      "configs": [
+        "B",
+        "C",
+        "D",
+        "F",
+        "conv",
+        "no-EMA",
+        "no-freeze"
+      ],
+      "epochs": 5,
+      "num_samples": 2048,
+      "command": "python scripts/run_ablation_study.py --score-ckpt checkpoints/score_fmnist_v2/score_epoch_0050.pt --epochs 5"
+    },
+    {
+      "file": "data\\results\\crooks_verification.json",
+      "description": "Crooks fluctuation theorem verification",
+      "passed": null,
+      "command": "python scripts/run_crooks_verification.py --n-trajectories 5000"
+    },
+    {
+      "file": "data\\results\\ipf_toy_convergence.json",
+      "description": "IPF toy 2D Gaussian convergence test",
+      "command": "python scripts/run_ipf_toy_convergence.py"
+    },
+    {
+      "file": "data\\results\\fmnist_eval_matrix_final.json",
+      "description": "FashionMNIST eval matrix \u2014 DDPM+DDIM \u00d7 4 NFE \u00d7 3 seeds, 2048 samples",
+      "total_runs": 24,
+      "samplers": [
+        "ddpm",
+        "ddim"
+      ],
+      "command": "python scripts/run_fmnist_eval_matrix.py --score-ckpt checkpoints/score_fmnist_v2/score_best.pt --num-samples 2048"
+    },
+    {
+      "file": "data\\results\\controlled_config_d_multiseed.json",
+      "description": "Config D controlled sampler 3-seed reliability CI",
+      "fid_mean": 327.47215779622394,
+      "fid_ci": [
+        325.693249676737,
+        329.25106591571085
+      ],
+      "epochs": 60,
+      "command": "python scripts/eval_controlled_multiseed.py --ctrl-ckpt checkpoints/controlled_config_d_seed42/controlled_last.pt --score-ckpt checkpoints/score_fmnist_v2/score_best.pt"
+    },
+    {
+      "file": "data\\results\\memorization_check.json",
+      "description": "Memorization check \u2014 NN distance in pixel space",
+      "fraction_below_threshold": 0.0,
+      "memorization_concern": false,
+      "command": "python scripts/compute_memorization_check.py --score-ckpt checkpoints/score_fmnist_v2/score_best.pt"
+    },
+    {
+      "file": "data\\results\\controlled_conv_results.json",
+      "description": "ConvControl 50-epoch controlled training \u2014 FashionMNIST",
+      "fid_mean": 327.1059875488281,
+      "epochs": 50,
+      "command": "python scripts/train_controlled_config_d.py --score-ckpt checkpoints/score_fmnist_v2/score_best.pt --epochs 50 --use-conv-control --seed 42"
+    },
+    {
+      "file": "data\\results\\controlled_conv_multiseed.json",
+      "description": "ConvControl 3-seed reliability CI",
+      "fid_mean": 327.47215779622394,
+      "fid_ci": [
+        325.693249676737,
+        329.25106591571085
+      ],
+      "command": "python scripts/eval_conv_multiseed.py --ctrl-ckpt checkpoints/controlled_conv_seed42/controlled_last.pt --score-ckpt checkpoints/score_fmnist_v2/score_best.pt"
+    }
+  ]
+}

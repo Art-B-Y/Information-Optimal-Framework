@@ -1,0 +1,62 @@
+[
+  {
+    "epoch": 5,
+    "control_magnitude": 0.6038163900375366,
+    "score_magnitude": 18.064821243286133,
+    "ratio_ctrl_over_score": 0.033424985606317445
+  },
+  {
+    "epoch": 10,
+    "control_magnitude": 0.05267880856990814,
+    "score_magnitude": 18.064821243286133,
+    "ratio_ctrl_over_score": 0.0029160990778962976
+  },
+  {
+    "epoch": 15,
+    "control_magnitude": 0.24776151776313782,
+    "score_magnitude": 18.064821243286133,
+    "ratio_ctrl_over_score": 0.01371513808115978
+  },
+  {
+    "epoch": 20,
+    "control_magnitude": 0.0857861191034317,
+    "score_magnitude": 18.064821243286133,
+    "ratio_ctrl_over_score": 0.0047487942420307355
+  },
+  {
+    "epoch": 25,
+    "control_magnitude": 0.09285538643598557,
+    "score_magnitude": 18.064821243286133,
+    "ratio_ctrl_over_score": 0.0051401220740280315
+  },
+  {
+    "epoch": 30,
+    "control_magnitude": 0.06772588193416595,
+    "score_magnitude": 18.064821243286133,
+    "ratio_ctrl_over_score": 0.0037490479989851304
+  },
+  {
+    "epoch": 35,
+    "control_magnitude": 0.05045429244637489,
+    "score_magnitude": 18.064821243286133,
+    "ratio_ctrl_over_score": 0.0027929583009367693
+  },
+  {
+    "epoch": 40,
+    "control_magnitude": 0.02833578921854496,
+    "score_magnitude": 18.064821243286133,
+    "ratio_ctrl_over_score": 0.0015685618383340537
+  },
+  {
+    "epoch": 45,
+    "control_magnitude": 0.018316922709345818,
+    "score_magnitude": 18.064821243286133,
+    "ratio_ctrl_over_score": 0.0010139553811612377
+  },
+  {
+    "epoch": 50,
+    "control_magnitude": 0.010997787117958069,
+    "score_magnitude": 18.064821243286133,
+    "ratio_ctrl_over_score": 0.0006087957898861271
+  }
+]

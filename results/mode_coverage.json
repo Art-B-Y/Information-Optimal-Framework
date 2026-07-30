@@ -1,0 +1,44 @@
+{
+  "score_sde": {
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1000,
+      0
+    ],
+    "fractions": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    "class_names": [
+      "T-shirt",
+      "Trouser",
+      "Pullover",
+      "Dress",
+      "Coat",
+      "Sandal",
+      "Shirt",
+      "Sneaker",
+      "Bag",
+      "Ankle boot"
+    ],
+    "entropy": -1.000088900581841e-12,
+    "max_entropy": 2.302585092994046,
+    "entropy_fraction": -4.343330909353833e-13,
+    "n_samples": 1000
+  }
+}

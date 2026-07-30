@@ -1,0 +1,224 @@
+================================================================================
+ITS PROJECT — PHASE 2 STEP 0: PRE-FLIGHT VERIFICATION
+Generated: 2026-07-15
+Verdict: ALL THREE CHECKS PASS — cleared to proceed to Step 1 (baseline retraining)
+================================================================================
+
+CHECK 1 — CUDA IS REAL AND USABLE                                        [PASS]
+--------------------------------------------------------------------------------
+  torch.__version__      : 2.5.1+cu121
+  contains '+cpu'?       : False                  <-- the CPU build is gone
+  torch.version.cuda     : 12.1
+  cuda.is_available()    : True
+  device_name(0)         : NVIDIA GeForce GTX 1650 Ti
+  total VRAM             : 4.295 GB  (3.11 GB free)
+  compute capability     : 7.5 (Turing, TU117)
+
+  Genuine GPU computation — 4096x4096 matmul:
+    result device : cuda:0
+    result shape  : (4096, 4096)
+    finite        : True
+    warm timing   : 80.0 ms -> 1.72 TFLOP/s FP32   (healthy for this card)
+
+  The CPU-only regression that caused the 176-hour run 5A is RESOLVED.
+
+  *** HARDWARE FINDING THAT CHANGES THE TRAINING CONFIG ***
+  FP16 is 4x SLOWER than FP32 on this GPU:
+    FP32 4096^3 matmul :  80.0 ms -> 1.72 TFLOP/s
+    FP16 4096^3 matmul : 355.4 ms -> 0.39 TFLOP/s   (0.23x — i.e. 4x slower)
+
+  Confirmed on the real score model (all batch sizes):
+    bs= 64  amp=False   52.9 ms/step  1209 img/s      amp=True  193.0 ms/step   332 img/s
+    bs=128  amp=False  101.9 ms/step  1256 img/s      amp=True  375.9 ms/step   340 img/s
+    bs=256  amp=False  197.3 ms/step  1297 img/s      amp=True  739.1 ms/step   346 img/s
+                                                      -> AMP is 3.7x SLOWER, universally
+
+  CAUSE: the GTX 1650 Ti is a TU117 die. The GTX 16-series has NO TENSOR CORES —
+  those are RTX-only. torch.autocast therefore adds cast overhead with no compute
+  benefit, and FP16 matmul falls back to a slower path.
+
+  DECISION: this phase trains WITHOUT AMP, deviating from the brief's instruction to
+  "use automatic mixed precision". The instruction is premised on hardware behaviour
+  that does not hold here; following it would make training 3.7x slower and defeat
+  the instruction's own purpose (train in hours, not days). Documented rather than
+  silently ignored.
+
+  COROLLARY — A PRIOR SESSION'S DIAGNOSIS WAS WRONG: the Speed session recorded
+  "mixed_precision=False (default): all matmuls in FP32, no Tensor Cores" as a ROOT
+  CAUSE of the 8-day training failure. That is a misdiagnosis: this GPU has no tensor
+  cores, so enabling AMP would have made it slower, not faster. The real cause of the
+  176-hour run was the CPU-only torch build (Phase 1 finding).
+
+CHECK 2 — PHASE 1 FIXES INTACT (FULL TEST SUITE)                         [PASS]
+--------------------------------------------------------------------------------
+  Command: pytest tests/ -q
+  Result : 89 passed, 0 skipped, 650.99s (10:50)
+
+  The brief expected "88 pass and 1 skip, matching the Phase 1 end state". The actual
+  result is BETTER and is the correct expectation now that CUDA is live: the Phase 1
+  skip was test_phase5_hardening.py:1018 "CUDA not available". With CUDA present that
+  test now RUNS AND PASSES, so 88 passed + 1 skipped becomes 89 passed + 0 skipped.
+  Test count did not decrease; no previously passing test now fails.
+
+  tests/test_scientific_correctness.py: 12/12 pass (the falsification-tested checks).
+
+CHECK 3 — SAMPLER-CORRECTNESS REPRODUCTION (on CUDA)                     [PASS]
+--------------------------------------------------------------------------------
+  Corrected VE sampler vs an exact analytic score. Target: mean 3.0, std 0.5.
+
+    NFE= 50   mean=+2.9702  std=0.5352   |std-0.5|=0.0352
+    NFE=100   mean=+2.9718  std=0.5131   |std-0.5|=0.0131   improves
+    NFE=200   mean=+2.9682  std=0.5025   |std-0.5|=0.0025   improves
+
+  Recovers the target distribution AND error decreases monotonically with NFE.
+  The Phase 1 sampler fix has NOT regressed.
+
+================================================================================
+ADDITIONAL PRE-FLIGHT FINDINGS (found while sizing the Step 1 run)
+================================================================================
+
+FINDING A — sigma_max=1.0 IS ~42x TOO SMALL (completes Phase 1 defect A2)
+--------------------------------------------------------------------------------
+  Phase 1 flagged that sigma_max=1.0 is invalid for a VE prior but could not quantify
+  it without the GPU. Measured now on FashionMNIST:
+
+    data range               : [-1.0000, 1.0000]   mean -0.4306   std 0.7016
+    max pairwise L2 distance : 41.88   (over 4000 training images, dim=784)
+    median pairwise distance : 22.85
+
+  Song's Technique 1 sets sigma_max to the maximum pairwise distance, so that
+  p_sigma_max is effectively data-independent and the N(0, sigma_max^2) initialisation
+  is a valid prior. The configured sigma_max=1.0 is ~42x too small: at sigma=1.0 the
+  perturbed distribution still retains almost all data structure, so initialising the
+  sampler at N(0,1) does NOT sample the VE prior.
+
+  ACTION: the Step 1 retrain uses sigma_max = 42.0 (and sigma_min = 0.01). The score
+  model has never been trained above sigma=1.0, so this REQUIRES the retrain — it
+  cannot be applied to any existing checkpoint.
+
+FINDING B — THE MODEL'S PRECONDITIONING IS BADLY CONDITIONED [FIXED]
+--------------------------------------------------------------------------------
+  ScoreUNet.forward did:  h = x/sigma ; score = F(h)/sigma
+  With the DSM target -eps/sigma on x = x0 + sigma*eps, the network input is
+  x/sigma = x0/sigma + eps, which is DOMINATED by x0/sigma at small sigma. Measured
+  input magnitude (sigma_data = 0.70):
+
+      sigma     input scale     what the network must do
+       0.01        70x          extract eps from a 70x-magnitude input
+       0.05        14x          extract eps from a 14x-magnitude input
+       0.20         3.6x        mixed
+       1.00         1.2x        ~eps, fine
+      42.00         1.0x        ~eps, fine
+
+  A 70x dynamic range in input scale across sigma — and the low-sigma end is exactly
+  where sample quality is decided. This is a plausible contributor to the poor
+  pre-audit FIDs (DDPM 197 at NFE=200; a healthy FashionMNIST model reaches < 20)
+  that is INDEPENDENT of the four Phase 1 defects.
+
+  FIX: added ScoreUNetConfig.preconditioning ("legacy" default | "edm") implementing
+  Karras et al. (2022):
+      c_in   = 1/sqrt(s^2 + sd^2)     c_skip = sd^2/(s^2 + sd^2)
+      c_out  = s*sd/sqrt(s^2 + sd^2)  D(x;s) = c_skip*x + c_out*F(c_in*x, log s /4)
+      score  = (D(x;s) - x)/s^2
+  which holds the network input at unit scale for EVERY sigma. The RETURNED quantity
+  is still the score, so all downstream consumers (DSM target, VE sampler,
+  score_to_eps) are unchanged. "legacy" is retained for archive reproduction.
+
+  VERIFIED: with F forced to 0, D = c_skip*x and the score must reduce to the exact
+  analytic Gaussian score -x/(sd^2 + s^2). It does, to 0.00e+00 relative error across
+  four decades of sigma (0.002 -> 42.0).
+
+  SUB-FINDING — CATASTROPHIC CANCELLATION [FIXED]: computing the score in the literal
+  form (c_skip*x - x)/sigma^2 loses ~4 significant digits at small sigma, because
+  c_skip -> 1 makes it a difference of near-equal floats which is then divided by
+  sigma^2. Measured 2.959e-03 absolute error at sigma=0.01 in float32. Since
+  c_skip - 1 = -sigma^2/(sigma^2 + sd^2) EXACTLY, the sigma^2 cancels analytically:
+      score = -x/(sigma^2 + sd^2) + (c_out/sigma^2)*F
+  Algebraically identical, numerically stable. After the fix: 0.00e+00 relative error
+  at every sigma tested.
+
+FINDING C — THE DSM OBJECTIVE IS UNWEIGHTED [FIXED]
+--------------------------------------------------------------------------------
+  score_training.py:248 computed  loss = mean((score - target)^2)  with
+  target = -eps/sigma. That is UNWEIGHTED DSM. The target magnitude is 1/sigma, so
+  the loss scale goes as 1/sigma^2:
+
+      sigma     |target|      loss scale
+       0.01       100.0         10000.0
+       0.10        10.0           100.0
+       1.00         1.0             1.0
+
+  Over sigma in [0.01, 1.0] the loss at the small-sigma end is 1e4x larger than at the
+  large end, so the gradient is dominated almost entirely by the smallest sigmas and
+  the large-sigma regime -- where the reverse trajectory STARTS -- is barely learned.
+  Extending to the corrected sigma_max=42 makes the ratio 1.7e7, i.e. the corrected
+  sigma range CANNOT be trained with the unweighted objective.
+
+  FIX: added ScoreTrainingConfig.dsm_weighting ("none" | "sigma_sq"). With
+  lambda(sigma)=sigma^2 the objective becomes sigma^2*(score + eps/sigma)^2 =
+  (sigma*score + eps)^2 -- equivalent to eps-prediction, O(1) at every sigma. This is
+  the standard choice (Ho et al.; Song et al.; Karras et al.). The validation loss uses
+  the same weighting, or the overfit_ratio would compare two different scales.
+  A convention guard now RAISES if dsm_weighting="none" is used with a sigma range
+  wider than 100x, so this cannot silently recur.
+
+FINDING D — FID WAS COMPUTED ON INVERTED IMAGES [FIXED, non-fatal]
+--------------------------------------------------------------------------------
+  evaluator.py constructed FrechetInceptionDistance(normalize=True) but fed it uint8
+  tensors. torchmetrics' update() does:
+      imgs = (imgs * 255).byte() if self.normalize else imgs
+  so a uint8 input is multiplied by 255 and WRAPS MOD 256, mapping pixel v -> (256-v):
+      uint8 [0, 1, 100, 254, 255]  ->  [0, 255, 156, 2, 1]
+  i.e. every image is inverted before reaching Inception.
+
+  HONEST SCOPING: because the same transform is applied to BOTH real and fake images,
+  FID remained a valid distributional distance. This is NOT why the pre-audit FIDs were
+  ~326 -- that was sampler defect A1. But FID was computed in an inverted pixel space,
+  so the project's numbers are not comparable to published FashionMNIST FIDs, which the
+  paper requires. Measured on identical inputs: 18.92 (bug) vs 20.79 (correct).
+  FIX: normalize=False for uint8 input. InceptionScore(normalize=True) is CORRECT and
+  was left alone -- it is fed float [0,1].
+
+================================================================================
+PILOT: THE ABOVE FINDINGS VALIDATED EMPIRICALLY BEFORE COMMITTING TO A FULL RUN
+================================================================================
+  Three configs, 10 epochs each, FID at N=2048 / seed 42.
+  DIAGNOSTIC ONLY -- these are engineering decision aids, NOT reportable results
+  (N=2048 and 1 seed are both below paper grade).
+
+    A   legacy precond, sigma_max=1.0    FID = 206.49    <- the Phase-1-corrected status quo
+    B   legacy precond, sigma_max=42     FID = 116.87    <- +Finding A       (-43%)
+    C   edm precond,    sigma_max=42     FID =  74.70    <- +Finding B       (-36%)
+
+  Both Phase 2 findings are real and LARGE: 206.49 -> 74.70 is a 2.8x improvement at
+  only 10 epochs, attributable in roughly equal measure to sigma_max and to
+  preconditioning. (All three used sigma_sq weighting; Finding C is not isolated here
+  because the corrected sigma range cannot train without it.)
+
+  IMPORTANT IMPLICATION: Phase 1 alone was NOT sufficient. Config A is exactly the
+  Phase-1 end state -- all four fatal defects fixed -- and it still yields FID 206.
+  Fixing the sampler was necessary but not sufficient to pass Gate 2.2; three further
+  training defects had to be found and fixed. This is why Gate 2.2 exists.
+
+  DECISION: Step 1 uses config C.
+
+================================================================================
+CONFIGURATION SELECTED FOR STEP 1 (from measurement, not assumption)
+================================================================================
+  precision      : FP32, no AMP        (AMP is 3.7x slower — no tensor cores)
+  batch size     : 256                 (1297 img/s, 2.09 GB peak of 4.29 GB)
+  sigma range    : [0.01, 42.0]        (Song technique-1; was [0.01, 1.0])
+  preconditioning: edm                 (was legacy; 70x input-scale range)
+  sampler        : VE reverse diffusion, matching the VE training kernel
+
+  Measured capacity/throughput trade-off at bs=256, FP32:
+    bc=64  (1,2,2)    1.61M params   1291 img/s   0.77 min/epoch   100ep ~  1.3 h
+    bc=96  (1,2,2)    3.47M params    716 img/s   1.40 min/epoch   100ep ~  2.3 h
+    bc=128 (1,2,2)    6.06M params    410 img/s   2.44 min/epoch   100ep ~  4.1 h
+    bc=128 (1,2,2,2) 10.13M params     90 img/s  11.10 min/epoch   100ep ~ 18.5 h
+
+  Training the corrected baseline is now a ~1-4 HOUR job, versus the 176 hours run 5A
+  consumed on CPU. The convention match (VE training kernel <-> VE sampler) is
+  asserted in code before training begins, per the constraint that the VE/VP mismatch
+  must never recur.
+================================================================================

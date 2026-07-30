@@ -1,0 +1,142 @@
+================================================================================
+ITS PROJECT — PHASE 2 CHANGE LOG
+Generated: 2026-07-15
+One line per change, so no alteration goes undocumented.
+Legend: [FIX] corrects a defect | [ADD] new capability | [CFG] configuration | [TEST] test
+================================================================================
+
+SOURCE CHANGES
+--------------------------------------------------------------------------------
+[ADD] src/its/models/score_unet.py — ScoreUNetConfig.preconditioning ("legacy"|"edm")
+      and ScoreUNetConfig.sigma_data (0.70). "legacy" reproduces the pre-Phase-2
+      h = x/sigma behaviour; "edm" applies Karras et al. (2022) preconditioning.
+[FIX] src/its/models/score_unet.py:forward — under preconditioning="edm", the network
+      input is c_in*x with c_in = 1/sqrt(sigma^2+sd^2), holding input scale at 1.0 for
+      every sigma. The legacy h = x/sigma spans a 70x input-magnitude range across
+      sigma in [0.01,42] (measured), worst exactly at the low-sigma end where sample
+      quality is decided. Returned quantity is still the score, so all downstream
+      consumers are unchanged.
+[FIX] src/its/models/score_unet.py:forward — the EDM score is computed as
+      -x/(sigma^2+sd^2) + (c_out/sigma^2)*F rather than the literal (c_skip*x - x)/sigma^2.
+      The literal form suffers catastrophic cancellation at small sigma (c_skip -> 1,
+      so it subtracts near-equal floats then divides by sigma^2): measured 2.959e-03
+      absolute error at sigma=0.01 in float32. Since c_skip-1 = -sigma^2/(sigma^2+sd^2)
+      EXACTLY, the sigma^2 cancels analytically. Algebraically identical, numerically
+      stable: 0.00e+00 relative error across sigma in [0.002, 42].
+[FIX] src/its/models/score_unet.py:forward — under "edm", the time embedding is
+      conditioned on exp(0.25*log sigma) rather than raw sigma, so the embedding input
+      is well-scaled across the 4-decade sigma range.
+
+[ADD] src/its/training/score_training.py — ScoreTrainingConfig.dsm_weighting
+      ("none"|"sigma_sq"). "none" reproduces the pre-Phase-2 unweighted objective.
+[FIX] src/its/training/score_training.py — DSM loss now supports lambda(sigma)=sigma^2.
+      The unweighted objective mean((score - (-eps/sigma))^2) has a target of magnitude
+      1/sigma, so its loss scale goes as 1/sigma^2: a 1e4 ratio over sigma in [0.01,1]
+      and 1.7e7 over the corrected [0.01,42]. The gradient collapses onto the smallest
+      sigmas and the large-sigma regime -- where the reverse trajectory STARTS -- is
+      barely learned. This is an independent defect from the four fixed in Phase 1.
+[FIX] src/its/training/score_training.py — the validation DSM loss now uses the SAME
+      weighting as the training loss; otherwise the overfit_ratio compares two
+      different scales.
+[ADD] src/its/training/score_training.py:train_score_model — convention guard. Logs the
+      diffusion convention (VE kernel, sigma range, weighting, preconditioning) at every
+      run; warns when sigma_max <= 1.0 (invalid VE prior); RAISES when dsm_weighting
+      ="none" is combined with a sigma range wider than 100x. The VE/VP mismatch was one
+      of the four fatal defects and must never recur silently.
+
+[FIX] src/its/eval/evaluator.py — FrechetInceptionDistance(normalize=True) -> normalize
+      =False. evaluator.py feeds FID uint8 tensors, but torchmetrics does
+      `imgs = (imgs*255).byte() if self.normalize else imgs`, so uint8 input is
+      multiplied by 255 and WRAPS MOD 256, mapping every pixel v to (256-v) -- i.e.
+      inverting the image before Inception. Both real and fake received the same
+      transform, so FID remained a valid distance and this is NOT why pre-audit FIDs
+      were ~326 (that was sampler defect A1) -- but FID was computed in an inverted
+      pixel space and is therefore not comparable to published FashionMNIST numbers,
+      which the paper requires. Measured on identical inputs: 18.92 (bug) vs 20.79
+      (correct). InceptionScore(normalize=True) is CORRECT and unchanged, because it is
+      fed float [0,1].
+
+[FIX] src/its/training/score_training.py:ExponentialMovingAverage — added a warmup
+      schedule (decay_t = min(decay, (1+t)/(10+t))) and num_updates tracking. The EMA
+      previously seeded `shadow` with the RANDOM INITIALISATION and decayed it at a fixed
+      rate with NO bias correction, so the weight remaining on the init was decay^t:
+      at decay=0.9999 and ~223 steps/epoch that is 80.0% at epoch 10, 32.8% at epoch 50,
+      and 10.8% at epoch 100. MEASURED CONSEQUENCE: the epoch-10 EMA checkpoint evaluated
+      at FID 373.07 while the same checkpoint's RAW weights gave FID 99.75 -- the "EMA"
+      weights were mostly noise. A FID-vs-epoch curve built on them would have measured
+      how fast the EMA forgets its init, not how fast the model learns, and would have
+      looked like a plausible learning curve. Verified after the fix: with the model
+      pinned at 10.0 from step 1, the old EMA reads 1.9989 (80% init) at 2230 updates
+      while the new EMA reads 10.0000 (0.0000% init).
+      NOTE: the contaminated shadow already saved in existing checkpoints CANNOT be
+      recovered post hoc (it would require theta_init, which is not saved), so Gate 2.2
+      is evaluated on raw weights.
+[FIX] src/its/training/controlled_score_training.py:simulate_path — the rollout now
+      initialises at the VE prior N(0, sigma_max^2) instead of N(0, I). N(0,I) is only
+      the correct prior when sigma_max == 1; with the corrected sigma_max=42 it would
+      start the controller's trajectory ~42x too close to the origin. Mirrors the fix
+      already applied to ScoreSDESimulator.sample.
+
+SCRIPTS
+--------------------------------------------------------------------------------
+[ADD] scripts/train_score_corrected_baseline.py — Phase 2 Step 1. Retrains the canonical
+      baseline with VE kernel <-> VE sampler, sigma in [0.01,42], dsm_weighting=sigma_sq,
+      preconditioning=edm, AMP OFF, EMA 0.9999, cosine LR, grad clip 1.0, JSONL every 25
+      steps, val every epoch, checkpoints every 5 epochs. Refuses to run without CUDA
+      (a CPU fallback is what made run 5A a 176-hour job). Supports --resume-latest and
+      --max-wall-hours for the fault-tolerant segmented launcher.
+[ADD] scripts/run_gate_2_2.py — Phase 2 Step 2. Evaluates all five Gate 2.2 criteria,
+      writes data/results/gate_2_2_report.json, and emits baseline_fid_vs_epoch and
+      baseline_fid_vs_nfe figures. Reconstructs the architecture from the checkpoint's
+      stored model_config rather than guessing. Defaults to RAW weights, NOT EMA -- see
+      the EMA fix above.
+[ADD] scripts/train_controlled_corrected.py — Phase 2 Step 3. Trains the controller
+      against the corrected frozen baseline. REFUSES TO RUN unless
+      data/results/gate_2_2_report.json records a pass (verified: it refused before the
+      gate ran, and cleared afterwards). Asserts control_weight > 0 (defect A3), matches
+      the baseline's VE convention and sigma range (defect A2), keeps a live ||u||
+      regulariser from epoch 0 (the 5A phase-1 divergence mechanism), and uses
+      detach_control_energy=False with an explicit control_energy_weight.
+
+TESTS
+--------------------------------------------------------------------------------
+[TEST] tests/test_scientific_correctness.py — test_edm_preconditioning_reduces_to_analytic_score
+       Pins the EDM branch to the exact analytic Gaussian score when F=0, across four
+       decades of sigma. Catches both mis-wired c_skip/c_out and the reintroduction of
+       the catastrophic-cancellation form.
+[TEST] tests/test_scientific_correctness.py — test_unweighted_dsm_rejected_for_wide_sigma_range
+       Asserts the convention guard raises on dsm_weighting="none" with a wide sigma range.
+[TEST] tests/test_scientific_correctness.py — test_sigma_sq_weighting_equalises_loss_across_sigma
+       Asserts unweighted DSM spans >1e6 in loss scale while sigma^2 weighting spans <10x.
+[TEST] tests/test_scientific_correctness.py — test_fid_uses_normalize_false_with_uint8
+       Guards the FID normalize/dtype pairing.
+[TEST] tests/test_scientific_correctness.py — test_uint8_times_255_wraps
+       Pins the underlying torch behaviour the FID reasoning depends on.
+
+CONFIGURATION DECISIONS (from measurement, not assumption)
+--------------------------------------------------------------------------------
+[CFG] AMP DISABLED for all Phase 2 training, deviating from the brief's instruction to
+      use automatic mixed precision. Measured on this GPU: AMP is 3.7x SLOWER at every
+      batch size (bs=256: 1297 img/s FP32 vs 346 img/s AMP). Cause: the GTX 1650 Ti is a
+      TU117 die and the GTX 16-series has NO TENSOR CORES (RTX-only), so autocast adds
+      cast overhead with no compute benefit. The instruction is premised on hardware
+      behaviour that does not hold here; following it would defeat its own purpose.
+      Documented rather than silently ignored.
+      COROLLARY: the Speed session's recorded root cause "mixed_precision=False ... no
+      Tensor Cores" was a MISDIAGNOSIS for the same reason.
+[CFG] sigma_max = 42.0 (was 1.0). Song's Technique 1 sets sigma_max to the max pairwise
+      training-data distance; measured 41.88 on FashionMNIST in [-1,1]. At sigma_max=1.0
+      the perturbed distribution still retains almost all data structure, so the
+      sampler's N(0, sigma_max^2) init is not the prior. Requires the retrain -- the old
+      model never saw sigma > 1.0.
+[CFG] batch_size = 256 (1297 img/s, 2.09 GB peak of 4.29 GB) — measured optimum.
+[CFG] EMA decay 0.9999 (was 0.999), per the brief.
+
+FILES NOT TOUCHED (deliberately)
+--------------------------------------------------------------------------------
+      data/results/_pre_phase1_backup_20260715/ — the pre-audit source backup, kept
+      untouched per the constraint. This project is not a git repository, so it remains
+      the only undo path for the Phase 1 edits.
+      All void result JSONs, figures and checkpoints — retained, not deleted. See
+      data/results/RESULTS_ARE_VOID_READ_ME.md.
+================================================================================

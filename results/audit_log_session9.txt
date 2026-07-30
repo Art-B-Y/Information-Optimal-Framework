@@ -1,0 +1,122 @@
+ITS PROJECT — SESSION 9 AUDIT LOG
+Generated: 2026-04-23
+================================================================================
+
+STEP 1A: IMPORT INTEGRITY CHECK
+--------------------------------------------------------------------------------
+All 8 imports checked:
+
+  PASS  from its.controllers.neural_control import ConvControlPolicy, ControlPolicy, build_control_policy
+  PASS  from its.samplers.sb_solver import SchrodingerBridgeSampler
+  PASS  from its.sde.score_sde import ScoreSDE
+  PASS  from its.sde.conversions import score_to_eps, eps_to_score
+  PASS  from its.models.score_unet import ScoreUNet
+  PASS  from its.physics.fluctuation import JarzynskiEstimator, crooks_crossing_point
+  PASS  from its.eval.evaluator import Evaluator
+  FAIL* from its.training.controlled_score_training import train_controlled
+        REASON: Function is named train_controlled_score (not train_controlled).
+                This is an error in the Session 9 brief's import spec, NOT a bug
+                in the codebase. The function exists and works correctly.
+        ACTION: No code change required.
+
+STEP 1B: ScoreSDESimulator CONSTRUCTOR VERIFICATION
+--------------------------------------------------------------------------------
+  Correct signature: ScoreSDESimulator(score_model, config)
+    - score_model: torch.nn.Module (the trained score network)
+    - config: ScoreSDEConfig (SDE configuration)
+
+  Incorrect usage ScoreSDESimulator(config) raises TypeError — CONFIRMED.
+
+  Prior bugs in compute_memorization_check.py and compute_mode_coverage.py
+  were FIXED in Session 8. Verified both files call constructor correctly now.
+
+  ACTION: Added test_score_sde_simulator_constructor_requires_model to
+          tests/test_session9_paper.py — PASSING.
+
+STEP 1C: ConvControlPolicy ARCHITECTURE AUDIT
+--------------------------------------------------------------------------------
+  File: src/its/controllers/neural_control.py
+
+  CRITICAL CHECK: Zero-initialized output layer
+    output_proj = nn.Conv2d(C, config.in_channels, kernel_size=1)
+    nn.init.zeros_(self.output_proj.weight)  # line 195
+    nn.init.zeros_(self.output_proj.bias)    # line 196
+    STATUS: CONFIRMED SAFE — both weight and bias zero-initialized.
+    A non-zero output would corrupt the pretrained score model in step 1.
+
+  FiLM conditioning:
+    _FiLMLayer: scale_proj + shift_proj on time embedding → x * scale + shift
+    Scale initialized: +1.0 bias (identity scale at init) — line 141
+    STATUS: CONFIRMED CORRECT.
+
+  Residual scaling:
+    _ResBlock: return x + h (standard residual) — line 168
+    STATUS: CONFIRMED.
+
+  Time embedding:
+    SinusoidalTimeEmbedding with MLP projection → float32 safe for t in [0,1]
+    STATUS: CONFIRMED.
+
+  ACTION: Added 3 architecture tests to tests/test_session9_paper.py — PASSING.
+
+STEP 1D: CHECKPOINT DIRECTORY AUDIT
+--------------------------------------------------------------------------------
+  checkpoints/score_fmnist_v2/          — score_best.pt + 20 epoch checkpoints VALID
+  checkpoints/controlled_config_d_seed42/ — controlled_last.pt (epoch 60) VALID
+  checkpoints/ablation_conv/            — controlled_last.pt (epoch 5) VALID
+  checkpoints/ablation_B/               — present
+  checkpoints/ablation_C/               — present
+  checkpoints/ablation_D/               — present (same as Config D reference)
+  checkpoints/ablation_F/               — present
+  checkpoints/ablation_no_EMA/          — present
+  checkpoints/ablation_no_freeze/       — present
+  checkpoints/ipf_fmnist_full/          — present (5 IPF iterations)
+
+  NEW DIRS to be created by Session 9 training:
+    checkpoints/controlled_conv_seed42/ — ConvControl 50-epoch training (RUNNING)
+
+STEP 1E: TEST SUITE
+--------------------------------------------------------------------------------
+  Total tests before Session 9: 43
+  Run: python -m pytest tests/ -q
+  Result: 43 passed in 293.71s (04:53) — ALL PASS
+
+  Session 9 new tests (tests/test_session9_paper.py): 5 tests — ALL PASS
+  Total after Step 1: 48 tests
+
+STEP 1F: GPU ENVIRONMENT
+--------------------------------------------------------------------------------
+  Device: NVIDIA GeForce GTX 1650 Ti
+  CUDA: available (torch.cuda.is_available() = True)
+  VRAM total: 4.0 GB
+  VRAM free at audit time: 3.22 GB
+
+  Training constraints:
+  - ConvControl training requires ~1.5GB VRAM with batch=128 on FashionMNIST
+  - Score model frozen → VRAM savings vs full fine-tuning
+  - Sequential GPU usage required (no parallel training+eval)
+
+ISSUES FOUND AND FIXED
+--------------------------------------------------------------------------------
+  1. train_controlled_config_d.py: no --use-conv-control CLI flag
+     FIX: Added --use-conv-control argument, ConvControl hyperparameters
+          (lr=5e-4, lr_min=5e-7, ema_decay=0.9999, batch=128), separate
+          checkpoint dir (controlled_conv_seed{seed}), auto-detect ConvControl
+          in _eval_config_d_fid() from checkpoint control_config keys.
+
+  2. Session 9 brief import spec error: train_controlled vs train_controlled_score
+     FIX: No code change; documented above.
+
+TRAINING STATUS AT AUDIT CLOSE
+--------------------------------------------------------------------------------
+  ConvControl 50-epoch training: RUNNING (started 2026-04-23 17:11:49)
+  Command: python scripts/train_controlled_config_d.py
+           --score-ckpt checkpoints/score_fmnist_v2/score_best.pt
+           --epochs 50 --use-conv-control --seed 42 --num-samples-eval 2048
+  Checkpoint dir: checkpoints/controlled_conv_seed42/
+  Initial grad norms: 952→465 (steps 1-5), declining — EXPECTED behavior
+  grad_clip=1.0 bounds actual parameter updates regardless.
+
+================================================================================
+END OF SESSION 9 AUDIT LOG
+================================================================================
