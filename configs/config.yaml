@@ -1,0 +1,6 @@
+defaults:
+  - experiment: double_well
+  - _self_
+
+seed: 123
+device: cpu

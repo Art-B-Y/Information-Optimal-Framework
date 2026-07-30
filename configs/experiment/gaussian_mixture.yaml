@@ -1,0 +1,2 @@
+_target_: its.experiments.toy_gaussian.build_gaussian_mixture_experiment
+device: ${device}

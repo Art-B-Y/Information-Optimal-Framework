@@ -1,0 +1,63 @@
+_target_: its.experiments.controlled_mnist.build_controlled_mnist_experiment
+device: ${device}
+model:
+  in_channels: 1
+  base_channels: 32
+  channel_mults: [1, 2, 2]
+control:
+  # Flattened image size for 28x28 FashionMNIST
+  state_dim: 784
+  hidden_dim: 128
+  depth: 3
+  time_embedding_dim: 8
+sde:
+  beta_min: 0.1
+  beta_max: 5.0
+  num_steps: 50
+  clamp: 5.0
+  control_weight: 1.0
+  sigma_min: 0.01
+  sigma_max: 1.0
+  corrector_steps: 1
+  corrector_step_size: 0.01
+  jarzynski_clip: 50.0
+  jarzynski_subsample: 2
+training:
+  epochs: 5
+  batch_size: 64
+  dataset_name: fashionmnist
+  control_weight: 1.0e-2
+  log_interval: 50
+  # path_kl_weight > 0 is required for the Girsanov path-KL term to influence training.
+  # Raised from 0.0 to 0.1 (Bug 5 fix, Session 1).
+  path_kl_weight: 0.1
+  # quality_weight > 0 enables feature-matching loss via frozen Inception-v3 (Session 3).
+  quality_weight: 0.01
+  wandb: false
+  checkpoint_dir: checkpoints/controlled_mnist
+  save_interval: 1
+  log_dir: logs
+  run_name: controlled_mnist
+  mixed_precision: true
+  grad_accum_steps: 1
+  eval_every: 0
+  eval_num_samples: 256
+  eval_batch_size: 64
+  eval_baselines: []
+  # Training stability additions (Session 3, audit fix CAT4-2):
+  nan_tolerance: 5
+  save_every_n_epochs: null
+  jsonl_log: null
+  # Pretrained score backbone + freeze flag (Step 3B, Session 4).
+  score_backbone_ckpt: null
+  freeze_score_model: false
+  # Subset size for fast sweep pilots (0 = full dataset). Session 4 audit CAT5.
+  dataset_subset_size: 0
+  # Early stopping patience in epochs (0 = disabled). Session 5 Step 2B.
+  early_stop_patience: 0
+  early_stop_min_delta: 0.01
+  # LR scheduling (Step 7A, Session 6)
+  use_lr_schedule: true
+  lr_min: 1.0e-6
+  # Sample diversity logging (Step 7C, Session 6)
+  log_sample_diversity: false

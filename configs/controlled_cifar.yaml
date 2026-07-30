@@ -1,0 +1,6 @@
+defaults:
+  - experiment: controlled_cifar
+  - _self_
+
+# Default to CUDA if available; override with --overrides "device=cpu" to force CPU.
+device: cuda

@@ -1,0 +1,12 @@
+defaults:
+  - experiment: final_phase
+  - _self_
+
+experiment:
+  score_training:
+    resume_from: checkpoints/score/score_epoch_0010.pt
+    epochs: 50
+    dataset:
+      batch_size: 128
+  model:
+    base_channels: 128

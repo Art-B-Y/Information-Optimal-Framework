@@ -1,0 +1,2 @@
+_target_: its.experiments.double_well.build_double_well_experiment
+device: ${device}

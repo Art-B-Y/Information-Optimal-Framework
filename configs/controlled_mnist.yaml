@@ -1,0 +1,6 @@
+defaults:
+  - experiment: controlled_mnist
+  - _self_
+
+# Training on CPU by default; set to "cuda" to use GPU.
+device: cpu

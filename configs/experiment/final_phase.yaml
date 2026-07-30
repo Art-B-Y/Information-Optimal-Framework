@@ -1,0 +1,28 @@
+_target_: its.experiments.final_phase.build_final_phase_experiment
+device:
+dataset:
+  name: cifar10
+  batch_size: 64
+  num_workers: 0
+  augment: true
+model:
+  in_channels: 3
+  base_channels: 64
+  channel_mults: [1, 2, 2, 4]
+score_training:
+  epochs: 10
+  lr: 0.0002
+  sigma_min: 0.01
+  sigma_max: 1.0
+  grad_clip: 1.0
+  log_interval: 50
+  ema_decay: 0.999
+  checkpoint_dir: checkpoints/score
+  save_interval: 1
+  log_dir: logs
+  run_name: score_cifar
+sampler:
+  beta_min: 0.1
+  beta_max: 20.0
+  num_steps: 1000
+  control_weight: 0.05

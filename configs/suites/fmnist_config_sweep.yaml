@@ -1,0 +1,65 @@
+# ITS FashionMNIST 5-epoch comparison sweep (Session 5)
+# Compares configs C, D, F — the three with most interesting dynamics from Session 4.
+# Uses 10,000-sample subset for 5× larger training budget than Session 4 sweep.
+# Each run takes ~45-60 min on CPU; ~15 min on GPU.
+#
+# Usage:
+#   python scripts/run_experiment_suite.py \
+#       --suite configs/suites/fmnist_config_sweep.yaml \
+#       --device cpu
+name: fmnist_5epoch_comparison
+
+runs:
+  - name: config_C_5ep
+    config_name: controlled_mnist
+    overrides:
+      - experiment.training.control_weight=0.01
+      - experiment.training.path_kl_weight=0.1
+      - experiment.training.quality_weight=0.0
+      - experiment.training.epochs=5
+      - experiment.training.dataset_subset_size=10000
+      - experiment.training.batch_size=64
+      - experiment.training.log_interval=50
+    epochs: 5
+    checkpoint_dir: checkpoints/suite/config_C_5ep
+    jsonl_log: logs/suite_config_C_5ep.jsonl
+    eval_after: true
+    eval_num_samples: 2048
+    eval_seed: 42
+    timeout_sec: 21600
+
+  - name: config_D_5ep
+    config_name: controlled_mnist
+    overrides:
+      - experiment.training.control_weight=0.01
+      - experiment.training.path_kl_weight=0.1
+      - experiment.training.quality_weight=0.01
+      - experiment.training.epochs=5
+      - experiment.training.dataset_subset_size=10000
+      - experiment.training.batch_size=64
+      - experiment.training.log_interval=50
+    epochs: 5
+    checkpoint_dir: checkpoints/suite/config_D_5ep
+    jsonl_log: logs/suite_config_D_5ep.jsonl
+    eval_after: true
+    eval_num_samples: 2048
+    eval_seed: 42
+    timeout_sec: 21600
+
+  - name: config_F_5ep
+    config_name: controlled_mnist
+    overrides:
+      - experiment.training.control_weight=0.01
+      - experiment.training.path_kl_weight=0.5
+      - experiment.training.quality_weight=0.01
+      - experiment.training.epochs=5
+      - experiment.training.dataset_subset_size=10000
+      - experiment.training.batch_size=64
+      - experiment.training.log_interval=50
+    epochs: 5
+    checkpoint_dir: checkpoints/suite/config_F_5ep
+    jsonl_log: logs/suite_config_F_5ep.jsonl
+    eval_after: true
+    eval_num_samples: 2048
+    eval_seed: 42
+    timeout_sec: 21600
